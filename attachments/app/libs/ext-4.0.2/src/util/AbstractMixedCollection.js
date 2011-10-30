@@ -17,7 +17,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  */
 Ext.define('Ext.util.AbstractMixedCollection', {
     requires: ['Ext.util.Filter'],
-    
+
     mixins: {
         observable: 'Ext.util.Observable'
     },
@@ -72,7 +72,7 @@ Ext.define('Ext.util.AbstractMixedCollection', {
 
         me.mixins.observable.constructor.call(me);
     },
-    
+
     /**
      * @cfg {Boolean} allowFunctions Specify <tt>true</tt> if the {@link #addAll}
      * function should add function references to the collection. Defaults to

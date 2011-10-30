@@ -18,8 +18,8 @@ If you are unsure which license is appropriate for your use, please contact the 
  * 27 Apr 2008
  *
  * Changes since previous (second) Version:
- * + added Ext.Date.shortMonthNames 
- * + added Ext.Date.getShortMonthName 
+ * + added Ext.Date.shortMonthNames
+ * + added Ext.Date.getShortMonthName
  * + added Ext.Date.monthNumbers
  * + added Ext.grid.GroupingFeature
  */
@@ -27,7 +27,7 @@ Ext.onReady(function() {
     if(Ext.Updater){
         Ext.Updater.defaults.indicatorText = '<div class="loading-indicator">Μεταφόρτωση δεδομένων...</div>';
     }
-    
+
     if(Ext.view.View){
         Ext.view.View.prototype.emptyText = "";
     }
@@ -113,7 +113,7 @@ Ext.onReady(function() {
         "Σάββατο"
         ];
     }
-    
+
     if(Ext.MessageBox){
         Ext.MessageBox.buttonText = {
             ok     : "OK",
@@ -244,7 +244,7 @@ Ext.onReady(function() {
                 },
                 forecolor : {
                     title: 'Χρώμα Γραμματοσειράς',
-                    text: 'Αλλάζετε το χρώμα στη γραμματοσειρά του προεπιλεγμένου κειμένου.',               
+                    text: 'Αλλάζετε το χρώμα στη γραμματοσειρά του προεπιλεγμένου κειμένου.',
                     cls: Ext.baseCSSPrefix + 'html-editor-tip'
                 },
                 justifyleft : {

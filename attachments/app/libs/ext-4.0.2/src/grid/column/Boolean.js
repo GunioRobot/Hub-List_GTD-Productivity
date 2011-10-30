@@ -30,8 +30,8 @@ If you are unsure which license is appropriate for your use, please contact the 
  *        data:{'items':[
  *            {"framework":"Ext JS 4", "rocks":true},
  *            {"framework":"Sencha Touch", "rocks":true},
- *            {"framework":"Ext GWT", "rocks":true},            
- *            {"framework":"Other Guys", "rocks":false}            
+ *            {"framework":"Ext GWT", "rocks":true},
+ *            {"framework":"Other Guys", "rocks":false}
  *        ]},
  *        proxy: {
  *            type: 'memory',
@@ -41,17 +41,17 @@ If you are unsure which license is appropriate for your use, please contact the 
  *            }
  *        }
  *     });
- *     
+ *
  *     Ext.create('Ext.grid.Panel', {
  *         title: 'Boolean Column Demo',
  *         store: Ext.data.StoreManager.lookup('sampleStore'),
  *         columns: [
  *             {text: 'Framework',  dataIndex: 'framework', flex: 1},
  *             {
- *                 xtype: 'booleancolumn', 
+ *                 xtype: 'booleancolumn',
  *                 text: 'Rocks',
  *                 trueText: 'Yes',
- *                 falseText: 'No', 
+ *                 falseText: 'No',
  *                 dataIndex: 'rocks'}
  *         ],
  *         height: 200,

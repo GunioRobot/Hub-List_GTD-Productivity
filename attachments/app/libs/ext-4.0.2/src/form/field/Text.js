@@ -15,7 +15,7 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.form.field.Text
  * @extends Ext.form.field.Base
- 
+
 A basic text field.  Can be used as a direct replacement for traditional text inputs,
 or as the base class for more sophisticated input controls (like {@link Ext.form.field.TextArea}
 and {@link Ext.form.field.ComboBox}). Has support for empty-field placeholder values (see {@link #emptyText}).
@@ -31,7 +31,7 @@ The Text field has a useful set of validations built in:
 - {@link #regex} to specify a custom regular expression for validation
 
 In addition, custom validations may be added:
- 
+
 - {@link #vtype} specifies a virtual type implementation from {@link Ext.form.field.VTypes} which can contain
   custom validation logic
 - {@link #validator} allows a custom arbitrary function to be called during validation
@@ -55,7 +55,7 @@ validation: see {@link #maskRe} and {@link #stripCharsRe} for details.
         title: 'Contact Info',
         width: 300,
         bodyPadding: 10,
-        renderTo: Ext.getBody(),        
+        renderTo: Ext.getBody(),
         items: [{
             xtype: 'textfield',
             name: 'name',
@@ -67,7 +67,7 @@ validation: see {@link #maskRe} and {@link #stripCharsRe} for details.
             fieldLabel: 'Email Address',
             vtype: 'email'  // requires value to be a valid email address format
         }]
-    }); 
+    });
 
  *
  * @markdown
@@ -84,7 +84,7 @@ Ext.define('Ext.form.field.Text', {
      * for the <b><code>{@link #vtype}</code></b> currently set for this field (defaults to <tt>undefined</tt>).
      * <b>Note</b>: only applies if <b><code>{@link #vtype}</code></b> is set, else ignored.
      */
-    
+
     /**
      * @cfg {RegExp} stripCharsRe A JavaScript RegExp object used to strip unwanted content from the value
      * before validation (defaults to <tt>undefined</tt>).
@@ -107,7 +107,7 @@ Ext.define('Ext.form.field.Text', {
      * to <tt>30</tt>)
      */
     growMin : 30,
-    
+
     /**
      * @cfg {Number} growMax The maximum width to allow when <code><b>{@link #grow}</b> = true</code> (defaults
      * to <tt>800</tt>)
@@ -122,7 +122,7 @@ Ext.define('Ext.form.field.Text', {
      * field value shifting before the width is adjusted.
      */
     growAppend: 'W',
-    
+
     /**
      * @cfg {String} vtype A validation type name as defined in {@link Ext.form.field.VTypes} (defaults to <tt>undefined</tt>)
      */
@@ -142,12 +142,12 @@ Ext.define('Ext.form.field.Text', {
      * <tt>true</tt>)
      */
     allowBlank : true,
-    
+
     /**
      * @cfg {Number} minLength Minimum input field length required (defaults to <tt>0</tt>)
      */
     minLength : 0,
-    
+
     /**
      * @cfg {Number} maxLength Maximum input field length allowed by validation (defaults to Number.MAX_VALUE).
      * This behavior is intended to provide instant feedback to the user by improving usability to allow pasting
@@ -155,7 +155,7 @@ Ext.define('Ext.form.field.Text', {
      * entered into the field use the <tt><b>{@link Ext.form.field.Text#enforceMaxLength enforceMaxLength}</b></tt> option.
      */
     maxLength : Number.MAX_VALUE,
-    
+
     /**
      * @cfg {Boolean} enforceMaxLength True to set the maxLength property on the underlying input field. Defaults to <tt>false</tt>
      */
@@ -165,24 +165,24 @@ Ext.define('Ext.form.field.Text', {
      * validation fails (defaults to <tt>'The minimum length for this field is {minLength}'</tt>)
      */
     minLengthText : 'The minimum length for this field is {0}',
-    
+
     /**
      * @cfg {String} maxLengthText Error text to display if the <b><tt>{@link #maxLength maximum length}</tt></b>
      * validation fails (defaults to <tt>'The maximum length for this field is {maxLength}'</tt>)
      */
     maxLengthText : 'The maximum length for this field is {0}',
-    
+
     /**
      * @cfg {Boolean} selectOnFocus <tt>true</tt> to automatically select any existing field text when the field
      * receives input focus (defaults to <tt>false</tt>)
      */
-    
+
     /**
      * @cfg {String} blankText The error text to display if the <b><tt>{@link #allowBlank}</tt></b> validation
      * fails (defaults to <tt>'This field is required'</tt>)
      */
     blankText : 'This field is required',
-    
+
     /**
      * @cfg {Function} validator
      * <p>A custom validation function to be called during field validation ({@link #getErrors})
@@ -213,7 +213,7 @@ Ext.define('Ext.form.field.Text', {
      * test fails during validation (defaults to <tt>''</tt>)
      */
     regexText : '',
-    
+
     /**
      * @cfg {String} emptyText
      * <p>The default text to place into an empty field (defaults to <tt>undefined</tt>).</p>
@@ -284,7 +284,7 @@ Ext.define('Ext.form.field.Text', {
     initEvents : function(){
         var me = this,
             el = me.inputEl;
-        
+
         me.callParent();
         if(me.selectOnFocus || me.emptyText){
             me.mon(el, 'mousedown', me.onMouseDown, me);
@@ -318,7 +318,7 @@ Ext.define('Ext.form.field.Text', {
         this.callParent();
         this.autoSize();
     },
-    
+
     afterRender: function(){
         var me = this;
         if (me.enforceMaxLength) {
@@ -347,7 +347,7 @@ Ext.define('Ext.form.field.Text', {
         var me = this,
             stripRe = me.stripCharsRe,
             newValue;
-            
+
         if (stripRe) {
             newValue = value.replace(stripRe, '');
             if (newValue !== value) {
@@ -403,13 +403,13 @@ Ext.define('Ext.form.field.Text', {
 
         if (me.rendered && emptyText) {
             isEmpty = me.getRawValue().length < 1 && !me.hasFocus;
-            
+
             if (Ext.supports.Placeholder) {
                 me.inputEl.dom.placeholder = emptyText;
             } else if (isEmpty) {
                 me.setRawValue(emptyText);
             }
-            
+
             //all browsers need this because of a styling issue with chrome + placeholders.
             //the text isnt vertically aligned when empty (and using the placeholder)
             if (isEmpty) {
@@ -459,11 +459,11 @@ Ext.define('Ext.form.field.Text', {
         }
         var key = e.getKey(),
             charCode = String.fromCharCode(e.getCharCode());
-            
+
         if(Ext.isGecko && (e.isNavKeyPress() || key === e.BACKSPACE || (key === e.DELETE && e.button === -1))){
             return;
         }
-        
+
         if(!Ext.isGecko && e.isSpecialKey() && !charCode){
             return;
         }
@@ -496,11 +496,11 @@ Ext.define('Ext.form.field.Text', {
     setValue: function(value) {
         var me = this,
             inputEl = me.inputEl;
-        
+
         if (inputEl && me.emptyText && !Ext.isEmpty(value)) {
             inputEl.removeCls(me.emptyCls);
         }
-        
+
         me.callParent(arguments);
 
         me.applyEmptyText();
@@ -512,12 +512,12 @@ Validates a value according to the field's validation rules and returns an array
 for any failing validations. Validation rules are processed in the following order:
 
 1. **Field specific validator**
-    
+
     A validator offers a way to customize and reuse a validation specification.
     If a field is configured with a `{@link #validator}`
     function, it will be passed the current field value.  The `{@link #validator}`
     function is expected to return either:
-    
+
     - Boolean `true`  if the value is valid (validation continues).
     - a String to represent the invalid message if invalid (validation halts).
 
@@ -525,13 +525,13 @@ for any failing validations. Validation rules are processed in the following ord
 
     If the `{@link #validator}` has not halted validation,
     basic validation proceeds as follows:
-    
+
     - `{@link #allowBlank}` : (Invalid message = `{@link #emptyText}`)
-    
+
         Depending on the configuration of <code>{@link #allowBlank}</code>, a
         blank field will cause validation to halt at this step and return
         Boolean true or false accordingly.
-    
+
     - `{@link #minLength}` : (Invalid message = `{@link #minLengthText}`)
 
         If the passed value does not satisfy the `{@link #minLength}`
@@ -624,7 +624,7 @@ for any failing validations. Validation rules are processed in the following ord
             el = me.inputEl.dom,
             undef,
             range;
-            
+
         if (v.length > 0) {
             start = start === undef ? 0 : start;
             end = end === undef ? v.length : end;

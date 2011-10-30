@@ -36,7 +36,7 @@ Ext.onReady(function() {
     if(Ext.LoadMask){
       Ext.LoadMask.prototype.msg = "読み込み中...";
     }
-    
+
     if(Ext.Date) {
         Ext.Date.monthNames = [
           '1月',
@@ -94,7 +94,7 @@ Ext.onReady(function() {
         Ext.Date.formatCodes.a = "(this.getHours() < 12 ? '午前' : '午後')";
         Ext.Date.formatCodes.A = "(this.getHours() < 12 ? '午前' : '午後')"; // no case difference
     }
-    
+
     if(Ext.MessageBox){
       Ext.MessageBox.buttonText = {
         ok     : "OK",

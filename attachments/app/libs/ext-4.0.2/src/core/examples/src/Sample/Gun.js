@@ -13,5 +13,5 @@ If you are unsure which license is appropriate for your use, please contact the 
 
 */
 Ext.define('Sample.Gun', {
-    
+
 });

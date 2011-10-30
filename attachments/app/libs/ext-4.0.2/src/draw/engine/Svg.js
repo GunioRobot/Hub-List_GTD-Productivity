@@ -43,7 +43,7 @@ Ext.define('Ext.draw.engine.Svg', {
         strokeOpacity: "stroke-opacity",
         strokeLinejoin: "stroke-linejoin"
     },
-    
+
     parsers: {},
 
     minDefaults: {
@@ -156,7 +156,7 @@ Ext.define('Ext.draw.engine.Svg', {
         sprite.bbox.transform = sprite.bbox.transform || Ext.draw.Draw.pathDimensions(Ext.draw.Draw.mapPath(realPath, sprite.matrix));
         return sprite.bbox.transform;
     },
-    
+
     getBBoxText: function (sprite) {
         var bbox = {},
             bb, height, width, i, ln, el;
@@ -210,7 +210,7 @@ Ext.define('Ext.draw.engine.Svg', {
             transformsLength = transforms.length,
             i = 0,
             transform, type;
-            
+
         for (; i < transformsLength; i++) {
             transform = transforms[i];
             type = transform.type;
@@ -231,7 +231,7 @@ Ext.define('Ext.draw.engine.Svg', {
     setSize: function(w, h) {
         var me = this,
             el = me.el;
-        
+
         w = +w || me.width;
         h = +h || me.height;
         me.width = w;
@@ -272,7 +272,7 @@ Ext.define('Ext.draw.engine.Svg', {
         }
         this.callParent(arguments);
     },
-    
+
     setViewBox: function(x, y, width, height) {
         if (isFinite(x) && isFinite(y) && isFinite(width) && isFinite(height)) {
             this.callParent(arguments);
@@ -305,7 +305,7 @@ Ext.define('Ext.draw.engine.Svg', {
                     opacity: 0
                 }),
                 webkitRect;
-            
+
                 if (Ext.isSafari3) {
                     // Rect that we will show/hide to fix old WebKit bug with rendering issues.
                     webkitRect = me.createSvgElement("rect", {
@@ -404,7 +404,7 @@ Ext.define('Ext.draw.engine.Svg', {
              x = el.getAttribute("x"),
              tspans = [],
              height, tspan, text, i, ln, texts;
-        
+
         while (el.firstChild) {
             el.removeChild(el.firstChild);
         }
@@ -525,7 +525,7 @@ Ext.define('Ext.draw.engine.Svg', {
                 }
             }
         }
-        
+
         if (sprite.type == 'text') {
             me.tuneText(sprite, attrs);
         }
@@ -583,7 +583,7 @@ Ext.define('Ext.draw.engine.Svg', {
         var idx = this.normalizeSpriteCollection(sprite),
             el = sprite.el,
             prevEl;
-        if (this.el.dom.childNodes[idx + 2] !== el.dom) { //shift by 2 to account for defs and bg rect 
+        if (this.el.dom.childNodes[idx + 2] !== el.dom) { //shift by 2 to account for defs and bg rect
             if (idx > 0) {
                 // Find the first previous sprite which has its DOM element created already
                 do {
@@ -611,9 +611,9 @@ Ext.define('Ext.draw.engine.Svg', {
             //ref: EXTJSIV-1472
             usePlain = Ext.isSafari && !Ext.isStrict,
             gradientEl, stop, stopEl, i, gradientsMap;
-            
+
         gradientsMap = me.gradientsMap || {};
-        
+
         if (!usePlain) {
             if (gradient.type == "linear") {
                 gradientEl = me.createSvgElement("linearGradient");
@@ -709,7 +709,7 @@ Ext.define('Ext.draw.engine.Svg', {
 
     destroy: function() {
         var me = this;
-        
+
         me.callParent();
         if (me.el) {
             me.el.remove();

@@ -20,15 +20,15 @@ If you are unsure which license is appropriate for your use, please contact the 
  * to hold a direct response.
  */
 Ext.define('Ext.direct.Event', {
-    
+
     /* Begin Definitions */
-   
+
     alias: 'direct.event',
-    
+
     requires: ['Ext.direct.Manager'],
-    
+
     /* End Definitions */
-   
+
     status: true,
 
     /**
@@ -38,7 +38,7 @@ Ext.define('Ext.direct.Event', {
     constructor: function(config) {
         Ext.apply(this, config);
     },
-    
+
     /**
      * Return the raw data for this event.
      * @return {Object} The data from the event

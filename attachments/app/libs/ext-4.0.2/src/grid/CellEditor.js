@@ -22,7 +22,7 @@ Ext.define('Ext.grid.CellEditor', {
     extend: 'Ext.Editor',
     constructor: function(config) {
         config = Ext.apply({}, config);
-        
+
         if (config.field) {
             config.field.monitorTab = false;
         }
@@ -33,7 +33,7 @@ Ext.define('Ext.grid.CellEditor', {
         }
         this.callParent([config]);
     },
-    
+
     /**
      * @private
      * Hide the grid cell when editor is shown.
@@ -45,7 +45,7 @@ Ext.define('Ext.grid.CellEditor', {
         }
         this.callParent(arguments);
     },
-    
+
     /**
      * @private
      * Show grid cell when editor is hidden.
@@ -57,7 +57,7 @@ Ext.define('Ext.grid.CellEditor', {
         }
         this.callParent(arguments);
     },
-    
+
     /**
      * @private
      * Fix checkbox blur when it is clicked.
@@ -70,7 +70,7 @@ Ext.define('Ext.grid.CellEditor', {
             field.mon(field.inputEl, 'click', this.onCheckBoxClick, this);
         }
     },
-    
+
     /**
      * @private
      * Because when checkbox is clicked it loses focus  completeEdit is bypassed.
@@ -78,7 +78,7 @@ Ext.define('Ext.grid.CellEditor', {
     onCheckBoxMouseDown: function() {
         this.completeEdit = Ext.emptyFn;
     },
-    
+
     /**
      * @private
      * Restore checkbox focus and completeEdit method.
@@ -87,7 +87,7 @@ Ext.define('Ext.grid.CellEditor', {
         delete this.completeEdit;
         this.field.focus(false, 10);
     },
-    
+
     alignment: "tl-tl",
     hideEl : false,
     cls: Ext.baseCSSPrefix + "small-editor " + Ext.baseCSSPrefix + "grid-editor",

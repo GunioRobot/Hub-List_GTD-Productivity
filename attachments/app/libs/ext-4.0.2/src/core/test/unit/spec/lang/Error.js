@@ -12,7 +12,7 @@ This file may be used under the terms of the GNU General Public License version 
 If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
 
 */
-describe("Ext.Error", function() { 
+describe("Ext.Error", function() {
     var global;
 
     beforeEach(function() {
@@ -41,7 +41,7 @@ describe("Ext.Error", function() {
     describe("raising an error via Ext.Error.raise", function() {
 
         describe("passing a string", function() {
-    
+
             it("should throw an error with a msg property", function() {
                 try {
                     Ext.Error.raise('foo');
@@ -50,43 +50,43 @@ describe("Ext.Error", function() {
                     expect(err.msg).toEqual('foo');
                 }
             });
-        
+
             it("should log an error to the console", function() {
                 spyOn(Ext.global.console, 'error');
                 try {
                     Ext.Error.raise('foo');
-                } 
+                }
                 catch (err) {}
                 expect(Ext.global.console.error).toHaveBeenCalledWith('foo');
             });
-        
+
             it("should log the error object to the console", function() {
                 spyOn(Ext.global.console, 'dir').andCallFake(function(err){
                     expect(err.msg).toEqual('foo');
                 });
                 try {
                     Ext.Error.raise('foo');
-                } 
+                }
                 catch (err) {}
             });
-        
+
             it("should do nothing when Ext.Error.ignore = true", function() {
                 spyOn(Ext.global.console, 'warn');
-            
+
                 Ext.Error.ignore = true;
                 try {
                     Ext.Error.raise('foo');
-                } 
+                }
                 catch (err) {
                     expect('Error should not have been caught').toBe(true);
                 }
                 expect(Ext.global.console.warn).not.toHaveBeenCalled();
                 Ext.Error.ignore = false;
             });
-        
+
             it("should not throw an error if handled by Ext.Error.handle", function() {
                 spyOn(Ext.global.console, 'warn');
-            
+
                 var origHandle = Ext.Error.handle;
                 Ext.Error.handle = function(err) {
                     expect(err.msg).toEqual('foo');
@@ -94,7 +94,7 @@ describe("Ext.Error", function() {
                 }
                 try {
                     Ext.Error.raise('foo');
-                } 
+                }
                 catch (err) {
                     expect('Error should not have been caught').toBe(true);
                 }
@@ -102,9 +102,9 @@ describe("Ext.Error", function() {
                 Ext.Error.handle = origHandle;
             });
         });
-    
+
         describe("passing an object with a msg property", function() {
-    
+
             it("should throw an error with a msg property", function() {
                 try {
                     Ext.Error.raise({msg: 'foo'});
@@ -113,43 +113,43 @@ describe("Ext.Error", function() {
                     expect(err.msg).toEqual('foo');
                 }
             });
-        
+
             it("should log a warning to the console", function() {
                 spyOn(Ext.global.console, 'error');
                 try {
                     Ext.Error.raise({msg: 'foo'});
-                } 
+                }
                 catch (err) {}
                 expect(Ext.global.console.error).toHaveBeenCalledWith('foo');
             });
-        
+
             it("should log the error object to the console", function() {
                 spyOn(Ext.global.console, 'dir').andCallFake(function(err){
                     expect(err.msg).toEqual('foo');
                 });
                 try {
                     Ext.Error.raise({msg: 'foo'});
-                } 
+                }
                 catch (err) {}
             });
-                            
+
             it("should do nothing when Ext.Error.ignore = true", function() {
                 spyOn(Ext.global.console, 'warn');
-            
+
                 Ext.Error.ignore = true;
                 try {
                     Ext.Error.raise({msg: 'foo'});
-                } 
+                }
                 catch (err) {
                     expect('Error should not have been caught').toBe(true);
                 }
                 expect(Ext.global.console.warn).not.toHaveBeenCalled();
                 Ext.Error.ignore = false;
             });
-        
+
             it("should not throw an error if handled by Ext.Error.handle", function() {
                 spyOn(Ext.global.console, 'warn');
-            
+
                 var origHandle = Ext.Error.handle;
                 Ext.Error.handle = function(err) {
                     expect(err.msg).toEqual('foo');
@@ -157,7 +157,7 @@ describe("Ext.Error", function() {
                 }
                 try {
                     Ext.Error.raise({msg: 'foo'});
-                } 
+                }
                 catch (err) {
                     expect('Error should not have been caught').toBe(true);
                 }
@@ -165,9 +165,9 @@ describe("Ext.Error", function() {
                 Ext.Error.handle = origHandle;
             });
         });
-    
+
         describe("passing an object with custom metadata", function() {
-    
+
             it("should throw an error with matching metadata", function() {
                 try {
                     Ext.Error.raise({
@@ -183,7 +183,7 @@ describe("Ext.Error", function() {
                     expect(err.data.foo).toEqual('bar');
                 }
             });
-        
+
             it("should log the complete metadata to the console", function() {
                 spyOn(Ext.global.console, 'dir').andCallFake(function(err){
                     expect(err.msg).toEqual('Custom error');
@@ -197,13 +197,13 @@ describe("Ext.Error", function() {
                             foo: 'bar'
                         }
                     });
-                } 
+                }
                 catch (err) {}
             });
         });
-    
+
         describe("originating from within a class defined by Ext", function() {
-    
+
             Ext.define('CustomClass', {
                 doSomething: function(o){
                     Ext.Error.raise({
@@ -214,7 +214,7 @@ describe("Ext.Error", function() {
                 }
             });
             var customObj = Ext.create('CustomClass');
-        
+
             it("should throw an error containing the source class and method", function() {
                 try {
                     customObj.doSomething({
@@ -227,7 +227,7 @@ describe("Ext.Error", function() {
                     expect(err.sourceMethod).toEqual('doSomething');
                 }
             });
-        
+
             it("should log the complete metadata to the console", function() {
                 spyOn(Ext.global.console, 'dir').andCallFake(function(err){
                     expect(err.msg).toEqual('Custom error');
@@ -242,7 +242,7 @@ describe("Ext.Error", function() {
                     customObj.doSomething({
                         extraData: 'extra'
                     });
-                } 
+                }
                 catch (err) {}
             });
         });

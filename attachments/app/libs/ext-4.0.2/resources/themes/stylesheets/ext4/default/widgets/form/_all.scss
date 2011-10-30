@@ -7,7 +7,7 @@
             }
         }
     }
-    
+
     //form items
     .#{$prefix}form-item {
         display: block;
@@ -15,7 +15,7 @@
         position: relative;
         margin-bottom: 5px;
     }
-    
+
     .#{$prefix}form-item-label {
         float: left;
         padding: 3px 0 0;
@@ -52,17 +52,17 @@
 
         background: theme-image($theme-name, $form-exclamation-icon) no-repeat 0 2px;
     }
-    
+
     .#{$prefix}form-invalid-icon {
         width: 18px;
         height: 18px;
         overflow: hidden;
         text-indent: -9999px;
-        
+
         position: absolute;
         left: 0;
         top: 0;
-        
+
         background: theme-image($theme-name, $form-exclamation-icon) no-repeat 2px 3px;
 
         ul {

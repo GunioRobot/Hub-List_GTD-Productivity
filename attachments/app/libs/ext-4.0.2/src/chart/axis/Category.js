@@ -32,10 +32,10 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
  *             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
  *             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
- *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}                                                
+ *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
  *         ]
  *     });
- *  
+ *
  *     Ext.create('Ext.chart.Chart', {
  *         renderTo: Ext.getBody(),
  *         width: 500,

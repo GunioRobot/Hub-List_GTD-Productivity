@@ -24,17 +24,17 @@ and should not be instanced directly.
  */
 
 Ext.define('Ext.direct.JsonProvider', {
-    
+
     /* Begin Definitions */
-    
+
     extend: 'Ext.direct.Provider',
-    
+
     alias: 'direct.jsonprovider',
-    
+
     uses: ['Ext.direct.ExceptionEvent'],
-    
+
     /* End Definitions */
-   
+
    /**
     * Parse the JSON response
     * @private
@@ -63,7 +63,7 @@ Ext.define('Ext.direct.JsonProvider', {
             event,
             i = 0,
             len;
-            
+
         try{
             data = this.parseResponse(response);
         } catch(e) {
@@ -75,7 +75,7 @@ Ext.define('Ext.direct.JsonProvider', {
             });
             return [event];
         }
-        
+
         if (Ext.isArray(data)) {
             for (len = data.length; i < len; ++i) {
                 events.push(this.createEvent(data[i]));
@@ -85,7 +85,7 @@ Ext.define('Ext.direct.JsonProvider', {
         }
         return events;
     },
-    
+
     /**
      * Create an event from a response object
      * @param {Object} response The XHR response object

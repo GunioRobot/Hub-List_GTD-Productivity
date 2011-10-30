@@ -47,7 +47,7 @@ Ext.define('Ext.form.field.Field', {
     /**
      * @cfg {Mixed} value A value to initialize this field with (defaults to undefined).
      */
-    
+
     /**
      * @cfg {String} name The name of the field (defaults to undefined). By default this is used as the parameter
      * name when including the {@link #getSubmitData field value} in a {@link Ext.form.Basic#submit form submit()}.
@@ -156,7 +156,7 @@ Ext.define('Ext.form.field.Field', {
     getValue: function() {
         return this.value;
     },
-    
+
     /**
      * Sets a data value into the field and runs the change detection and validation.
      * @param {Mixed} value The value to set
@@ -229,7 +229,7 @@ Ext.define('Ext.form.field.Field', {
      */
     reset : function(){
         var me = this;
-        
+
         me.setValue(me.originalValue);
         me.clearInvalid();
         // delete here so we reset back to the original state

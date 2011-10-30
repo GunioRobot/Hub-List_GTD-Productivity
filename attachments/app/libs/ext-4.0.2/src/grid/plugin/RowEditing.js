@@ -15,11 +15,11 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.grid.plugin.RowEditing
  * @extends Ext.grid.plugin.Editing
- * 
+ *
  * The Ext.grid.plugin.RowEditing plugin injects editing at a row level for a Grid. When editing begins,
  * a small floating dialog will be shown for the appropriate row. Each editable column will show a field
  * for editing. There is a button to save or cancel all changes for the edit.
- * 
+ *
  * The field that will be used for the editor is defined at the
  * {@link Ext.grid.column.Column#field field}. The editor can be a field instance or a field configuration.
  * If an editor is not specified for a particular column then that column won't be editable and the value of
@@ -28,7 +28,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * The editor may be shared for each column in the grid, or a different one may be specified for each column.
  * An appropriate field type should be chosen to match the data structure that it will be editing. For example,
  * to edit a date, it would be useful to specify {@link Ext.form.field.Date} as the editor.
- * 
+ *
  * {@img Ext.grid.plugin.RowEditing/Ext.grid.plugin.RowEditing.png Ext.grid.plugin.RowEditing plugin}
  *
  * ## Example Usage
@@ -39,8 +39,8 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         data:{'items':[
  *             {"name":"Lisa", "email":"lisa@simpsons.com", "phone":"555-111-1224"},
  *             {"name":"Bart", "email":"bart@simpsons.com", "phone":"555--222-1234"},
- *             {"name":"Homer", "email":"home@simpsons.com", "phone":"555-222-1244"},                        
- *             {"name":"Marge", "email":"marge@simpsons.com", "phone":"555-222-1254"}            
+ *             {"name":"Homer", "email":"home@simpsons.com", "phone":"555-222-1244"},
+ *             {"name":"Marge", "email":"marge@simpsons.com", "phone":"555-222-1254"}
  *         ]},
  *         proxy: {
  *             type: 'memory',
@@ -50,13 +50,13 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             }
  *         }
  *     });
- *     
+ *
  *     Ext.create('Ext.grid.Panel', {
  *         title: 'Simpsons',
  *         store: Ext.data.StoreManager.lookup('simpsonsStore'),
  *         columns: [
  *             {header: 'Name',  dataIndex: 'name', field: 'textfield'},
- *             {header: 'Email', dataIndex: 'email', flex:1, 
+ *             {header: 'Email', dataIndex: 'email', flex:1,
  *                 editor: {
  *                     xtype:'textfield',
  *                     allowBlank:false
@@ -326,10 +326,10 @@ grid.on('validateedit', function(e) {
         if (column.isHeader) {
             var me = this,
                 editor;
-            
+
             me.initFieldAccessors(column);
             editor = me.getEditor();
-            
+
             if (editor && editor.onColumnAdd) {
                 editor.onColumnAdd(column);
             }
@@ -341,11 +341,11 @@ grid.on('validateedit', function(e) {
         if (column.isHeader) {
             var me = this,
                 editor = me.getEditor();
-    
+
             if (editor && editor.onColumnRemove) {
                 editor.onColumnRemove(column);
             }
-            me.removeFieldAccessors(column);  
+            me.removeFieldAccessors(column);
         }
     },
 
@@ -354,7 +354,7 @@ grid.on('validateedit', function(e) {
         if (column.isHeader) {
             var me = this,
                 editor = me.getEditor();
-    
+
             if (editor && editor.onColumnResize) {
                 editor.onColumnResize(column, width);
             }

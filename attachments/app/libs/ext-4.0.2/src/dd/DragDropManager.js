@@ -38,7 +38,7 @@ Ext.define('Ext.dd.DragDropManager', {
 
     // shorter ClassName, to save bytes and use internally
     alternateClassName: ['Ext.dd.DragDropMgr', 'Ext.dd.DDM'],
-    
+
     /**
      * Two dimensional Array of registered DragDrop objects.  The first
      * dimension is the DragDrop item group, the second the DragDrop
@@ -505,7 +505,7 @@ Ext.define('Ext.dd.DragDropManager', {
             // so clean up first to avoid breaking the next drag
             this.handleMouseUp(e);
         }
-        
+
         this.currentTarget = e.getTarget();
         this.dragCurrent = oDD;
 
@@ -1189,7 +1189,7 @@ Ext.define('Ext.dd.DragDropManager', {
             body  = doc.body,
             top   = 0,
             left  = 0;
-            
+
         if (Ext.isGecko4) {
             top  = window.scrollYOffset;
             left = window.scrollXOffset;
@@ -1200,7 +1200,7 @@ Ext.define('Ext.dd.DragDropManager', {
             } else if (body) {
                 top  = body.scrollTop;
                 left = body.scrollLeft;
-            } 
+            }
         }
         return {
             top: top,

@@ -21,9 +21,9 @@ If you are unsure which license is appropriate for your use, please contact the 
  * for its container.
  */
 Ext.define('Ext.layout.container.boxOverflow.None', {
-    
+
     alternateClassName: 'Ext.layout.boxOverflow.None',
-    
+
     constructor: function(layout, config) {
         this.layout = layout;
         Ext.apply(this, config || {});
@@ -32,7 +32,7 @@ Ext.define('Ext.layout.container.boxOverflow.None', {
     handleOverflow: Ext.emptyFn,
 
     clearOverflow: Ext.emptyFn,
-    
+
     onRemove: Ext.emptyFn,
 
     /**
@@ -44,6 +44,6 @@ Ext.define('Ext.layout.container.boxOverflow.None', {
     getItem: function(item) {
         return this.layout.owner.getComponent(item);
     },
-    
+
     onRemove: Ext.emptyFn
 });

@@ -5,57 +5,57 @@
 Ext.define('HL.proxy.Task', {
     extend: 'Ext.data.proxy.Rest',
     alias: 'proxy.task',
-    
+
     actionMethods: {
         create : 'PUT',
         read   : 'GET',
         update : 'PUT',
         destroy: 'DELETE'
     },
-           
+
     startParam: 'startkey',
     noCache: false,
     batchActions: false, // TODO: make this friendly with couchdb _bulk_docs feature
     url: '/',
-            
+
     /**
      * Calls parent contstructor
      * @param {Object} config configuration object
-     */      
+     */
     constructor: function(config) {
         var me = this;
-        
+
         config = config || {};
         me.callParent([config]);
     },
-    
+
     /**
      * Makes sure blank _rev field is not
      * passed to CouchDB. Sets the
      * create URL value dynamically.
      * @param {Ext.data.Operation} operation
      * @param {Ext.data.Proxy} proxy
-     * @param {Ext.data.Store} store          
-     */    
+     * @param {Ext.data.Store} store
+     */
     create: function(operation, proxy, store) {
         var record = operation.records[0];
         if(record.data._rev === null) {
             var _revField = record.fields.getByKey('_rev');
             _revField.persist = false; // sneaky way to make sure this isn't sent in ajax request
         }
-        
+
         this.api.create = '/' + HL.app.db + '/';
-        
+
         return this.doRequest.apply(this, arguments);
     },
 
-    /** 
+    /**
      * JSON encodes operation.params.key.
      * Sets the read URL value dynamically.
      * @param {Ext.data.Operation} operation
      * @param {Ext.data.Proxy} proxy
-     * @param {Ext.data.Store} store          
-     */     
+     * @param {Ext.data.Store} store
+     */
     read: function(operation, proxy, store) {
         // work-around for api object getting clobbered when extending a proxy
         this.api.read = '/' + HL.app.db + '/_design/app/_view/tasks';
@@ -72,8 +72,8 @@ Ext.define('HL.proxy.Task', {
      * update URL value dynamically.
      * @param {Ext.data.Operation} operation
      * @param {Ext.data.Proxy} proxy
-     * @param {Ext.data.Store} store          
-     */       
+     * @param {Ext.data.Store} store
+     */
     update: function(operation, proxy, store) {
         var record = operation.records[0];
         this.api.update = '/' + HL.app.db + '/';
@@ -86,24 +86,24 @@ Ext.define('HL.proxy.Task', {
         }
         return this.doRequest.apply(this, arguments);
     },
-    
+
     /**
      * Sets the destroy URL value dynamically.
      * @param {Ext.data.Operation} operation
      * @param {Ext.data.Proxy} proxy
-     * @param {Ext.data.Store} store          
-     */     
+     * @param {Ext.data.Store} store
+     */
     destroy: function(operation, proxy, store) {
         this.api.destroy = '/' + HL.app.db + '/';
         return this.doRequest.apply(this, arguments);
-    }, 
-                      
+    },
+
     reader: {
         type: 'json',
         root: 'children',
         record: 'value',
         successProperty: 'ok'
-        //totalProperty: 'total_rows', // can't use this without factoring in offset from couch            
+        //totalProperty: 'total_rows', // can't use this without factoring in offset from couch
     },
 
     /**
@@ -114,26 +114,26 @@ Ext.define('HL.proxy.Task', {
      * @param {Array} nodeIds ids of model records in response data
      * @param {Object} hierarchy transformed JSON response data
      * @param {Object} original JSON response data
-     */    
+     */
     buildHierarchyFromJson: function(nodeIds, hierarchy, allNodes) {
         var me = this;
         var recordKey = me.reader.record;
         var childKey = me.reader.root;
-        
+
         nodeIds.forEach(function(item, index, allItems) {
-            var node = me.itemByObjKeyVal(allNodes, 'id', item);                
+            var node = me.itemByObjKeyVal(allNodes, 'id', item);
             var childIds = node[recordKey]['childIds'];
             if(childIds && childIds.length > 0) {
-                // place children object where the reader is expecting to 
+                // place children object where the reader is expecting to
                 // find them
                 var childNodes = node[recordKey][childKey] = [];
                 me.buildHierarchyFromJson(childIds, childNodes, allNodes);
             }
-            
+
             hierarchy.push(node);
         }, me);
     },
-    
+
     /**
      * @private
      * Adds child nodes back to response data as children records
@@ -143,7 +143,7 @@ Ext.define('HL.proxy.Task', {
      */
     buildHierarchyFromRecords: function(formattedRecord, existingRecord) {
         var me = this;
-        
+
         existingRecord.childNodes.forEach(function(child, childIndex, allChildren) {
             var kid = {value:{}};
             // only use persistedFields to mimic a server response
@@ -151,19 +151,19 @@ Ext.define('HL.proxy.Task', {
             persistedFields.each(function(field, fieldIndex, fieldCount) {
                 kid.value[field.name] = child.get(field.name);
             });
-            
+
             if(child.childNodes.length > 0) {
                 kid.value.children = [];
                 me.buildHierarchyFromRecords(kid, child);
             }
             formattedRecord.value.children.push(kid);
-        }); 
+        });
     },
 
     /**
      * @private
      * Simple wrapper around JavaScript filter object method.
-     */    
+     */
     itemByObjKeyVal: function(haystack, key, val) {
         var items = haystack.filter(function(item, index, allItems) {
             if(item[key] === val) {
@@ -172,51 +172,51 @@ Ext.define('HL.proxy.Task', {
                 return false;
             }
         });
-        
+
         return items[0];
     },
-    
+
     /**
      * Overrides default proxy extractResponseData
      * method to transform flat response JSON into
-     * correctly formatted hierarchial data that is 
+     * correctly formatted hierarchial data that is
      * expected by the reader.
      * @param {Object} response raw JSON response data
-     */    
-    extractResponseData: function(response) {            
+     */
+    extractResponseData: function(response) {
         var rawData = this.reader.getResponseData(response);
 
-        if(response.request.options.action === 'read') {            
+        if(response.request.options.action === 'read') {
             var me = this;
-            
+
             var containerKey = Ext.JSON.decode(response.request.options.params.key);
             var container = Ext.data.StoreManager.lookup('tasksStore').getNodeById(containerKey);
             var recordKey = me.reader.record;
-                        
+
             // create a new array to hold formatted data
             var formattedData = {};
             formattedData.children = [];
-            
+
             // check for no data condition assume it's a blank list
             if(response.statusText === 'OK' && rawData.total_rows === 0) {
                 return rawData;
             }
-                          
+
             // organize items into a proper hierarchy using container childIds
             this.buildHierarchyFromJson(container.data.childIds, formattedData.children, rawData.rows);
-            
+
             return formattedData;
         } else if(response.request.options.action === 'update' || response.request.options.action === 'create') {
             // create a new array to hold formatted data
             var formattedData = {};
-            formattedData.children = [];                
-            
+            formattedData.children = [];
+
             // this block makes sure the model is updated with the new _rev hash
             // returned from the server. the data classes expect the server result to have
             // a full model record and because couchdb doesn't return all the fields
             // I use this block to mix the existing data with the new _rev id.
             var existingRecord = response.request.options.operation.records[0];
-            if(existingRecord.data._id === rawData.id) {            
+            if(existingRecord.data._id === rawData.id) {
                 // only use persisted fields to mimic a server response
                 var modelFields = existingRecord.fields.filter('persist', true);
                 var formattedRecord = {value:{}};
@@ -228,20 +228,20 @@ Ext.define('HL.proxy.Task', {
                 // make sure the _rev field is correctly set to persist
                 // manually setting it to false on create/update caused problems
                 // if we didn't set it back to true here
-                existingRecord.fields.getByKey('_rev').persist = true;  
-                
+                existingRecord.fields.getByKey('_rev').persist = true;
+
                 formattedRecord.value.children = [];
                 if(existingRecord.childNodes && existingRecord.childNodes.length > 0) {
                     this.buildHierarchyFromRecords(formattedRecord, existingRecord);
                 }
-                
-                formattedData.children.push(formattedRecord);                   
+
+                formattedData.children.push(formattedRecord);
             }
-            
+
             return formattedData;
         } else {
             return rawData;
         }
     }
-        
+
 });

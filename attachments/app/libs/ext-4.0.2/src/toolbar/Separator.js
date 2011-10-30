@@ -16,7 +16,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @class Ext.toolbar.Separator
  * @extends Ext.toolbar.Item
  * A simple class that adds a vertical separator bar between toolbar items
- * (css class:<tt>'x-toolbar-separator'</tt>). 
+ * (css class:<tt>'x-toolbar-separator'</tt>).
  *
  * {@img Ext.toolbar.Separator/Ext.toolbar.Separator.png Toolbar Separator}
  *
@@ -32,7 +32,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             'Item 2'
  *         ],
  *         renderTo: Ext.getBody()
- *     }); 
+ *     });
  *
  */
 Ext.define('Ext.toolbar.Separator', {

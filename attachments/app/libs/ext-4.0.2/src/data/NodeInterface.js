@@ -21,7 +21,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  */
 Ext.define('Ext.data.NodeInterface', {
     requires: ['Ext.data.Field'],
-    
+
     statics: {
         /**
          * This method allows you to decorate a Record's prototype to implement the NodeInterface.
@@ -47,7 +47,7 @@ Ext.define('Ext.data.NodeInterface', {
                     {name: idName,       type: 'string',  defaultValue: null},
                     {name: 'parentId',   type: 'string',  defaultValue: null},
                     {name: 'index',      type: 'int',     defaultValue: null},
-                    {name: 'depth',      type: 'int',     defaultValue: 0}, 
+                    {name: 'depth',      type: 'int',     defaultValue: 0},
                     {name: 'expanded',   type: 'bool',    defaultValue: false, persist: false},
                     {name: 'expandable', type: 'bool',    defaultValue: true, persist: false},
                     {name: 'checked',    type: 'auto',    defaultValue: null},
@@ -76,7 +76,7 @@ Ext.define('Ext.data.NodeInterface', {
                     }
                 }
             }
-            
+
             Ext.applyIf(record, {
                 firstChild: null,
                 lastChild: null,
@@ -87,7 +87,7 @@ Ext.define('Ext.data.NodeInterface', {
             });
             // Commit any fields so the record doesn't show as dirty initially
             record.commit(true);
-            
+
             record.enableBubble([
                 /**
                  * @event append
@@ -159,35 +159,35 @@ Ext.define('Ext.data.NodeInterface', {
                   * @param {Node} refNode The child node the node is being inserted before
                   */
                 "beforeinsert",
-                
+
                 /**
                  * @event expand
                  * Fires when this node is expanded.
                  * @param {Node} this The expanding node
                  */
                 "expand",
-                
+
                 /**
                  * @event collapse
                  * Fires when this node is collapsed.
                  * @param {Node} this The collapsing node
                  */
                 "collapse",
-                
+
                 /**
                  * @event beforeexpand
                  * Fires before this node is expanded.
                  * @param {Node} this The expanding node
                  */
                 "beforeexpand",
-                
+
                 /**
                  * @event beforecollapse
                  * Fires before this node is collapsed.
                  * @param {Node} this The collapsing node
                  */
                 "beforecollapse",
-                
+
                 /**
                  * @event sort
                  * Fires when this node's childNodes are sorted.
@@ -196,10 +196,10 @@ Ext.define('Ext.data.NodeInterface', {
                  */
                 "sort"
             ]);
-            
+
             return record;
         },
-        
+
         applyFields: function(modelClass, addFields) {
             var modelPrototype = modelClass.prototype,
                 fields = modelPrototype.fields,
@@ -207,20 +207,20 @@ Ext.define('Ext.data.NodeInterface', {
                 ln = addFields.length,
                 addField, i, name,
                 newFields = [];
-                
+
             for (i = 0; i < ln; i++) {
                 addField = addFields[i];
                 if (!Ext.Array.contains(keys, addField.name)) {
                     addField = Ext.create('data.field', addField);
-                    
+
                     newFields.push(addField);
                     fields.add(addField);
                 }
             }
-            
+
             return newFields;
         },
-        
+
         getPrototypeBody: function() {
             return {
                 isNode: true,
@@ -236,7 +236,7 @@ Ext.define('Ext.data.NodeInterface', {
                     // Make sure the node implements the node interface
                     return Ext.data.NodeInterface.decorate(node);
                 },
-                
+
                 /**
                  * Returns true if this node is a leaf
                  * @return {Boolean}
@@ -285,8 +285,8 @@ Ext.define('Ext.data.NodeInterface', {
                     while (parent.parentNode) {
                         ++depth;
                         parent = parent.parentNode;
-                    }                                            
-                    
+                    }
+
                     me.beginEdit();
                     me.set({
                         isFirst: isFirst,
@@ -299,7 +299,7 @@ Ext.define('Ext.data.NodeInterface', {
                     if (silent) {
                         me.commit();
                     }
-                    
+
                     for (i = 0; i < len; i++) {
                         children[i].updateInfo(silent);
                     }
@@ -336,7 +336,7 @@ Ext.define('Ext.data.NodeInterface', {
                  */
                 isExpandable : function() {
                     var me = this;
-                    
+
                     if (me.get('expandable')) {
                         return !(me.isLeaf() || (me.isLoaded() && !me.hasChildNodes()));
                     }
@@ -364,9 +364,9 @@ Ext.define('Ext.data.NodeInterface', {
                     } else {
                         // Make sure it is a record
                         node = me.createNode(node);
-                        
+
                         if (suppressEvents !== true && me.fireEvent("beforeappend", me, node) === false) {
-                            return false;                         
+                            return false;
                         }
 
                         index = me.childNodes.length;
@@ -390,7 +390,7 @@ Ext.define('Ext.data.NodeInterface', {
                         node.nextSibling = null;
 
                         me.setLastChild(node);
-                                                
+
                         ps = me.childNodes[index - 1];
                         if (ps) {
                             node.previousSibling = ps;
@@ -401,28 +401,28 @@ Ext.define('Ext.data.NodeInterface', {
                         }
 
                         node.updateInfo(suppressNodeUpdate);
-                        
+
                         // As soon as we append a child to this node, we are loaded
                         if (!me.isLoaded()) {
-                            me.set('loaded', true);                            
+                            me.set('loaded', true);
                         }
                         // If this node didnt have any childnodes before, update myself
                         else if (me.childNodes.length === 1) {
                             me.set('loaded', me.isLoaded());
                         }
-                        
+
                         if (suppressEvents !== true) {
                             me.fireEvent("append", me, node, index);
 
                             if (oldParent) {
                                 node.fireEvent("move", node, oldParent, me, index);
-                            }                            
+                            }
                         }
 
                         return node;
                     }
                 },
-                
+
                 /**
                  * Returns the bubble target for this node
                  * @private
@@ -441,7 +441,7 @@ Ext.define('Ext.data.NodeInterface', {
                 removeChild : function(node, destroy, suppressEvents, suppressNodeUpdate) {
                     var me = this,
                         index = me.indexOf(node);
-                    
+
                     if (index == -1 || (suppressEvents !== true && me.fireEvent("beforeremove", me, node) === false)) {
                         return false;
                     }
@@ -456,7 +456,7 @@ Ext.define('Ext.data.NodeInterface', {
                     if (me.lastChild == node) {
                         me.setLastChild(node.previousSibling);
                     }
-                    
+
                     // update siblings
                     if (node.previousSibling) {
                         node.previousSibling.nextSibling = node.nextSibling;
@@ -470,13 +470,13 @@ Ext.define('Ext.data.NodeInterface', {
                     if (suppressEvents !== true) {
                         me.fireEvent("remove", me, node);
                     }
-                    
-                    
+
+
                     // If this node suddenly doesnt have childnodes anymore, update myself
                     if (!me.childNodes.length) {
                         me.set('loaded', me.isLoaded());
                     }
-                    
+
                     if (destroy) {
                         node.destroy(true);
                     } else {
@@ -515,7 +515,7 @@ Ext.define('Ext.data.NodeInterface', {
                  */
                 clear : function(destroy) {
                     var me = this;
-                    
+
                     // clear any references from the node
                     me.parentNode = me.previousSibling = me.nextSibling = null;
                     if (destroy) {
@@ -535,7 +535,7 @@ Ext.define('Ext.data.NodeInterface', {
                      */
                     var me = this,
                         options = me.destroyOptions;
-                    
+
                     if (silent === true) {
                         me.clear(true);
                         Ext.each(me.childNodes, function(n) {
@@ -563,11 +563,11 @@ Ext.define('Ext.data.NodeInterface', {
                         oldParent = node.parentNode,
                         refIndex  = index,
                         ps;
-                    
+
                     if (!refNode) { // like standard Dom, refNode can be null for append
                         return me.appendChild(node);
                     }
-                    
+
                     // nothing to do
                     if (node == refNode) {
                         return false;
@@ -575,11 +575,11 @@ Ext.define('Ext.data.NodeInterface', {
 
                     // Make sure it is a record with the NodeInterface
                     node = me.createNode(node);
-                    
+
                     if (suppressEvents !== true && me.fireEvent("beforeinsert", me, node, refNode) === false) {
                         return false;
                     }
-                    
+
                     // when moving internally, indexes will change after remove
                     if (oldParent == me && me.indexOf(node) < index) {
                         refIndex--;
@@ -599,10 +599,10 @@ Ext.define('Ext.data.NodeInterface', {
 
                     Ext.Array.splice(me.childNodes, refIndex, 0, node);
                     node.parentNode = me;
-                    
+
                     node.nextSibling = refNode;
                     refNode.previousSibling = node;
-                    
+
                     ps = me.childNodes[refIndex - 1];
                     if (ps) {
                         node.previousSibling = ps;
@@ -611,12 +611,12 @@ Ext.define('Ext.data.NodeInterface', {
                     } else {
                         node.previousSibling = null;
                     }
-                    
+
                     node.updateInfo();
-                    
+
                     if (!me.isLoaded()) {
-                        me.set('loaded', true);                            
-                    }    
+                        me.set('loaded', true);
+                    }
                     // If this node didnt have any childnodes before, update myself
                     else if (me.childNodes.length === 1) {
                         me.set('loaded', me.isLoaded());
@@ -627,18 +627,18 @@ Ext.define('Ext.data.NodeInterface', {
 
                         if (oldParent) {
                             node.fireEvent("move", node, oldParent, me, refIndex, refNode);
-                        }                        
+                        }
                     }
 
                     return node;
                 },
-                
+
                 /**
                  * Insert a node into this node
                  * @param {Number} index The zero-based index to insert the node at
                  * @param {Ext.data.Model} node The node to insert
                  * @return {Ext.data.Record} The record you just inserted
-                 */    
+                 */
                 insertChild: function(index, node) {
                     var sibling = this.childNodes[index];
                     if (sibling) {
@@ -695,7 +695,7 @@ Ext.define('Ext.data.NodeInterface', {
                  */
                 replaceChild : function(newChild, oldChild, suppressEvents) {
                     var s = oldChild ? oldChild.nextSibling : null;
-                    
+
                     this.removeChild(oldChild, suppressEvents);
                     this.insertBefore(newChild, s, suppressEvents);
                     return oldChild;
@@ -861,14 +861,14 @@ Ext.define('Ext.data.NodeInterface', {
                     var cs  = this.childNodes,
                         ln = cs.length,
                         i, n;
-                    
+
                     if (ln > 0) {
                         Ext.Array.sort(cs, sortFn);
                         for (i = 0; i < ln; i++) {
                             n = cs[i];
                             n.previousSibling = cs[i-1];
                             n.nextSibling = cs[i+1];
-                        
+
                             if (i === 0) {
                                 this.setFirstChild(n);
                                 n.updateInfo();
@@ -881,25 +881,25 @@ Ext.define('Ext.data.NodeInterface', {
                                 n.sort(sortFn, true, true);
                             }
                         }
-                        
+
                         if (suppressEvent !== true) {
                             this.fireEvent('sort', this, cs);
                         }
                     }
                 },
-                        
+
                 /**
                  * Returns true if this node is expaned
                  * @return {Boolean}
-                 */        
+                 */
                 isExpanded: function() {
                     return this.get('expanded');
                 },
-                
+
                 /**
                  * Returns true if this node is loaded
                  * @return {Boolean}
-                 */ 
+                 */
                 isLoaded: function() {
                     return this.get('loaded');
                 },
@@ -907,23 +907,23 @@ Ext.define('Ext.data.NodeInterface', {
                 /**
                  * Returns true if this node is loading
                  * @return {Boolean}
-                 */ 
+                 */
                 isLoading: function() {
                     return this.get('loading');
                 },
-                                
+
                 /**
                  * Returns true if this node is the root node
                  * @return {Boolean}
-                 */ 
+                 */
                 isRoot: function() {
                     return !this.parentNode;
                 },
-                
+
                 /**
                  * Returns true if this node is visible
                  * @return {Boolean}
-                 */ 
+                 */
                 isVisible: function() {
                     var parent = this.parentNode;
                     while (parent) {
@@ -934,7 +934,7 @@ Ext.define('Ext.data.NodeInterface', {
                     }
                     return true;
                 },
-                
+
                 /**
                  * Expand this node.
                  * @param {Function} recursive (Optional) True to recursively expand all the children
@@ -956,17 +956,17 @@ Ext.define('Ext.data.NodeInterface', {
                             // first. Thats why we pass a callback function to the event that the
                             // store can call once it has loaded and parsed all the children.
                             me.fireEvent('beforeexpand', me, function() {
-                                me.set('expanded', true); 
+                                me.set('expanded', true);
                                 me.fireEvent('expand', me, me.childNodes, false);
-                                
-                                // Call the expandChildren method if recursive was set to true 
+
+                                // Call the expandChildren method if recursive was set to true
                                 if (recursive) {
                                     me.expandChildren(true, callback, scope);
                                 }
                                 else {
-                                    Ext.callback(callback, scope || me, [me.childNodes]);                                
+                                    Ext.callback(callback, scope || me, [me.childNodes]);
                                 }
-                            }, me);                            
+                            }, me);
                         }
                         // If it is is already expanded but we want to recursively expand then call expandChildren
                         else if (recursive) {
@@ -985,7 +985,7 @@ Ext.define('Ext.data.NodeInterface', {
                         Ext.callback(callback, scope || me); // leaf = no childNodes
                     }
                 },
-                
+
                 /**
                  * Expand all the children of this node.
                  * @param {Function} recursive (Optional) True to recursively expand all the children
@@ -1007,12 +1007,12 @@ Ext.define('Ext.data.NodeInterface', {
                             nodes[i].expand(recursive, function () {
                                 expanding--;
                                 if (callback && !expanding) {
-                                    Ext.callback(callback, scope || me, [me.childNodes]); 
+                                    Ext.callback(callback, scope || me, [me.childNodes]);
                                 }
-                            });                            
+                            });
                         }
                     }
-                    
+
                     if (!expanding && callback) {
                         Ext.callback(callback, scope || me, [me.childNodes]);                    }
                 },
@@ -1031,17 +1031,17 @@ Ext.define('Ext.data.NodeInterface', {
                         // Now we check if this record is already collapsing or collapsed
                         if (!me.collapsing && me.isExpanded()) {
                             me.fireEvent('beforecollapse', me, function() {
-                                me.set('expanded', false); 
+                                me.set('expanded', false);
                                 me.fireEvent('collapse', me, me.childNodes, false);
-                                
-                                // Call the collapseChildren method if recursive was set to true 
+
+                                // Call the collapseChildren method if recursive was set to true
                                 if (recursive) {
                                     me.collapseChildren(true, callback, scope);
                                 }
                                 else {
-                                    Ext.callback(callback, scope || me, [me.childNodes]);                                
+                                    Ext.callback(callback, scope || me, [me.childNodes]);
                                 }
-                            }, me);                            
+                            }, me);
                         }
                         // If it is is already collapsed but we want to recursively collapse then call collapseChildren
                         else if (recursive) {
@@ -1050,10 +1050,10 @@ Ext.define('Ext.data.NodeInterface', {
                     }
                     // If it's not then we fire the callback right away
                     else {
-                        Ext.callback(callback, scope || me, [me.childNodes]); 
+                        Ext.callback(callback, scope || me, [me.childNodes]);
                     }
                 },
-                
+
                 /**
                  * Collapse all the children of this node.
                  * @param {Function} recursive (Optional) True to recursively collapse all the children
@@ -1075,12 +1075,12 @@ Ext.define('Ext.data.NodeInterface', {
                             nodes[i].collapse(recursive, function () {
                                 collapsing--;
                                 if (callback && !collapsing) {
-                                    Ext.callback(callback, scope || me, [me.childNodes]); 
+                                    Ext.callback(callback, scope || me, [me.childNodes]);
                                 }
-                            });                            
+                            });
                         }
                     }
-                    
+
                     if (!collapsing && callback) {
                         Ext.callback(callback, scope || me, [me.childNodes]);
                     }

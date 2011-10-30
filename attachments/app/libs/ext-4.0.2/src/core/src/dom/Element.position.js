@@ -465,7 +465,7 @@ Ext.override(Ext.core.Element, {
         var me = this,
             isBody = me.dom === document.body,
             scroll, pos, top, left, width, height;
-            
+
         // For the body we want to do some special logic
         if (isBody) {
             scroll = me.getScroll();

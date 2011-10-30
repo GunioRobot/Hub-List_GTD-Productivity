@@ -31,7 +31,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         dateFormat: 'M d',
  *         groupBy: 'year,month,day',
  *         aggregateOp: 'sum',
- *     
+ *
  *         constrain: true,
  *         fromDate: new Date('1/1/11'),
  *         toDate: new Date('1/7/11')
@@ -44,7 +44,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * The time axis will show values for dates between `fromDate` and `toDate`.
  * Since `constrain` is set to true all other values for other dates not between
  * the fromDate and toDate will not be displayed.
- * 
+ *
  */
 Ext.define('Ext.chart.axis.Time', {
 
@@ -67,16 +67,16 @@ Ext.define('Ext.chart.axis.Time', {
       * @type Boolean
       */
     calculateByLabelSize: true,
-    
+
      /**
-     * Indicates the format the date will be rendered on. 
+     * Indicates the format the date will be rendered on.
      * For example: 'M d' will render the dates as 'Jan 30', etc.
       *
      * @property dateFormat
      * @type {String|Boolean}
       */
     dateFormat: false,
-    
+
      /**
      * Indicates the time unit to use for each step. Can be 'day', 'month', 'year' or a comma-separated combination of all of them.
      * Default's 'year,month,day'.
@@ -85,48 +85,48 @@ Ext.define('Ext.chart.axis.Time', {
      * @type {String}
      */
     groupBy: 'year,month,day',
-    
+
     /**
      * Aggregation operation when grouping. Possible options are 'sum', 'avg', 'max', 'min'. Default's 'sum'.
-     * 
+     *
      * @property aggregateOp
      * @type {String}
       */
     aggregateOp: 'sum',
-    
+
     /**
      * The starting date for the time axis.
      * @property fromDate
      * @type Date
      */
     fromDate: false,
-    
+
     /**
      * The ending date for the time axis.
      * @property toDate
      * @type Date
      */
     toDate: false,
-    
+
     /**
      * An array with two components: The first is the unit of the step (day, month, year, etc). The second one is the number of units for the step (1, 2, etc.).
      * Default's [Ext.Date.DAY, 1].
-     * 
-     * @property step 
+     *
+     * @property step
      * @type Array
      */
     step: [Ext.Date.DAY, 1],
-    
+
     /**
-     * If true, the values of the chart will be rendered only if they belong between the fromDate and toDate. 
+     * If true, the values of the chart will be rendered only if they belong between the fromDate and toDate.
      * If false, the time axis will adapt to the new values by adding/removing steps.
      * Default's [Ext.Date.DAY, 1].
-     * 
-     * @property constrain 
+     *
+     * @property constrain
      * @type Boolean
      */
     constrain: false,
-    
+
     // @private a wrapper for date methods.
     dateMethods: {
         'year': function(date) {
@@ -151,7 +151,7 @@ Ext.define('Ext.chart.axis.Time', {
             return date.getMilliseconds();
         }
     },
-    
+
     // @private holds aggregate functions.
     aggregateFn: (function() {
         var etype = (function() {
@@ -196,7 +196,7 @@ Ext.define('Ext.chart.axis.Time', {
             }
         };
     })(),
-    
+
     // @private normalized the store to fill date gaps in the time interval.
     constrainDates: function() {
         var fromDate = Ext.Date.clone(this.fromDate),
@@ -208,7 +208,7 @@ Ext.define('Ext.chart.axis.Time', {
             newStore = Ext.create('Ext.data.Store', {
                 model: store.model
             });
-        
+
         var getRecordByDate = (function() {
             var index = 0, l = store.getCount();
             return function(date) {
@@ -225,7 +225,7 @@ Ext.define('Ext.chart.axis.Time', {
                 return false;
             };
         })();
-        
+
         if (!this.constrain) {
             this.chart.filteredStore = this.chart.store;
             return;
@@ -245,13 +245,13 @@ Ext.define('Ext.chart.axis.Time', {
             }
             fromDate = Ext.Date.add(fromDate, step[0], step[1]);
         }
-         
+
         this.chart.filteredStore = newStore;
     },
-    
+
     // @private aggregates values if multiple store elements belong to the same time step.
     aggregate: function() {
-        var aggStore = {}, 
+        var aggStore = {},
             aggKeys = [], key, value,
             op = this.aggregateOp,
             field = this.fields, i,
@@ -266,7 +266,7 @@ Ext.define('Ext.chart.axis.Time', {
             dateMethods = this.dateMethods,
             aggregateFn = this.aggregateFn,
             store = this.chart.filteredStore || this.chart.store;
-        
+
         store.each(function(rec) {
             //get all record field names in a simple array
             if (!recFields.length) {
@@ -317,10 +317,10 @@ Ext.define('Ext.chart.axis.Time', {
             fields: recFields,
             data: json
         });
-        
+
         this.dates = dates;
     },
-    
+
     // @private creates a label array to be used as the axis labels.
      setLabels: function() {
         var store = this.chart.substore,

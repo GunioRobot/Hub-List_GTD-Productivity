@@ -17,7 +17,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Revised by efege, 2007-04-15.
  * Revised by Rafaga2k 10-01-2007 (mm/dd/yyyy)
  * Revised by FeDe 12-13-2007 (mm/dd/yyyy)
- * Synchronized with 2.2 version of ext-lang-en.js (provided by Condor 8 aug 2008) 
+ * Synchronized with 2.2 version of ext-lang-en.js (provided by Condor 8 aug 2008)
  *     by halkon_polako 14-aug-2008
  */
 Ext.onReady(function() {
@@ -36,7 +36,7 @@ Ext.onReady(function() {
     if(Ext.LoadMask){
       Ext.LoadMask.prototype.msg = "Cargando...";
     }
-    
+
     if(Ext.Date) {
         Ext.Date.monthNames = [
           "Enero",
@@ -94,7 +94,7 @@ Ext.onReady(function() {
 
         Ext.Date.parseCodes.S.s = "(?:st|nd|rd|th)";
     }
-    
+
     if(Ext.MessageBox){
       Ext.MessageBox.buttonText = {
         ok     : "Aceptar",

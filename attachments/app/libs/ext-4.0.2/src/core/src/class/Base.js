@@ -220,25 +220,25 @@ var Base = Ext.Base = function() {};
          *             totalCreated: 0,
          *             speciesName: 'Cat' // My.Cat.speciesName = 'Cat'
          *         },
-         *  
+         *
          *         constructor: function() {
          *             var statics = this.statics();
-         *  
+         *
          *             alert(statics.speciesName);     // always equals to 'Cat' no matter what 'this' refers to
          *                                             // equivalent to: My.Cat.speciesName
-         *  
+         *
          *             alert(this.self.speciesName);   // dependent on 'this'
-         *  
+         *
          *             statics.totalCreated++;
-         *  
+         *
          *             return this;
          *         },
-         *  
+         *
          *         clone: function() {
          *             var cloned = new this.self;                      // dependent on 'this'
-         *  
+         *
          *             cloned.groupName = this.statics().speciesName;   // equivalent to: My.Cat.speciesName
-         *  
+         *
          *             return cloned;
          *         }
          *     });
@@ -246,11 +246,11 @@ var Base = Ext.Base = function() {};
          *
          *     Ext.define('My.SnowLeopard', {
          *         extend: 'My.Cat',
-         *  
+         *
          *         statics: {
          *             speciesName: 'Snow Leopard'     // My.SnowLeopard.speciesName = 'Snow Leopard'
          *         },
-         *  
+         *
          *         constructor: function() {
          *             this.callParent();
          *         }
@@ -286,7 +286,7 @@ var Base = Ext.Base = function() {};
          *     Ext.define('My.Cat', {
          *         constructor: function() {
          *             alert("I'm a cat!");
-         *   
+         *
          *             return this;
          *         }
          *     });
@@ -294,11 +294,11 @@ var Base = Ext.Base = function() {};
          *     My.Cat.override({
          *         constructor: function() {
          *             alert("I'm going to be a cat!");
-         *   
+         *
          *             var instance = this.callOverridden();
-         *   
+         *
          *             alert("Meeeeoooowwww");
-         *   
+         *
          *             return instance;
          *         }
          *     });
@@ -346,7 +346,7 @@ var Base = Ext.Base = function() {};
          *     Ext.define('My.cool.Class', {
          *         ...
          *     });
-         *      
+         *
          *     My.cool.Class.create({
          *         someConfig: true
          *     });

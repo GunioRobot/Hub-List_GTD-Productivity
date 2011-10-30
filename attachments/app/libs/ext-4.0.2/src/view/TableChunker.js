@@ -14,7 +14,7 @@ If you are unsure which license is appropriate for your use, please contact the 
 */
 /**
  * @class Ext.view.TableChunker
- * 
+ *
  * Produces optimized XTemplates for chunks of tables to be
  * used in grids, trees and other table based widgets.
  *
@@ -76,7 +76,7 @@ Ext.define('Ext.view.TableChunker', {
             '</tpl>',
         '</tr>'
     ],
-    
+
     firstOrLastCls: function(xindex, xcount) {
         var cssCls = '';
         if (xindex === 1) {
@@ -86,19 +86,19 @@ Ext.define('Ext.view.TableChunker', {
         }
         return cssCls;
     },
-    
+
     embedRowCls: function() {
         return '{rowCls}';
     },
-    
+
     embedRowAttr: function() {
         return '{rowAttr}';
     },
-    
+
     openTableWrap: function() {
         return '';
     },
-    
+
     closeTableWrap: function() {
         return '';
     },
@@ -125,7 +125,7 @@ Ext.define('Ext.view.TableChunker', {
             // copy the default
             metaRowTpl = Array.prototype.slice.call(this.metaRowTpl, 0),
             metaTableTpl;
-            
+
         for (; i < ln; i++) {
             if (!features[i].disabled) {
                 features[i].mutateMetaRowTpl(metaRowTpl);
@@ -134,20 +134,20 @@ Ext.define('Ext.view.TableChunker', {
                 Ext.apply(tableTplMemberFns, features[i].getTableFragments());
             }
         }
-        
+
         metaRowTpl = Ext.create('Ext.XTemplate', metaRowTpl.join(''), memberFns);
         cfg.row = metaRowTpl.applyTemplate(cfg);
-        
+
         metaTableTpl = Ext.create('Ext.XTemplate', this.metaTableTpl.join(''), tableTplMemberFns);
-        
+
         tpl = metaTableTpl.applyTemplate(cfg);
-        
+
         // TODO: Investigate eliminating.
         if (!textOnly) {
             tpl = Ext.create('Ext.XTemplate', tpl, tplMemberFns);
         }
         return tpl;
-        
+
     }
 });
 

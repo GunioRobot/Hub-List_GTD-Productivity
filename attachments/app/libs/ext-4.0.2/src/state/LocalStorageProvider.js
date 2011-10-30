@@ -22,20 +22,20 @@ If you are unsure which license is appropriate for your use, please contact the 
 
 Ext.define('Ext.state.LocalStorageProvider', {
     /* Begin Definitions */
-    
+
     extend: 'Ext.state.Provider',
-    
+
     alias: 'state.localstorage',
-    
+
     /* End Definitions */
-   
+
     constructor: function(){
         var me = this;
         me.callParent(arguments);
         me.store = me.getStorageObject();
         me.state = me.readLocalStorage();
     },
-    
+
     readLocalStorage: function(){
         var store = this.store,
             i = 0,
@@ -44,19 +44,19 @@ Ext.define('Ext.state.LocalStorageProvider', {
             prefixLen = prefix.length,
             data = {},
             key;
-            
+
         for (; i < len; ++i) {
             key = store.key(i);
             if (key.substring(0, prefixLen) == prefix) {
                 data[key.substr(prefixLen)] = this.decodeValue(store.getItem(key));
-            }            
+            }
         }
         return data;
     },
-    
+
     set : function(name, value){
         var me = this;
-        
+
         me.clear(name);
         if (typeof value == "undefined" || value === null) {
             return;
@@ -70,7 +70,7 @@ Ext.define('Ext.state.LocalStorageProvider', {
         this.store.removeItem(this.prefix + name);
         this.callParent(arguments);
     },
-    
+
     getStorageObject: function(){
         try {
             var supports = 'localStorage' in window && window['localStorage'] !== null;
@@ -83,6 +83,6 @@ Ext.define('Ext.state.LocalStorageProvider', {
         //<debug>
         Ext.Error.raise('LocalStorage is not supported by the current browser');
         //</debug>
-    }    
+    }
 });
 

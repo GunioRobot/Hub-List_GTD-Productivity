@@ -14,9 +14,9 @@ If you are unsure which license is appropriate for your use, please contact the 
 */
 /**
  * @class Ext.chart.series.Series
- * 
- * Series is the abstract class containing the common logic to all chart series. Series includes 
- * methods from Labels, Highlights, Tips and Callouts mixins. This class implements the logic of handling 
+ *
+ * Series is the abstract class containing the common logic to all chart series. Series includes
+ * methods from Labels, Highlights, Tips and Callouts mixins. This class implements the logic of handling
  * mouse events, animating, hiding, showing all elements and returning the color of the series to be used as a legend item.
  *
  * ## Listeners
@@ -41,7 +41,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             xField: 'category',
  *             yField: 'data1'
  *     }]
- *     
+ *
  */
 Ext.define('Ext.chart.series.Series', {
 
@@ -112,14 +112,14 @@ Ext.define('Ext.chart.series.Series', {
      * An array with shadow attributes
      */
     shadowAttributes: null,
-    
+
     //@private triggerdrawlistener flag
     triggerAfterDraw: false,
 
     /**
-     * @cfg {Object} listeners  
+     * @cfg {Object} listeners
      * An (optional) object with event callbacks. All event callbacks get the target *item* as first parameter. The callback functions are:
-     *  
+     *
      *  <ul>
      *      <li>itemmouseover</li>
      *      <li>itemmouseout</li>
@@ -127,15 +127,15 @@ Ext.define('Ext.chart.series.Series', {
      *      <li>itemmouseup</li>
      *  </ul>
      */
-    
+
     constructor: function(config) {
         var me = this;
         if (config) {
             Ext.apply(me, config);
         }
-        
+
         me.shadowGroups = [];
-        
+
         me.mixins.labels.constructor.call(me, config);
         me.mixins.highlights.constructor.call(me, config);
         me.mixins.tips.constructor.call(me, config);
@@ -208,19 +208,19 @@ Ext.define('Ext.chart.series.Series', {
                     'afteranimate': function() {
                         me.triggerAfterDraw = false;
                         me.fireEvent('afterrender');
-                    }    
-                }    
+                    }
+                }
             }));
         }
     },
-    
+
     // @private return the gutter.
     getGutters: function() {
         return [0, 0];
     },
 
     // @private wrapper for the itemmouseover event.
-    onItemMouseOver: function(item) { 
+    onItemMouseOver: function(item) {
         var me = this;
         if (item.series === me) {
             if (me.highlight) {
@@ -285,10 +285,10 @@ Ext.define('Ext.chart.series.Series', {
                 return items[i];
             }
         }
-        
+
         return null;
     },
-    
+
     isItemInPoint: function(x, y, item, i) {
         return false;
     },
@@ -331,9 +331,9 @@ Ext.define('Ext.chart.series.Series', {
         me.drawSeries();
         me.chart.animate = prevAnimate;
     },
-    
+
     /**
-     * Returns a string with the color to be used for the series legend item. 
+     * Returns a string with the color to be used for the series legend item.
      */
     getLegendColor: function(index) {
         var me = this, fill, stroke;
@@ -347,7 +347,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return '#000';
     },
-    
+
     /**
      * Checks whether the data field should be visible in the legend
      * @private

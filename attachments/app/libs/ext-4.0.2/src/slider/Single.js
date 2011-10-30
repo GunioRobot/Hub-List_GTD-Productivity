@@ -17,7 +17,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @extends Ext.slider.Multi
  * Slider which supports vertical or horizontal orientation, keyboard adjustments,
  * configurable snapping, axis clicking and animation. Can be added as an item to
- * any container. 
+ * any container.
  * {@img Ext.slider.Single/Ext.slider.Single.png Ext.slider.Single component}
  * Example usage:
 <pre><code>

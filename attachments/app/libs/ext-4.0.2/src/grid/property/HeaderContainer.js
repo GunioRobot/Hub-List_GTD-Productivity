@@ -22,7 +22,7 @@ Ext.define('Ext.grid.property.HeaderContainer', {
     extend: 'Ext.grid.header.Container',
 
     alternateClassName: 'Ext.grid.PropertyColumnModel',
-    
+
     nameWidth: 115,
 
     // private - strings used for locale support
@@ -42,7 +42,7 @@ Ext.define('Ext.grid.property.HeaderContainer', {
      */
     constructor : function(grid, store) {
         var me = this;
-        
+
         me.grid = grid;
         me.store = store;
         me.callParent([{
@@ -67,7 +67,7 @@ Ext.define('Ext.grid.property.HeaderContainer', {
             }]
         }]);
     },
-    
+
     getCellEditor: function(record){
         return this.grid.getCellEditor(record, this);
     },

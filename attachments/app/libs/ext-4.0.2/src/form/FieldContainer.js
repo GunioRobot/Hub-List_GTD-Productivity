@@ -41,12 +41,12 @@ __Example usage:__
         title: 'FieldContainer Example',
         width: 550,
         bodyPadding: 10,
-    
+
         items: [{
             xtype: 'fieldcontainer',
             fieldLabel: 'Last Three Jobs',
             labelWidth: 100,
-    
+
             // The body area will contain three text fields, arranged
             // horizontally, separated by draggable splitters.
             layout: 'hbox',
@@ -75,26 +75,26 @@ __Usage of {@link #fieldDefaults}:__
         title: 'FieldContainer Example',
         width: 350,
         bodyPadding: 10,
-    
+
         items: [{
             xtype: 'fieldcontainer',
             fieldLabel: 'Your Name',
             labelWidth: 75,
             defaultType: 'textfield',
-    
+
             // Arrange fields vertically, stretched to full width
             layout: 'anchor',
             defaults: {
                 layout: '100%'
             },
-    
+
             // These config values will be applied to both sub-fields, except
             // for Last Name which will use its own msgTarget.
             fieldDefaults: {
                 msgTarget: 'under',
                 labelAlign: 'top'
             },
-    
+
             items: [{
                 fieldLabel: 'First Name',
                 name: 'firstName'
@@ -142,7 +142,7 @@ Ext.define('Ext.form.FieldContainer', {
      * {@link #msgTarget}. Defaults to false.
      */
     combineErrors: false,
-    
+
     maskOnDisable: false,
 
     initComponent: function() {

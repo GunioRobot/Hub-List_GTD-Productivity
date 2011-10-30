@@ -50,7 +50,7 @@ Ext.data.Types.VELATLONG = {
  * <p>Then, when declaring a Model, use <pre><code>
 var types = Ext.data.Types; // allow shorthand type access
 Ext.define('Unit',
-    extend: 'Ext.data.Model', 
+    extend: 'Ext.data.Model',
     fields: [
         { name: 'unitName', mapping: 'UnitName' },
         { name: 'curSpeed', mapping: 'CurSpeed', type: types.INT },
@@ -67,7 +67,7 @@ Ext.define('Ext.data.Types', {
     requires: ['Ext.data.SortTypes']
 }, function() {
     var st = Ext.data.SortTypes;
-    
+
     Ext.apply(Ext.data.Types, {
         /**
          * @type Regexp
@@ -76,7 +76,7 @@ Ext.define('Ext.data.Types', {
          * This should be overridden for localization.
          */
         stripRe: /[\$,%]/g,
-        
+
         /**
          * @type Object.
          * @property AUTO
@@ -118,7 +118,7 @@ Ext.define('Ext.data.Types', {
             sortType: st.none,
             type: 'int'
         },
-        
+
         /**
          * @type Object.
          * @property FLOAT
@@ -133,7 +133,7 @@ Ext.define('Ext.data.Types', {
             sortType: st.none,
             type: 'float'
         },
-        
+
         /**
          * @type Object.
          * @property BOOL
@@ -151,7 +151,7 @@ Ext.define('Ext.data.Types', {
             sortType: st.none,
             type: 'bool'
         },
-        
+
         /**
          * @type Object.
          * @property DATE
@@ -177,7 +177,7 @@ Ext.define('Ext.data.Types', {
                     }
                     return Ext.Date.parse(v, df);
                 }
-                
+
                 var parsed = Date.parse(v);
                 return parsed ? new Date(parsed) : null;
             },
@@ -185,7 +185,7 @@ Ext.define('Ext.data.Types', {
             type: 'date'
         }
     });
-    
+
     Ext.apply(Ext.data.Types, {
         /**
          * @type Object.
@@ -195,7 +195,7 @@ Ext.define('Ext.data.Types', {
          * <p>The synonym <code>BOOL</code> is equivalent.</p>
          */
         BOOLEAN: this.BOOL,
-        
+
         /**
          * @type Object.
          * @property INTEGER
@@ -203,14 +203,14 @@ Ext.define('Ext.data.Types', {
          * <p>The synonym <code>INT</code> is equivalent.</p>
          */
         INTEGER: this.INT,
-        
+
         /**
          * @type Object.
          * @property NUMBER
          * This data type means that the raw data is converted into a number before it is placed into a Record.
          * <p>The synonym <code>FLOAT</code> is equivalent.</p>
          */
-        NUMBER: this.FLOAT    
+        NUMBER: this.FLOAT
     });
 });
 

@@ -16,7 +16,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @class Ext.slider.Tip
  * @extends Ext.tip.Tip
  * Simple plugin for using an Ext.tip.Tip with a slider to show the slider value. In general this
- * class is not created directly, instead pass the {@link Ext.slider.Multi#useTips} and 
+ * class is not created directly, instead pass the {@link Ext.slider.Multi#useTips} and
  * {@link Ext.slider.Multi#tipText} configuration options to the slider directly.
  * {@img Ext.slider.Tip/Ext.slider.Tip1.png Ext.slider.Tip component}
  * Example usage:
@@ -27,7 +27,7 @@ If you are unsure which license is appropriate for your use, please contact the 
         maxValue: 100,
         useTips: true,
         renderTo: Ext.getBody()
-    });   
+    });
 </pre>
  * Optionally provide your own tip text by passing tipText:
  <pre>
@@ -47,12 +47,12 @@ Ext.define('Ext.slider.Tip', {
     minWidth: 10,
     alias: 'widget.slidertip',
     offsets : [0, -10],
-    
+
     isSliderTip: true,
 
     init: function(slider) {
         var me = this;
-        
+
         slider.on({
             scope    : me,
             dragstart: me.onSlide,
@@ -63,7 +63,7 @@ Ext.define('Ext.slider.Tip', {
     },
     /**
      * @private
-     * Called whenever a dragstart or drag event is received on the associated Thumb. 
+     * Called whenever a dragstart or drag event is received on the associated Thumb.
      * Aligns the Tip with the Thumb's new position.
      * @param {Ext.slider.MultiSlider} slider The slider
      * @param {Ext.EventObject} e The Event object

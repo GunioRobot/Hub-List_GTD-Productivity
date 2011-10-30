@@ -163,8 +163,8 @@ Ext.define('Ext.Shadow', {
             shadowWidth,
             shadowHeight,
             cn,
-            sww, 
-            sws, 
+            sww,
+            sws,
             shs;
 
         targetStyle.left = (l + adjusts.l) + "px";

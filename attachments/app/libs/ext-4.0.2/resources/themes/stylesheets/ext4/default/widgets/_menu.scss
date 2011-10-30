@@ -53,7 +53,7 @@
         line-height: 16px;
         cursor: default;
     }
-    
+
     @if $include-opera {
         .#{$prefix}opera {
             // Opera 10.5 absolute positioning of submenu arrow has issues
@@ -150,18 +150,18 @@
                     background-color: $menu-background-color;
                 }
             }
-            
+
             .#{$prefix}strict & {
                 .#{$prefix}menu-icon-separator {
                     width: 1px;
                 }
-                
+
                 .#{$prefix}menu-item-separator {
                     height: 1px;
                 }
             }
         }
-        
+
         .#{$prefix}ie6,
         .#{$prefix}ie7,
         .#{$prefix}quirks .#{$prefix}ie8 {
@@ -178,7 +178,7 @@
             }
         }
     }
-    
+
     .#{$prefix}menu-date-item {
         border-color: #99BBE8;
     }

@@ -32,15 +32,15 @@ Ext.define('Ext.draw.SpriteDD', {
     getDragEl : function(e){
         return this.el;
     },
-    
+
     getRegion: function() {
         var me = this,
             el = me.el,
             pos, x1, x2, y1, y2, t, r, b, l, bbox, sprite;
-        
+
         sprite = me.sprite;
         bbox = sprite.getBBox();
-        
+
         try {
             pos = Ext.core.Element.getXY(el);
         } catch (e) { }
@@ -53,7 +53,7 @@ Ext.define('Ext.draw.SpriteDD', {
         x2 = x1 + bbox.width;
         y1 = pos[1];
         y2 = y1 + bbox.height;
-        
+
         return Ext.create('Ext.util.Region', y1, x2, y2, x1);
     },
 
@@ -63,11 +63,11 @@ Ext.define('Ext.draw.SpriteDD', {
       relative to the original x, y position attributes, in VML the translation
       is a delta between the last position of the object (modified by the last
       translation) and the new one.
-      
+
       In VML the translation alters the position
       of the object, we should change that or alter the SVG impl.
     */
-     
+
     startDrag: function(x, y) {
         var me = this,
             attr = me.sprite.attr,

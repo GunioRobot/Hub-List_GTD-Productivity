@@ -38,26 +38,26 @@ Ext.define('Ext.picker.Color', {
     requires: 'Ext.XTemplate',
     alias: 'widget.colorpicker',
     alternateClassName: 'Ext.ColorPalette',
-    
+
     /**
      * @cfg {String} componentCls
      * The CSS class to apply to the containing element (defaults to 'x-color-picker')
      */
     componentCls : Ext.baseCSSPrefix + 'color-picker',
-    
+
     /**
      * @cfg {String} selectedCls
      * The CSS class to apply to the selected element
      */
     selectedCls: Ext.baseCSSPrefix + 'color-picker-selected',
-    
+
     /**
      * @cfg {String} value
      * The initial color to highlight (should be a valid 6-digit color hex code without the # symbol).  Note that
      * the hex codes are case-sensitive.
      */
     value : null,
-    
+
     /**
      * @cfg {String} clickEvent
      * The DOM event that will cause a color to be selected. This can be any valid event name (dblclick, contextmenu).
@@ -109,18 +109,18 @@ cp.colors = ['000000', '993300', '333300'];
      * The scope (<tt><b>this</b></tt> reference) in which the <code>{@link #handler}</code>
      * function will be called.  Defaults to this ColorPicker instance.
      */
-    
+
     colorRe: /(?:^|\s)color-(.{6})(?:\s|$)/,
-    
+
     constructor: function() {
         this.renderTpl = Ext.create('Ext.XTemplate', '<tpl for="colors"><a href="#" class="color-{.}" hidefocus="on"><em><span style="background:#{.}" unselectable="on">&#160;</span></em></a></tpl>');
         this.callParent(arguments);
     },
-    
+
     // private
     initComponent : function(){
         var me = this;
-        
+
         this.callParent(arguments);
         me.addEvents(
             /**
@@ -142,10 +142,10 @@ cp.colors = ['000000', '993300', '333300'];
     onRender : function(container, position){
         var me = this,
             clickEvent = me.clickEvent;
-            
+
         Ext.apply(me.renderData, {
             itemCls: me.itemCls,
-            colors: me.colors    
+            colors: me.colors
         });
         this.callParent(arguments);
 
@@ -160,7 +160,7 @@ cp.colors = ['000000', '993300', '333300'];
     afterRender : function(){
         var me = this,
             value;
-            
+
         this.callParent(arguments);
         if (me.value) {
             value = me.value;
@@ -173,7 +173,7 @@ cp.colors = ['000000', '993300', '333300'];
     handleClick : function(event, target){
         var me = this,
             color;
-            
+
         event.stopEvent();
         if (!me.disabled) {
             color = target.className.match(me.colorRe)[1];
@@ -187,19 +187,19 @@ cp.colors = ['000000', '993300', '333300'];
      * @param {Boolean} suppressEvent (optional) True to stop the select event from firing. Defaults to <tt>false</tt>.
      */
     select : function(color, suppressEvent){
-        
+
         var me = this,
             selectedCls = me.selectedCls,
             value = me.value,
             el;
-            
+
         color = color.replace('#', '');
         if (!me.rendered) {
             me.value = color;
             return;
         }
-        
-        
+
+
         if (color != value || me.allowReselect) {
             el = me.el;
 
@@ -213,7 +213,7 @@ cp.colors = ['000000', '993300', '333300'];
             }
         }
     },
-    
+
     /**
      * Get the currently selected color value.
      * @return {String} value The selected value. Null if nothing is selected.

@@ -141,7 +141,7 @@ Ext.define('Ext.grid.column.Column', {
     /**
      * @cfg {Boolean} fixed Prevents the column from being resizable
      */
-     
+
     /**
      * @cfg {Boolean} resizable This config has no effect on a grid column, please see {@link #fixed} instead.
      */

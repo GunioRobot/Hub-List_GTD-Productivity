@@ -32,7 +32,7 @@ Ext.define('Ext.util.CSS', function() {
             this.rules = {};
             this.initialized = false;
         },
- 
+
         /**
          * Creates a stylesheet from a text blob of rules.
          * These rules will be wrapped in a STYLE tag and appended to the HEAD of the document.
@@ -117,7 +117,7 @@ Ext.define('Ext.util.CSS', function() {
                 for (; i >= 0; --i) {
                     selectorText = ssRules[i].selectorText;
                     if (selectorText) {
- 
+
                         // Split in case there are multiple, comma-delimited selectors
                         selectorText = selectorText.split(',');
                         selectors = selectorText.length;
@@ -146,7 +146,7 @@ Ext.define('Ext.util.CSS', function() {
                         if (!ds[i].disabled) {
                             this.cacheStyleSheet(ds[i]);
                         }
-                    } catch(e) {} 
+                    } catch(e) {}
                 }
             }
             return rules;

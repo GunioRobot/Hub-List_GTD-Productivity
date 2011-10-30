@@ -21,11 +21,11 @@ If you are unsure which license is appropriate for your use, please contact the 
 Ext.define('Ext.dd.Registry', {
     singleton: true,
     constructor: function() {
-        this.elements = {}; 
-        this.handles = {}; 
+        this.elements = {};
+        this.handles = {};
         this.autoIdSeed = 0;
     },
-    
+
     getId: function(el, autogen){
         if(typeof el == "string"){
             return el;
@@ -37,7 +37,7 @@ Ext.define('Ext.dd.Registry', {
         }
         return id;
     },
-    
+
     /**
      * Resgister a drag drop element
      * @param {String/HTMLElement} element The id or DOM node to register

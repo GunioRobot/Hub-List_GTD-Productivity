@@ -80,7 +80,7 @@ configurations; the first one matches the configured `format` while the second m
         }]
     });
 
- * 
+ *
  * @markdown
  * @docauthor Jason Johnston <jason@sencha.com>
  */
@@ -182,9 +182,9 @@ disabledDates: ["^03"]
      * In order to support regular expressions, if you are using a {@link #format date format} that has "." in
      * it, you will have to escape the dot when restricting dates. For example: <tt>["03\\.08\\.03"]</tt>.
      */
-    
+
     /**
-     * @cfg {String} submitFormat The date format string which will be submitted to the server.  
+     * @cfg {String} submitFormat The date format string which will be submitted to the server.
      * The format must be valid according to {@link Ext.Date#parse} (defaults to <tt>{@link #format}</tt>).
      */
 
@@ -200,7 +200,7 @@ disabledDates: ["^03"]
      * Day index at which the week should begin, 0-based (defaults to 0, which is Sunday)
      */
     startDay: 0,
-    
+
     initComponent : function(){
         var me = this,
             isString = Ext.isString,
@@ -257,7 +257,7 @@ disabledDates: ["^03"]
     setDisabledDates : function(dd){
         var me = this,
             picker = me.picker;
-            
+
         me.disabledDates = dd;
         me.initDisabledDays();
         if (picker) {
@@ -272,7 +272,7 @@ disabledDates: ["^03"]
      */
     setDisabledDays : function(dd){
         var picker = this.picker;
-            
+
         this.disabledDays = dd;
         if (picker) {
             picker.setDisabledDays(dd);
@@ -287,7 +287,7 @@ disabledDates: ["^03"]
         var me = this,
             picker = me.picker,
             minValue = (Ext.isString(dt) ? me.parseDate(dt) : dt);
-            
+
         me.minValue = minValue;
         if (picker) {
             picker.minText = Ext.String.format(me.minText, me.formatDate(me.minValue));
@@ -303,7 +303,7 @@ disabledDates: ["^03"]
         var me = this,
             picker = me.picker,
             maxValue = (Ext.isString(dt) ? me.parseDate(dt) : dt);
-            
+
         me.maxValue = maxValue;
         if (picker) {
             picker.maxText = Ext.String.format(me.maxText, me.formatDate(me.maxValue));
@@ -420,7 +420,7 @@ dateField.setValue('2006-05-04');
             utilDate = Ext.Date,
             parsedDate,
             result = null;
-            
+
         if (utilDate.formatContainsHourInfo(format)) {
             // if parse format contains hour information, no DST adjustment is necessary
             result = utilDate.parse(value, format);
@@ -433,13 +433,13 @@ dateField.setValue('2006-05-04');
         }
         return result;
     },
-    
+
     // @private
     getSubmitValue: function() {
         var me = this,
             format = me.submitFormat || me.format,
             value = me.getValue();
-            
+
         return value ? Ext.Date.format(value, format) : null;
     },
 
@@ -508,7 +508,7 @@ dateField.setValue('2006-05-04');
 
     onSelect: function(m, d) {
         var me = this;
-        
+
         me.setValue(d);
         me.fireEvent('select', me, d);
         me.collapse();
@@ -537,11 +537,11 @@ dateField.setValue('2006-05-04');
         var me = this,
             v = me.parseDate(me.getRawValue()),
             focusTask = me.focusTask;
-        
+
         if (focusTask) {
             focusTask.cancel();
         }
-        
+
         if (v) {
             me.setValue(v);
         }

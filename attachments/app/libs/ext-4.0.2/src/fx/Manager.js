@@ -287,7 +287,7 @@ Ext.define('Ext.fx.Manager', {
         var targetId = anim.target.getId(),
             targetData = this.targetData[targetId],
             data;
-        
+
         if (!targetData) {
             targetData = this.targetData[targetId] = [];
             this.targetArr[targetId] = anim.target;

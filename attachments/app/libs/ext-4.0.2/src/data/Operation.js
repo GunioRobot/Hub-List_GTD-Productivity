@@ -16,13 +16,13 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @author Ed Spencer
  * @class Ext.data.Operation
  * @extends Object
- * 
+ *
  * <p>Represents a single read or write operation performed by a {@link Ext.data.proxy.Proxy Proxy}.
  * Operation objects are used to enable communication between Stores and Proxies. Application
  * developers should rarely need to interact with Operation objects directly.</p>
- * 
+ *
  * <p>Several Operations can be batched together in a {@link Ext.data.Batch batch}.</p>
- * 
+ *
  */
 Ext.define('Ext.data.Operation', {
     /**
@@ -31,42 +31,42 @@ Ext.define('Ext.data.Operation', {
      * parallel or not.
      */
     synchronous: true,
-    
+
     /**
      * @cfg {String} action The action being performed by this Operation. Should be one of 'create', 'read', 'update' or 'destroy'
      */
     action: undefined,
-    
+
     /**
      * @cfg {Array} filters Optional array of filter objects. Only applies to 'read' actions.
      */
     filters: undefined,
-    
+
     /**
      * @cfg {Array} sorters Optional array of sorter objects. Only applies to 'read' actions.
      */
     sorters: undefined,
-    
+
     /**
      * @cfg {Object} group Optional grouping configuration. Only applies to 'read' actions where grouping is desired.
      */
     group: undefined,
-    
+
     /**
      * @cfg {Number} start The start index (offset), used in paging when running a 'read' action.
      */
     start: undefined,
-    
+
     /**
      * @cfg {Number} limit The number of records to load. Used on 'read' actions when paging is being used.
      */
     limit: undefined,
-    
+
     /**
      * @cfg {Ext.data.Batch} batch The batch that this Operation is a part of (optional)
      */
     batch: undefined,
-        
+
     /**
      * Read-only property tracking the start status of this Operation. Use {@link #isStarted}.
      * @property started
@@ -74,7 +74,7 @@ Ext.define('Ext.data.Operation', {
      * @private
      */
     started: false,
-    
+
     /**
      * Read-only property tracking the run status of this Operation. Use {@link #isRunning}.
      * @property running
@@ -82,7 +82,7 @@ Ext.define('Ext.data.Operation', {
      * @private
      */
     running: false,
-    
+
     /**
      * Read-only property tracking the completion status of this Operation. Use {@link #isComplete}.
      * @property complete
@@ -90,7 +90,7 @@ Ext.define('Ext.data.Operation', {
      * @private
      */
     complete: false,
-    
+
     /**
      * Read-only property tracking whether the Operation was successful or not. This starts as undefined and is set to true
      * or false by the Proxy that is executing the Operation. It is also set to false by {@link #setException}. Use
@@ -100,7 +100,7 @@ Ext.define('Ext.data.Operation', {
      * @private
      */
     success: undefined,
-    
+
     /**
      * Read-only property tracking the exception status of this Operation. Use {@link #hasException} and see {@link #getError}.
      * @property exception
@@ -108,7 +108,7 @@ Ext.define('Ext.data.Operation', {
      * @private
      */
     exception: false,
-    
+
     /**
      * The error object passed when {@link #setException} was called. This could be any object or primitive.
      * @property error
@@ -124,7 +124,7 @@ Ext.define('Ext.data.Operation', {
     constructor: function(config) {
         Ext.apply(this, config || {});
     },
-    
+
     /**
      * Marks the Operation as started
      */
@@ -132,7 +132,7 @@ Ext.define('Ext.data.Operation', {
         this.started = true;
         this.running = true;
     },
-    
+
     /**
      * Marks the Operation as completed
      */
@@ -140,14 +140,14 @@ Ext.define('Ext.data.Operation', {
         this.complete = true;
         this.running  = false;
     },
-    
+
     /**
      * Marks the Operation as successful
      */
     setSuccessful: function() {
         this.success = true;
     },
-    
+
     /**
      * Marks the Operation as having experienced an exception. Can be supplied with an option error message/object.
      * @param {Mixed} error Optional error string/object
@@ -158,7 +158,7 @@ Ext.define('Ext.data.Operation', {
         this.running = false;
         this.error = error;
     },
-    
+
     /**
      * Returns true if this Operation encountered an exception (see also {@link #getError})
      * @return {Boolean} True if there was an exception
@@ -166,7 +166,7 @@ Ext.define('Ext.data.Operation', {
     hasException: function() {
         return this.exception === true;
     },
-    
+
     /**
      * Returns the error string or object that was set using {@link #setException}
      * @return {Mixed} The error object
@@ -174,17 +174,17 @@ Ext.define('Ext.data.Operation', {
     getError: function() {
         return this.error;
     },
-    
+
     /**
      * Returns an array of Ext.data.Model instances as set by the Proxy.
      * @return {Array} Any loaded Records
      */
     getRecords: function() {
         var resultSet = this.getResultSet();
-        
+
         return (resultSet === undefined ? this.records : resultSet.records);
     },
-    
+
     /**
      * Returns the ResultSet object (if set by the Proxy). This object will contain the {@link Ext.data.Model model} instances
      * as well as meta data such as number of instances fetched, number available etc
@@ -193,7 +193,7 @@ Ext.define('Ext.data.Operation', {
     getResultSet: function() {
         return this.resultSet;
     },
-    
+
     /**
      * Returns true if the Operation has been started. Note that the Operation may have started AND completed,
      * see {@link #isRunning} to test if the Operation is currently running.
@@ -202,7 +202,7 @@ Ext.define('Ext.data.Operation', {
     isStarted: function() {
         return this.started === true;
     },
-    
+
     /**
      * Returns true if the Operation has been started but has not yet completed.
      * @return {Boolean} True if the Operation is currently running
@@ -210,7 +210,7 @@ Ext.define('Ext.data.Operation', {
     isRunning: function() {
         return this.running === true;
     },
-    
+
     /**
      * Returns true if the Operation has been completed
      * @return {Boolean} True if the Operation is complete
@@ -218,7 +218,7 @@ Ext.define('Ext.data.Operation', {
     isComplete: function() {
         return this.complete === true;
     },
-    
+
     /**
      * Returns true if the Operation has completed and was successful
      * @return {Boolean} True if successful
@@ -226,7 +226,7 @@ Ext.define('Ext.data.Operation', {
     wasSuccessful: function() {
         return this.isComplete() && this.success === true;
     },
-    
+
     /**
      * @private
      * Associates this Operation with a Batch
@@ -235,7 +235,7 @@ Ext.define('Ext.data.Operation', {
     setBatch: function(batch) {
         this.batch = batch;
     },
-    
+
     /**
      * Checks whether this operation should cause writing to occur.
      * @return {Boolean} Whether the operation should cause a write to occur.

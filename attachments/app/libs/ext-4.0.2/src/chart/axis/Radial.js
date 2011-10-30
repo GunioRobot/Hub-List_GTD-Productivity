@@ -129,7 +129,7 @@ Ext.define('Ext.chart.axis.Radial', {
             fields.push(series.yField);
             xField = series.xField;
         });
-        
+
         //get maxValue to interpolate
         store.each(function(record, i) {
             if (aggregate) {

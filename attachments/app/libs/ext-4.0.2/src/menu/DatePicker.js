@@ -34,7 +34,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             Ext.Msg.alert('Date Selected', 'You choose {0}.', Ext.Date.format(date, 'M j, Y'));
  *         }
  *     });
- *  
+ *
  *     Ext.create('Ext.menu.Menu', {
  *         width: 100,
  *         height: 90,

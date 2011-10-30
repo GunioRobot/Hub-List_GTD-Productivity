@@ -134,7 +134,7 @@ layout: 'hbox', // The items are arranged horizontally
      * <p>Ext uses lazy rendering. Child Components will only be rendered
      * should it become necessary. Items are automatically laid out when they are first
      * shown (no sizing is done while hidden), or in response to a {@link #doLayout} call.</p>
-     * <p>Do not specify <code>{@link Ext.panel.Panel#contentEl contentEl}</code> or 
+     * <p>Do not specify <code>{@link Ext.panel.Panel#contentEl contentEl}</code> or
      * <code>{@link Ext.panel.Panel#html html}</code> with <code>items</code>.</p>
      */
     /**
@@ -197,7 +197,7 @@ items: [
      * Defaults to <code>['add', 'remove']</code>.
      */
     bubbleEvents: ['add', 'remove'],
-    
+
     // @private
     initComponent : function(){
         var me = this;
@@ -462,7 +462,7 @@ If adding multiple new child Components, pass them as an array to the `add` meth
     });  // toolbar is rendered
     tb.add([{text:'Button 1'}, {text:'Button 2'}]); // add multiple items. ({@link #defaultType} for {@link Ext.toolbar.Toolbar Toolbar} is 'button')
 
-##Warning:## 
+##Warning:##
 
 Components directly managed by the BorderLayout layout manager
 may not be removed or added.  See the Notes for {@link Ext.layout.container.Border BorderLayout}
@@ -499,13 +499,13 @@ for more details.
             me.suspendLayout = true;
             for (i = 0, ln = items.length; i < ln; i++) {
                 item = items[i];
-                
+
                 //<debug>
                 if (!item) {
                     Ext.Error.raise("Trying to add a null item as a child of Container with itemId/id: " + me.getItemId());
                 }
                 //</debug>
-                
+
                 if (index != -1) {
                     item = me.add(index + i, item);
                 } else {
@@ -601,7 +601,7 @@ for more details.
     // @private
     onBeforeAdd : function(item) {
         var me = this;
-        
+
         if (item.ownerCt) {
             item.ownerCt.remove(item, false);
         }
@@ -840,20 +840,20 @@ for more details.
             }
         }
         layoutCollection.clear();
-    },    
-    
+    },
+
     //@private
     // Enable all immediate children that was previously disabled
     onEnable: function() {
         Ext.Array.each(this.query('[isFormField]'), function(item) {
             if (item.resetDisable) {
                 item.enable();
-                delete item.resetDisable;             
+                delete item.resetDisable;
             }
         });
         this.callParent();
     },
-    
+
     // @private
     // Disable all immediate children that was previously disabled
     onDisable: function() {

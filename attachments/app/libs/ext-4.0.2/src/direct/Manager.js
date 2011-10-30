@@ -70,16 +70,16 @@ Ext.direct.Manager.on('message', function(e){
  */
 
 Ext.define('Ext.direct.Manager', {
-    
+
     /* Begin Definitions */
     singleton: true,
-   
+
     mixins: {
         observable: 'Ext.util.Observable'
     },
-    
+
     requires: ['Ext.util.MixedCollection'],
-    
+
     statics: {
         exceptions: {
             TRANSPORT: 'xhr',
@@ -88,12 +88,12 @@ Ext.define('Ext.direct.Manager', {
             SERVER: 'exception'
         }
     },
-    
+
     /* End Definitions */
-   
+
     constructor: function(){
         var me = this;
-       
+
         me.addEvents(
             /**
              * @event event
@@ -111,10 +111,10 @@ Ext.define('Ext.direct.Manager', {
         );
         me.transactions = Ext.create('Ext.util.MixedCollection');
         me.providers = Ext.create('Ext.util.MixedCollection');
-        
+
         me.mixins.observable.constructor.call(me);
     },
-    
+
     /**
      * Adds an Ext.Direct Provider and creates the proxy or stub methods to execute server-side methods.
      * If the provider is not already connected, it will auto-connect.
@@ -155,7 +155,7 @@ Ext.direct.Manager.addProvider({
             args = arguments,
             i = 0,
             len;
-            
+
         if (args.length > 1) {
             for (len = args.length; i < len; ++i) {
                 me.addProvider(args[i]);
@@ -177,7 +177,7 @@ Ext.direct.Manager.addProvider({
 
         return provider;
     },
-    
+
     /**
      * Retrieve a {@link Ext.direct.Provider provider} by the
      * <b><tt>{@link Ext.direct.Provider#id id}</tt></b> specified when the provider is
@@ -187,7 +187,7 @@ Ext.direct.Manager.addProvider({
     getProvider : function(id){
         return id.isProvider ? id : this.providers.get(id);
     },
-    
+
     /**
      * Removes the provider.
      * @param {String/Ext.direct.Provider} provider The provider instance or the id of the provider.
@@ -197,7 +197,7 @@ Ext.direct.Manager.addProvider({
         var me = this,
             providers = me.providers,
             provider = provider.isProvider ? provider : providers.get(provider);
-            
+
         if (provider) {
             provider.un('data', me.onProviderData, me);
             providers.remove(provider);
@@ -205,7 +205,7 @@ Ext.direct.Manager.addProvider({
         }
         return null;
     },
-    
+
     /**
      * Add a transaction to the manager.
      * @private
@@ -238,12 +238,12 @@ Ext.direct.Manager.addProvider({
     getTransaction: function(transaction){
         return transaction.isTransaction ? transaction : this.transactions.get(transaction);
     },
-    
+
     onProviderData : function(provider, event){
         var me = this,
             i = 0,
             len;
-            
+
         if (Ext.isArray(event)) {
             for (len = event.length; i < len; ++i) {
                 me.onProviderData(provider, event[i]);

@@ -31,11 +31,11 @@ If you are unsure which license is appropriate for your use, please contact the 
 Ext.define('Ext.ComponentManager', {
     extend: 'Ext.AbstractManager',
     alternateClassName: 'Ext.ComponentMgr',
-    
+
     singleton: true,
-    
+
     typeName: 'xtype',
-    
+
     /**
      * Creates a new Component from the specified config object using the
      * config object's xtype to determine the class to instantiate.
@@ -54,7 +54,7 @@ Ext.define('Ext.ComponentManager', {
         else {
             var type = component.xtype || defaultType,
                 config = component;
-            
+
             return Ext.createByAlias('widget.' + type, config);
         }
     },

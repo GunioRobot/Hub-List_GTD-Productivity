@@ -34,12 +34,12 @@ Ext.define('Ext.layout.component.ProgressBar', {
         var me = this,
             owner = me.owner,
             textEl = owner.textEl;
-        
+
         me.setElementSize(owner.el, width, height);
         textEl.setWidth(owner.el.getWidth(true));
-        
+
         me.callParent([width, height]);
-        
+
         owner.updateProgress(owner.value);
     }
 });

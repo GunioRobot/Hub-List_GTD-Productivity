@@ -930,16 +930,16 @@ Ext.String = {
             '<': '&lt;',
             '"': '&quot;'
         }, keys = [], p, regex;
-        
+
         for (p in entities) {
             keys.push(p);
         }
-        
+
         regex = new RegExp('(' + keys.join('|') + ')', 'g');
-        
+
         return function(value) {
             return (!value) ? value : String(value).replace(regex, function(match, capture) {
-                return entities[capture];    
+                return entities[capture];
             });
         };
     })(),
@@ -957,13 +957,13 @@ Ext.String = {
             '&lt;': '<',
             '&quot;': '"'
         }, keys = [], p, regex;
-        
+
         for (p in entities) {
             keys.push(p);
         }
-        
+
         regex = new RegExp('(' + keys.join('|') + '|&#[0-9]{1,5};' + ')', 'g');
-        
+
         return function(value) {
             return (!value) ? value : String(value).replace(regex, function(match, capture) {
                 if (capture in entities) {
@@ -2151,7 +2151,7 @@ Ext.num = function() {
 
         /**
          * Inserts items in to an array.
-         * 
+         *
          * @param {Array} array The Array on which to replace.
          * @param {Number} index The index in the array at which to operate.
          * @param {Array} items The array of items to insert at index.
@@ -2166,7 +2166,7 @@ Ext.num = function() {
          * of Array, but works around bugs in IE8's splice method and is often more convenient
          * to call because it accepts an array of items to insert rather than use a variadic
          * argument list.
-         * 
+         *
          * @param {Array} array The Array on which to replace.
          * @param {Number} index The index in the array at which to operate.
          * @param {Number} removeCount The number of items to remove at index (can be 0).
@@ -4775,25 +4775,25 @@ var Base = Ext.Base = function() {};
          *             totalCreated: 0,
          *             speciesName: 'Cat' // My.Cat.speciesName = 'Cat'
          *         },
-         *  
+         *
          *         constructor: function() {
          *             var statics = this.statics();
-         *  
+         *
          *             alert(statics.speciesName);     // always equals to 'Cat' no matter what 'this' refers to
          *                                             // equivalent to: My.Cat.speciesName
-         *  
+         *
          *             alert(this.self.speciesName);   // dependent on 'this'
-         *  
+         *
          *             statics.totalCreated++;
-         *  
+         *
          *             return this;
          *         },
-         *  
+         *
          *         clone: function() {
          *             var cloned = new this.self;                      // dependent on 'this'
-         *  
+         *
          *             cloned.groupName = this.statics().speciesName;   // equivalent to: My.Cat.speciesName
-         *  
+         *
          *             return cloned;
          *         }
          *     });
@@ -4801,11 +4801,11 @@ var Base = Ext.Base = function() {};
          *
          *     Ext.define('My.SnowLeopard', {
          *         extend: 'My.Cat',
-         *  
+         *
          *         statics: {
          *             speciesName: 'Snow Leopard'     // My.SnowLeopard.speciesName = 'Snow Leopard'
          *         },
-         *  
+         *
          *         constructor: function() {
          *             this.callParent();
          *         }
@@ -4841,7 +4841,7 @@ var Base = Ext.Base = function() {};
          *     Ext.define('My.Cat', {
          *         constructor: function() {
          *             alert("I'm a cat!");
-         *   
+         *
          *             return this;
          *         }
          *     });
@@ -4849,11 +4849,11 @@ var Base = Ext.Base = function() {};
          *     My.Cat.override({
          *         constructor: function() {
          *             alert("I'm going to be a cat!");
-         *   
+         *
          *             var instance = this.callOverridden();
-         *   
+         *
          *             alert("Meeeeoooowwww");
-         *   
+         *
          *             return instance;
          *         }
          *     });
@@ -4899,7 +4899,7 @@ var Base = Ext.Base = function() {};
          *     Ext.define('My.cool.Class', {
          *         ...
          *     });
-         *      
+         *
          *     My.cool.Class.create({
          *         someConfig: true
          *     });
@@ -5244,178 +5244,178 @@ var Base = Ext.Base = function() {};
  * @author Jacky Nguyen <jacky@sencha.com>
  * @docauthor Jacky Nguyen <jacky@sencha.com>
  * @class Ext.Class
- * 
+ *
  * Handles class creation throughout the whole framework. Note that most of the time {@link Ext#define Ext.define} should
  * be used instead, since it's a higher level wrapper that aliases to {@link Ext.ClassManager#create}
  * to enable namespacing and dynamic dependency resolution.
- * 
+ *
  * # Basic syntax: #
- * 
+ *
  *     Ext.define(className, properties);
- * 
+ *
  * in which `properties` is an object represent a collection of properties that apply to the class. See
  * {@link Ext.ClassManager#create} for more detailed instructions.
- * 
+ *
  *     Ext.define('Person', {
  *          name: 'Unknown',
- * 
+ *
  *          constructor: function(name) {
  *              if (name) {
  *                  this.name = name;
  *              }
- * 
+ *
  *              return this;
  *          },
- * 
+ *
  *          eat: function(foodType) {
  *              alert("I'm eating: " + foodType);
- * 
+ *
  *              return this;
  *          }
  *     });
- * 
+ *
  *     var aaron = new Person("Aaron");
  *     aaron.eat("Sandwich"); // alert("I'm eating: Sandwich");
- * 
+ *
  * Ext.Class has a powerful set of extensible {@link Ext.Class#registerPreprocessor pre-processors} which takes care of
  * everything related to class creation, including but not limited to inheritance, mixins, configuration, statics, etc.
- * 
+ *
  * # Inheritance: #
- * 
+ *
  *     Ext.define('Developer', {
  *          extend: 'Person',
- * 
+ *
  *          constructor: function(name, isGeek) {
  *              this.isGeek = isGeek;
- * 
+ *
  *              // Apply a method from the parent class' prototype
  *              this.callParent([name]);
- * 
+ *
  *              return this;
- * 
+ *
  *          },
- * 
+ *
  *          code: function(language) {
  *              alert("I'm coding in: " + language);
- * 
+ *
  *              this.eat("Bugs");
- * 
+ *
  *              return this;
  *          }
  *     });
- * 
+ *
  *     var jacky = new Developer("Jacky", true);
  *     jacky.code("JavaScript"); // alert("I'm coding in: JavaScript");
  *                               // alert("I'm eating: Bugs");
- * 
+ *
  * See {@link Ext.Base#callParent} for more details on calling superclass' methods
- * 
+ *
  * # Mixins: #
- * 
+ *
  *     Ext.define('CanPlayGuitar', {
  *          playGuitar: function() {
  *             alert("F#...G...D...A");
  *          }
  *     });
- * 
+ *
  *     Ext.define('CanComposeSongs', {
  *          composeSongs: function() { ... }
  *     });
- * 
+ *
  *     Ext.define('CanSing', {
  *          sing: function() {
  *              alert("I'm on the highway to hell...")
  *          }
  *     });
- * 
+ *
  *     Ext.define('Musician', {
  *          extend: 'Person',
- * 
+ *
  *          mixins: {
  *              canPlayGuitar: 'CanPlayGuitar',
  *              canComposeSongs: 'CanComposeSongs',
  *              canSing: 'CanSing'
  *          }
  *     })
- * 
+ *
  *     Ext.define('CoolPerson', {
  *          extend: 'Person',
- * 
+ *
  *          mixins: {
  *              canPlayGuitar: 'CanPlayGuitar',
  *              canSing: 'CanSing'
  *          },
- * 
+ *
  *          sing: function() {
  *              alert("Ahem....");
- * 
+ *
  *              this.mixins.canSing.sing.call(this);
- * 
+ *
  *              alert("[Playing guitar at the same time...]");
- * 
+ *
  *              this.playGuitar();
  *          }
  *     });
- * 
+ *
  *     var me = new CoolPerson("Jacky");
- * 
+ *
  *     me.sing(); // alert("Ahem...");
  *                // alert("I'm on the highway to hell...");
  *                // alert("[Playing guitar at the same time...]");
  *                // alert("F#...G...D...A");
- * 
+ *
  * # Config: #
- * 
+ *
  *     Ext.define('SmartPhone', {
  *          config: {
  *              hasTouchScreen: false,
  *              operatingSystem: 'Other',
  *              price: 500
  *          },
- * 
+ *
  *          isExpensive: false,
- * 
+ *
  *          constructor: function(config) {
  *              this.initConfig(config);
- * 
+ *
  *              return this;
  *          },
- * 
+ *
  *          applyPrice: function(price) {
  *              this.isExpensive = (price > 500);
- * 
+ *
  *              return price;
  *          },
- * 
+ *
  *          applyOperatingSystem: function(operatingSystem) {
  *              if (!(/^(iOS|Android|BlackBerry)$/i).test(operatingSystem)) {
  *                  return 'Other';
  *              }
- * 
+ *
  *              return operatingSystem;
  *          }
  *     });
- * 
+ *
  *     var iPhone = new SmartPhone({
  *          hasTouchScreen: true,
  *          operatingSystem: 'iOS'
  *     });
- * 
+ *
  *     iPhone.getPrice(); // 500;
  *     iPhone.getOperatingSystem(); // 'iOS'
  *     iPhone.getHasTouchScreen(); // true;
  *     iPhone.hasTouchScreen(); // true
- * 
+ *
  *     iPhone.isExpensive; // false;
  *     iPhone.setPrice(600);
  *     iPhone.getPrice(); // 600
  *     iPhone.isExpensive; // true;
- * 
+ *
  *     iPhone.setOperatingSystem('AlienOS');
  *     iPhone.getOperatingSystem(); // 'Other'
- * 
+ *
  * # Statics: #
- * 
+ *
  *     Ext.define('Computer', {
  *          statics: {
  *              factory: function(brand) {
@@ -5423,12 +5423,12 @@ var Base = Ext.Base = function() {};
  *                  return new this(brand);
  *              }
  *          },
- * 
+ *
  *          constructor: function() { ... }
  *     });
- * 
+ *
  *     var dellComputer = Computer.factory('Dell');
- * 
+ *
  * Also see {@link Ext.Base#statics} and {@link Ext.Base#self} for more details on accessing
  * static properties within class methods
  *
@@ -7117,7 +7117,7 @@ var Base = Ext.Base = function() {};
  * It has all the advantages combined from asynchronous and synchronous loading. The development flow is simple:
  *
  * ### Step 1: Start writing your application using synchronous approach.
- * 
+ *
  * Ext.Loader will automatically fetch all dependencies on demand as they're needed during run-time. For example:
  *
  *     Ext.onReady(function(){

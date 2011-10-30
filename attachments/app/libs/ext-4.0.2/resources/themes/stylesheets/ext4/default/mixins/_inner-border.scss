@@ -3,12 +3,12 @@
     $right: right($width);
     $bottom: bottom($width);
     $left: left($width);
-    
+
     @return min(($top + $bottom) / 2, ($left + $right) / 2);
 }
 
 @function inner-border-hoff($width, $spread) {
-    $left: left($width); 
+    $left: left($width);
     $right: right($width);
 
     @if $right <= 0 {
@@ -44,7 +44,7 @@
     $right: right($width);
     $bottom: bottom($width);
     $left: left($width);
-        
+
     @if $top == 0 {
         @if $left + $right == 0 {
             @return true;
@@ -53,7 +53,7 @@
             @return true;
         }
     }
-    
+
     @if $bottom == 0 {
         @if $left + $right == 0 {
             @return true;
@@ -62,7 +62,7 @@
             @return true;
         }
     }
-    
+
     @if $left == 0 {
         @if $top + $bottom == 0 {
             @return true;
@@ -71,7 +71,7 @@
             @return true;
         }
     }
-    
+
     @if $right == 0 {
         @if $top + $bottom == 0 {
             @return true;
@@ -80,11 +80,11 @@
             @return true;
         }
     }
-    
+
     @if $top + $bottom == $left + $right and even($top) == even($bottom) and even($left) == even($right) {
         @return true;
     }
-    
+
     @return false;
 }
 
@@ -93,11 +93,11 @@
     $right: right($color);
     $bottom: bottom($color);
     $left: left($color);
-    
+
     @if $top == $right == $bottom == $left {
         @return true;
     }
-    
+
     @return false;
 }
 
@@ -125,12 +125,12 @@
         $color-right: right($color);
         $color-bottom: bottom($color);
         $color-left: left($color);
-        
+
         $shadow-top: false;
         $shadow-right: false;
         $shadow-bottom: false;
         $shadow-left: false;
-        
+
         @if $width-top > 0 {
             $shadow-top: $color-top 0 $width-top $blur 0 inset;
         }
@@ -143,7 +143,7 @@
         @if $width-left > 0 {
             $shadow-left: $color-left $width-left 0 $blur 0 inset;
         }
-                
+
         @include box-shadow($shadow-top, $shadow-bottom, $shadow-right, $shadow-left);
     }
 }

@@ -98,7 +98,7 @@ Ext.onReady(function() {
           return Ext.Date.dayNames[day].substring(0, 3);
         };
     }
-    
+
     if(Ext.MessageBox){
       Ext.MessageBox.buttonText = {
         ok     : "OK",

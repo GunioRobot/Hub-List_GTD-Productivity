@@ -92,7 +92,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * It has all the advantages combined from asynchronous and synchronous loading. The development flow is simple:
  *
  * ### Step 1: Start writing your application using synchronous approach.
- * 
+ *
  * Ext.Loader will automatically fetch all dependencies on demand as they're needed during run-time. For example:
  *
  *     Ext.onReady(function(){

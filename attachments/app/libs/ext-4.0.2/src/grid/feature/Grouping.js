@@ -15,11 +15,11 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.grid.feature.Grouping
  * @extends Ext.grid.feature.Feature
- * 
+ *
  * This feature allows to display the grid rows aggregated into groups as specified by the {@link Ext.data.Store#groupers}
  * specified on the Store. The group will show the title for the group name and then the appropriate records for the group
  * underneath. The groups can also be expanded and collapsed.
- * 
+ *
  * ## Extra Events
  * This feature adds several extra events that will be fired on the grid to interact with the groups:
  *
@@ -28,23 +28,23 @@ If you are unsure which license is appropriate for your use, please contact the 
  *  - {@link #groupcontextmenu}
  *  - {@link #groupexpand}
  *  - {@link #groupcollapse}
- * 
+ *
  * ## Menu Augmentation
  * This feature adds extra options to the grid column menu to provide the user with functionality to modify the grouping.
  * This can be disabled by setting the {@link #enableGroupingMenu} option. The option to disallow grouping from being turned off
  * by thew user is {@link #enableNoGroups}.
- * 
+ *
  * ## Controlling Group Text
  * The {@link #groupHeaderTpl} is used to control the rendered title for each group. It can modified to customized
  * the default display.
- * 
+ *
  * ## Example Usage
- * 
+ *
  *     var groupingFeature = Ext.create('Ext.grid.feature.Grouping', {
  *         groupHeaderTpl: 'Group: {name} ({rows.length})', //print the number of items in the group
  *         startCollapsed: true // start all groups collapsed
  *     });
- * 
+ *
  * @ftype grouping
  * @author Nicolas Ferrero
  */
@@ -59,7 +59,7 @@ Ext.define('Ext.grid.feature.Grouping', {
         this.collapsedState = {};
         this.callParent(arguments);
     },
-    
+
     /**
      * @event groupclick
      * @param {Ext.view.Table} view
@@ -146,13 +146,13 @@ Ext.define('Ext.grid.feature.Grouping', {
      * @cfg {Boolean} enableNoGroups <tt>true</tt> to allow the user to turn off grouping (defaults to <tt>true</tt>)
      */
     enableNoGroups : true,
-    
+
     enable: function() {
         var me    = this,
             view  = me.view,
             store = view.store,
             groupToggleMenuItem;
-            
+
         if (me.lastGroupIndex) {
             store.group(me.lastGroupIndex);
         }
@@ -168,13 +168,13 @@ Ext.define('Ext.grid.feature.Grouping', {
             store = view.store,
             groupToggleMenuItem,
             lastGroup;
-            
+
         lastGroup = store.groupers.first();
         if (lastGroup) {
             me.lastGroupIndex = lastGroup.property;
             store.groupers.clear();
         }
-        
+
         me.callParent();
         groupToggleMenuItem = me.view.headerCt.getMenu().down('#groupToggleMenuItem');
         groupToggleMenuItem.setChecked(true, true);
@@ -184,7 +184,7 @@ Ext.define('Ext.grid.feature.Grouping', {
 
     getFeatureTpl: function(values, parent, x, xcount) {
         var me = this;
-        
+
         return [
             '<tpl if="typeof rows !== \'undefined\'">',
                 // group row tpl
@@ -211,7 +211,7 @@ Ext.define('Ext.grid.feature.Grouping', {
     // destroying them, we are just deleting references.
     destroy: function() {
         var me = this;
-        
+
         delete me.view;
         delete me.prunedHeader;
     },
@@ -245,7 +245,7 @@ Ext.define('Ext.grid.feature.Grouping', {
             }
         }
     },
-    
+
     injectGroupingMenu: function() {
         var me       = this,
             view     = me.view,
@@ -253,16 +253,16 @@ Ext.define('Ext.grid.feature.Grouping', {
         headerCt.showMenuBy = me.showMenuBy;
         headerCt.getMenuItems = me.getMenuItems();
     },
-    
+
     showMenuBy: function(t, header) {
         var menu = this.getMenu(),
             groupMenuItem  = menu.down('#groupMenuItem'),
             groupableMth = header.groupable === false ?  'disable' : 'enable';
-            
+
         groupMenuItem[groupableMth]();
         Ext.grid.header.Container.prototype.showMenuBy.apply(this, arguments);
     },
-    
+
     getMenuItems: function() {
         var me                 = this,
             groupByText        = me.groupByText,
@@ -271,7 +271,7 @@ Ext.define('Ext.grid.feature.Grouping', {
             enableNoGroups     = me.enableNoGroups,
             groupMenuItemClick = Ext.Function.bind(me.onGroupMenuItemClick, me),
             groupToggleMenuItemClick = Ext.Function.bind(me.onGroupToggleMenuItemClick, me);
-        
+
         // runs in the scope of headerCt
         return function() {
             var o = Ext.grid.header.Container.prototype.getMenuItems.call(this);
@@ -306,7 +306,7 @@ Ext.define('Ext.grid.feature.Grouping', {
         this.enable();
         view.store.group(hdr.dataIndex);
         this.pruneGroupedHeader();
-        
+
     },
 
     /**
@@ -341,9 +341,9 @@ Ext.define('Ext.grid.feature.Grouping', {
     getGroupField: function(){
         var group = this.view.store.groupers.first();
         if (group) {
-            return group.property;    
+            return group.property;
         }
-        return ''; 
+        return '';
     },
 
     /**
@@ -371,7 +371,7 @@ Ext.define('Ext.grid.feature.Grouping', {
             view = me.view,
             grid = view.up('gridpanel'),
             groupBdDom = Ext.getDom(groupBd);
-            
+
         me.collapsedState[groupBdDom.id] = false;
 
         groupBd.removeCls(me.collapsedCls);
@@ -392,7 +392,7 @@ Ext.define('Ext.grid.feature.Grouping', {
             view = me.view,
             grid = view.up('gridpanel'),
             groupBdDom = Ext.getDom(groupBd);
-            
+
         me.collapsedState[groupBdDom.id] = true;
 
         groupBd.addCls(me.collapsedCls);
@@ -402,7 +402,7 @@ Ext.define('Ext.grid.feature.Grouping', {
         grid.invalidateScroller();
         view.fireEvent('groupcollapse');
     },
-    
+
     onGroupChange: function(){
         this.view.refresh();
     },
@@ -495,7 +495,7 @@ Ext.define('Ext.grid.feature.Grouping', {
         var me    = this,
             store = me.view.store,
             groups;
-            
+
         if (!me.disabled && store.isGrouped()) {
             groups = store.getGroups();
             Ext.Array.each(groups, function(group, idx){
@@ -508,7 +508,7 @@ Ext.define('Ext.grid.feature.Grouping', {
         }
         return o;
     },
-    
+
     // adds the groupName to the groupclick, groupdblclick, groupcontextmenu
     // events that are fired on the view. Chose not to return the actual
     // group itself because of its expense and because developers can simply
@@ -519,9 +519,9 @@ Ext.define('Ext.grid.feature.Grouping', {
             groupBdId   = Ext.getDom(groupBd).id,
             prefix      = view.id + '-gp-',
             groupName   = groupBdId.substr(prefix.length);
-        
+
         returnArray.push(groupName, e);
-        
+
         return returnArray;
     }
 });

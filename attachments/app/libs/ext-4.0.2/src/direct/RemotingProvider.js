@@ -15,54 +15,54 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.direct.RemotingProvider
  * @extends Ext.direct.JsonProvider
- * 
+ *
  * <p>The {@link Ext.direct.RemotingProvider RemotingProvider} exposes access to
  * server side methods on the client (a remote procedure call (RPC) type of
  * connection where the client can initiate a procedure on the server).</p>
- * 
+ *
  * <p>This allows for code to be organized in a fashion that is maintainable,
  * while providing a clear path between client and server, something that is
  * not always apparent when using URLs.</p>
- * 
+ *
  * <p>To accomplish this the server-side needs to describe what classes and methods
  * are available on the client-side. This configuration will typically be
  * outputted by the server-side Ext.Direct stack when the API description is built.</p>
  */
 Ext.define('Ext.direct.RemotingProvider', {
-    
+
     /* Begin Definitions */
-   
+
     alias: 'direct.remotingprovider',
-    
-    extend: 'Ext.direct.JsonProvider', 
-    
+
+    extend: 'Ext.direct.JsonProvider',
+
     requires: [
-        'Ext.util.MixedCollection', 
-        'Ext.util.DelayedTask', 
+        'Ext.util.MixedCollection',
+        'Ext.util.DelayedTask',
         'Ext.direct.Transaction',
         'Ext.direct.RemotingMethod'
     ],
-   
+
     /* End Definitions */
-   
+
    /**
      * @cfg {Object} actions
      * Object literal defining the server side actions and methods. For example, if
      * the Provider is configured with:
      * <pre><code>
-"actions":{ // each property within the 'actions' object represents a server side Class 
-    "TestAction":[ // array of methods within each server side Class to be   
+"actions":{ // each property within the 'actions' object represents a server side Class
+    "TestAction":[ // array of methods within each server side Class to be
     {              // stubbed out on client
-        "name":"doEcho", 
-        "len":1            
+        "name":"doEcho",
+        "len":1
     },{
         "name":"multiply",// name of method
         "len":2           // The number of parameters that will be used to create an
                           // array of data to send to the server side function.
-                          // Ensure the server sends back a Number, not a String. 
+                          // Ensure the server sends back a Number, not a String.
     },{
         "name":"doForm",
-        "formHandler":true, // direct the client to use specialized form handling method 
+        "formHandler":true, // direct the client to use specialized form handling method
         "len":1
     }]
 }
@@ -82,7 +82,7 @@ TestAction.multiply(
         var method = t.method; // server side method called
         if(e.status){
             var answer = Ext.encode(result); // 8
-    
+
         }else{
             var msg = e.message; // failure message
         }
@@ -91,27 +91,27 @@ TestAction.multiply(
      * </code></pre>
      * In the example above, the server side "multiply" function will be passed two
      * arguments (2 and 4).  The "multiply" method should return the value 8 which will be
-     * available as the <tt>result</tt> in the example above. 
+     * available as the <tt>result</tt> in the example above.
      */
-    
+
     /**
      * @cfg {String/Object} namespace
      * Namespace for the Remoting Provider (defaults to the browser global scope of <i>window</i>).
      * Explicitly specify the namespace Object, or specify a String to have a
      * {@link Ext#namespace namespace created} implicitly.
      */
-    
+
     /**
      * @cfg {String} url
-     * <b>Required</b>. The url to connect to the {@link Ext.direct.Manager} server-side router. 
+     * <b>Required</b>. The url to connect to the {@link Ext.direct.Manager} server-side router.
      */
-    
+
     /**
      * @cfg {String} enableUrlEncode
      * Specify which param will hold the arguments for the method.
      * Defaults to <tt>'data'</tt>.
      */
-    
+
     /**
      * @cfg {Number/Boolean} enableBuffer
      * <p><tt>true</tt> or <tt>false</tt> to enable or disable combining of method
@@ -123,19 +123,19 @@ TestAction.multiply(
      * to the server.</p>
      */
     enableBuffer: 10,
-    
+
     /**
      * @cfg {Number} maxRetries
      * Number of times to re-attempt delivery on failure of a call. Defaults to <tt>1</tt>.
      */
     maxRetries: 1,
-    
+
     /**
      * @cfg {Number} timeout
      * The timeout to use for each request. Defaults to <tt>undefined</tt>.
      */
     timeout: undefined,
-    
+
     constructor : function(config){
         var me = this;
         me.callParent(arguments);
@@ -148,8 +148,8 @@ TestAction.multiply(
              * @param {Ext.direct.RemotingProvider} provider
              * @param {Ext.direct.Transaction} transaction
              * @param {Object} meta The meta data
-             */            
-            'beforecall',            
+             */
+            'beforecall',
             /**
              * @event call
              * Fires immediately after the request to the server-side is sent. This does
@@ -157,14 +157,14 @@ TestAction.multiply(
              * @param {Ext.direct.RemotingProvider} provider
              * @param {Ext.direct.Transaction} transaction
              * @param {Object} meta The meta data
-             */            
+             */
             'call'
         );
         me.namespace = (Ext.isString(me.namespace)) ? Ext.ns(me.namespace) : me.namespace || window;
         me.transactions = Ext.create('Ext.util.MixedCollection');
         me.callBuffer = [];
     },
-    
+
     /**
      * Initialize the API
      * @private
@@ -178,21 +178,21 @@ TestAction.multiply(
             i,
             len,
             method;
-            
+
         for (action in actions) {
             cls = namespace[action];
             if (!cls) {
                 cls = namespace[action] = {};
             }
             methods = actions[action];
-            
+
             for (i = 0, len = methods.length; i < len; ++i) {
                 method = Ext.create('Ext.direct.RemotingMethod', methods[i]);
                 cls[method.name] = this.createHandler(action, method);
             }
         }
     },
-    
+
     /**
      * Create a handler function for a direct call.
      * @private
@@ -203,7 +203,7 @@ TestAction.multiply(
     createHandler : function(action, method){
         var me = this,
             handler;
-        
+
         if (!method.formHandler) {
             handler = function(){
                 me.configureRequest(action, method, Array.prototype.slice.call(arguments, 0));
@@ -219,7 +219,7 @@ TestAction.multiply(
         };
         return handler;
     },
-    
+
     // inherit docs
     isConnected: function(){
         return !!this.connected;
@@ -228,7 +228,7 @@ TestAction.multiply(
     // inherit docs
     connect: function(){
         var me = this;
-        
+
         if (me.url) {
             me.initAPI();
             me.connected = true;
@@ -243,13 +243,13 @@ TestAction.multiply(
     // inherit docs
     disconnect: function(){
         var me = this;
-        
+
         if (me.connected) {
             me.connected = false;
             me.fireEvent('disconnect', me);
         }
     },
-    
+
     /**
      * Run any callbacks related to the transaction.
      * @private
@@ -260,11 +260,11 @@ TestAction.multiply(
         var funcName = event.status ? 'success' : 'failure',
             callback,
             result;
-        
+
         if (transaction && transaction.callback) {
             callback = transaction.callback;
             result = Ext.isDefined(event.result) ? event.result : event.data;
-        
+
             if (Ext.isFunction(callback)) {
                 callback(result, event);
             } else {
@@ -273,7 +273,7 @@ TestAction.multiply(
             }
         }
     },
-    
+
     /**
      * React to the ajax request being completed
      * @private
@@ -286,7 +286,7 @@ TestAction.multiply(
             event,
             transaction,
             transactions;
-            
+
         if (success) {
             events = me.createEvents(response);
             for (len = events.length; i < len; ++i) {
@@ -321,7 +321,7 @@ TestAction.multiply(
             }
         }
     },
-    
+
     /**
      * Get transaction from XHR options
      * @private
@@ -331,7 +331,7 @@ TestAction.multiply(
     getTransaction: function(options){
         return options && options.tid ? Ext.direct.Manager.getTransaction(options.tid) : null;
     },
-    
+
     /**
      * Configure a direct request
      * @private
@@ -341,8 +341,8 @@ TestAction.multiply(
     configureRequest: function(action, method, args){
         var me = this,
             callData = method.getCallData(args),
-            data = callData.data, 
-            callback = callData.callback, 
+            data = callData.data,
+            callback = callData.callback,
             scope = callData.scope,
             transaction;
 
@@ -361,7 +361,7 @@ TestAction.multiply(
             me.fireEvent('call', me, transaction, method);
         }
     },
-    
+
     /**
      * Gets the Ajax call info for a transaction
      * @private
@@ -377,7 +377,7 @@ TestAction.multiply(
             tid: transaction.id
         };
     },
-    
+
     /**
      * Sends a request to the server
      * @private
@@ -396,7 +396,7 @@ TestAction.multiply(
             i = 0,
             len,
             params;
-            
+
 
         if (Ext.isArray(data)) {
             callData = [];
@@ -416,7 +416,7 @@ TestAction.multiply(
         }
         Ext.Ajax.request(request);
     },
-    
+
     /**
      * Add a new transaction to the queue
      * @private
@@ -425,12 +425,12 @@ TestAction.multiply(
     queueTransaction: function(transaction){
         var me = this,
             enableBuffer = me.enableBuffer;
-        
+
         if (transaction.form) {
             me.sendFormRequest(transaction);
             return;
         }
-        
+
         me.callBuffer.push(transaction);
         if (enableBuffer) {
             if (!me.callTask) {
@@ -441,7 +441,7 @@ TestAction.multiply(
             me.combineAndSend();
         }
     },
-    
+
     /**
      * Combine any buffered requests and send them off
      * @private
@@ -449,13 +449,13 @@ TestAction.multiply(
     combineAndSend : function(){
         var buffer = this.callBuffer,
             len = buffer.length;
-            
+
         if (len > 0) {
             this.sendRequest(len == 1 ? buffer[0] : buffer);
             this.callBuffer = [];
         }
     },
-    
+
     /**
      * Configure a form submission request
      * @private
@@ -481,7 +481,7 @@ TestAction.multiply(
         if (me.fireEvent('beforecall', me, transaction, method) !== false) {
             Ext.direct.Manager.addTransaction(transaction);
             isUpload = String(form.getAttribute("enctype")).toLowerCase() == 'multipart/form-data';
-            
+
             params = {
                 extTID: transaction.id,
                 extAction: action,
@@ -489,7 +489,7 @@ TestAction.multiply(
                 extType: 'rpc',
                 extUpload: String(isUpload)
             };
-            
+
             // change made from typeof callback check to callback.params
             // to support addl param passing in DirectSubmit EAC 6/2
             Ext.apply(transaction, {
@@ -501,7 +501,7 @@ TestAction.multiply(
             me.sendFormRequest(transaction);
         }
     },
-    
+
     /**
      * Sends a form request
      * @private
@@ -518,6 +518,6 @@ TestAction.multiply(
             transaction: transaction
         });
     }
-    
+
 });
 

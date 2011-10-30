@@ -25,18 +25,18 @@ A cookie can be invalidated on the client machine using the {@link #clear} metho
  */
 Ext.define('Ext.util.Cookies', {
     singleton: true,
-    
+
     /**
      * Create a cookie with the specified name and value. Additional settings
      * for the cookie may be optionally specified (for example: expiration,
      * access restriction, SSL).
-     * @param {String} name The name of the cookie to set. 
+     * @param {String} name The name of the cookie to set.
      * @param {Mixed} value The value to set for the cookie.
      * @param {Object} expires (Optional) Specify an expiration date the
      * cookie is to persist until.  Note that the specified Date object will
-     * be converted to Greenwich Mean Time (GMT). 
+     * be converted to Greenwich Mean Time (GMT).
      * @param {String} path (Optional) Setting a path on the cookie restricts
-     * access to pages that match that path. Defaults to all pages (<tt>'/'</tt>). 
+     * access to pages that match that path. Defaults to all pages (<tt>'/'</tt>).
      * @param {String} domain (Optional) Setting a domain restricts access to
      * pages on a given domain (typically used to allow cookie access across
      * subdomains). For example, "sencha.com" will create a cookie that can be
@@ -55,7 +55,7 @@ Ext.define('Ext.util.Cookies', {
             path = (argc > 3) ? argv[3] : '/',
             domain = (argc > 4) ? argv[4] : null,
             secure = (argc > 5) ? argv[5] : false;
-            
+
         document.cookie = name + "=" + escape(value) + ((expires === null) ? "" : ("; expires=" + expires.toGMTString())) + ((path === null) ? "" : ("; path=" + path)) + ((domain === null) ? "" : ("; domain=" + domain)) + ((secure === true) ? "; secure" : "");
     },
 
@@ -77,7 +77,7 @@ Ext.define('Ext.util.Cookies', {
             clen = document.cookie.length,
             i = 0,
             j = 0;
-            
+
         while(i < clen){
             j = i + alen;
             if(document.cookie.substring(i, j) == arg){
@@ -93,7 +93,7 @@ Ext.define('Ext.util.Cookies', {
 
     /**
      * Removes a cookie with the provided name from the browser
-     * if found by setting its expiration date to sometime in the past. 
+     * if found by setting its expiration date to sometime in the past.
      * @param {String} name The name of the cookie to remove
      * @param {String} path (optional) The path for the cookie. This must be included if you included a path while setting the cookie.
      */
@@ -103,7 +103,7 @@ Ext.define('Ext.util.Cookies', {
             document.cookie = name + '=' + '; expires=Thu, 01-Jan-70 00:00:01 GMT; path=' + path;
         }
     },
-    
+
     /**
      * @private
      */

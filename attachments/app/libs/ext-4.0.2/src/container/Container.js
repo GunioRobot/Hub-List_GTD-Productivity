@@ -23,7 +23,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Container to be encapsulated by an HTML element to your specifications by using the
  * <code><b>{@link Ext.Component#autoEl autoEl}</b></code> config option.</p>
  *
- * {@img Ext.Container/Ext.Container.png Ext.Container component} 
+ * {@img Ext.Container/Ext.Container.png Ext.Container component}
  * <p>The code below illustrates how to explicitly create a Container:<pre><code>
 // explicitly create a Container
 Ext.create('Ext.container.Container', {

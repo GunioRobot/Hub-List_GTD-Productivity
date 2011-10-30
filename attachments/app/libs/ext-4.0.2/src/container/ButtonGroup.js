@@ -84,9 +84,9 @@ Ext.define('Ext.container.ButtonGroup', {
      * @cfg {Boolean} frame  Defaults to <tt>true</tt>.  See {@link Ext.panel.Panel#frame}.
      */
     frame: true,
-    
+
     frameHeader: false,
-    
+
     internalDefaults: {removeMode: 'container', hideParent: true},
 
     initComponent : function(){
@@ -107,7 +107,7 @@ Ext.define('Ext.container.ButtonGroup', {
 
     afterLayout: function() {
         var me = this;
-        
+
         me.callParent(arguments);
 
         // Pugly hack for a pugly browser:
@@ -120,7 +120,7 @@ Ext.define('Ext.container.ButtonGroup', {
 
     afterRender: function() {
         var me = this;
-        
+
         //we need to add an addition item in here so the ButtonGroup title is centered
         if (me.header) {
             // Header text cannot flex, but must be natural size if it's being centered
@@ -140,10 +140,10 @@ Ext.define('Ext.container.ButtonGroup', {
             });
             me.suspendLayout = false;
         }
-        
+
         me.callParent(arguments);
     },
-    
+
     // private
     onBeforeAdd: function(component) {
         if (component.is('button')) {

@@ -16,15 +16,15 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @author Ed Spencer
  * @class Ext.data.proxy.WebStorage
  * @extends Ext.data.proxy.Client
- * 
- * <p>WebStorageProxy is simply a superclass for the {@link Ext.data.proxy.LocalStorage localStorage} and 
- * {@link Ext.data.proxy.SessionStorage sessionStorage} proxies. It uses the new HTML5 key/value client-side storage 
+ *
+ * <p>WebStorageProxy is simply a superclass for the {@link Ext.data.proxy.LocalStorage localStorage} and
+ * {@link Ext.data.proxy.SessionStorage sessionStorage} proxies. It uses the new HTML5 key/value client-side storage
  * objects to save {@link Ext.data.Model model instances} for offline use.</p>
  */
 Ext.define('Ext.data.proxy.WebStorage', {
     extend: 'Ext.data.proxy.Client',
     alternateClassName: 'Ext.data.WebStorageProxy',
-    
+
     /**
      * @cfg {String} id The unique ID used as the key in which all record data are stored in the local storage object
      */
@@ -36,7 +36,7 @@ Ext.define('Ext.data.proxy.WebStorage', {
      */
     constructor: function(config) {
         this.callParent(arguments);
-        
+
         /**
          * Cached map of records already retrieved by this Proxy - ensures that the same instance is always retrieved
          * @property cache
@@ -68,7 +68,7 @@ Ext.define('Ext.data.proxy.WebStorage', {
             length  = records.length,
             ids     = this.getIds(),
             id, record, i;
-        
+
         operation.setStarted();
 
         for (i = 0; i < length; i++) {
@@ -103,11 +103,11 @@ Ext.define('Ext.data.proxy.WebStorage', {
             ids     = this.getIds(),
             length  = ids.length,
             i, recordData, record;
-        
+
         //read a single record
         if (operation.id) {
             record = this.getRecord(operation.id);
-            
+
             if (record) {
                 records.push(record);
                 operation.setSuccessful();
@@ -118,7 +118,7 @@ Ext.define('Ext.data.proxy.WebStorage', {
             }
             operation.setSuccessful();
         }
-        
+
         operation.setCompleted();
 
         operation.resultSet = Ext.create('Ext.data.ResultSet', {
@@ -144,7 +144,7 @@ Ext.define('Ext.data.proxy.WebStorage', {
         for (i = 0; i < length; i++) {
             record = records[i];
             this.setRecord(record);
-            
+
             //we need to update the set of ids here because it's possible that a non-phantom record was added
             //to this proxy - in which case the record's id would never have been added via the normal 'create' call
             id = record.getId();
@@ -178,7 +178,7 @@ Ext.define('Ext.data.proxy.WebStorage', {
         }
 
         this.setIds(newIds);
-        
+
         operation.setCompleted();
         operation.setSuccessful();
 
@@ -218,7 +218,7 @@ Ext.define('Ext.data.proxy.WebStorage', {
 
             this.cache[id] = record;
         }
-        
+
         return this.cache[id];
     },
 
@@ -256,10 +256,10 @@ Ext.define('Ext.data.proxy.WebStorage', {
 
         obj = me.getStorageObject();
         key = me.getRecordKey(id);
-        
+
         //keep the cache up to date
         me.cache[id] = record;
-        
+
         //iPad bug requires that we remove the item before setting it
         obj.removeItem(key);
         obj.setItem(key, Ext.encode(data));
@@ -274,7 +274,7 @@ Ext.define('Ext.data.proxy.WebStorage', {
     removeRecord: function(id, updateIds) {
         var me = this,
             ids;
-            
+
         if (id.isModel) {
             id = id.getId();
         }
@@ -342,9 +342,9 @@ Ext.define('Ext.data.proxy.WebStorage', {
     setIds: function(ids) {
         var obj = this.getStorageObject(),
             str = ids.join(",");
-        
+
         obj.removeItem(this.id);
-        
+
         if (!Ext.isEmpty(str)) {
             obj.setItem(this.id, str);
         }
@@ -361,15 +361,15 @@ Ext.define('Ext.data.proxy.WebStorage', {
             key  = this.getRecordCounterKey(),
             last = obj.getItem(key),
             ids, id;
-        
+
         if (last === null) {
             ids = this.getIds();
             last = ids[ids.length - 1] || 0;
         }
-        
+
         id = parseInt(last, 10) + 1;
         obj.setItem(key, id);
-        
+
         return id;
     },
 

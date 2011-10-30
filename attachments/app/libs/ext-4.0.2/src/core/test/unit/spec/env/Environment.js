@@ -286,7 +286,7 @@ describe("Ext.Browser and Ext.OS", function() {
             }
         }
     };
-    
+
     var mockGlobal = {
             document: {
                 compatMode: ""
@@ -367,6 +367,6 @@ describe("Ext.Browser and Ext.OS", function() {
 
 
     });
-        
+
 });
 

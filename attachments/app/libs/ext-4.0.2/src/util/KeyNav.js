@@ -35,11 +35,11 @@ var nav = new Ext.util.KeyNav("my-element", {
 </code></pre>
  */
 Ext.define('Ext.util.KeyNav', {
-    
+
     alternateClassName: 'Ext.KeyNav',
-    
+
     requires: ['Ext.util.KeyMap'],
-    
+
     statics: {
         keyOptions: {
             left: 37,
@@ -67,7 +67,7 @@ Ext.define('Ext.util.KeyNav', {
     constructor: function(el, config){
         this.setConfig(el, config || {});
     },
-    
+
     /**
      * Sets up a configuration for the KeyNav.
      * @private
@@ -78,12 +78,12 @@ Ext.define('Ext.util.KeyNav', {
         if (this.map) {
             this.map.destroy();
         }
-        
+
         var map = Ext.create('Ext.util.KeyMap', el, null, this.getKeyEvent('forceKeyDown' in config ? config.forceKeyDown : this.forceKeyDown)),
             keys = Ext.util.KeyNav.keyOptions,
             scope = config.scope || this,
             key;
-        
+
         this.map = map;
         for (key in keys) {
             if (keys.hasOwnProperty(key)) {
@@ -97,13 +97,13 @@ Ext.define('Ext.util.KeyNav', {
                 }
             }
         }
-        
+
         map.disable();
         if (!config.disabled) {
             map.enable();
         }
     },
-    
+
     /**
      * Method for filtering out the map argument
      * @private
@@ -114,13 +114,13 @@ Ext.define('Ext.util.KeyNav', {
     handleEvent: function(map, event, handler){
         return handler.call(this, event);
     },
-    
+
     /**
      * @cfg {Boolean} disabled
      * True to disable this KeyNav instance (defaults to false)
      */
     disabled: false,
-    
+
     /**
      * @cfg {String} defaultEventAction
      * The method to call on the {@link Ext.EventObject} after this KeyNav intercepts a key.  Valid values are
@@ -128,7 +128,7 @@ Ext.define('Ext.util.KeyNav', {
      * {@link Ext.EventObject#stopPropagation} (defaults to 'stopEvent')
      */
     defaultEventAction: "stopEvent",
-    
+
     /**
      * @cfg {Boolean} forceKeyDown
      * Handle the keydown event instead of keypress (defaults to false).  KeyNav automatically does this for IE since
@@ -136,7 +136,7 @@ Ext.define('Ext.util.KeyNav', {
      * handle keydown instead of keypress.
      */
     forceKeyDown: false,
-    
+
     /**
      * Destroy this KeyNav (this is the same as calling disable).
      * @param {Boolean} removeEl True to remove the element associated with this KeyNav.
@@ -161,7 +161,7 @@ Ext.define('Ext.util.KeyNav', {
         this.map.disable();
         this.disabled = true;
     },
-    
+
     /**
      * Convenience function for setting disabled/enabled by boolean.
      * @param {Boolean} disabled
@@ -170,7 +170,7 @@ Ext.define('Ext.util.KeyNav', {
         this.map.setDisabled(disabled);
         this.disabled = disabled;
     },
-    
+
     /**
      * Determines the event to bind to listen for keys. Depends on the {@link #forceKeyDown} setting,
      * as well as the useKeyDown option on the EventManager.

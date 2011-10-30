@@ -189,9 +189,9 @@ Ext.EventManager = {
     getId : function(element) {
         var skipGarbageCollection = false,
             id;
-    
+
         element = Ext.getDom(element);
-    
+
         if (element === document || element === window) {
             id = element === document ? Ext.documentId : Ext.windowId;
         }
@@ -202,7 +202,7 @@ Ext.EventManager = {
         if (element && (element.getElementById || element.navigator)) {
             skipGarbageCollection = true;
         }
-    
+
         if (!Ext.cache[id]){
             Ext.core.Element.addToCache(new Ext.core.Element(element), id);
             if (skipGarbageCollection) {
@@ -582,7 +582,7 @@ Ext.EventManager = {
         if (!element) {
             return [];
         }
-        
+
         var eventCache = this.getElementEventCache(element);
         return eventCache[eventName] || (eventCache[eventName] = []);
     },

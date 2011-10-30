@@ -45,13 +45,13 @@ If you are unsure which license is appropriate for your use, please contact the 
 
 Ext.define('Ext.data.DirectStore', {
     /* Begin Definitions */
-    
+
     extend: 'Ext.data.Store',
-    
+
     alias: 'store.direct',
-    
+
     requires: ['Ext.data.proxy.Direct'],
-   
+
     /* End Definitions */
 
     /**
@@ -71,6 +71,6 @@ Ext.define('Ext.data.DirectStore', {
             config.proxy = proxy;
         }
         this.callParent([config]);
-    }    
+    }
 });
 

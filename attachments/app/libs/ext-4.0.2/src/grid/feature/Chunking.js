@@ -19,7 +19,7 @@ If you are unsure which license is appropriate for your use, please contact the 
 Ext.define('Ext.grid.feature.Chunking', {
     extend: 'Ext.grid.feature.Feature',
     alias: 'feature.chunking',
-    
+
     chunkSize: 20,
     rowHeight: Ext.isIE ? 27 : 26,
     visibleChunk: 0,
@@ -30,13 +30,13 @@ Ext.define('Ext.grid.feature.Chunking', {
         scroller.el.on('scroll', this.onBodyScroll, this, {buffer: 300});
         //this.view.on('bodyscroll', this.onBodyScroll, this, {buffer: 300});
     },
-    
+
     onBodyScroll: function(e, t) {
         var view = this.view,
             top  = t.scrollTop,
             nextChunk = Math.floor(top / this.rowHeight / this.chunkSize);
         if (nextChunk !== this.visibleChunk) {
-        
+
             this.visibleChunk = nextChunk;
             view.refresh();
             view.el.dom.scrollTop = top;
@@ -44,7 +44,7 @@ Ext.define('Ext.grid.feature.Chunking', {
             view.el.dom.scrollTop = top;
         }
     },
-    
+
     collectData: function(records, preppedRecords, startIndex, fullWidth, orig) {
         var o = {
             fullWidth: orig.fullWidth,
@@ -66,7 +66,7 @@ Ext.define('Ext.grid.feature.Chunking', {
             } else {
                 chunkLength = this.chunkSize;
             }
-            
+
             if (i >= visibleChunk - 1 && i <= visibleChunk + 1) {
                 rows = orig.rows.slice(start, start+this.chunkSize);
             } else {
@@ -78,11 +78,11 @@ Ext.define('Ext.grid.feature.Chunking', {
                 chunkHeight: chunkLength * this.rowHeight
             });
         }
-        
-        
+
+
         return o;
     },
-    
+
     getTableFragments: function() {
         return {
             openTableWrap: function() {

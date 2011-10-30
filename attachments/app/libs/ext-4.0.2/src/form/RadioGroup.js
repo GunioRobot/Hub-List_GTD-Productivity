@@ -43,8 +43,8 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         width: 300,
  *         height: 125,
  *         bodyPadding: 10,
- *         renderTo: Ext.getBody(),        
- *         items:[{            
+ *         renderTo: Ext.getBody(),
+ *         items:[{
  *             xtype: 'radiogroup',
  *             fieldLabel: 'Two Columns',
  *             // Arrange radio buttons into two columns, distributed vertically
@@ -81,10 +81,10 @@ Ext.define('Ext.form.RadioGroup', {
      * (defaults to 'You must select one item in this group')
      */
     blankText : 'You must select one item in this group',
-    
+
     // private
     defaultType : 'radiofield',
-    
+
     // private
     groupCls : Ext.baseCSSPrefix + 'form-radio-group',
 

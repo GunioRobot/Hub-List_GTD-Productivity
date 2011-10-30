@@ -25,7 +25,7 @@ var scanDirectory = function (path) {
 
 var getFileContent = function(fname) {
     var f = fs.open(fname, 'r'),
-        content = '', 
+        content = '',
         line;
     while (true) {
         line = f.readLine();
@@ -61,15 +61,15 @@ var generateIndexFor = function(config) {
         tpl = getFileContent(config.tpl),
         sources = '',
         specs, slength, j, specPaths, source, name, package, files, file, i, length;
-    
+
     tpl = tpl.replace('_TITLE_', config.title);
-    
+
     for (name in packages) {
         package = packages[name];
         if (config.packages.indexOf(package.name) != -1) {
             files = package.files;
             length = files.length;
-            
+
             for (i = 0; i < length; i++) {
                 file = files[i];
                 source = file.path + file.name;
@@ -84,8 +84,8 @@ var generateIndexFor = function(config) {
             }
         }
     }
-    
-    specPaths = config.specPaths; 
+
+    specPaths = config.specPaths;
     length = specPaths.length;
     for (i = 0; i < length; i++) {
         specs = scanDirectory(specPaths[i]);
@@ -97,7 +97,7 @@ var generateIndexFor = function(config) {
                 sources += '{ type: "js", src: "' +  source.replace(config.srcReplace[0], config.srcReplace[1]) + '"}'+ (i === length - 1 && j === slength - 1 ? ']' : ',') + '\n';
             }
         }
-        
+
     }
     tpl = tpl.replace('_INCLUDES_', sources);
     writeFile(config.destination, tpl);
@@ -106,7 +106,7 @@ var generateIndexFor = function(config) {
 var indexes = json2js('tests/indexes.json'),
     ilength = indexes.length,
     x = 0;
-    
+
 for (; x < ilength; x++) {
     system.print('Generating test index for ' + indexes[x].title);
     generateIndexFor(indexes[x]);

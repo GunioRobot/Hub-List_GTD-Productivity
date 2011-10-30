@@ -1554,11 +1554,11 @@ and a property `descEl` referencing the `div` Element which contains the descrip
         var me = this,
             result = [],
             frameElementCls = me.frameElementCls;
-        
+
         result.push(Ext.baseCSSPrefix + cls);
         result.push(me.baseCls + '-' + cls);
         result.push(me.baseCls + '-' + me.ui + '-' + cls);
-        
+
         if (!force && me.frame && !Ext.supports.CSS3BorderRadius) {
             // define each element of the frame
             var els = ['tl', 'tc', 'tr', 'ml', 'mc', 'mr', 'bl', 'bc', 'br'],
@@ -1594,11 +1594,11 @@ and a property `descEl` referencing the `div` Element which contains the descrip
         var me = this,
             result = [],
             frameElementCls = me.frameElementCls;
-        
+
         result.push(Ext.baseCSSPrefix + cls);
         result.push(me.baseCls + '-' + cls);
         result.push(me.baseCls + '-' + me.ui + '-' + cls);
-        
+
         if (!force && me.frame && !Ext.supports.CSS3BorderRadius) {
             // define each element of the frame
             var els = ['tl', 'tc', 'tr', 'ml', 'mc', 'mr', 'bl', 'bc', 'br'],
@@ -1627,14 +1627,14 @@ and a property `descEl` referencing the `div` Element which contains the descrip
     addUIToElement: function(force) {
         var me = this,
             frameElementCls = me.frameElementCls;
-        
+
         me.addCls(me.baseCls + '-' + me.ui);
-        
+
         if (me.frame && !Ext.supports.CSS3BorderRadius) {
             // define each element of the frame
             var els = ['tl', 'tc', 'tr', 'ml', 'mc', 'mr', 'bl', 'bc', 'br'],
                 i, el, cls;
-            
+
             // loop through each of them, and if they are defined add the ui
             for (i = 0; i < els.length; i++) {
                 el = me['frame' + els[i].toUpperCase()];
@@ -1657,14 +1657,14 @@ and a property `descEl` referencing the `div` Element which contains the descrip
     removeUIFromElement: function() {
         var me = this,
             frameElementCls = me.frameElementCls;
-        
+
         me.removeCls(me.baseCls + '-' + me.ui);
-        
+
         if (me.frame && !Ext.supports.CSS3BorderRadius) {
             // define each element of the frame
             var els = ['tl', 'tc', 'tr', 'ml', 'mc', 'mr', 'bl', 'bc', 'br'],
                 i, j, el, cls;
-                
+
             // loop through each of them, and if they are defined add the ui
             for (i = 0; i < els.length; i++) {
                 el = me['frame' + els[i].toUpperCase()];

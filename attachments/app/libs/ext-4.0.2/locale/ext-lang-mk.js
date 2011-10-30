@@ -41,7 +41,7 @@ Ext.onReady(function() {
     if(Ext.LoadMask){
         Ext.LoadMask.prototype.msg = "Вчитувам...";
     }
-    
+
     if(Ext.Date){
         Ext.Date.monthNames = [
         "Јануари",
@@ -68,7 +68,7 @@ Ext.onReady(function() {
         "Сабота"
         ];
     }
-    
+
     if(Ext.MessageBox){
         Ext.MessageBox.buttonText = {
             ok     : "Потврди",

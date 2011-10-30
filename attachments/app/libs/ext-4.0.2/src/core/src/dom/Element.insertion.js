@@ -125,7 +125,7 @@ Ext.core.Element.addMethods({
         el.remove();
         return this;
     },
-    
+
     /**
      * Replaces this element with the passed element
      * @param {Mixed/Object} el The new element or a DomHelper config of an element to create
@@ -133,21 +133,21 @@ Ext.core.Element.addMethods({
      */
     replaceWith: function(el){
         var me = this;
-            
+
         if(el.nodeType || el.dom || typeof el == 'string'){
             el = Ext.get(el);
             me.dom.parentNode.insertBefore(el, me.dom);
         }else{
             el = Ext.core.DomHelper.insertBefore(me.dom, el);
         }
-        
+
         delete Ext.cache[me.id];
-        Ext.removeNode(me.dom);      
+        Ext.removeNode(me.dom);
         me.id = Ext.id(me.dom = el);
-        Ext.core.Element.addToCache(me.isFlyweight ? new Ext.core.Element(me.dom) : me);     
+        Ext.core.Element.addToCache(me.isFlyweight ? new Ext.core.Element(me.dom) : me);
         return me;
     },
-    
+
     /**
      * Creates the passed DomHelper config and appends it to this element or optionally inserts it before the passed child element.
      * @param {Object} config DomHelper element config object.  If no tag is specified (e.g., {tag:'input'}) then a div will be

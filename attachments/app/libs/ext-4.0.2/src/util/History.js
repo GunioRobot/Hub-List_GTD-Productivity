@@ -44,7 +44,7 @@ Ext.define('Ext.util.History', {
     mixins: {
         observable: 'Ext.util.Observable'
     },
-    
+
     constructor: function() {
         var me = this;
         me.oldIEMode = Ext.isIE6 || Ext.isIE7 || !Ext.isStrict && Ext.isIE8;
@@ -53,18 +53,18 @@ Ext.define('Ext.util.History', {
         me.ready = false;
         me.currentToken = null;
     },
-    
+
     getHash: function() {
         var href = window.location.href,
             i = href.indexOf("#");
-            
+
         return i >= 0 ? href.substr(i + 1) : null;
     },
 
     doSave: function() {
         this.hiddenField.value = this.currentToken;
     },
-    
+
 
     handleStateChange: function(token) {
         this.currentToken = token;
@@ -72,8 +72,8 @@ Ext.define('Ext.util.History', {
     },
 
     updateIFrame: function(token) {
-        var html = '<html><body><div id="state">' + 
-                    Ext.util.Format.htmlEncode(token) + 
+        var html = '<html><body><div id="state">' +
+                    Ext.util.Format.htmlEncode(token) +
                     '</div></body></html>';
 
         try {
@@ -90,17 +90,17 @@ Ext.define('Ext.util.History', {
     checkIFrame: function () {
         var me = this,
             contentWindow = me.iframe.contentWindow;
-            
+
         if (!contentWindow || !contentWindow.document) {
             Ext.Function.defer(this.checkIFrame, 10, this);
             return;
         }
-       
+
         var doc = contentWindow.document,
             elem = doc.getElementById("state"),
             oldToken = elem ? elem.innerText : null,
             oldHash = me.getHash();
-           
+
         Ext.TaskManager.start({
             run: function () {
                 var doc = contentWindow.document,
@@ -118,17 +118,17 @@ Ext.define('Ext.util.History', {
                     oldHash = newHash;
                     me.updateIFrame(newHash);
                 }
-            }, 
+            },
             interval: 50,
             scope: me
         });
         me.ready = true;
-        me.fireEvent('ready', me);            
+        me.fireEvent('ready', me);
     },
 
     startUp: function () {
         var me = this;
-        
+
         me.currentToken = me.hiddenField.value || this.getHash();
 
         if (me.oldIEMode) {
@@ -150,7 +150,7 @@ Ext.define('Ext.util.History', {
             me.ready = true;
             me.fireEvent('ready', me);
         }
-        
+
     },
 
     /**
@@ -174,25 +174,25 @@ Ext.define('Ext.util.History', {
      */
     init: function (onReady, scope) {
         var me = this;
-        
+
         if (me.ready) {
             Ext.callback(onReady, scope, [me]);
             return;
         }
-        
+
         if (!Ext.isReady) {
             Ext.onReady(function() {
                 me.init(onReady, scope);
             });
             return;
         }
-        
+
         me.hiddenField = Ext.getDom(me.fieldId);
-        
+
         if (me.oldIEMode) {
             me.iframe = Ext.getDom(me.iframeId);
         }
-        
+
         me.addEvents(
             /**
              * @event ready
@@ -207,7 +207,7 @@ Ext.define('Ext.util.History', {
              */
             'change'
         );
-        
+
         if (onReady) {
             me.on('ready', onReady, scope, {single: true});
         }
@@ -231,13 +231,13 @@ Ext.History.add(tabPanel.id + ':' + tab.id);
      */
     add: function (token, preventDup) {
         var me = this;
-        
+
         if (preventDup !== false) {
             if (me.getToken() === token) {
                 return true;
             }
         }
-        
+
         if (me.oldIEMode) {
             return me.updateIFrame(token);
         } else {

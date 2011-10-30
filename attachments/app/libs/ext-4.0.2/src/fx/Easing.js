@@ -14,10 +14,10 @@ If you are unsure which license is appropriate for your use, please contact the 
 */
 /**
  * @class Ext.fx.Easing
- * 
+ *
 This class contains a series of function definitions used to modify values during an animation.
 They describe how the intermediate values used during a transition will be calculated. It allows for a transition to change
-speed over its duration. The following options are available: 
+speed over its duration. The following options are available:
 
 - linear The default easing type
 - backIn

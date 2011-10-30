@@ -27,7 +27,7 @@ Ext.define('Ext.layout.container.boxOverflow.Scroller', {
     mixins: {
         observable: 'Ext.util.Observable'
     },
-    
+
     /* End Definitions */
 
     /**
@@ -87,11 +87,11 @@ Ext.define('Ext.layout.container.boxOverflow.Scroller', {
      * @cfg {String} afterScrollerCls
      * CSS class added to the right scroller element if enableScroll is used
      */
-    
+
     constructor: function(layout, config) {
         this.layout = layout;
         Ext.apply(this, config || {});
-        
+
         this.addEvents(
             /**
              * @event scroll
@@ -102,7 +102,7 @@ Ext.define('Ext.layout.container.boxOverflow.Scroller', {
             'scroll'
         );
     },
-    
+
     initCSSClasses: function() {
         var me = this,
         layout = me.layout;
@@ -174,14 +174,14 @@ Ext.define('Ext.layout.container.boxOverflow.Scroller', {
     /**
      * @private
      * Shows the scroller elements in the beforeCt and afterCt. Creates the scrollers first if they are not already
-     * present. 
+     * present.
      */
     showScrollers: function() {
         this.createScrollers();
         this.beforeScroller.show();
         this.afterScroller.show();
         this.updateScrollButtons();
-        
+
         this.layout.owner.addClsWithUI('scroller');
     },
 
@@ -193,7 +193,7 @@ Ext.define('Ext.layout.container.boxOverflow.Scroller', {
         if (this.beforeScroller != undefined) {
             this.beforeScroller.hide();
             this.afterScroller.hide();
-            
+
             this.layout.owner.removeClsWithUI('scroller');
         }
     },
@@ -268,8 +268,8 @@ Ext.define('Ext.layout.container.boxOverflow.Scroller', {
      */
     getScrollAnim: function() {
         return {
-            duration: this.scrollDuration, 
-            callback: this.updateScrollButtons, 
+            duration: this.scrollDuration,
+            callback: this.updateScrollButtons,
             scope   : this
         };
     },
@@ -287,7 +287,7 @@ Ext.define('Ext.layout.container.boxOverflow.Scroller', {
             afterMeth  = this.atExtremeAfter() ? 'addCls' : 'removeCls',
             beforeCls  = this.beforeScrollerCls + '-disabled',
             afterCls   = this.afterScrollerCls  + '-disabled';
-        
+
         this.beforeScroller[beforeMeth](beforeCls);
         this.afterScroller[afterMeth](afterCls);
         this.scrolling = false;
@@ -370,14 +370,14 @@ Ext.define('Ext.layout.container.boxOverflow.Scroller', {
                 me.scrolling = false;
                 me.updateScrollButtons();
             }
-            
+
             me.fireEvent('scroll', me, newPosition, animate ? me.getScrollAnim() : false);
         }
     },
 
     /**
      * Scrolls to the given component.
-     * @param {String|Number|Ext.Component} item The item to scroll to. Can be a numerical index, component id 
+     * @param {String|Number|Ext.Component} item The item to scroll to. Can be a numerical index, component id
      * or a reference to the component itself.
      * @param {Boolean} animate True to animate the scrolling
      */

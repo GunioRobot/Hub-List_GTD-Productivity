@@ -17,7 +17,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @extends Ext.button.Button
  * A split button that provides a built-in dropdown arrow that can fire an event separately from the default
  * click event of the button.  Typically this would be used to display a dropdown menu that provides additional
- * options to the primary button action, but any custom handler can provide the arrowclick implementation.  
+ * options to the primary button action, but any custom handler can provide the arrowclick implementation.
  * {@img Ext.button.Split/Ext.button.Split.png Ext.button.Split component}
  * Example usage:
  * <pre><code>
@@ -85,7 +85,7 @@ Ext.define('Ext.button.Split', {
     // private
     onClick : function(e, t) {
         var me = this;
-        
+
         e.preventDefault();
         if (!me.disabled) {
             if (me.overMenuTrigger) {

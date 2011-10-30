@@ -180,12 +180,12 @@ Ext.apply(Ext, {
 
     /**
      * Execute a callback function in a particular scope. If no function is passed the call is ignored.
-     * 
+     *
      * For example, these lines are equivalent:
-     * 
+     *
      *     Ext.callback(myFunc, this, [arg1, arg2]);
      *     Ext.isFunction(myFunc) && myFunc.apply(this, [arg1, arg2]);
-     * 
+     *
      * @param {Function} callback The callback to execute
      * @param {Object} scope (optional) The scope to execute in
      * @param {Array} args (optional) The arguments to pass to the function
@@ -715,7 +715,7 @@ Ext.addBehaviors({
          * log buffer is limited to a maximum of "Ext.log.max" entries (defaults to 100).
          *
          * If additional parameters are passed, they are joined and appended to the message.
-         * 
+         *
          * This method does nothing in a release build.
          *
          * @param {String|Object} message The message to log or an options object with any

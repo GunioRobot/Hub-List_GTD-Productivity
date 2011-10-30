@@ -182,7 +182,7 @@ Ext.core.DomHelper = function(){
         }
         return returnElement ? Ext.get(newNode, true) : newNode;
     }
-    
+
     function createDom(o, parentNode){
         var el,
             doc = document,
@@ -333,17 +333,17 @@ Ext.core.DomHelper = function(){
         el.insertBefore(node, before);
         return node;
     }
-    
+
     /**
      * @ignore
      * Fix for IE9 createContextualFragment missing method
-     */   
+     */
     function createContextualFragment(html){
         var div = document.createElement("div"),
             fragment = document.createDocumentFragment(),
             i = 0,
             length, childNodes;
-        
+
         div.innerHTML = html;
         childNodes = div.childNodes;
         length = childNodes.length;
@@ -354,7 +354,7 @@ Ext.core.DomHelper = function(){
 
         return fragment;
     }
-    
+
     pub = {
         /**
          * Returns the markup for the passed Element(s) config.
@@ -406,13 +406,13 @@ Ext.core.DomHelper = function(){
             // add these here because they are used in both branches of the condition.
             hash[beforebegin] = ['BeforeBegin', 'previousSibling'];
             hash[afterend] = ['AfterEnd', 'nextSibling'];
-            
+
             // if IE and context element is an HTMLElement
             if (el.insertAdjacentHTML) {
                 if(tableRe.test(el.tagName) && (rs = insertIntoTable(el.tagName.toLowerCase(), where, el, html))){
                     return rs;
                 }
-                
+
                 // add these two to the hash.
                 hash[afterbegin] = ['AfterBegin', 'firstChild'];
                 hash[beforeend] = ['BeforeEnd', 'lastChild'];
@@ -424,7 +424,7 @@ Ext.core.DomHelper = function(){
             } else {
                 // we cannot insert anything inside a textnode so...
                 if (Ext.isTextNode(el)) {
-                    where = where === 'afterbegin' ? 'beforebegin' : where; 
+                    where = where === 'afterbegin' ? 'beforebegin' : where;
                     where = where === 'beforeend' ? 'afterend' : where;
                 }
                 range = Ext.supports.CreateContextualFragment ? el.ownerDocument.createRange() : undefined;
@@ -447,7 +447,7 @@ Ext.core.DomHelper = function(){
                         } else {
                             frag = createContextualFragment(html);
                         }
-                        
+
                         if(where == afterbegin){
                             el.insertBefore(frag, el.firstChild);
                         }else{
@@ -528,7 +528,7 @@ Ext.core.DomHelper = function(){
         },
 
         createHtml : createHtml,
-        
+
         /**
          * Creates new DOM element(s) without inserting them to the document.
          * @param {Object/String} o The DOM object spec (and children) or raw HTML blob
@@ -536,10 +536,10 @@ Ext.core.DomHelper = function(){
          * @method
          */
         createDom: createDom,
-        
+
         /** True to force the use of DOM instead of html fragments @type Boolean */
         useDom : false,
-        
+
         /**
          * Creates a new Ext.Template from the DOM object spec.
          * @param {Object} o The DOM object spec (and children)

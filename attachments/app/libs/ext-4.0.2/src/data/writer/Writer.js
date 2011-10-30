@@ -16,14 +16,14 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @author Ed Spencer
  * @class Ext.data.writer.Writer
  * @extends Object
- * 
+ *
  * <p>Base Writer class used by most subclasses of {@link Ext.data.proxy.Server}. This class is
  * responsible for taking a set of {@link Ext.data.Operation} objects and a {@link Ext.data.Request}
  * object and modifying that request based on the Operations.</p>
- * 
- * <p>For example a Ext.data.writer.Json would format the Operations and their {@link Ext.data.Model} 
+ *
+ * <p>For example a Ext.data.writer.Json would format the Operations and their {@link Ext.data.Model}
  * instances based on the config options passed to the JsonWriter's constructor.</p>
- * 
+ *
  * <p>Writers are not needed for any kind of local storage - whether via a
  * {@link Ext.data.proxy.WebStorage Web Storage proxy} (see {@link Ext.data.proxy.LocalStorage localStorage}
  * and {@link Ext.data.proxy.SessionStorage sessionStorage}) or just in memory via a
@@ -32,14 +32,14 @@ If you are unsure which license is appropriate for your use, please contact the 
 Ext.define('Ext.data.writer.Writer', {
     alias: 'writer.base',
     alternateClassName: ['Ext.data.DataWriter', 'Ext.data.Writer'],
-    
+
     /**
      * @cfg {Boolean} writeAllFields True to write all fields from the record to the server. If set to false it
      * will only send the fields that were modified. Defaults to <tt>true</tt>. Note that any fields that have
      * {@link Ext.data.Field#persist} set to false will still be ignored.
      */
     writeAllFields: true,
-    
+
     /**
      * @cfg {String} nameProperty This property is used to read the key for each value that will be sent to the server.
      * For example:
@@ -116,7 +116,7 @@ new Ext.data.writer.Writer({
             name,
             field,
             key;
-        
+
         if (writeAll) {
             fields.each(function(field){
                 if (field.persist) {

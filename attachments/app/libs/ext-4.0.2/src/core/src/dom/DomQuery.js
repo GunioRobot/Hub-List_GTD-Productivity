@@ -596,9 +596,9 @@ Ext.core.DomQuery = Ext.DomQuery = function(){
          *
          * Uses [document.querySelectorAll][0] if browser supports that, otherwise falls back to
          * {@link #jsSelect} to do the work.
-         * 
+         *
          * Aliased as {@link Ext#query}.
-         * 
+         *
          * [0]: https://developer.mozilla.org/en/DOM/document.querySelectorAll
          *
          * @param {String} path The selector/xpath query
@@ -756,12 +756,12 @@ Ext.core.DomQuery = Ext.DomQuery = function(){
         },
 
         /**
-Object hash of "pseudo class" filter functions which are used when filtering selections. 
+Object hash of "pseudo class" filter functions which are used when filtering selections.
 Each function is passed two parameters:
 
 - **c** : Array
     An Array of DOM elements to filter.
-    
+
 - **v** : String
     The argument (if any) supplied in the selector.
 

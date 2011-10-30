@@ -77,7 +77,7 @@ Ext.define('Ext.picker.Month', {
      * @cfg {Date/Array} value The default value to set. See {#setValue setValue}
      */
     width: 178,
-    
+
     // used when attached to date picker which isnt showing buttons
     smallCls: Ext.baseCSSPrefix + 'monthpicker-small',
 

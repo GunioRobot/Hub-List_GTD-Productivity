@@ -38,16 +38,16 @@ Ext.String = {
             '<': '&lt;',
             '"': '&quot;'
         }, keys = [], p, regex;
-        
+
         for (p in entities) {
             keys.push(p);
         }
-        
+
         regex = new RegExp('(' + keys.join('|') + ')', 'g');
-        
+
         return function(value) {
             return (!value) ? value : String(value).replace(regex, function(match, capture) {
-                return entities[capture];    
+                return entities[capture];
             });
         };
     })(),
@@ -65,13 +65,13 @@ Ext.String = {
             '&lt;': '<',
             '&quot;': '"'
         }, keys = [], p, regex;
-        
+
         for (p in entities) {
             keys.push(p);
         }
-        
+
         regex = new RegExp('(' + keys.join('|') + '|&#[0-9]{1,5};' + ')', 'g');
-        
+
         return function(value) {
             return (!value) ? value : String(value).replace(regex, function(match, capture) {
                 if (capture in entities) {

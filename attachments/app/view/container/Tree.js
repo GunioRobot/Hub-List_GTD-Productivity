@@ -1,7 +1,7 @@
 /**
  * @class HL.view.container.Tree
  * @extends Ext.tree.Panel
- * 
+ *
  * Container tree panel.
  */
 Ext.define('HL.view.container.Tree', {
@@ -9,13 +9,13 @@ Ext.define('HL.view.container.Tree', {
 
     extend: 'Ext.tree.Panel',
     alias: 'widget.containertree',
-    
+
     id: 'containerTreePanel',
     title: 'Folders',
-    
+
     config: {
         rootVisible: false,
-        bodyPadding: '6 0 0 0',        
+        bodyPadding: '6 0 0 0',
         displayField: 'name',
         lines: false,
         useArrows: true,
@@ -33,13 +33,13 @@ Ext.define('HL.view.container.Tree', {
                 // this is a temporary solution to select the first
                 // list in the tree, eventually we'll select whatever
                 // was previously selected by maintaining proper component states
-                if(success && records.length > 0) { 
+                if(success && records.length > 0) {
                     var topNode = store.getRootNode().childNodes[0];
                     if(topNode.get('type') === 'list') {
-                        this.getView().select(topNode);                    
+                        this.getView().select(topNode);
                     } else {
                         // assume the first child is a list
-                        // todo: properly loop through children 
+                        // todo: properly loop through children
                         // recursively until we find a list
                         topNode.expand();
                         this.getView().select(topNode.childNodes[0]);
@@ -48,7 +48,7 @@ Ext.define('HL.view.container.Tree', {
             }
         }
     },
-    
+
     viewConfig: {
         plugins: {
             ptype: 'ctreeviewdragdrop',
@@ -56,7 +56,7 @@ Ext.define('HL.view.container.Tree', {
             allowParentInsert: true
         }
     },
-    
+
     /**
      * Initializes config overrides
      * and calls parent constructor.
@@ -65,16 +65,16 @@ Ext.define('HL.view.container.Tree', {
      * update event from Ext.data.NodeStore to
      * HL.store.Containers.
      * @param {Object} config configuration object
-     */    
+     */
     constructor: function(config) {
         this.store = Ext.create('HL.store.Containers');
-        this.initConfig(config);      
+        this.initConfig(config);
         var result = this.callParent(arguments);
         var nodeStore = this.getView().getStore();
         this.getStore().relayEvents(nodeStore, ['update']);
         return result;
     },
-        
+
     /**
      * Selects the first node in the Tree.
      * @param {Ext.data.NodeInterface} startNode
@@ -82,15 +82,15 @@ Ext.define('HL.view.container.Tree', {
     selectFirstList: function(startNode) {
         var me = this;
         startNode = startNode || me.getStore().getRootNode();
-        
+
         if(startNode.hasChildNodes()) {
             startNode.eachChild(function(node) {
                 if(node.hasChildNodes) {
-                    me.selectFirstList(node);                 
+                    me.selectFirstList(node);
                 }
             }, me);
-        }        
+        }
     }
-    
+
 
 });

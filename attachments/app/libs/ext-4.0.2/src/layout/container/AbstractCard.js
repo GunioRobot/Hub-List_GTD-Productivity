@@ -164,7 +164,7 @@ Ext.define('Ext.layout.container.AbstractCard', {
      * @returns {Ext.Component} The next component or false.
      */
     getNext: function() {
-        //NOTE: Removed the JSDoc for this function's arguments because it is not actually supported in 4.0. This 
+        //NOTE: Removed the JSDoc for this function's arguments because it is not actually supported in 4.0. This
         //should come back in 4.1
         var wrap = arguments[0];
         var items = this.getLayoutItems(),
@@ -177,7 +177,7 @@ Ext.define('Ext.layout.container.AbstractCard', {
      * @return {Ext.Component} the activated component or false when nothing activated.
      */
     next: function() {
-        //NOTE: Removed the JSDoc for this function's arguments because it is not actually supported in 4.0. This 
+        //NOTE: Removed the JSDoc for this function's arguments because it is not actually supported in 4.0. This
         //should come back in 4.1
         var anim = arguments[0], wrap = arguments[1];
         return this.setActiveItem(this.getNext(wrap), anim);
@@ -188,7 +188,7 @@ Ext.define('Ext.layout.container.AbstractCard', {
      * @returns {Ext.Component} The previous component or false.
      */
     getPrev: function() {
-        //NOTE: Removed the JSDoc for this function's arguments because it is not actually supported in 4.0. This 
+        //NOTE: Removed the JSDoc for this function's arguments because it is not actually supported in 4.0. This
         //should come back in 4.1
         var wrap = arguments[0];
         var items = this.getLayoutItems(),
@@ -201,7 +201,7 @@ Ext.define('Ext.layout.container.AbstractCard', {
      * @return {Ext.Component} the activated component or false when nothing activated.
      */
     prev: function() {
-        //NOTE: Removed the JSDoc for this function's arguments because it is not actually supported in 4.0. This 
+        //NOTE: Removed the JSDoc for this function's arguments because it is not actually supported in 4.0. This
         //should come back in 4.1
         var anim = arguments[0], wrap = arguments[1];
         return this.setActiveItem(this.getPrev(wrap), anim);

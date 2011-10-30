@@ -16,7 +16,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Italian translation
  * By eric_void
  * 04-10-2007, 11:25 AM
- * Updated by Federico Grilli 21/12/2007 
+ * Updated by Federico Grilli 21/12/2007
  */
 Ext.onReady(function(){
     if(Ext.Updater){

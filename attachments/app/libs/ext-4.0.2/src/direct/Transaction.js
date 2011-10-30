@@ -18,16 +18,16 @@ If you are unsure which license is appropriate for your use, please contact the 
  * <p>Supporting Class for Ext.Direct (not intended to be used directly).</p>
  */
 Ext.define('Ext.direct.Transaction', {
-    
+
     /* Begin Definitions */
-   
+
     alias: 'direct.transaction',
     alternateClassName: 'Ext.Direct.Transaction',
-   
+
     statics: {
         TRANSACTION_ID: 0
     },
-   
+
     /* End Definitions */
 
     /**
@@ -36,12 +36,12 @@ Ext.define('Ext.direct.Transaction', {
      */
     constructor: function(config){
         var me = this;
-        
+
         Ext.apply(me, config);
         me.id = ++me.self.TRANSACTION_ID;
         me.retryCount = 0;
     },
-   
+
     send: function(){
          this.provider.queueTransaction(this);
     },

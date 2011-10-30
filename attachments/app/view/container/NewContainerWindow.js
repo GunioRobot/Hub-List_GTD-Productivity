@@ -1,25 +1,25 @@
 /**
  * @class HL.view.container.NewContainerWindow
  * @extends Ext.form.Panel
- * 
+ *
  * Displays add/edit Container window.
  */
 Ext.define('HL.view.container.NewContainerWindow', {
     extend: 'Ext.form.Panel',
     alias: 'widget.newcontainerwindow',
-    
+
     requires: ['Ext.form.field.Hidden'],
-    
+
     id: 'newcontainerwindow',
     title: 'New Task Container',
     layout: 'anchor',
-    
+
     constructor: function(config) {
         this.initConfig(config);
-        
+
         return this.callParent(arguments);
     },
-    
+
     config: {
         width: 300,
         bodyPadding: 10,
@@ -31,7 +31,7 @@ Ext.define('HL.view.container.NewContainerWindow', {
         },
         items: [{
             xtype: 'textfield',
-            name: 'name',            
+            name: 'name',
             fieldLabel: 'Name',
             allowBlank: false
         },{
@@ -75,8 +75,8 @@ Ext.define('HL.view.container.NewContainerWindow', {
                         var newContainer = Ext.ModelManager.create(form.getFieldValues(), 'HL.model.Container');
                         // get new container's parent from the store
                         var parentContainer = containerStore.getNodeById(newContainer.get('parentId'));
-                        parentContainer.insertChild(0, newContainer);                                                                   
-                        
+                        parentContainer.insertChild(0, newContainer);
+
                         newContainer.phantom = true;
                         newContainer.endEdit();
                         parentContainer.endEdit();
@@ -90,7 +90,7 @@ Ext.define('HL.view.container.NewContainerWindow', {
         }],
         listeners: {
             'show': function() {
-                this.query('textfield[name="name"]')[0].focus();             
+                this.query('textfield[name="name"]')[0].focus();
             }
         }
     }

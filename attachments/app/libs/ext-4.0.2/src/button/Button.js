@@ -27,7 +27,7 @@ Example usage:
 
     Ext.create('Ext.Button', {
         text: 'Click me',
-        renderTo: Ext.getBody(),        
+        renderTo: Ext.getBody(),
         handler: function() {
             alert('You clicked the button!')
         }
@@ -98,7 +98,7 @@ Example usage:
 
     Ext.create('Ext.Button', {
         text      : 'Menu button',
-        renderTo  : Ext.getBody(),        
+        renderTo  : Ext.getBody(),
         arrowAlign: 'bottom',
         menu      : [
             {text: 'Item 1'},
@@ -284,7 +284,7 @@ Ext.define('Ext.button.Button', {
      * Defaults to <tt>'click'</tt>.
      */
     clickEvent: 'click',
-    
+
     /**
      * @cfg {Boolean} preventDefault
      * True to prevent the default action when the {@link #clickEvent} is processed. Defaults to true.
@@ -314,30 +314,30 @@ Ext.define('Ext.button.Button', {
      * The CSS class to add to a button when it is in the pressed state. (Defaults to 'x-btn-pressed')
      */
     pressedCls: 'pressed',
-    
+
     /**
      * @cfg {String} overCls
      * The CSS class to add to a button when it is in the over (hovered) state. (Defaults to 'x-btn-over')
      */
     overCls: 'over',
-    
+
     /**
      * @cfg {String} focusCls
      * The CSS class to add to a button when it is in the focussed state. (Defaults to 'x-btn-focus')
      */
     focusCls: 'focus',
-    
+
     /**
      * @cfg {String} menuActiveCls
      * The CSS class to add to a button when it's menu is active. (Defaults to 'x-btn-menu-active')
      */
     menuActiveCls: 'menu-active',
-    
+
     /**
      * @cfg {Object} baseParams
      * An object literal of parameters to pass to the url when the {@link #href} property is specified.
      */
-    
+
     /**
      * @cfg {Object} params
      * An object literal of parameters to pass to the url when the {@link #href} property is specified.
@@ -381,12 +381,12 @@ Ext.define('Ext.button.Button', {
      * <p>Defaults to <b><tt>'small'</tt></b>.</p>
      */
     scale: 'small',
-    
+
     /**
      * @private An array of allowed scales.
      */
     allowedScales: ['small', 'medium', 'large'],
-    
+
     /**
      * @cfg {Object} scope The scope (<tt><b>this</b></tt> reference) in which the
      * <code>{@link #handler}</code> and <code>{@link #toggleHandler}</code> is
@@ -451,7 +451,7 @@ Ext.define('Ext.button.Button', {
      * the button from doing this automatic sizing.
      * Defaults to <tt>undefined</tt>.
      */
-     
+
     maskOnDisable: false,
 
     // inherit docs
@@ -582,7 +582,7 @@ Ext.define('Ext.button.Button', {
                 me.removeClsWithUI(me.oldCls);
                 me.removeClsWithUI(me.pressedCls);
             }
-            
+
             // Check whether the button has an icon or not, and if it has an icon, what is th alignment
             if (me.iconCls || me.icon) {
                 if (me.text) {
@@ -593,19 +593,19 @@ Ext.define('Ext.button.Button', {
             } else if (me.text) {
                 cls.push('noicon');
             }
-            
+
             me.oldCls = cls;
             me.addClsWithUI(cls);
             me.addClsWithUI(me.pressed ? me.pressedCls : null);
         }
     },
-    
+
     // private
     onRender: function(ct, position) {
         // classNames for the button
         var me = this,
             repeater, btn;
-            
+
         // Apply the renderData to the template args
         Ext.applyIf(me.renderData, me.getTemplateArgs());
 
@@ -616,7 +616,7 @@ Ext.define('Ext.button.Button', {
             btnInnerEl: '.' + me.baseCls + '-inner',
             btnIconEl: '.'+ me.baseCls + '-icon'
         });
-        
+
         if (me.scale) {
             me.ui = me.ui + '-' + me.scale;
         }
@@ -742,7 +742,7 @@ Ext.define('Ext.button.Button', {
     getHref: function() {
         var me = this,
             params = Ext.apply({}, me.baseParams);
-            
+
         // write baseParams first, then write any params
         params = Ext.apply(params, me.params);
         return me.href ? Ext.urlAppend(me.href, Ext.Object.toQueryString(params)) : false;
@@ -862,7 +862,7 @@ Ext.define('Ext.button.Button', {
             delete me.btnEl;
             delete me.btnInnerEl;
             Ext.ButtonToggleManager.unregister(me);
-            
+
             Ext.destroy(me.keyMap);
             delete me.keyMap;
         }
@@ -1083,7 +1083,7 @@ Ext.define('Ext.button.Button', {
         var me = this,
             size = me.triggerSize,
             side, sideFirstLetter, undef;
-            
+
         if (size === undef) {
             side = me.arrowAlign;
             sideFirstLetter = side.charAt(0);
@@ -1135,13 +1135,13 @@ Ext.define('Ext.button.Button', {
         delete me.overMenuTrigger;
         me.fireEvent('menutriggerout', me, me.menu, e);
     },
-    
+
     // inherit docs
     enable : function(silent) {
         var me = this;
 
         me.callParent(arguments);
-        
+
         me.removeClsWithUI('disabled');
 
         return me;
@@ -1150,14 +1150,14 @@ Ext.define('Ext.button.Button', {
     // inherit docs
     disable : function(silent) {
         var me = this;
-        
+
         me.callParent(arguments);
-        
+
         me.addClsWithUI('disabled');
 
         return me;
     },
-    
+
     /**
      * Method to change the scale of the button. See {@link #scale} for allowed configurations.
      * @param {String} scale The scale to change to.
@@ -1165,31 +1165,31 @@ Ext.define('Ext.button.Button', {
     setScale: function(scale) {
         var me = this,
             ui = me.ui.replace('-' + me.scale, '');
-        
+
         //check if it is an allowed scale
         if (!Ext.Array.contains(me.allowedScales, scale)) {
             throw('#setScale: scale must be an allowed scale (' + me.allowedScales.join(', ') + ')');
         }
-        
+
         me.scale = scale;
         me.setUI(ui);
     },
-    
+
     // inherit docs
     setUI: function(ui) {
         var me = this;
-        
+
         //we need to append the scale to the UI, if not already done
         if (me.scale && !ui.match(me.scale)) {
             ui = ui + '-' + me.scale;
         }
-        
+
         me.callParent([ui]);
-        
+
         // Set all the state classNames, as they need to include the UI
         // me.disabledCls += ' ' + me.baseCls + '-' + me.ui + '-disabled';
     },
-    
+
     // private
     onFocus: function(e) {
         var me = this;

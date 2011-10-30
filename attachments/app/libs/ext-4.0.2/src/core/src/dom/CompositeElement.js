@@ -34,18 +34,18 @@ els.setWidth(100).hide(true);
 </code></pre>
  */
 Ext.CompositeElement = Ext.extend(Ext.CompositeElementLite, {
-    
+
     constructor : function(els, root){
         this.elements = [];
         this.add(els, root);
     },
-    
+
     // private
     getElement : function(el){
         // In this case just return it, since we already have a reference to it
         return el;
     },
-    
+
     // private
     transformElement : function(el){
         return Ext.get(el);
@@ -65,7 +65,7 @@ Ext.CompositeElement = Ext.extend(Ext.CompositeElementLite, {
 
     /**
      * Iterates each `element` in this `composite` calling the supplied function using {@link Ext#each Ext.each}.
-     * @param {Function} fn 
+     * @param {Function} fn
 
 The function to be called with each
 `element`. If the supplied function returns <tt>false</tt>,
@@ -73,11 +73,11 @@ iteration stops. This function is called with the following arguments:
 
 - `element` : __Ext.core.Element++
     The element at the current `index` in the `composite`
-    
-- `composite` : __Object__ 
+
+- `composite` : __Object__
     This composite.
 
-- `index` : __Number__ 
+- `index` : __Number__
     The current index within the `composite`
 
      * @param {Object} scope (optional) The scope (<code>this</code> reference) in which the specified function is executed.

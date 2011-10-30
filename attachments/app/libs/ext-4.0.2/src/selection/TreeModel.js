@@ -19,22 +19,22 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Adds custom behavior for left/right keyboard navigation for use with a tree.
  * Depends on the view having an expand and collapse method which accepts a
  * record.
- * 
+ *
  * @private
  */
 Ext.define('Ext.selection.TreeModel', {
     extend: 'Ext.selection.RowModel',
     alias: 'selection.treemodel',
-    
+
     // typically selection models prune records from the selection
     // model when they are removed, because the TreeView constantly
     // adds/removes records as they are expanded/collapsed
     pruneRemoved: false,
-    
+
     onKeyRight: function(e, t) {
         var focused = this.getLastFocused(),
             view    = this.view;
-            
+
         if (focused) {
             // tree node is already expanded, go down instead
             // this handles both the case where we navigate to firstChild and if
@@ -47,7 +47,7 @@ Ext.define('Ext.selection.TreeModel', {
             }
         }
     },
-    
+
     onKeyLeft: function(e, t) {
         var focused = this.getLastFocused(),
             view    = this.view,
@@ -76,10 +76,10 @@ Ext.define('Ext.selection.TreeModel', {
             }
         }
     },
-    
+
     onKeyPress: function(e, t) {
         var selected, checked;
-        
+
         if (e.getKey() === e.SPACE || e.getKey() === e.ENTER) {
             e.stopEvent();
             selected = this.getLastSelected();

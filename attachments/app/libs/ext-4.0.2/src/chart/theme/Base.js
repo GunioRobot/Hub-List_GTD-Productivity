@@ -119,7 +119,7 @@ Ext.define('Ext.chart.theme.Base', {
             }],
             markerThemes: [{
                 fill: "#115fa6",
-                type: 'circle' 
+                type: 'circle'
             }, {
                 fill: "#94ae0a",
                 type: 'cross'
@@ -140,7 +140,7 @@ Ext.define('Ext.chart.theme.Base', {
                       ['#7eae29', '#fdbe2a', '#910019', '#27b4bc', '#d74dbc'],
                       ['#44dce1', '#0b2592', '#996e05', '#7fb325', '#b821a1']],
         cats = categories.length;
-    
+
     //Create themes from base colors
     for (; i < l; i++) {
         themes[names[i]] = (function(color) {
@@ -153,7 +153,7 @@ Ext.define('Ext.chart.theme.Base', {
             });
         })(palette[i]);
     }
-    
+
     //Create theme from color array
     for (i = 0; i < cats; i++) {
         themes['Category' + (i + 1)] = (function(category) {

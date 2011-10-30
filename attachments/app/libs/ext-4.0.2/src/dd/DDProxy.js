@@ -49,7 +49,7 @@ Ext.define('Ext.dd.DDProxy', {
      * @param {String} sGroup the group of related DragDrop objects
      * @param {object} config an object containing configurable attributes.
      * Valid properties for DDProxy in addition to those in DragDrop:
-     * 
+     *
      * - resizeFrame
      * - centerFrame
      * - dragElId

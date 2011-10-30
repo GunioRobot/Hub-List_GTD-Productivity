@@ -365,7 +365,7 @@ Ext.define('Ext.selection.Model', {
         }
 
         len = records.length;
-        
+
         for (; i < len; i++) {
             record = records[i];
             if (me.isSelected(record)) {

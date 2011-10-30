@@ -41,14 +41,14 @@ Ext.define('Ext.ElementLoader', {
         'Ext.data.Connection',
         'Ext.Ajax'
     ],
-    
+
     statics: {
         Renderer: {
             Html: function(loader, response, active){
                 loader.getTarget().update(response.responseText, active.scripts === true);
                 return true;
             }
-        }     
+        }
     },
 
     /* End Definitions */
@@ -90,7 +90,7 @@ Ext.define('Ext.ElementLoader', {
      * @cfg {Object} ajaxOptions Any additional options to be passed to the request, for example timeout or headers. Defaults to <tt>null</tt>.
      */
     ajaxOptions: null,
-    
+
     /**
      * @cfg {Boolean} scripts True to parse any inline script tags in the response.
      */
@@ -107,7 +107,7 @@ Ext.define('Ext.ElementLoader', {
     /**
      * @cfg {Object} scope The scope to execute the {@link #success} and {@link #failure} functions in.
      */
-    
+
     /**
      * @cfg {Function} renderer A custom function to render the content to the element. The passed parameters
      * are
@@ -123,7 +123,7 @@ Ext.define('Ext.ElementLoader', {
     constructor: function(config) {
         var me = this,
             autoLoad;
-        
+
         config = config || {};
         Ext.apply(me, config);
         me.setTarget(me.target);
@@ -204,7 +204,7 @@ Ext.define('Ext.ElementLoader', {
             delete this.active;
         }
     },
-    
+
     /**
      * Remove the mask on the target
      * @private
@@ -212,7 +212,7 @@ Ext.define('Ext.ElementLoader', {
     removeMask: function(){
         this.target.unmask();
     },
-    
+
     /**
      * Add the mask on the target
      * @private
@@ -290,7 +290,7 @@ Ext.define('Ext.ElementLoader', {
         };
         me.setOptions(me.active, options);
     },
-    
+
     /**
      * Set any additional options on the active request
      * @private
@@ -345,7 +345,7 @@ Ext.define('Ext.ElementLoader', {
         }
         return this.statics().Renderer.Html;
     },
-    
+
     /**
      * Automatically refreshes the content over a specified period.
      * @param {Number} interval The interval to refresh in ms.
@@ -358,7 +358,7 @@ Ext.define('Ext.ElementLoader', {
             me.load(options);
         }, interval);
     },
-    
+
     /**
      * Clears any auto refresh. See {@link #startAutoRefresh}.
      */
@@ -366,7 +366,7 @@ Ext.define('Ext.ElementLoader', {
         clearInterval(this.autoRefresh);
         delete this.autoRefresh;
     },
-    
+
     /**
      * Checks whether the loader is automatically refreshing. See {@link #startAutoRefresh}.
      * @return {Boolean} True if the loader is automatically refreshing

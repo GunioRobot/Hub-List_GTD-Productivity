@@ -33,7 +33,7 @@ Ext.define('Ext.layout.component.Body', {
     /* End Definitions */
 
     type: 'body',
-    
+
     onLayout: function(width, height) {
         var me = this,
             owner = me.owner;
@@ -53,7 +53,7 @@ Ext.define('Ext.layout.component.Body', {
                 owner.layout.bindToOwnerCtComponent = false;
             }
         }
-        
+
         me.callParent(arguments);
     },
 

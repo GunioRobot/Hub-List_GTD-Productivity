@@ -22,7 +22,7 @@ Ext.define('Ext.resizer.SplitterTracker', {
     extend: 'Ext.dd.DragTracker',
     requires: ['Ext.util.Region'],
     enabled: true,
-    
+
     overlayCls: Ext.baseCSSPrefix + 'resizable-overlay',
 
     getPrevCmp: function() {
@@ -43,7 +43,7 @@ Ext.define('Ext.resizer.SplitterTracker', {
             nextCmp = me.getNextCmp(),
             collapseEl = me.getSplitter().collapseEl,
             overlay;
-            
+
         if (collapseEl && (e.getTarget() === me.getSplitter().collapseEl.dom)) {
             return false;
         }
@@ -52,15 +52,15 @@ Ext.define('Ext.resizer.SplitterTracker', {
         if (nextCmp.collapsed || prevCmp.collapsed) {
             return false;
         }
-        
+
         overlay = me.overlay =  Ext.getBody().createChild({
-            cls: me.overlayCls, 
+            cls: me.overlayCls,
             html: '&#160;'
         });
         overlay.unselectable();
         overlay.setSize(Ext.core.Element.getViewWidth(true), Ext.core.Element.getViewHeight(true));
         overlay.show();
-        
+
         // store boxes of previous and next
         me.prevBox  = prevCmp.getEl().getBox();
         me.nextBox  = nextCmp.getEl().getBox();
@@ -200,7 +200,7 @@ Ext.define('Ext.resizer.SplitterTracker', {
     onEnd: function(e) {
         var me = this,
             splitter = me.getSplitter();
-            
+
         splitter.removeCls(splitter.baseCls + '-active');
         me.performResize();
     },

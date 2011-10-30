@@ -15,7 +15,7 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.fx.target.Component
  * @extends Ext.fx.target.Target
- * 
+ *
  * This class represents a animation target for a {@link Ext.Component}. In general this class will not be
  * created directly, the {@link Ext.Component} will be passed to the animation and
  * and the appropriate target will be created.
@@ -23,9 +23,9 @@ If you are unsure which license is appropriate for your use, please contact the 
 Ext.define('Ext.fx.target.Component', {
 
     /* Begin Definitions */
-   
+
     extend: 'Ext.fx.target.Target',
-    
+
     /* End Definitions */
 
     type: 'component',

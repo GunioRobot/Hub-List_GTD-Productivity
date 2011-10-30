@@ -20,7 +20,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * should never need to be created directly.
  */
 Ext.define('Ext.panel.Proxy', {
-    
+
     alternateClassName: 'Ext.dd.PanelProxy',
 
     /**

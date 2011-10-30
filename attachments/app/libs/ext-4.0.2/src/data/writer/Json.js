@@ -26,7 +26,7 @@ Ext.define('Ext.data.writer.Json', {
     extend: 'Ext.data.writer.Writer',
     alternateClassName: 'Ext.data.JsonWriter',
     alias: 'writer.json',
-    
+
     /**
      * @cfg {String} root The key under which the records in this Writer will be placed. Defaults to <tt>undefined</tt>.
      * Example generated request, using root: 'records':
@@ -35,7 +35,7 @@ Ext.define('Ext.data.writer.Json', {
 </code></pre>
      */
     root: undefined,
-    
+
     /**
      * @cfg {Boolean} encode True to use Ext.encode() on the data before sending. Defaults to <tt>false</tt>.
      * The encode option should only be set to true when a {@link #root} is defined, because the values will be
@@ -43,7 +43,7 @@ Ext.define('Ext.data.writer.Json', {
      * sent to the server.
      */
     encode: false,
-    
+
     /**
      * @cfg {Boolean} allowSingle False to ensure that records are always wrapped in an array, even if there is only
      * one record being sent. When there is more than one record, they will always be encoded into an array.
@@ -63,16 +63,16 @@ Ext.define('Ext.data.writer.Json', {
      * </code></pre>
      */
     allowSingle: true,
-    
+
     //inherit docs
     writeRecords: function(request, data) {
         var root = this.root;
-        
+
         if (this.allowSingle && data.length == 1) {
             // convert to single object format
             data = data[0];
         }
-        
+
         if (this.encode) {
             if (root) {
                 // sending as a param, need to encode

@@ -19,7 +19,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Changed by Cariad, 29 July 2007
  */
 Ext.onReady(function() {
-    
+
     if (Ext.Updater) {
         Ext.Updater.defaults.indicatorText = '<div class="loading-indicator">Laddar...</div>';
     }
@@ -43,7 +43,7 @@ Ext.onReady(function() {
     if(Ext.LoadMask){
        Ext.LoadMask.prototype.msg = "Laddar...";
     }
-    
+
     if (Ext.Date){
         Ext.Date.monthNames = [
            "januari",
@@ -70,7 +70,7 @@ Ext.onReady(function() {
            "lördag"
         ];
     }
-    
+
     if(Ext.MessageBox){
        Ext.MessageBox.buttonText = {
           ok     : "OK",

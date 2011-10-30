@@ -946,7 +946,7 @@ If you are unsure which license is appropriate for your use, please contact the 
 
         /**
          * Inserts items in to an array.
-         * 
+         *
          * @param {Array} array The Array on which to replace.
          * @param {Number} index The index in the array at which to operate.
          * @param {Array} items The array of items to insert at index.
@@ -961,7 +961,7 @@ If you are unsure which license is appropriate for your use, please contact the 
          * of Array, but works around bugs in IE8's splice method and is often more convenient
          * to call because it accepts an array of items to insert rather than use a variadic
          * argument list.
-         * 
+         *
          * @param {Array} array The Array on which to replace.
          * @param {Number} index The index in the array at which to operate.
          * @param {Number} removeCount The number of items to remove at index (can be 0).

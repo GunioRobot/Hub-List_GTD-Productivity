@@ -43,7 +43,7 @@ Ext.core.Element.addMethods({
         }
         return null;
     },
-    
+
     /**
      * Looks at parent nodes for a match of the passed simple selector (e.g. div.some-class or span:first-child)
      * @param {String} selector The simple selector to test
@@ -170,7 +170,7 @@ Ext.core.Element.addMethods({
         if (!this.dom) {
             return null;
         }
-        
+
         var n = this.dom[start];
         while (n) {
             if (n.nodeType == 1 && (!selector || Ext.DomQuery.is(n, selector))) {

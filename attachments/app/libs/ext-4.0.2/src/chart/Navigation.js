@@ -16,7 +16,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @class Ext.chart.Navigation
  *
  * Handles panning and zooming capabilities.
- * 
+ *
  * Used as mixin by Ext.chart.Chart.
  */
 Ext.define('Ext.chart.Navigation', {
@@ -24,7 +24,7 @@ Ext.define('Ext.chart.Navigation', {
     constructor: function() {
         this.originalStore = this.store;
     },
-    
+
     //filters the store to the specified interval(s)
     setZoom: function(zoomConfig) {
         var me = this,
@@ -34,7 +34,7 @@ Ext.define('Ext.chart.Navigation', {
             from = (zoomConfig.x / bbox.width * len) >> 0,
             to = Math.ceil(((zoomConfig.x + zoomConfig.width) / bbox.width * len)),
             recFieldsLen, recFields = [], curField, json = [], obj;
-        
+
         store.each(function(rec, i) {
             if (i < from || i > to) {
                 return;
@@ -65,5 +65,5 @@ Ext.define('Ext.chart.Navigation', {
         this.store = this.substore = this.originalStore;
         this.redraw(true);
     }
-    
+
 });

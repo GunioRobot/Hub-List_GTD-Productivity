@@ -62,7 +62,7 @@ Ext.define('Ext.PluginManager', {
         } else {
             return Ext.createByAlias('plugin.' + (config.ptype || defaultType), config);
         }
-        
+
         // Prior system supported Singleton plugins.
         //var PluginCls = this.types[config.ptype || defaultType];
         //if (PluginCls.init) {
@@ -95,7 +95,7 @@ Ext.define('Ext.PluginManager', {
 
         return matches;
     }
-}, function() {    
+}, function() {
     /**
      * Shorthand for {@link Ext.PluginManager#registerType}
      * @param {String} ptype The ptype mnemonic string by which the Plugin class

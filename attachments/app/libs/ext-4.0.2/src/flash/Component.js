@@ -226,7 +226,7 @@ Ext.define('Ext.flash.Component', {
     },
 
     onSuccess: function() {
-        // swfobject forces visiblity:visible on the swf element, which prevents it 
+        // swfobject forces visiblity:visible on the swf element, which prevents it
         // from getting hidden when an ancestor is given visibility:hidden.
         this.swf.setStyle('visibility', 'inherit');
     },

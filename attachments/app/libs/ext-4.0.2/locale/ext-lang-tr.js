@@ -17,8 +17,8 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Thank you Mystix!
  *
  * Turkish translation by Alper YAZGAN
- * 2008-01-24, 10:29 AM 
- * 
+ * 2008-01-24, 10:29 AM
+ *
  * Updated to 2.2 by YargicX
  * 2008-10-05, 06:22 PM
  */
@@ -111,7 +111,7 @@ Ext.onReady(function() {
           return Ext.Date.shortDayNames[day];
         };
     }
-    
+
     if(Ext.MessageBox){
       Ext.MessageBox.buttonText = {
         ok     : "Tamam",
@@ -192,7 +192,7 @@ Ext.onReady(function() {
       Ext.apply(Ext.form.field.Date.prototype, {
         disabledDaysText  : "Disabled",
         disabledDatesText : "Disabled",
-        minText           : "Bu tarih, {0} tarihinden daha sonra olmalýdýr", 
+        minText           : "Bu tarih, {0} tarihinden daha sonra olmalýdýr",
         maxText           : "Bu tarih, {0} tarihinden daha önce olmalýdýr",
         invalidText       : "{0} geçersiz bir tarihdir - tarih formatý {1} þŸeklinde olmalýdýr",
         format            : "d/m/Y",

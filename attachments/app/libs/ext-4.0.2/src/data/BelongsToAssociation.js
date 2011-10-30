@@ -169,7 +169,7 @@ product.getOrder(); // Will make a call to the server asking for order_id 22
      * @cfg {String} setterName The name of the setter function that will be added to the local model's prototype.
      * Defaults to 'set' + the name of the foreign model, e.g. setCategory
      */
-    
+
     /**
      * @cfg {String} type The type configuration can be used when creating associations using a configuration object.
      * Use 'belongsTo' to create a HasManyAssocation
@@ -272,7 +272,7 @@ associations: [{
                 instance = model[instanceName];
                 args = [instance];
                 scope = scope || model;
-                
+
                 //TODO: We're duplicating the callback invokation code that the instance.load() call above
                 //makes here - ought to be able to normalize this - perhaps by caching at the Model.load layer
                 //instead of the association layer.

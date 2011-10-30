@@ -1,33 +1,33 @@
 /**
  * Models tasks in the application. A task can contain other tasks by
- * holding task {@link HL.model.Task#_id} vlaues in it's 
+ * holding task {@link HL.model.Task#_id} vlaues in it's
  * {@link HL.model.Task#childIds} field.
  *
  */
 Ext.define('HL.model.Task', {
     extend: 'Ext.data.Model',
     idProperty: '_id',
-    
+
     requires: ['HL.proxy.Task'],
     proxy: 'task',
-    
+
     fields: [
         /**
          * @property {string} name label displayed in the
          * UI for this task.
-         */    
+         */
         {name: 'name', type: 'string'},
         /**
          * @property {string} type type of container this
          * instance represents. Defaults to task.
-         */        
+         */
         {name: 'type', type: 'string', defaultValue: 'task'},
         {name: 'index', type: 'int', defaultValue: null, persist: false},  // caused problems when not explicity set to false
         {name: 'depth', type: 'int', defaultValue: 0, persist: false}, // caused problems when not explicity set to false
         /**
          * @property {auto} _rev _rev sequence maintained by CouchDB,
          * plays a big role in replication and conflict resolution.
-         */        
+         */
         {name: '_rev', type: 'auto', defaultValue: null, convert: function(value, record) {
             var pause = '';
             return value;
@@ -35,7 +35,7 @@ Ext.define('HL.model.Task', {
         /**
          * @property {string} parentId {@link HL.model.Task#_id}
          * of this task's parent in the task hierarchy.
-         */                   
+         */
         {name: 'parentId',  type: 'string', convert: function(value, record) {
             if(value === "") {
                 // attempt to look up the task tree store
@@ -51,88 +51,88 @@ Ext.define('HL.model.Task', {
             }
         }},
         /**
-         * @property {array} childIds list of id 
-         * values reprepesenting this task's children 
+         * @property {array} childIds list of id
+         * values reprepesenting this task's children
          * {@link HL.model.Task#_id} values.
-         */          
-        {name: 'childIds', type: 'auto', defaultValue:[]},  
+         */
+        {name: 'childIds', type: 'auto', defaultValue:[]},
         /**
          * @property {auto} checked maintains the state of the checkbox
          * that can be shown next to this task in the UI.
-         */               
-        {name: 'checked',   type: 'bool', defaultValue: false},     
+         */
+        {name: 'checked',   type: 'bool', defaultValue: false},
         /**
          * @property {array} ancestors list of task {@link HL.model.Task#_id}
          * values and top most {@link HL.model.Container#_id} value
-         * that are ancestors to this task in the hierarchy. 
+         * that are ancestors to this task in the hierarchy.
          * Used when querying CouchDB to get a list of all tasks
          * that descend from a specific container.
-         */                 
+         */
         {name: 'ancestors', type: 'auto', convert: function(value, record) {
             if(record.data.ancestors && (JSON.stringify(record.data.ancestors) === JSON.stringify(value)) ) {
                 return record.data.ancestors;
             } else {
                 return value;
             }
-        }},           
+        }},
         {name: 'expandable', type: 'bool', defaultValue: false, persist: false, convert: function(value, record) {
             if(record.data.childIds && record.data.childIds.length > 0) {
                 return true;
             } else {
                 return false;
-            }        
+            }
         }},
         /**
          * @property {string} _id unique identifier for this task.
-         * this value is generated client side using a convert 
+         * this value is generated client side using a convert
          * function.
-         */           
-        {name: '_id', type: 'string', 
+         */
+        {name: '_id', type: 'string',
             convert: function(value, record) {
                 // make sure we don't create a uuid for existing containers
                 // loaded from couchdb
                 if(value !== '') {
                     return value;
-                }                 
+                }
                 // make sure we don't create a uuid for the auto generated
                 // default root container node or existing containers loaded from server
                 // rootcontainer value is used in the ajax proxy url when loading initial data
                 if(record.data.id === 'roottask') {
                     return record.data.id;
                 }
-                // UUID generator found on stackoverflow 
+                // UUID generator found on stackoverflow
                 // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
                 var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
                     return v.toString(16);
                 });
-                
+
                 return uuid;
             }
         }
     ],
-    
+
     /**
-     * Calls parent contstructor and also sets up events 
+     * Calls parent contstructor and also sets up events
      * that will become available when this instance is
      * decorated by Ext.data.NodeInterface. Setting up the
      * events ahead of time allows us to setup
      * listeners before the instance is actually decorated.
-     */ 
+     */
     constructor: function() {
         this.addEvents('beforeappend', 'beforeinsert', 'beforeremove', 'append', 'insert', 'remove');
         return this.callParent(arguments);
     },
-    
+
     /**
      * Adds the {@link HL.model.Task#_id} of a task
-     * node to a specific index position in the 
-     * {@link HL.model.Task#childIds} field of this task 
+     * node to a specific index position in the
+     * {@link HL.model.Task#childIds} field of this task
      * if it's not already there and updates the childIds field.
      * @param {Task} childNode task node to add
-     * @param {Number} childIndex index position of the task 
-     * node within childNodes 
-     */       
+     * @param {Number} childIndex index position of the task
+     * node within childNodes
+     */
     addChildId: function(childNode, childIndex) {
         childIndex = childIndex || this.indexOf(childNode);
         var existingChildIndex = this.data.childIds.indexOf(childNode.getId());
@@ -140,9 +140,9 @@ Ext.define('HL.model.Task', {
             var kids = this.data.childIds.slice(0);
             kids.splice(childIndex, 0, childNode.getId())
             this.set('childIds', kids);   // set tracks modifications
-        }    
+        }
     },
-    
+
     /**
      * @private
      * Overrides {@link Ext.data.Model#afterEdit}
@@ -161,14 +161,14 @@ Ext.define('HL.model.Task', {
             }
         });
         this.callParent(arguments);
-    },    
-    
+    },
+
     /**
      * Synchronizes the persistent fields of this model with
      * fields of the same name in the passed in model.
      *
-     * Keeps persistent fields of a single 
-     * entity in sync even though it's being represented by more 
+     * Keeps persistent fields of a single
+     * entity in sync even though it's being represented by more
      * than once instance in the application.
      *
      * Example: When a container is selected in the {@link HL.view.ContainerTree}
@@ -183,7 +183,7 @@ Ext.define('HL.model.Task', {
     relayFields: function(relayNode) {
         var me = this;
         var relayFields = me.fields.filter('persist', true);
-        
+
         relayFields.each(function(field, fieldIndex, fieldCount) {
             if(field.name in relayNode[relayNode.persistenceProperty]) {
                 var silent = typeof field.silentRelay !== 'undefined' ? field.silentRelay : true;
@@ -200,13 +200,13 @@ Ext.define('HL.model.Task', {
                 }
             }
         });
-    },    
-    
+    },
+
     /**
      * Removes the {@link HL.model.Task#_id} of a task node from this
      * task's {@link HL.model.Task#childIds} and updates the childIds field.
      * @param {Task} removedNode task node to remove
-     */   
+     */
     removeChildId: function(removedNode) {
         var childIndex = this.data.childIds.indexOf(removedNode.getId());
         if(childIndex !== -1) {
@@ -215,11 +215,11 @@ Ext.define('HL.model.Task', {
             this.set('childIds', kids);
         }
     },
-    
+
     /**
      * Removes all of this container's {@link HL.model.Task#ancestors}
      * and sets the field to an empty array.
-     */   
+     */
     removeAncestors: function() {
         this.get('ancestors').length = 0;
         // this will make the field modified
@@ -229,7 +229,7 @@ Ext.define('HL.model.Task', {
     /**
      * Trawls through this task's parentNodes
      * and captures the id of each node along the way
-     * to add to this models {@link HL.model.Task#ancestors}. 
+     * to add to this models {@link HL.model.Task#ancestors}.
      * Then updates the ancestors field.
      */
     updateAncestors: function() {
@@ -239,10 +239,10 @@ Ext.define('HL.model.Task', {
             parent = parent.parentNode;
             ancestors.push(parent.getId());
         }
-        
-        this.set('ancestors', ancestors); 
+
+        this.set('ancestors', ancestors);
     },
-            
+
     listeners: {
         append: function(node, appendedNode, childIndex) {
             node.addChildId(appendedNode, childIndex);
@@ -254,8 +254,8 @@ Ext.define('HL.model.Task', {
         },
         remove: function(node, removedNode) {
             node.removeChildId(removedNode);
-        }                
-    }     
-    
-    
+        }
+    }
+
+
 });

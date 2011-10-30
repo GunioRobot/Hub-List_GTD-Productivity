@@ -16,8 +16,8 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @class Ext.toolbar.Toolbar
  * @extends Ext.container.Container
 
-Basic Toolbar class. Although the {@link Ext.container.Container#defaultType defaultType} for Toolbar is {@link Ext.button.Button button}, Toolbar 
-elements (child items for the Toolbar container) may be virtually any type of Component. Toolbar elements can be created explicitly via their 
+Basic Toolbar class. Although the {@link Ext.container.Container#defaultType defaultType} for Toolbar is {@link Ext.button.Button button}, Toolbar
+elements (child items for the Toolbar container) may be virtually any type of Component. Toolbar elements can be created explicitly via their
 constructors, or implicitly via their xtypes, and can be {@link #add}ed dynamically.
 
 __Some items have shortcut strings for creation:__
@@ -87,7 +87,7 @@ Example usage:
 
 {@img Ext.toolbar.Toolbar/Ext.toolbar.Toolbar3.png Toolbar component}
 Example usage:
-    
+
     var enableBtn = Ext.create('Ext.button.Button', {
         text    : 'Enable All Items',
         disabled: true,
@@ -96,12 +96,12 @@ Example usage:
             //disable the enable button and enable the disable button
             enableBtn.disable();
             disableBtn.enable();
-            
+
             //enable the toolbar
             toolbar.enable();
         }
     });
-    
+
     var disableBtn = Ext.create('Ext.button.Button', {
         text    : 'Disable All Items',
         scope   : this,
@@ -109,12 +109,12 @@ Example usage:
             //enable the enable button and disable button
             disableBtn.disable();
             enableBtn.enable();
-            
+
             //disable the toolbar
             toolbar.disable();
         }
     });
-    
+
     var toolbar = Ext.create('Ext.toolbar.Toolbar', {
         renderTo: document.body,
         width   : 400,
@@ -122,7 +122,7 @@ Example usage:
         items   : [enableBtn, disableBtn]
     });
 
-Adding items to and removing items from a toolbar is as simple as calling the {@link #add} and {@link #remove} methods. There is also a {@link #removeAll} method 
+Adding items to and removing items from a toolbar is as simple as calling the {@link #add} and {@link #remove} methods. There is also a {@link #removeAll} method
 which remove all items within the toolbar.
 
 {@img Ext.toolbar.Toolbar/Ext.toolbar.Toolbar4.png Toolbar component}
@@ -137,9 +137,9 @@ Example usage:
             }
         ]
     });
-    
+
     var addedItems = [];
-    
+
     Ext.create('Ext.toolbar.Toolbar', {
         renderTo: document.body,
         width   : 700,
@@ -220,13 +220,13 @@ Ext.define('Ext.toolbar.Toolbar', {
     ],
     alias: 'widget.toolbar',
     alternateClassName: 'Ext.Toolbar',
-    
+
     isToolbar: true,
     baseCls  : Ext.baseCSSPrefix + 'toolbar',
     ariaRole : 'toolbar',
-    
+
     defaultType: 'button',
-    
+
     /**
      * @cfg {Boolean} vertical
      * Set to `true` to make the toolbar vertical. The layout will become a `vbox`.
@@ -249,12 +249,12 @@ Ext.define('Ext.toolbar.Toolbar', {
      * which activates a dropdown Menu to show items which overflow the Toolbar's width.
      */
     enableOverflow: false,
-    
+
     // private
     trackMenus: true,
-    
+
     itemCls: Ext.baseCSSPrefix + 'toolbar-item',
-    
+
     initComponent: function() {
         var me = this,
             keys;
@@ -263,7 +263,7 @@ Ext.define('Ext.toolbar.Toolbar', {
         if (!me.layout && me.enableOverflow) {
             me.layout = { overflowHandler: 'Menu' };
         }
-        
+
         if (me.dock === 'right' || me.dock === 'left') {
             me.vertical = true;
         }
@@ -275,16 +275,16 @@ Ext.define('Ext.toolbar.Toolbar', {
             align: me.vertical ? 'stretchmax' : 'middle',
             clearInnerCtOnLayout: true
         });
-        
+
         if (me.vertical) {
             me.addClsWithUI('vertical');
         }
-        
+
         // @TODO: remove this hack and implement a more general solution
         if (me.ui === 'footer') {
             me.ignoreBorderManagement = true;
         }
-        
+
         me.callParent();
 
         /**
@@ -294,7 +294,7 @@ Ext.define('Ext.toolbar.Toolbar', {
          * @param {Boolean} lastOverflow overflow state
          */
         me.addEvents('overflowchange');
-        
+
         // Subscribe to Ext.FocusManager for key navigation
         keys = me.vertical ? ['up', 'down'] : ['left', 'right'];
         Ext.FocusManager.subscribe(me, {
@@ -379,12 +379,12 @@ Ext.define('Ext.toolbar.Toolbar', {
         if (component.is('field') || (component.is('button') && this.ui != 'footer')) {
             component.ui = component.ui + '-toolbar';
         }
-        
+
         // Any separators needs to know if is vertical or not
         if (component instanceof Ext.toolbar.Separator) {
             component.setUI((this.vertical) ? 'vertical' : 'horizontal');
         }
-        
+
         this.callParent(arguments);
     },
 

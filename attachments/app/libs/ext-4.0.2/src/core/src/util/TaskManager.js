@@ -23,7 +23,7 @@ If you are unsure which license is appropriate for your use, please contact the 
 // Start a simple clock task that updates a div once per second
 var updateClock = function(){
     Ext.fly('clock').update(new Date().format('g:i:s A'));
-} 
+}
 var task = {
     run: updateClock,
     interval: 1000 //1 second
@@ -39,8 +39,8 @@ Ext.TaskManager.start({
 
  * </code></pre>
  * <p>See the {@link #start} method for details about how to configure a task object.</p>
- * Also see {@link Ext.util.DelayedTask}. 
- * 
+ * Also see {@link Ext.util.DelayedTask}.
+ *
  * @constructor
  * @param {Number} interval (optional) The minimum precision in milliseconds supported by this TaskRunner instance
  * (defaults to 10)

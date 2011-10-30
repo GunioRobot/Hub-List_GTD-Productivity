@@ -15,69 +15,69 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.util.Animate
  * This animation class is a mixin.
- * 
- * Ext.util.Animate provides an API for the creation of animated transitions of properties and styles.  
- * This class is used as a mixin and currently applied to {@link Ext.core.Element}, {@link Ext.CompositeElement}, 
- * {@link Ext.draw.Sprite}, {@link Ext.draw.CompositeSprite}, and {@link Ext.Component}.  Note that Components 
- * have a limited subset of what attributes can be animated such as top, left, x, y, height, width, and 
+ *
+ * Ext.util.Animate provides an API for the creation of animated transitions of properties and styles.
+ * This class is used as a mixin and currently applied to {@link Ext.core.Element}, {@link Ext.CompositeElement},
+ * {@link Ext.draw.Sprite}, {@link Ext.draw.CompositeSprite}, and {@link Ext.Component}.  Note that Components
+ * have a limited subset of what attributes can be animated such as top, left, x, y, height, width, and
  * opacity (color, paddings, and margins can not be animated).
- * 
+ *
  * ## Animation Basics
- * 
- * All animations require three things - `easing`, `duration`, and `to` (the final end value for each property) 
+ *
+ * All animations require three things - `easing`, `duration`, and `to` (the final end value for each property)
  * you wish to animate. Easing and duration are defaulted values specified below.
- * Easing describes how the intermediate values used during a transition will be calculated. 
+ * Easing describes how the intermediate values used during a transition will be calculated.
  * {@link Ext.fx.Anim#easing Easing} allows for a transition to change speed over its duration.
- * You may use the defaults for easing and duration, but you must always set a 
- * {@link Ext.fx.Anim#to to} property which is the end value for all animations.  
- * 
+ * You may use the defaults for easing and duration, but you must always set a
+ * {@link Ext.fx.Anim#to to} property which is the end value for all animations.
+ *
  * Popular element 'to' configurations are:
- * 
+ *
  *  - opacity
  *  - x
  *  - y
  *  - color
  *  - height
- *  - width 
- * 
+ *  - width
+ *
  * Popular sprite 'to' configurations are:
- * 
+ *
  *  - translation
  *  - path
  *  - scale
  *  - stroke
  *  - rotation
- * 
- * The default duration for animations is 250 (which is a 1/4 of a second).  Duration is denoted in 
- * milliseconds.  Therefore 1 second is 1000, 1 minute would be 60000, and so on. The default easing curve 
+ *
+ * The default duration for animations is 250 (which is a 1/4 of a second).  Duration is denoted in
+ * milliseconds.  Therefore 1 second is 1000, 1 minute would be 60000, and so on. The default easing curve
  * used for all animations is 'ease'.  Popular easing functions are included and can be found in {@link Ext.fx.Anim#easing Easing}.
- * 
+ *
  * For example, a simple animation to fade out an element with a default easing and duration:
- * 
+ *
  *     var p1 = Ext.get('myElementId');
- * 
+ *
  *     p1.animate({
  *         to: {
  *             opacity: 0
  *         }
  *     });
- * 
+ *
  * To make this animation fade out in a tenth of a second:
- * 
+ *
  *     var p1 = Ext.get('myElementId');
- * 
+ *
  *     p1.animate({
  *        duration: 100,
  *         to: {
  *             opacity: 0
  *         }
  *     });
- * 
+ *
  * ## Animation Queues
- * 
+ *
  * By default all animations are added to a queue which allows for animation via a chain-style API.
  * For example, the following code will queue 4 animations which occur sequentially (one right after the other):
- * 
+ *
  *     p1.animate({
  *         to: {
  *             x: 500
@@ -95,12 +95,12 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             opacity: 0
  *         }
  *     });
- * 
- * You can change this behavior by calling the {@link Ext.util.Animate#syncFx syncFx} method and all 
+ *
+ * You can change this behavior by calling the {@link Ext.util.Animate#syncFx syncFx} method and all
  * subsequent animations for the specified target will be run concurrently (at the same time).
- * 
+ *
  *     p1.syncFx();  //this will make all animations run at the same time
- * 
+ *
  *     p1.animate({
  *         to: {
  *             x: 500
@@ -118,9 +118,9 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             opacity: 0
  *         }
  *     });
- * 
+ *
  * This works the same as:
- * 
+ *
  *     p1.animate({
  *         to: {
  *             x: 500,
@@ -129,16 +129,16 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             opacity: 0
  *         }
  *     });
- * 
- * The {@link Ext.util.Animate#stopAnimation stopAnimation} method can be used to stop any 
- * currently running animations and clear any queued animations. 
- * 
+ *
+ * The {@link Ext.util.Animate#stopAnimation stopAnimation} method can be used to stop any
+ * currently running animations and clear any queued animations.
+ *
  * ## Animation Keyframes
  *
- * You can also set up complex animations with {@link Ext.fx.Anim#keyframe keyframe} which follows the 
- * CSS3 Animation configuration pattern. Note rotation, translation, and scaling can only be done for sprites. 
+ * You can also set up complex animations with {@link Ext.fx.Anim#keyframe keyframe} which follows the
+ * CSS3 Animation configuration pattern. Note rotation, translation, and scaling can only be done for sprites.
  * The previous example can be written with the following syntax:
- * 
+ *
  *     p1.animate({
  *         duration: 1000,  //one second total
  *         keyframes: {
@@ -156,16 +156,16 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             }
  *         }
  *     });
- * 
+ *
  * ## Animation Events
- * 
- * Each animation you create has events for {@link Ext.fx.Anim#beforeanimation beforeanimation}, 
- * {@link Ext.fx.Anim#afteranimate afteranimate}, and {@link Ext.fx.Anim#lastframe lastframe}.  
- * Keyframed animations adds an additional {@link Ext.fx.Animator#keyframe keyframe} event which 
+ *
+ * Each animation you create has events for {@link Ext.fx.Anim#beforeanimation beforeanimation},
+ * {@link Ext.fx.Anim#afteranimate afteranimate}, and {@link Ext.fx.Anim#lastframe lastframe}.
+ * Keyframed animations adds an additional {@link Ext.fx.Animator#keyframe keyframe} event which
  * fires for each keyframe in your animation.
- * 
+ *
  * All animations support the {@link Ext.util.Observable#listeners listeners} configuration to attact functions to these events.
- *    
+ *
  *     startAnimate: function() {
  *         var p1 = Ext.get('myElementId');
  *         p1.animate({
@@ -191,15 +191,15 @@ If you are unsure which license is appropriate for your use, please contact the 
  *     myAfterAnimateFn: function() {
  *       // My custom logic
  *     }
- * 
- * Due to the fact that animations run asynchronously, you can determine if an animation is currently 
- * running on any target by using the {@link Ext.util.Animate#getActiveAnimation getActiveAnimation} 
- * method.  This method will return false if there are no active animations or return the currently 
+ *
+ * Due to the fact that animations run asynchronously, you can determine if an animation is currently
+ * running on any target by using the {@link Ext.util.Animate#getActiveAnimation getActiveAnimation}
+ * method.  This method will return false if there are no active animations or return the currently
  * running {@link Ext.fx.Anim} instance.
- * 
- * In this example, we're going to wait for the current animation to finish, then stop any other 
+ *
+ * In this example, we're going to wait for the current animation to finish, then stop any other
  * queued animations before we fade our element's opacity to 0:
- * 
+ *
  *     var curAnim = p1.getActiveAnimation();
  *     if (curAnim) {
  *         curAnim.on('afteranimate', function() {
@@ -211,7 +211,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             });
  *         });
  *     }
- * 
+ *
  * @docauthor Jamie Avins <jamie@sencha.com>
  */
 Ext.define('Ext.util.Animate', {

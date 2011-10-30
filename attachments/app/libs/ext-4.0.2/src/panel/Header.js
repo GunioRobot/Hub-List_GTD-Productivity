@@ -208,7 +208,7 @@ Ext.define('Ext.panel.Header', {
                 me.bodyCls = classes.join(' ');
             }
         }
- 
+
         return result;
     },
 

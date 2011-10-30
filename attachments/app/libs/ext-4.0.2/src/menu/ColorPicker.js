@@ -32,7 +32,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *     var colorPicker = Ext.create('Ext.menu.ColorPicker', {
  *         value: '000000'
  *     });
- *  
+ *
  *     Ext.create('Ext.menu.Menu', {
  *         width: 100,
  *         height: 90,

@@ -16,178 +16,178 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @author Jacky Nguyen <jacky@sencha.com>
  * @docauthor Jacky Nguyen <jacky@sencha.com>
  * @class Ext.Class
- * 
+ *
  * Handles class creation throughout the whole framework. Note that most of the time {@link Ext#define Ext.define} should
  * be used instead, since it's a higher level wrapper that aliases to {@link Ext.ClassManager#create}
  * to enable namespacing and dynamic dependency resolution.
- * 
+ *
  * # Basic syntax: #
- * 
+ *
  *     Ext.define(className, properties);
- * 
+ *
  * in which `properties` is an object represent a collection of properties that apply to the class. See
  * {@link Ext.ClassManager#create} for more detailed instructions.
- * 
+ *
  *     Ext.define('Person', {
  *          name: 'Unknown',
- * 
+ *
  *          constructor: function(name) {
  *              if (name) {
  *                  this.name = name;
  *              }
- * 
+ *
  *              return this;
  *          },
- * 
+ *
  *          eat: function(foodType) {
  *              alert("I'm eating: " + foodType);
- * 
+ *
  *              return this;
  *          }
  *     });
- * 
+ *
  *     var aaron = new Person("Aaron");
  *     aaron.eat("Sandwich"); // alert("I'm eating: Sandwich");
- * 
+ *
  * Ext.Class has a powerful set of extensible {@link Ext.Class#registerPreprocessor pre-processors} which takes care of
  * everything related to class creation, including but not limited to inheritance, mixins, configuration, statics, etc.
- * 
+ *
  * # Inheritance: #
- * 
+ *
  *     Ext.define('Developer', {
  *          extend: 'Person',
- * 
+ *
  *          constructor: function(name, isGeek) {
  *              this.isGeek = isGeek;
- * 
+ *
  *              // Apply a method from the parent class' prototype
  *              this.callParent([name]);
- * 
+ *
  *              return this;
- * 
+ *
  *          },
- * 
+ *
  *          code: function(language) {
  *              alert("I'm coding in: " + language);
- * 
+ *
  *              this.eat("Bugs");
- * 
+ *
  *              return this;
  *          }
  *     });
- * 
+ *
  *     var jacky = new Developer("Jacky", true);
  *     jacky.code("JavaScript"); // alert("I'm coding in: JavaScript");
  *                               // alert("I'm eating: Bugs");
- * 
+ *
  * See {@link Ext.Base#callParent} for more details on calling superclass' methods
- * 
+ *
  * # Mixins: #
- * 
+ *
  *     Ext.define('CanPlayGuitar', {
  *          playGuitar: function() {
  *             alert("F#...G...D...A");
  *          }
  *     });
- * 
+ *
  *     Ext.define('CanComposeSongs', {
  *          composeSongs: function() { ... }
  *     });
- * 
+ *
  *     Ext.define('CanSing', {
  *          sing: function() {
  *              alert("I'm on the highway to hell...")
  *          }
  *     });
- * 
+ *
  *     Ext.define('Musician', {
  *          extend: 'Person',
- * 
+ *
  *          mixins: {
  *              canPlayGuitar: 'CanPlayGuitar',
  *              canComposeSongs: 'CanComposeSongs',
  *              canSing: 'CanSing'
  *          }
  *     })
- * 
+ *
  *     Ext.define('CoolPerson', {
  *          extend: 'Person',
- * 
+ *
  *          mixins: {
  *              canPlayGuitar: 'CanPlayGuitar',
  *              canSing: 'CanSing'
  *          },
- * 
+ *
  *          sing: function() {
  *              alert("Ahem....");
- * 
+ *
  *              this.mixins.canSing.sing.call(this);
- * 
+ *
  *              alert("[Playing guitar at the same time...]");
- * 
+ *
  *              this.playGuitar();
  *          }
  *     });
- * 
+ *
  *     var me = new CoolPerson("Jacky");
- * 
+ *
  *     me.sing(); // alert("Ahem...");
  *                // alert("I'm on the highway to hell...");
  *                // alert("[Playing guitar at the same time...]");
  *                // alert("F#...G...D...A");
- * 
+ *
  * # Config: #
- * 
+ *
  *     Ext.define('SmartPhone', {
  *          config: {
  *              hasTouchScreen: false,
  *              operatingSystem: 'Other',
  *              price: 500
  *          },
- * 
+ *
  *          isExpensive: false,
- * 
+ *
  *          constructor: function(config) {
  *              this.initConfig(config);
- * 
+ *
  *              return this;
  *          },
- * 
+ *
  *          applyPrice: function(price) {
  *              this.isExpensive = (price > 500);
- * 
+ *
  *              return price;
  *          },
- * 
+ *
  *          applyOperatingSystem: function(operatingSystem) {
  *              if (!(/^(iOS|Android|BlackBerry)$/i).test(operatingSystem)) {
  *                  return 'Other';
  *              }
- * 
+ *
  *              return operatingSystem;
  *          }
  *     });
- * 
+ *
  *     var iPhone = new SmartPhone({
  *          hasTouchScreen: true,
  *          operatingSystem: 'iOS'
  *     });
- * 
+ *
  *     iPhone.getPrice(); // 500;
  *     iPhone.getOperatingSystem(); // 'iOS'
  *     iPhone.getHasTouchScreen(); // true;
  *     iPhone.hasTouchScreen(); // true
- * 
+ *
  *     iPhone.isExpensive; // false;
  *     iPhone.setPrice(600);
  *     iPhone.getPrice(); // 600
  *     iPhone.isExpensive; // true;
- * 
+ *
  *     iPhone.setOperatingSystem('AlienOS');
  *     iPhone.getOperatingSystem(); // 'Other'
- * 
+ *
  * # Statics: #
- * 
+ *
  *     Ext.define('Computer', {
  *          statics: {
  *              factory: function(brand) {
@@ -195,12 +195,12 @@ If you are unsure which license is appropriate for your use, please contact the 
  *                  return new this(brand);
  *              }
  *          },
- * 
+ *
  *          constructor: function() { ... }
  *     });
- * 
+ *
  *     var dellComputer = Computer.factory('Dell');
- * 
+ *
  * Also see {@link Ext.Base#statics} and {@link Ext.Base#self} for more details on accessing
  * static properties within class methods
  *

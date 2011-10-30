@@ -41,16 +41,16 @@ Ext.define('Ext.toolbar.TextItem', {
     requires: ['Ext.XTemplate'],
     alias: 'widget.tbtext',
     alternateClassName: 'Ext.Toolbar.TextItem',
-    
+
     /**
      * @cfg {String} text The text to be used as innerHTML (html tags are accepted)
      */
     text: '',
-    
+
     renderTpl: '{text}',
     //
     baseCls: Ext.baseCSSPrefix + 'toolbar-text',
-    
+
     onRender : function() {
         Ext.apply(this.renderData, {
             text: this.text

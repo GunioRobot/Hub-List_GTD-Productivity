@@ -475,7 +475,7 @@ describe("Ext.ClassManager", function() {
             });
         });
     });
-    
+
     describe("createNamespaces", function() {
         var w = window;
 

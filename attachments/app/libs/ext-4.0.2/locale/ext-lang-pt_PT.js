@@ -16,7 +16,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Portuguese/Portugal (pt_PT) Translation
  * by Nuno Franco da Costa - francodacosta.com
  * translated from ext-lang-en.js
- */ 
+ */
 Ext.onReady(function() {
     if(Ext.Updater) {
         Ext.Updater.defaults.indicatorText = '<div class="loading-indicator">A carregar...</div>';

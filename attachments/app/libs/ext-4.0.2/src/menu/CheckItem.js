@@ -39,8 +39,8 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         },{
  *             text: 'regular item'
  *         }]
- *     }); 
- *     
+ *     });
+ *
  */
 Ext.define('Ext.menu.CheckItem', {
     extend: 'Ext.menu.Item',

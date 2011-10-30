@@ -53,18 +53,18 @@ __Example usage:__
     Ext.define('Ext.form.SearchField', {
         extend: 'Ext.form.field.Base',
         alias: 'widget.searchfield',
-    
+
         inputType: 'search',
-    
+
         // Config defining the search URL
         searchUrl: 'http://www.google.com/search?q={0}',
-    
+
         // Add specialkey listener
         initComponent: function() {
             this.callParent();
             this.on('specialkey', this.checkEnterKey, this);
         },
-    
+
         // Handle enter key presses, execute the search if the field has a value
         checkEnterKey: function(field, e) {
             var value = this.getValue();
@@ -78,7 +78,7 @@ __Example usage:__
         title: 'BaseField Example',
         bodyPadding: 5,
         width: 250,
-                
+
         // Fields will be arranged vertically, stretched to full width
         layout: 'anchor',
         defaults: {
@@ -233,9 +233,9 @@ Ext.define('Ext.form.field.Base', {
 
     // private
     hasFocus : false,
-    
+
     baseCls: Ext.baseCSSPrefix + 'field',
-    
+
     maskOnDisable: false,
 
     // private

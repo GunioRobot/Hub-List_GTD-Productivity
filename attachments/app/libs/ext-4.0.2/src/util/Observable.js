@@ -279,7 +279,7 @@ Ext.define('Ext.util.Observable', {
                         parent.enableBubble(ename);
                     }
                     return parent.fireEvent.apply(parent, args);
-                }                
+                }
             }
             else {
                 args.shift();
@@ -299,7 +299,7 @@ Ext.define('Ext.util.Observable', {
      * @param {Object} scope (optional) The scope (`this` reference) in which the handler function is executed. **If
      * omitted, defaults to the object which fired the event.**
      * @param {Object} options (optional) An object containing handler configuration.
-     * 
+     *
      * **Note:** Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.
      *
      * This object may contain any of the following properties:
@@ -479,7 +479,7 @@ Ext.define('Ext.util.Observable', {
 
         this.managedListeners = [];
     },
-    
+
     /**
      * Remove a single managed listener item
      * @private
@@ -492,7 +492,7 @@ Ext.define('Ext.util.Observable', {
             managedListener.item.un(managedListener.ename, managedListener.fn, managedListener.scope);
             if (!isClear) {
                 Ext.Array.remove(this.managedListeners, managedListener);
-            }    
+            }
         }
     },
 
@@ -527,12 +527,12 @@ Ext.define('Ext.util.Observable', {
             args,
             len,
             i;
-            
+
             me.events = me.events || {};
         if (Ext.isString(o)) {
             args = arguments;
             i = args.length;
-            
+
             while (i--) {
                 me.events[args[i]] = me.events[args[i]] || true;
             }
@@ -567,7 +567,7 @@ Ext.define('Ext.util.Observable', {
 
     /**
      * Resumes firing events (see {@link #suspendEvents}).
-     * 
+     *
      * If events were suspended using the `**queueSuspended**` parameter, then all events fired
      * during event suspension will be sent to any listeners now.
      */

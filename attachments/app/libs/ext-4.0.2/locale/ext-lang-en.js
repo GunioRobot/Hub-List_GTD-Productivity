@@ -39,7 +39,7 @@ Ext.onReady(function() {
     if(Ext.LoadMask){
       Ext.LoadMask.prototype.msg = "Loading...";
     }
-    
+
     if(Ext.Date) {
         Ext.Date.monthNames = [
           "January",
@@ -95,7 +95,7 @@ Ext.onReady(function() {
 
         Ext.Date.parseCodes.S.s = "(?:st|nd|rd|th)";
     }
-    
+
     if(Ext.MessageBox){
       Ext.MessageBox.buttonText = {
         ok     : "OK",

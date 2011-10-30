@@ -85,7 +85,7 @@ Ext.define('Ext.view.AbstractView', {
      * contents will continue to display normally until the new data is loaded and the contents are replaced.
      */
     loadingText: 'Loading...',
-    
+
     /**
      * @cfg {Boolean/Object} loadMask
      * False to disable a load mask from displaying will the view is loading. This can also be a
@@ -284,7 +284,7 @@ Ext.define('Ext.view.AbstractView', {
         me.callParent(arguments);
 
         if (mask) {
-            // either a config object 
+            // either a config object
             if (Ext.isObject(mask)) {
                 cfg = Ext.apply(cfg, mask);
             }
@@ -300,7 +300,7 @@ Ext.define('Ext.view.AbstractView', {
             });
         }
     },
-    
+
     onMaskBeforeShow: function(){
         var me = this;
         me.getSelectionModel().deselectAll();
@@ -309,7 +309,7 @@ Ext.define('Ext.view.AbstractView', {
             me.setCalculatedSize(undefined, me.loadingHeight);
         }
     },
-    
+
     onMaskHide: function(){
         if (!this.destroying && this.loadingHeight) {
             this.setHeight(this.height);

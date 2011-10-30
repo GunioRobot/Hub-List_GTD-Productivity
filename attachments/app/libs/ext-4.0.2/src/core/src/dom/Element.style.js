@@ -48,7 +48,7 @@ If you are unsure which license is appropriate for your use, please contact the 
         data = Ext.core.Element.data;
 
     Ext.override(Ext.core.Element, {
-        
+
         /**
          * TODO: Look at this
          */
@@ -56,7 +56,7 @@ If you are unsure which license is appropriate for your use, please contact the 
         adjustWidth : function(width) {
             var me = this,
                 isNum = (typeof width == 'number');
-                
+
             if(isNum && me.autoBoxAdjust && !me.isBorderBox()){
                width -= (me.getBorderWidth("lr") + me.getPadding("lr"));
             }
@@ -67,7 +67,7 @@ If you are unsure which license is appropriate for your use, please contact the 
         adjustHeight : function(height) {
             var me = this,
                 isNum = (typeof height == "number");
-                
+
             if(isNum && me.autoBoxAdjust && !me.isBorderBox()){
                height -= (me.getBorderWidth("tb") + me.getPadding("tb"));
             }
@@ -236,7 +236,7 @@ If you are unsure which license is appropriate for your use, please contact the 
                     prop = Ext.core.Element.normalize(prop);
                     out = (v = el.style[prop]) ? v :
                            (cs = view.getComputedStyle(el, "")) ? cs[prop] : null;
-                           
+
                     // Ignore cases when the margin is correctly reported as 0, the bug only shows
                     // numbers larger.
                     if(prop == 'marginRight' && out != '0px' && !supports.RightMargin){
@@ -247,7 +247,7 @@ If you are unsure which license is appropriate for your use, please contact the 
                         el.style.display = display;
                         cleaner();
                     }
-                    
+
                     if(prop == 'backgroundColor' && out == 'rgba(0, 0, 0, 0)' && !supports.TransparentColor){
                         out = 'transparent';
                     }
@@ -260,7 +260,7 @@ If you are unsure which license is appropriate for your use, please contact the 
                     if (el == document) {
                         return null;
                     }
-                    
+
                     if (prop == 'opacity') {
                         if (el.style.filter.match) {
                             m = el.style.filter.match(opacityRe);
@@ -402,11 +402,11 @@ If you are unsure which license is appropriate for your use, please contact the 
             }
             return this;
         },
-        
+
         /**
          * @private
          * Returns 1 if the browser returns the subpixel dimension rounded to the lowest pixel.
-         * @return {Number} 0 or 1 
+         * @return {Number} 0 or 1
          */
         adjustDirect2DDimension: function(dimension) {
             var me = this,
@@ -416,7 +416,7 @@ If you are unsure which license is appropriate for your use, please contact the 
                 inlinePosition = dom.style['position'],
                 originIndex = dimension === 'width' ? 0 : 1,
                 floating;
-                
+
             if (display === 'inline') {
                 dom.style['display'] = 'inline-block';
             }
@@ -426,16 +426,16 @@ If you are unsure which license is appropriate for your use, please contact the 
             // floating will contain digits that appears after the decimal point
             // if height or width are set to auto we fallback to msTransformOrigin calculation
             floating = (parseFloat(me.getStyle(dimension)) || parseFloat(dom.currentStyle.msTransformOrigin.split(' ')[originIndex]) * 2) % 1;
-            
+
             dom.style['position'] = inlinePosition;
-            
+
             if (display === 'inline') {
                 dom.style['display'] = inlineDisplay;
             }
 
             return floating;
         },
-        
+
         /**
          * Returns the offset height of the element
          * @param {Boolean} contentHeight (optional) true to get the height minus borders and padding
@@ -483,7 +483,7 @@ If you are unsure which license is appropriate for your use, please contact the 
             }
             return height;
         },
-                
+
         /**
          * Returns the offset width of the element
          * @param {Boolean} contentWidth (optional) true to get the width minus borders and padding
@@ -502,8 +502,8 @@ If you are unsure which license is appropriate for your use, please contact the 
                 overflow = style.overflow;
                 me.setStyle({overflow: 'hidden'});
             }
-            
-            // Fix Opera 10.5x width calculation issues 
+
+            // Fix Opera 10.5x width calculation issues
             if (Ext.isOpera10_5) {
                 if (dom.parentNode.currentStyle.position === 'relative') {
                     parentPosition = dom.parentNode.style.position;
@@ -512,7 +512,7 @@ If you are unsure which license is appropriate for your use, please contact the 
                     dom.parentNode.style.position = parentPosition;
                 }
                 width = Math.max(width || 0, dom.offsetWidth);
-            
+
             // Gecko will in some cases report an offsetWidth that is actually less than the width of the
             // text contents, because it measures fonts with sub-pixel precision but rounds the calculated
             // value down. Using getBoundingClientRect instead of offsetWidth allows us to get the precise
@@ -538,11 +538,11 @@ If you are unsure which license is appropriate for your use, please contact the 
                     width++;
                 }
             }
-            
+
             if (contentWidth) {
                 width -= (me.getBorderWidth("lr") + me.getPadding("lr"));
             }
-            
+
             if (Ext.isIEQuirks) {
                 me.setStyle({ overflow: overflow});
             }
@@ -705,7 +705,7 @@ Ext.fly('elId').setHeight(150, {
         },
 
         margins : margins,
-        
+
         /**
          * More flexible version of {@link #setStyle} for setting style properties.
          * @param {String/Object/Function} styles A style specification string, e.g. "width:100px", or object in the form {width:"100px"}, or
@@ -730,7 +730,7 @@ Ext.fly('elId').setHeight(150, {
             var styles = {},
                 len = arguments.length,
                 i = 0, style;
-                
+
             for(; i < len; ++i) {
                 style = arguments[i];
                 styles[style] = this.getStyle(style);
@@ -841,7 +841,7 @@ Ext.fly('elId').setHeight(150, {
         getComputedWidth : function(){
             var me = this,
                 w = Math.max(me.dom.offsetWidth, me.dom.clientWidth);
-                
+
             if(!w){
                 w = parseFloat(me.getStyle('width')) || 0;
                 if(!me.isBorderBox()){
@@ -1044,7 +1044,7 @@ Ext.fly('elId').setHeight(150, {
             me.swallowEvent("selectstart", true);
             me.applyStyles("-moz-user-select:none;-khtml-user-select:none;");
             me.addCls(Ext.baseCSSPrefix + 'unselectable');
-            
+
             return me;
         },
 

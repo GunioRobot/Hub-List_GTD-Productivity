@@ -11,7 +11,7 @@
        'Classes'
    ],
    specPaths: [
-      '../../platform/core/test/unit/spec', 
+      '../../platform/core/test/unit/spec',
       '../../platform/test/unit/spec',
       '../test/unit/spec'
    ],
@@ -73,7 +73,7 @@
        'Classes'
    ],
    specPaths: [
-      '../../platform/core/test/unit/spec', 
+      '../../platform/core/test/unit/spec',
       '../../platform/test/unit/spec'
    ],
    excludes: ['../../platform/core/test/unit/spec/env/Environment.js'],

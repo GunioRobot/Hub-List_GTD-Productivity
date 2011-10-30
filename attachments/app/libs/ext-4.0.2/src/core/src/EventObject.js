@@ -221,11 +221,11 @@ Ext.define('Ext.EventObjectImpl', {
     /**
      * The mouse wheel delta scaling factor. This value depends on browser version and OS and
      * attempts to produce a similar scrolling experience across all platforms and browsers.
-     * 
+     *
      * To change this value:
-     * 
+     *
      *      Ext.EventObjectImpl.prototype.WHEEL_SCALE = 72;
-     * 
+     *
      * @type Number
      * @markdown
      */
@@ -422,15 +422,15 @@ Ext.define('Ext.EventObjectImpl', {
     getPageY: function(){
         return this.getY();
     },
-    
+
     /**
      * Gets the x coordinate of the event.
      * @return {Number}
      */
     getX: function() {
         return this.getXY()[0];
-    },    
-    
+    },
+
     /**
      * Gets the y coordinate of the event.
      * @return {Number}
@@ -438,7 +438,7 @@ Ext.define('Ext.EventObjectImpl', {
     getY: function() {
         return this.getXY()[1];
     },
-        
+
     /**
      * Gets the page coordinates of the event.
      * @return {Array} The xy values like [x, y]

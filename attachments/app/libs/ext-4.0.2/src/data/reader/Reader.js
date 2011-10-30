@@ -16,17 +16,17 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @author Ed Spencer
  * @class Ext.data.reader.Reader
  * @extends Object
- * 
+ *
  * <p>Readers are used to interpret data to be loaded into a {@link Ext.data.Model Model} instance or a {@link Ext.data.Store Store}
- * - usually in response to an AJAX request. This is normally handled transparently by passing some configuration to either the 
+ * - usually in response to an AJAX request. This is normally handled transparently by passing some configuration to either the
  * {@link Ext.data.Model Model} or the {@link Ext.data.Store Store} in question - see their documentation for further details.</p>
- * 
+ *
  * <p><u>Loading Nested Data</u></p>
- * 
+ *
  * <p>Readers have the ability to automatically load deeply-nested data objects based on the {@link Ext.data.Association associations}
  * configured on each Model. Below is an example demonstrating the flexibility of these associations in a fictional CRM system which
  * manages a User, their Orders, OrderItems and Products. First we'll define the models:
- * 
+ *
 <pre><code>
 Ext.define("User", {
     extend: 'Ext.data.Model',
@@ -74,10 +74,10 @@ Ext.define("Product", {
     hasMany: 'OrderItem'
 });
 </code></pre>
- * 
+ *
  * <p>This may be a lot to take in - basically a User has many Orders, each of which is composed of several OrderItems. Finally,
  * each OrderItem has a single Product. This allows us to consume data like this:</p>
- * 
+ *
 <pre><code>
 {
     "users": [
@@ -114,11 +114,11 @@ Ext.define("Product", {
     ]
 }
 </code></pre>
- * 
+ *
  * <p>The JSON response is deeply nested - it returns all Users (in this case just 1 for simplicity's sake), all of the Orders
  * for each User (again just 1 in this case), all of the OrderItems for each Order (2 order items in this case), and finally
  * the Product associated with each OrderItem. Now we can read the data and use it as follows:
- * 
+ *
 <pre><code>
 var store = new Ext.data.Store({
     model: "User"
@@ -147,21 +147,21 @@ store.load({
     }
 });
 </code></pre>
- * 
+ *
  * <p>Running the code above results in the following:</p>
- * 
+ *
 <pre><code>
 Orders for Ed:
 Order ID: 50, which contains items:
 2 orders of MacBook Pro
 3 orders of iPhone
 </code></pre>
- * 
+ *
  */
 Ext.define('Ext.data.reader.Reader', {
     requires: ['Ext.data.ResultSet'],
     alternateClassName: ['Ext.data.Reader', 'Ext.data.DataReader'],
-    
+
     /**
      * @cfg {String} idProperty Name of the property within a row object
      * that contains a record identifier value.  Defaults to <tt>The id of the model</tt>.
@@ -193,27 +193,27 @@ Ext.define('Ext.data.reader.Reader', {
      * or show no data.
      */
     root: '',
-    
+
     /**
      * @cfg {String} messageProperty The name of the property which contains a response message.
      * This property is optional.
      */
-    
+
     /**
      * @cfg {Boolean} implicitIncludes True to automatically parse models nested within other models in a response
      * object. See the Ext.data.reader.Reader intro docs for full explanation. Defaults to true.
      */
     implicitIncludes: true,
-    
+
     isReader: true,
-    
+
     /**
      * Creates new Reader.
      * @param {Object} config (optional) Config object.
      */
     constructor: function(config) {
         var me = this;
-        
+
         Ext.apply(me, config || {});
         me.fieldCount = 0;
         me.model = Ext.ModelManager.getModel(config.model);
@@ -230,10 +230,10 @@ Ext.define('Ext.data.reader.Reader', {
      */
     setModel: function(model, setOnProxy) {
         var me = this;
-        
+
         me.model = Ext.ModelManager.getModel(model);
         me.buildExtractors(true);
-        
+
         if (setOnProxy && me.proxy) {
             me.proxy.setModel(me.model, true);
         }
@@ -247,11 +247,11 @@ Ext.define('Ext.data.reader.Reader', {
      */
     read: function(response) {
         var data = response;
-        
+
         if (response && response.responseText) {
             data = this.getResponseData(response);
         }
-        
+
         if (data) {
             return this.readRecords(data);
         } else {
@@ -268,7 +268,7 @@ Ext.define('Ext.data.reader.Reader', {
      */
     readRecords: function(data) {
         var me  = this;
-        
+
         /*
          * We check here whether the number of fields has changed since the last read.
          * This works around an issue when a Model is used for both a Tree and another
@@ -278,7 +278,7 @@ Ext.define('Ext.data.reader.Reader', {
         if (me.fieldCount !== me.getFields().length) {
             me.buildExtractors(true);
         }
-        
+
         /**
          * The raw data object that was last passed to readRecords. Stored for further processing if needed
          * @property rawData
@@ -294,7 +294,7 @@ Ext.define('Ext.data.reader.Reader', {
             success = true,
             recordCount = 0,
             total, value, records, message;
-            
+
         if (root) {
             total = root.length;
         }
@@ -312,11 +312,11 @@ Ext.define('Ext.data.reader.Reader', {
                 success = false;
             }
         }
-        
+
         if (me.messageProperty) {
             message = me.getMessage(data);
         }
-        
+
         if (root) {
             records = me.extractData(root);
             recordCount = records.length;
@@ -348,7 +348,7 @@ Ext.define('Ext.data.reader.Reader', {
             length  = root.length,
             idProp  = me.getIdProperty(),
             node, id, record;
-            
+
         if (!root.length && Ext.isObject(root)) {
             root = [root];
             length = 1;
@@ -359,10 +359,10 @@ Ext.define('Ext.data.reader.Reader', {
             values = me.extractValues(node);
             id     = me.getId(node);
 
-            
+
             record = new Model(values, id, node);
             records.push(record);
-                
+
             if (me.implicitIncludes) {
                 me.readAssociated(record, node);
             }
@@ -370,7 +370,7 @@ Ext.define('Ext.data.reader.Reader', {
 
         return records;
     },
-    
+
     /**
      * @private
      * Loads a record's associations from the data object. This prepopulates hasMany and belongsTo associations
@@ -384,11 +384,11 @@ Ext.define('Ext.data.reader.Reader', {
             i            = 0,
             length       = associations.length,
             association, associationData, proxy, reader;
-        
+
         for (; i < length; i++) {
             association     = associations[i];
             associationData = this.getAssociatedDataRoot(data, association.associationKey || association.name);
-            
+
             if (associationData) {
                 reader = association.getReader();
                 if (!reader) {
@@ -403,10 +403,10 @@ Ext.define('Ext.data.reader.Reader', {
                     }
                 }
                 association.read(record, reader, associationData);
-            }  
+            }
         }
     },
-    
+
     /**
      * @private
      * Used internally by {@link #readAssociated}. Given a data object (which could be json, xml etc) for a specific
@@ -419,7 +419,7 @@ Ext.define('Ext.data.reader.Reader', {
     getAssociatedDataRoot: function(data, associationName) {
         return data[associationName];
     },
-    
+
     getFields: function() {
         return this.model.prototype.fields.items;
     },
@@ -489,9 +489,9 @@ Ext.define('Ext.data.reader.Reader', {
     onMetaChange : function(meta) {
         var fields = meta.fields,
             newModel;
-        
+
         Ext.apply(this, meta);
-        
+
         if (fields) {
             newModel = Ext.define("Ext.data.reader.Json-Model" + Ext.id(), {
                 extend: 'Ext.data.Model',
@@ -502,7 +502,7 @@ Ext.define('Ext.data.reader.Reader', {
             this.buildExtractors(true);
         }
     },
-    
+
     /**
      * Get the idProperty to use for extracting data
      * @private
@@ -529,14 +529,14 @@ Ext.define('Ext.data.reader.Reader', {
             successProp = me.successProperty,
             messageProp = me.messageProperty,
             accessor;
-            
+
         if (force === true) {
             delete me.extractorFunctions;
         }
-        
+
         if (me.extractorFunctions) {
             return;
-        }   
+        }
 
         //build the extractors for all the meta data
         if (totalProp) {

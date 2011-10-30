@@ -9,7 +9,7 @@
     background-color: #DAE4EA; /* #DEE4EA */
 }
 
-/* Replaces default tree node yellow 
+/* Replaces default tree node yellow
    folder icon with an OSX style one
 */
 #containerTreePanel .x-tree-icon-parent {
@@ -21,7 +21,7 @@
 */
 #containerTreePanel .x-grid-tree-node-expanded .x-tree-icon-parent {
     background-image: url("images/icon-fldr-default-closed.png");
-    /* background-image: url("images/icon-fldr-default-open.png"); */ 
+    /* background-image: url("images/icon-fldr-default-open.png"); */
     padding-top: 1px;
 }
 
@@ -47,7 +47,7 @@
 /* Positions tree arrow */
 .x-tree-arrows .x-tree-elbow-plus, .x-tree-arrows .x-tree-elbow-end-plus,
 .x-tree-arrows .x-tree-expander-over .x-tree-elbow-plus, .x-tree-arrows .x-tree-expander-over .x-tree-elbow-end-plus {
-    background-position: -11px 5px;    
+    background-position: -11px 5px;
 }
 
 /* Tree node height */

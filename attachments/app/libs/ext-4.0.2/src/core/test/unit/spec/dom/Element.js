@@ -15,7 +15,7 @@ If you are unsure which license is appropriate for your use, please contact the 
 describe("Ext.core.Element", function() {
     var domEl,
         element;
-        
+
     afterEach(function() {
         if (element) {
             element.remove();
@@ -25,15 +25,15 @@ describe("Ext.core.Element", function() {
             document.body.removeChild(domEl);
         }
     });
-    
+
     describe("instantiation", function() {
         beforeEach(function() {
             domEl = document.createElement("div");
             Ext.getBody().appendChild(domEl);
         });
-        
 
-        
+
+
         it("should set dom element id if it hasn't already one", function() {
             element = new Ext.core.Element(domEl);
 
@@ -245,7 +245,7 @@ describe("Ext.core.Element", function() {
                 });
             });
         });
-        
+
         describe("addUnits", function() {
             it("should return an empty string if size passed is an empty string", function() {
                 expect(element.addUnits("")).toEqual("");
@@ -346,14 +346,14 @@ describe("Ext.core.Element", function() {
             var element2, element3;
             beforeEach(function() {
                 element2 = Ext.getBody().createChild({tag: "div"});
-                
+
 
                 if (element.dom.setAttribute) {
                     element.dom.setAttribute("qtip", "bar");
                     element2.dom.setAttribute("ext:qtip", "foo");
                 } else {
                     element.dom["qtip"] = "bar";
-                    element2.dom["ext:qtip"] = "foo";               
+                    element2.dom["ext:qtip"] = "foo";
                 }
 
                 if (element.dom.setAttributeNS) {
@@ -361,17 +361,17 @@ describe("Ext.core.Element", function() {
                     element3.dom.setAttributeNS("ext", "qtip", "foobar");
                 }
             });
-            
+
             afterEach(function() {
                 if (element2) {
                     element2.remove();
                 }
-                
+
                 if (element3) {
                     element3.remove();
                 }
             });
-            
+
             describe("without namespace", function() {
                 it("should return the attribute value if it exists", function() {
                     expect(element.getAttribute("qtip")).toEqual("bar");
@@ -396,7 +396,7 @@ describe("Ext.core.Element", function() {
                         expect(element3.getAttribute("qtip", "ext")).toEqual("foobar");
                     }
                 });
-                
+
                 it("should handle xml namespace", function() {
                     expect(element2.getAttribute("qtip", "ext")).toEqual("foo");
                 });
@@ -457,7 +457,7 @@ describe("Ext.core.Element", function() {
                 document.body.removeChild(domEl2);
             }
         });
-        
+
         describe("get", function() {
             describe("alias", function() {
                 it("should alias Ext.core.Element.get with Ext.get", function() {
@@ -481,7 +481,7 @@ describe("Ext.core.Element", function() {
 
                     it("should add element to Ext.cache", function() {
                         element2 = Ext.get(id);
-         
+
                         expect(Ext.core.Element.addToCache).toHaveBeenCalledWith(element2);
                     });
                 });

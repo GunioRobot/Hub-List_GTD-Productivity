@@ -19,7 +19,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * handler for each icon.</p>
  *
  * {@img Ext.grid.column.Action/Ext.grid.column.Action.png Ext.grid.column.Action grid column}
- *  
+ *
  * ## Code
  *     Ext.create('Ext.data.Store', {
  *         storeId:'employeeStore',
@@ -29,10 +29,10 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             {firstname:"Dwight", lastname:"Schrute"},
  *             {firstname:"Jim", lastname:"Halpert"},
  *             {firstname:"Kevin", lastname:"Malone"},
- *             {firstname:"Angela", lastname:"Martin"}                        
+ *             {firstname:"Angela", lastname:"Martin"}
  *         ]
  *     });
- *     
+ *
  *     Ext.create('Ext.grid.Panel', {
  *         title: 'Action Column Demo',
  *         store: Ext.data.StoreManager.lookup('employeeStore'),
@@ -40,7 +40,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             {text: 'First Name',  dataIndex:'firstname'},
  *             {text: 'Last Name',  dataIndex:'lastname'},
  *             {
- *                 xtype:'actioncolumn', 
+ *                 xtype:'actioncolumn',
  *                 width:50,
  *                 items: [{
  *                     icon: 'images/edit.png',  // Use a URL in the icon config
@@ -55,7 +55,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *                     handler: function(grid, rowIndex, colIndex) {
  *                         var rec = grid.getStore().getAt(rowIndex);
  *                         alert("Terminate " + rec.get('firstname'));
- *                     }                
+ *                     }
  *                 }]
  *             }
  *         ],
@@ -72,7 +72,7 @@ Ext.define('Ext.grid.column.Action', {
 
     /**
      * @cfg {String} icon
-     * The URL of an image to display as the clickable element in the column. 
+     * The URL of an image to display as the clickable element in the column.
      * Optional - defaults to <code>{@link Ext#BLANK_IMAGE_URL Ext.BLANK_IMAGE_URL}</code>.
      */
     /**
@@ -85,7 +85,7 @@ Ext.define('Ext.grid.column.Action', {
      * <li><code>view</code> : TableView<div class="sub-desc">The owning TableView.</div></li>
      * <li><code>rowIndex</code> : Number<div class="sub-desc">The row index clicked on.</div></li>
      * <li><code>colIndex</code> : Number<div class="sub-desc">The column index clicked on.</div></li>
-     * <li><code>item</code> : Object<div class="sub-desc">The clicked item (or this Column if multiple 
+     * <li><code>item</code> : Object<div class="sub-desc">The clicked item (or this Column if multiple
      * {@link #items} were not configured).</div></li>
      * <li><code>e</code> : Event<div class="sub-desc">The click event.</div></li>
      * </ul></div>
@@ -95,7 +95,7 @@ Ext.define('Ext.grid.column.Action', {
      * and <code>{@link #getClass}</code> fuctions are executed. Defaults to this Column.
      */
     /**
-     * @cfg {String} tooltip A tooltip message to be displayed on hover. {@link Ext.tip.QuickTipManager#init Ext.tip.QuickTipManager} must have 
+     * @cfg {String} tooltip A tooltip message to be displayed on hover. {@link Ext.tip.QuickTipManager#init Ext.tip.QuickTipManager} must have
      * been initialized.
      */
     /**
@@ -119,7 +119,7 @@ Ext.define('Ext.grid.column.Action', {
     /**
      * @cfg {Array} items An Array which may contain multiple icon definitions, each element of which may contain:
      * <div class="mdetail-params"><ul>
-     * <li><code>icon</code> : String<div class="sub-desc">The url of an image to display as the clickable element 
+     * <li><code>icon</code> : String<div class="sub-desc">The url of an image to display as the clickable element
      * in the column.</div></li>
      * <li><code>iconCls</code> : String<div class="sub-desc">A CSS class to apply to the icon image.
      * To determine the class dynamically, configure the item with a <code>getClass</code> function.</div></li>
@@ -137,10 +137,10 @@ Ext.define('Ext.grid.column.Action', {
      *     <li><b>store</b> : Ext.data.Store<p class="sub-desc">The Store which is providing the data Model.</p></li>
      * </ul></div></li>
      * <li><code>handler</code> : Function<div class="sub-desc">A function called when the icon is clicked.</div></li>
-     * <li><code>scope</code> : Scope<div class="sub-desc">The scope (<code><b>this</b></code> reference) in which the 
+     * <li><code>scope</code> : Scope<div class="sub-desc">The scope (<code><b>this</b></code> reference) in which the
      * <code>handler</code> and <code>getClass</code> functions are executed. Fallback defaults are this Column's
      * configured scope, then this Column.</div></li>
-     * <li><code>tooltip</code> : String<div class="sub-desc">A tooltip message to be displayed on hover. 
+     * <li><code>tooltip</code> : String<div class="sub-desc">A tooltip message to be displayed on hover.
      * {@link Ext.tip.QuickTipManager#init Ext.tip.QuickTipManager} must have been initialized.</div></li>
      * </ul></div>
      */
@@ -152,7 +152,7 @@ Ext.define('Ext.grid.column.Action', {
      * @cfg {String} altText The alt text to use for the image element. Defaults to <tt>''</tt>.
      */
     altText: '',
-    
+
     sortable: false,
 
     constructor: function(config) {
@@ -170,7 +170,7 @@ Ext.define('Ext.grid.column.Action', {
         // Items is an array property of ActionColumns
         me.items = items;
 
-//      Renderer closure iterates through items creating an <img> element for each and tagging with an identifying 
+//      Renderer closure iterates through items creating an <img> element for each and tagging with an identifying
 //      class name x-action-col-{n}
         me.renderer = function(v, meta) {
 //          Allow a configured renderer to create initial value (And set the other values in the "metadata" argument!)
@@ -180,7 +180,7 @@ Ext.define('Ext.grid.column.Action', {
             for (i = 0; i < l; i++) {
                 item = items[i];
                 v += '<img alt="' + (item.altText || me.altText) + '" src="' + (item.icon || Ext.BLANK_IMAGE_URL) +
-                    '" class="' + Ext.baseCSSPrefix + 'action-col-icon ' + Ext.baseCSSPrefix + 'action-col-' + String(i) + ' ' +  (item.iconCls || '') + 
+                    '" class="' + Ext.baseCSSPrefix + 'action-col-icon ' + Ext.baseCSSPrefix + 'action-col-' + String(i) + ' ' +  (item.iconCls || '') +
                     ' ' + (Ext.isFunction(item.getClass) ? item.getClass.apply(item.scope||me.scope||me, arguments) : (me.iconCls || '')) + '"' +
                     ((item.tooltip) ? ' data-qtip="' + item.tooltip + '"' : '') + ' />';
             }

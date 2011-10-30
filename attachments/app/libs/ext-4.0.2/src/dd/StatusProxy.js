@@ -94,7 +94,7 @@ Ext.define('Ext.dd.StatusProxy', {
             html.style.margin = "0";
             this.ghost.dom.appendChild(html);
         }
-        var el = this.ghost.dom.firstChild; 
+        var el = this.ghost.dom.firstChild;
         if(el){
             Ext.fly(el).setStyle('float', 'none');
         }

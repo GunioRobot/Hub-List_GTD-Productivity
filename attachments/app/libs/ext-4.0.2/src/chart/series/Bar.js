@@ -30,7 +30,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
  *         ]
  *     });
- *     
+ *
  *     Ext.create('Ext.chart.Chart', {
  *         renderTo: Ext.getBody(),
  *         width: 500,
@@ -104,12 +104,12 @@ Ext.define('Ext.chart.series.Bar', {
      * @cfg {Boolean} column Whether to set the visualization as column chart or horizontal bar chart.
      */
     column: false,
-    
+
     /**
      * @cfg style Style properties that will override the theming series styles.
      */
     style: {},
-    
+
     /**
      * @cfg {Number} gutter The gutter space between single bars, as a percentage of the bar width
      */
@@ -143,7 +143,7 @@ Ext.define('Ext.chart.series.Bar', {
                 opacity: 0.8,
                 color: '#f00'
             },
-            
+
             shadowAttributes: [{
                 "stroke-width": 6,
                 "stroke-opacity": 0.05,
@@ -185,7 +185,7 @@ Ext.define('Ext.chart.series.Bar', {
             column = me.column,
             ln = store.getCount(),
             gutter = me.gutter / 100;
-        
+
         return (me.chart.chartBBox[column ? 'width' : 'height'] - me[column ? 'xPadding' : 'yPadding'] * 2) / (ln * (gutter + 1) - gutter);
     },
 
@@ -333,7 +333,7 @@ Ext.define('Ext.chart.series.Bar', {
             top = bounds.zero;
             totalDim = 0;
             totalNegDim = 0;
-            hasShadow = false; 
+            hasShadow = false;
             for (j = 0, counter = 0; j < barsLen; j++) {
                 // Excluded series
                 if (me.__excludes && me.__excludes[j]) {
@@ -516,11 +516,11 @@ Ext.define('Ext.chart.series.Bar', {
             seriesStyle = me.seriesStyle,
             items, ln, i, j, baseAttrs, sprite, rendererAttributes, shadowIndex, shadowGroup,
             bounds, endSeriesStyle, barAttr, attrs, anim;
-        
+
         if (!store || !store.getCount()) {
             return;
         }
-        
+
         //fill colors are taken from the colors array.
         delete seriesStyle.fill;
         endSeriesStyle = Ext.apply(seriesStyle, this.style);
@@ -594,7 +594,7 @@ Ext.define('Ext.chart.series.Bar', {
         }
         me.renderLabels();
     },
-    
+
     // @private handled when creating a label.
     onCreateLabel: function(storeItem, item, i, display) {
         var me = this,
@@ -608,7 +608,7 @@ Ext.define('Ext.chart.series.Bar', {
             group: group
         }, endLabelStyle || {}));
     },
-    
+
     // @private callback used when placing a label.
     onPlaceLabel: function(label, storeItem, item, i, display, animate, j, index) {
         // Determine the label's final position. Starts with the configured preferred value but
@@ -764,14 +764,14 @@ Ext.define('Ext.chart.series.Bar', {
         sprite.show();
         return this.callParent(arguments);
     },
-    
+
     isItemInPoint: function(x, y, item) {
         var bbox = item.sprite.getBBox();
         return bbox.x <= x && bbox.y <= y
             && (bbox.x + bbox.width) >= x
             && (bbox.y + bbox.height) >= y;
     },
-    
+
     // @private hide all markers
     hideAll: function() {
         var axes = this.chart.axes;
@@ -801,7 +801,7 @@ Ext.define('Ext.chart.series.Bar', {
             });
         }
     },
-    
+
     /**
      * Returns a string with the color to be used for the series legend item.
      * @param index
@@ -809,7 +809,7 @@ Ext.define('Ext.chart.series.Bar', {
     getLegendColor: function(index) {
         var me = this,
             colorLength = me.colorArrayStyle.length;
-        
+
         if (me.style && me.style.fill) {
             return me.style.fill;
         } else {

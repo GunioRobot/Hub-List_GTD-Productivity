@@ -16,8 +16,8 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @class Ext.form.field.TextArea
  * @extends Ext.form.field.Text
 
-This class creates a multiline text field, which can be used as a direct replacement for traditional 
-textarea fields. In addition, it supports automatically {@link #grow growing} the height of the textarea to 
+This class creates a multiline text field, which can be used as a direct replacement for traditional
+textarea fields. In addition, it supports automatically {@link #grow growing} the height of the textarea to
 fit its content.
 
 All of the configuration options from {@link Ext.form.field.Text} can be used on TextArea.
@@ -36,9 +36,9 @@ Example usage:
             fieldLabel: 'Message',
             anchor    : '100%'
         }]
-    }); 
+    });
 
-Some other useful configuration options when using {@link #grow} are {@link #growMin} and {@link #growMax}. These 
+Some other useful configuration options when using {@link #grow} are {@link #growMin} and {@link #growMax}. These
 allow you to set the minimum and maximum grow heights for the textarea.
 
  * @docauthor Robert Dougan <rob@sencha.com>

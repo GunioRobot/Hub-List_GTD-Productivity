@@ -15,10 +15,10 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.data.SortTypes
  * This class defines a series of static methods that are used on a
- * {@link Ext.data.Field} for performing sorting. The methods cast the 
+ * {@link Ext.data.Field} for performing sorting. The methods cast the
  * underlying values into a data type that is appropriate for sorting on
- * that particular field.  If a {@link Ext.data.Field#type} is specified, 
- * the sortType will be set to a sane default if the sortType is not 
+ * that particular field.  If a {@link Ext.data.Field#type} is specified,
+ * the sortType will be set to a sane default if the sortType is not
  * explicitly defined on the field. The sortType will make any necessary
  * modifications to the value and return it.
  * <ul>
@@ -37,7 +37,7 @@ Ext.apply(Ext.data.SortTypes, {
     asPerson: function(person){
         // expects an object with a first and last name property
         return person.lastName.toUpperCase() + person.firstName.toLowerCase();
-    }    
+    }
 });
 
 Ext.define('Employee', {
@@ -56,9 +56,9 @@ Ext.define('Employee', {
  * @docauthor Evan Trimboli <evan@sencha.com>
  */
 Ext.define('Ext.data.SortTypes', {
-    
+
     singleton: true,
-    
+
     /**
      * Default sort that does nothing
      * @param {Mixed} s The value being converted

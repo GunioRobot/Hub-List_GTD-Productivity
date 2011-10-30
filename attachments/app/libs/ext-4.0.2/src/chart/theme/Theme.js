@@ -14,9 +14,9 @@ If you are unsure which license is appropriate for your use, please contact the 
 */
 /**
  * @class Ext.chart.theme.Theme
- * 
+ *
  * Provides chart theming.
- * 
+ *
  * Used as mixins by Ext.chart.Chart.
  */
 Ext.define('Ext.chart.theme.Theme', {
@@ -29,7 +29,7 @@ Ext.define('Ext.chart.theme.Theme', {
 
     theme: 'Base',
     themeAttrs: false,
-    
+
     initTheme: function(theme) {
         var me = this,
             themes = Ext.chart.theme,
@@ -56,11 +56,11 @@ Ext.define('Ext.chart.theme.Theme', {
             //</debug>
         }
     }
-}, 
+},
 // This callback is executed right after when the class is created. This scope refers to the newly created class itself
 function() {
    /* Theme constructor: takes either a complex object with styles like:
-  
+
    {
         axis: {
             fill: '#000',
@@ -126,7 +126,7 @@ function() {
         }],
         markerThemes: [{
             fill: '#084594',
-            type: 'circle' 
+            type: 'circle'
         }, {
             fill: '#2171B5',
             type: 'cross'
@@ -135,21 +135,21 @@ function() {
             type: 'plus'
         }]
     }
-  
+
   ...or also takes just an array of colors and creates the complex object:
-  
+
   {
       colors: ['#aaa', '#bcd', '#eee']
   }
-  
+
   ...or takes just a base color and makes a theme from it
-  
+
   {
       baseColor: '#bce'
   }
-  
+
   To create a new theme you may add it to the Themes object:
-  
+
   Ext.chart.theme.MyNewTheme = Ext.extend(Object, {
       constructor: function(config) {
           Ext.chart.theme.call(this, config, {
@@ -157,12 +157,12 @@ function() {
           });
       }
   });
-  
+
   //Proposal:
   Ext.chart.theme.MyNewTheme = Ext.chart.createTheme('#basecolor');
-  
+
   ...and then to use it provide the name of the theme (as a lower case string) in the chart config.
-  
+
   {
       theme: 'mynewtheme'
   }
@@ -173,10 +173,10 @@ function() {
         config = config || {};
         var i = 0, l, colors, color,
             seriesThemes, markerThemes,
-            seriesTheme, markerTheme, 
+            seriesTheme, markerTheme,
             key, gradients = [],
             midColor, midL;
-        
+
         if (config.baseColor) {
             midColor = Ext.draw.Color.fromString(config.baseColor);
             midL = midColor.getHSL()[2];
@@ -250,7 +250,7 @@ function() {
                             }
                         }
                     });
-                    colors[i] = 'url(#' + key + ')'; 
+                    colors[i] = 'url(#' + key + ')';
                 }
             }
             base.gradients = gradients;

@@ -15,9 +15,9 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.fx.target.ElementCSS
  * @extends Ext.fx.target.Element
- * 
+ *
  * This class represents a animation target for an {@link Ext.core.Element} that supports CSS
- * based animation. In general this class will not be created directly, the {@link Ext.core.Element} 
+ * based animation. In general this class will not be created directly, the {@link Ext.core.Element}
  * will be passed to the animation and the appropriate target will be created.
  */
 Ext.define('Ext.fx.target.ElementCSS', {

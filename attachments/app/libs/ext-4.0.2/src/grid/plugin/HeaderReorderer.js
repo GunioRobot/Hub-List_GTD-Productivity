@@ -42,14 +42,14 @@ Ext.define('Ext.grid.plugin.HeaderReorderer', {
             this.dragZone.disable();
         }
     },
-    
+
     enable: function() {
         this.disabled = false;
         if (this.dragZone) {
             this.dragZone.enable();
         }
     },
-    
+
     disable: function() {
         this.disabled = true;
         if (this.dragZone) {

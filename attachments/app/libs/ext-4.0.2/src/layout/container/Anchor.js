@@ -15,20 +15,20 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.layout.container.Anchor
  * @extends Ext.layout.container.Container
- * 
+ *
  * This is a layout that enables anchoring of contained elements relative to the container's dimensions.
  * If the container is resized, all anchored items are automatically rerendered according to their
  * <b><tt>{@link #anchor}</tt></b> rules.
  *
  * This class is intended to be extended or created via the layout: 'anchor' {@link Ext.layout.container.AbstractContainer#layout}
  * config, and should generally not need to be created directly via the new keyword.</p>
- * 
+ *
  * AnchorLayout does not have any direct config options (other than inherited ones). By default,
  * AnchorLayout will calculate anchor measurements based on the size of the container itself. However, the
  * container using the AnchorLayout can supply an anchoring-specific config property of <b>anchorSize</b>.
  * If anchorSize is specifed, the layout will use it as a virtual container for the purposes of calculating
  * anchor measurements based on it instead, allowing the container to be sized independently of the anchoring
- * logic if necessary.  
+ * logic if necessary.
  *
  * {@img Ext.layout.container.Anchor/Ext.layout.container.Anchor.png Ext.layout.container.Anchor container layout}
  *
@@ -46,7 +46,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         },{
  *             xtype: 'panel',
  *             title: 'Offset -300 Width & -200 Height',
- *             anchor: '-300 -200'		
+ *             anchor: '-300 -200'
  *         },{
  *             xtype: 'panel',
  *             title: 'Mixed Offset and Percent',
@@ -223,14 +223,14 @@ anchor: '-50 75%'
                 return function(v) {
                     return v - diff;
                 };
-            }    
+            }
             // percentage
             else if (a.indexOf('%') != -1) {
                 ratio = parseFloat(a.replace('%', '')) * 0.01;
                 return function(v) {
                     return Math.floor(v * ratio);
                 };
-            }    
+            }
             // simple offset adjustment
             else {
                 a = parseInt(a, 10);

@@ -24,7 +24,7 @@ Ext.define('Ext.layout.container.Container', {
 
     extend: 'Ext.layout.container.AbstractContainer',
     alternateClassName: 'Ext.layout.ContainerLayout',
-    
+
     /* End Definitions */
 
     layoutItem: function(item, box) {

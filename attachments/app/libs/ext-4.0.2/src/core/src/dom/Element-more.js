@@ -65,7 +65,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
                 e.preventDefault();
             }
         }
-        
+
         if (Ext.isArray(eventName)) {
             Ext.each(eventName, function(e) {
                  me.on(e, fn);
@@ -150,7 +150,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
         var dom = this.dom,
             data = Ext.core.Element.data,
             loader = data(dom, 'loader');
-            
+
         if (!loader) {
             loader = Ext.create('Ext.ElementLoader', {
                 target: this
@@ -172,7 +172,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
             id,
             dom,
             interval;
-            
+
         if (!me.dom) {
             return me;
         }
@@ -190,7 +190,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
 
         interval = setInterval(function(){
             if (!document.getElementById(id)) {
-                return false;    
+                return false;
             }
             clearInterval(interval);
             var DOC    = document,
@@ -224,7 +224,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
                     }
                 }
             }
-            
+
             el = DOC.getElementById(id);
             if (el) {
                 Ext.removeNode(el);

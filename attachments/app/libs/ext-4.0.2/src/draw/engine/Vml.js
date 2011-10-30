@@ -354,7 +354,7 @@ Ext.define('Ext.draw.engine.Vml', {
         if (scrubbedAttrs.stroke || scrubbedAttrs['stroke-opacity'] || scrubbedAttrs.fill) {
             me.setStroke(sprite, scrubbedAttrs);
         }
-        
+
         //set styles
         style = spriteAttr.style;
         if (style) {
@@ -557,7 +557,7 @@ Ext.define('Ext.draw.engine.Vml', {
             }
 
             me.setText(sprite, params.text);
-            
+
             if (vml.textpath.string) {
                 me.span.innerHTML = String(vml.textpath.string).replace(/</g, "&#60;").replace(/&/g, "&#38;").replace(/\n/g, "<br>");
             }
@@ -585,7 +585,7 @@ Ext.define('Ext.draw.engine.Vml', {
         sprite.bbox.transform = null;
         sprite.dirtyFont = false;
     },
-    
+
     setText: function(sprite, text) {
         sprite.vml.textpath.string = Ext.htmlDecode(text);
     },
@@ -916,7 +916,7 @@ Ext.define('Ext.draw.engine.Vml', {
 
     destroy: function() {
         var me = this;
-        
+
         me.callParent(arguments);
         if (me.el) {
             me.el.remove();

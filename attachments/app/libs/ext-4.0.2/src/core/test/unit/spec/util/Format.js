@@ -165,10 +165,10 @@ describe("Ext.util.Format", function() {
         });
 
     });
-    
+
     it("should check for a 0 value before appending negative", function(){
-        expect(num(-2.842170943040401e-14, "0,000.00")).toEqual('0.00'); 
+        expect(num(-2.842170943040401e-14, "0,000.00")).toEqual('0.00');
     });
-    
+
 });
 

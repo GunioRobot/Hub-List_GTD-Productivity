@@ -14,9 +14,9 @@ If you are unsure which license is appropriate for your use, please contact the 
 */
 /**
  * @class Ext.is
- * 
+ *
  * Determines information about the current platform the application is running on.
- * 
+ *
  * @singleton
  */
 Ext.is = {
@@ -51,14 +51,14 @@ Ext.is = {
          * @type {Boolean}
          */
         this.iOS = this.iPhone || this.iPad || this.iPod;
-        
+
         /**
          * @property Standalone Detects when application has been saved to homescreen.
          * @type {Boolean}
          */
         this.Standalone = !!window.navigator.standalone;
     },
-    
+
     /**
      * @property iPhone True when the browser is running on a iPhone
      * @type {Boolean}
@@ -68,7 +68,7 @@ Ext.is = {
         regex: /iPhone/i,
         identity: 'iPhone'
     },
-    
+
     /**
      * @property iPod True when the browser is running on a iPod
      * @type {Boolean}
@@ -78,7 +78,7 @@ Ext.is = {
         regex: /iPod/i,
         identity: 'iPod'
     },
-    
+
     /**
      * @property iPad True when the browser is running on a iPad
      * @type {Boolean}
@@ -88,7 +88,7 @@ Ext.is = {
         regex: /iPad/i,
         identity: 'iPad'
     },
-    
+
     /**
      * @property Blackberry True when the browser is running on a Blackberry
      * @type {Boolean}
@@ -98,7 +98,7 @@ Ext.is = {
         regex: /Blackberry/i,
         identity: 'Blackberry'
     },
-    
+
     /**
      * @property Android True when the browser is running on an Android device
      * @type {Boolean}
@@ -108,7 +108,7 @@ Ext.is = {
         regex: /Android/i,
         identity: 'Android'
     },
-    
+
     /**
      * @property Mac True when the browser is running on a Mac
      * @type {Boolean}
@@ -118,7 +118,7 @@ Ext.is = {
         regex: /Mac/i,
         identity: 'Mac'
     },
-    
+
     /**
      * @property Windows True when the browser is running on Windows
      * @type {Boolean}
@@ -128,7 +128,7 @@ Ext.is = {
         regex: /Win/i,
         identity: 'Windows'
     },
-    
+
     /**
      * @property Linux True when the browser is running on Linux
      * @type {Boolean}
@@ -146,7 +146,7 @@ Ext.is.init();
  * @class Ext.supports
  *
  * Determines information about features are supported in the current environment
- * 
+ *
  * @singleton
  */
 Ext.supports = {
@@ -194,13 +194,13 @@ Ext.supports = {
      * @type {Boolean}
      */
     OrientationChange: ((typeof window.orientation != 'undefined') && ('onorientationchange' in window)),
-    
+
     /**
      * @property DeviceMotion True if the device supports device motion (acceleration and rotation rate)
      * @type {Boolean}
      */
     DeviceMotion: ('ondevicemotion' in window),
-    
+
     /**
      * @property Touch True if the device supports touch
      * @type {Boolean}
@@ -247,7 +247,7 @@ Ext.supports = {
                 return out;
             }
         },
-        
+
         /**
          * @property RightMargin True if the device supports right margin.
          * See https://bugs.webkit.org/show_bug.cgi?id=13343 for why this is needed.
@@ -265,7 +265,7 @@ Ext.supports = {
          * @property DisplayChangeInputSelectionBug True if INPUT elements lose their
          * selection when their display style is changed. Essentially, if a text input
          * has focus and its display style is changed, the I-beam disappears.
-         * 
+         *
          * This bug is encountered due to the work around in place for the {@link #RightMargin}
          * bug. This has been observed in Safari 4.0.4 and older, and appears to be fixed
          * in Safari 5. It's not clear if Safari 4.1 has the bug, but it has the same WebKit
@@ -337,7 +337,7 @@ Ext.supports = {
                 return view && view.getComputedStyle;
             }
         },
-        
+
         /**
          * @property SVG True if the device supports SVG
          * @type {Boolean}
@@ -348,7 +348,7 @@ Ext.supports = {
                 return !!doc.createElementNS && !!doc.createElementNS( "http:/" + "/www.w3.org/2000/svg", "svg").createSVGRect;
             }
         },
-    
+
         /**
          * @property Canvas True if the device supports Canvas
          * @type {Boolean}
@@ -359,7 +359,7 @@ Ext.supports = {
                 return !!doc.createElement('canvas').getContext;
             }
         },
-        
+
         /**
          * @property VML True if the device supports VML
          * @type {Boolean}
@@ -372,7 +372,7 @@ Ext.supports = {
                 return (d.childNodes.length == 2);
             }
         },
-        
+
         /**
          * @property Float True if the device supports CSS float
          * @type {Boolean}
@@ -383,7 +383,7 @@ Ext.supports = {
                 return !!div.lastChild.style.cssFloat;
             }
         },
-        
+
         /**
          * @property AudioTag True if the device supports the HTML5 audio tag
          * @type {Boolean}
@@ -394,7 +394,7 @@ Ext.supports = {
                 return !!doc.createElement('audio').canPlayType;
             }
         },
-        
+
         /**
          * @property History True if the device supports HTML5 history
          * @type {Boolean}
@@ -405,7 +405,7 @@ Ext.supports = {
                 return !!(window.history && history.pushState);
             }
         },
-        
+
         /**
          * @property CSS3DTransform True if the device supports CSS3DTransform
          * @type {Boolean}
@@ -429,13 +429,13 @@ Ext.supports = {
                     w3c      = 'linear-gradient(left top, black, white)',
                     moz      = '-moz-' + w3c,
                     options  = [property + webkit, property + w3c, property + moz];
-                
+
                 div.style.cssText = options.join(';');
-                
+
                 return ("" + div.style.backgroundImage).indexOf('gradient') !== -1;
             }
         },
-        
+
         /**
          * @property CSS3BorderRadius True if the device supports CSS3 border radius
          * @type {Boolean}
@@ -454,7 +454,7 @@ Ext.supports = {
                 return pass;
             }
         },
-        
+
         /**
          * @property GeoLocation True if the device supports GeoLocation
          * @type {Boolean}
@@ -510,9 +510,9 @@ Ext.supports = {
                 return 'placeholder' in doc.createElement('input');
             }
         },
-        
+
         /**
-         * @property Direct2DBug True if when asking for an element's dimension via offsetWidth or offsetHeight, 
+         * @property Direct2DBug True if when asking for an element's dimension via offsetWidth or offsetHeight,
          * getBoundingClientRect, etc. the browser returns the subpixel width rounded to the nearest pixel.
          * @type {Boolean}
          */
@@ -546,7 +546,7 @@ Ext.supports = {
                 return el.getHeight() == 210;
             }
         },
-        
+
         /**
          * @property ArraySort True if the Array sort native method isn't bugged.
          * @type {Boolean}
@@ -576,7 +576,7 @@ Ext.supports = {
             identity: 'CreateContextualFragment',
             fn: function() {
                 var range = Ext.supports.Range ? document.createRange() : false;
-                
+
                 return range && !!range.createContextualFragment;
             }
         },

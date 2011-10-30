@@ -32,14 +32,14 @@ Ext.define('Ext.layout.component.Editor', {
         var me = this,
             owner = me.owner,
             autoSize = owner.autoSize;
-            
+
         if (autoSize === true) {
             autoSize = {
                 width: 'field',
-                height: 'field'    
+                height: 'field'
             };
         }
-        
+
         if (autoSize) {
             width = me.getDimension(owner, autoSize.width, 'Width', width);
             height = me.getDimension(owner, autoSize.height, 'Height', height);
@@ -47,7 +47,7 @@ Ext.define('Ext.layout.component.Editor', {
         me.setTargetSize(width, height);
         owner.field.setSize(width, height);
     },
-    
+
     getDimension: function(owner, type, dimension, actual){
         var method = 'get' + dimension;
         switch (type) {

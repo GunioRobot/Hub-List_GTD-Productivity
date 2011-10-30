@@ -14,35 +14,35 @@ If you are unsure which license is appropriate for your use, please contact the 
 */
 /**
  * @class Ext.fx.Anim
- * 
+ *
  * This class manages animation for a specific {@link #target}. The animation allows
  * animation of various properties on the target, such as size, position, color and others.
- * 
+ *
  * ## Starting Conditions
  * The starting conditions for the animation are provided by the {@link #from} configuration.
  * Any/all of the properties in the {@link #from} configuration can be specified. If a particular
  * property is not defined, the starting value for that property will be read directly from the target.
- * 
+ *
  * ## End Conditions
  * The ending conditions for the animation are provided by the {@link #to} configuration. These mark
  * the final values once the animations has finished. The values in the {@link #from} can mirror
  * those in the {@link #to} configuration to provide a starting point.
- * 
+ *
  * ## Other Options
  *  - {@link #duration}: Specifies the time period of the animation.
  *  - {@link #easing}: Specifies the easing of the animation.
  *  - {@link #iterations}: Allows the animation to repeat a number of times.
  *  - {@link #alternate}: Used in conjunction with {@link #iterations}, reverses the direction every second iteration.
- * 
+ *
  * ## Example Code
- * 
+ *
  *     var myComponent = Ext.create('Ext.Component', {
  *         renderTo: document.body,
  *         width: 200,
  *         height: 200,
  *         style: 'border: 1px solid red;'
  *     });
- *     
+ *
  *     new Ext.fx.Anim({
  *         target: myComponent,
  *         duration: 1000,
@@ -93,7 +93,7 @@ Ext.define('Ext.fx.Anim', {
     /**
      * @cfg {String} easing
 This describes how the intermediate values used during a transition will be calculated. It allows for a transition to change
-speed over its duration. 
+speed over its duration.
 
          -backIn
          -backOut

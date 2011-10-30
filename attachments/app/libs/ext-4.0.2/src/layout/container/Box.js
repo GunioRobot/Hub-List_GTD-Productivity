@@ -25,7 +25,7 @@ Ext.define('Ext.layout.container.Box', {
     alias: ['layout.box'],
     extend: 'Ext.layout.container.Container',
     alternateClassName: 'Ext.layout.BoxLayout',
-    
+
     requires: [
         'Ext.layout.container.boxOverflow.None',
         'Ext.layout.container.boxOverflow.Menu',
@@ -133,10 +133,10 @@ Ext.define('Ext.layout.container.Box', {
     // availableSpaceOffset is used to adjust the availableWidth, typically used
     // to reserve space for a scrollbar
     availableSpaceOffset: 0,
-    
+
     // whether or not to reserve the availableSpaceOffset in layout calculations
     reserveOffset: true,
-    
+
     /**
      * @cfg {Boolean} clearInnerCtOnLayout
      */
@@ -241,7 +241,7 @@ Ext.define('Ext.layout.container.Box', {
             availPerpendicularSize = mmax(0, perpendicularSize - paddingPerpendicular),
 
             innerCtBorderWidth = me.innerCt.getBorderWidth(me.perpendicularLT + me.perpendicularRB),
-            
+
             isStart = me.pack == 'start',
             isCenter = me.pack == 'center',
             isEnd = me.pack == 'end',
@@ -257,9 +257,9 @@ Ext.define('Ext.layout.container.Box', {
             minSizes = [],
             calculatedWidth,
 
-            i, child, childParallel, childPerpendicular, childMargins, childSize, minParallel, tmpObj, shortfall, 
-            tooNarrow, availableSpace, minSize, item, length, itemIndex, box, oldSize, newSize, reduction, diff, 
-            flexedBoxes, remainingSpace, remainingFlex, flexedSize, parallelMargins, calcs, offset, 
+            i, child, childParallel, childPerpendicular, childMargins, childSize, minParallel, tmpObj, shortfall,
+            tooNarrow, availableSpace, minSize, item, length, itemIndex, box, oldSize, newSize, reduction, diff,
+            flexedBoxes, remainingSpace, remainingFlex, flexedSize, parallelMargins, calcs, offset,
             perpendicularMargins, stretchSize;
 
         //gather the total flex of all flexed items and the width taken up by fixed width items
@@ -490,7 +490,7 @@ Ext.define('Ext.layout.container.Box', {
             }
         };
     },
-    
+
     onRemove: function(comp){
         this.callParent(arguments);
         if (this.overflowHandler) {

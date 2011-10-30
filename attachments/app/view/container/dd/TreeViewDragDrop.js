@@ -10,7 +10,7 @@ Ext.define('HL.view.container.dd.TreeViewDragDrop', {
     alias: 'plugin.ctreeviewdragdrop',
 
     uses: ['HL.view.container.dd.ViewDragZone','HL.view.container.dd.ViewDropZone'],
-    
+
     onViewRender : function(view) {
         var me = this;
 
@@ -37,5 +37,5 @@ Ext.define('HL.view.container.dd.TreeViewDragDrop', {
             });
         }
     }
-    
-});    
+
+});

@@ -24,25 +24,25 @@ If you are unsure which license is appropriate for your use, please contact the 
 		width: 500,
 		height: 400,
 		title: "VBoxLayout Panel",
-		layout: {                        
+		layout: {
 			type: 'vbox',
 			align: 'center'
 		},
 		renderTo: document.body,
-		items: [{                        
+		items: [{
 			xtype: 'panel',
 			title: 'Inner Panel One',
 			width: 250,
-			flex: 2                      
+			flex: 2
 		},{
 			xtype: 'panel',
 			title: 'Inner Panel Two',
-			width: 250,			
+			width: 250,
 			flex: 4
 		},{
 			xtype: 'panel',
 			title: 'Inner Panel Three',
-			width: '50%',			
+			width: '50%',
 			flex: 4
 		}]
 	});
@@ -54,7 +54,7 @@ Ext.define('Ext.layout.container.VBox', {
     alias: ['layout.vbox'],
     extend: 'Ext.layout.container.Box',
     alternateClassName: 'Ext.layout.VBoxLayout',
-    
+
     /* End Definitions */
 
     /**

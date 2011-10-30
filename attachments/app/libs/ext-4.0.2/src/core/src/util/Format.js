@@ -30,7 +30,7 @@ Options include:
 This class also uses the default date format defined here: {@link Ext.Date#defaultFormat}.
 
 __Using with renderers__
-There are two helper functions that return a new function that can be used in conjunction with 
+There are two helper functions that return a new function that can be used in conjunction with
 grid renderers:
 
     columns: [{
@@ -40,7 +40,7 @@ grid renderers:
         dataIndex: 'time',
         renderer: Ext.util.Format.numberRenderer('0.000')
     }]
-    
+
 Functions that only take a single argument can also be passed directly:
     columns: [{
         dataIndex: 'cost',
@@ -49,7 +49,7 @@ Functions that only take a single argument can also be passed directly:
         dataIndex: 'productCode',
         renderer: Ext.util.Format.uppercase
     }]
-    
+
 __Using with XTemplates__
 XTemplates can also directly use Ext.util.Format functions:
 
@@ -198,7 +198,7 @@ XTemplates can also directly use Ext.util.Format functions:
             for (; i < decimals; i++) {
                 format += '0';
             }
-            v = UtilFormat.number(v, format); 
+            v = UtilFormat.number(v, format);
             if ((end || UtilFormat.currencyAtEnd) === true) {
                 return Ext.String.format("{0}{1}{2}", negativeSign, v, currencySign || UtilFormat.currencySign);
             } else {
@@ -408,7 +408,7 @@ XTemplates can also directly use Ext.util.Format functions:
                     fnum = psplit[0] + dec + psplit[1];
                 }
             }
-            
+
             if (neg) {
                 /*
                  * Edge case. If we have a very small negative number it will get rounded to 0,

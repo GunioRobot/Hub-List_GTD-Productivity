@@ -16,7 +16,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Catalonian Translation by halkon_polako 6-12-2007
  * December correction halkon_polako 11-12-2007
  *
- * Synchronized with 2.2 version of ext-lang-en.js (provided by Condor 8 aug 2008) 
+ * Synchronized with 2.2 version of ext-lang-en.js (provided by Condor 8 aug 2008)
  *     by halkon_polako 14-aug-2008
  */
 Ext.onReady(function() {

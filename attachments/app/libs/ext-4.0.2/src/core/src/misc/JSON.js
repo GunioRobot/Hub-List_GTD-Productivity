@@ -115,7 +115,7 @@ Ext.JSON = new(function() {
      * @return {String} The string literal to use in a JSON string.
      */
     this.encodeDate = function(o) {
-        return '"' + o.getFullYear() + "-" 
+        return '"' + o.getFullYear() + "-"
         + pad(o.getMonth() + 1) + "-"
         + pad(o.getDate()) + "T"
         + pad(o.getHours()) + ":"

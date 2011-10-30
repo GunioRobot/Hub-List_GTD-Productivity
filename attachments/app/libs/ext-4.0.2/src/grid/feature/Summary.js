@@ -15,11 +15,11 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.grid.feature.Summary
  * @extends Ext.grid.feature.AbstractSummary
- * 
- * This feature is used to place a summary row at the bottom of the grid. If using a grouping, 
- * see {@link Ext.grid.feature.GroupingSummary}. There are 2 aspects to calculating the summaries, 
+ *
+ * This feature is used to place a summary row at the bottom of the grid. If using a grouping,
+ * see {@link Ext.grid.feature.GroupingSummary}. There are 2 aspects to calculating the summaries,
  * calculation and rendering.
- * 
+ *
  * ## Calculation
  * The summary value needs to be calculated for each column in the grid. This is controlled
  * by the summaryType option specified on the column. There are several built in summary types,
@@ -34,7 +34,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *
  * Alternatively, the summaryType can be a function definition. If this is the case,
  * the function is called with an array of records to calculate the summary value.
- * 
+ *
  * ## Rendering
  * Similar to a column, the summary also supports a summaryRenderer function. This
  * summaryRenderer is called before displaying a value. The function is optional, if
@@ -43,7 +43,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *  - value {Object} - The calculated value.
  *  - summaryData {Object} - Contains all raw summary values for the row.
  *  - field {String} - The name of the field we are calculating
- * 
+ *
  * ## Example Usage
  *
  *     Ext.define('TestResult', {
@@ -53,7 +53,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             type: 'int'
  *         }]
  *     });
- *     
+ *
  *     Ext.create('Ext.grid.Panel', {
  *         width: 200,
  *         height: 140,
@@ -82,7 +82,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             text: 'Name',
  *             summaryType: 'count',
  *             summaryRenderer: function(value, summaryData, dataIndex) {
- *                 return Ext.String.format('{0} student{1}', value, value !== 1 ? 's' : ''); 
+ *                 return Ext.String.format('{0} student{1}', value, value !== 1 ? 's' : '');
  *             }
  *         }, {
  *             dataIndex: 'mark',
@@ -92,15 +92,15 @@ If you are unsure which license is appropriate for your use, please contact the 
  *     });
  */
 Ext.define('Ext.grid.feature.Summary', {
-    
+
     /* Begin Definitions */
-    
+
     extend: 'Ext.grid.feature.AbstractSummary',
-    
+
     alias: 'feature.summary',
-    
+
     /* End Definitions */
-    
+
     /**
      * Gets any fragments needed for the template.
      * @private
@@ -108,10 +108,10 @@ Ext.define('Ext.grid.feature.Summary', {
      */
     getFragmentTpl: function() {
         // this gets called before render, so we'll setup the data here.
-        this.summaryData = this.generateSummaryData(); 
+        this.summaryData = this.generateSummaryData();
         return this.getSummaryFragments();
     },
-    
+
     /**
      * Overrides the closeRows method on the template so we can include our own custom
      * footer.
@@ -125,7 +125,7 @@ Ext.define('Ext.grid.feature.Summary', {
             };
         }
     },
-    
+
     /**
      * Provide our own custom footer for the grid.
      * @private
@@ -134,7 +134,7 @@ Ext.define('Ext.grid.feature.Summary', {
     closeRows: function() {
         return '</tpl>{[this.printSummaryRow()]}';
     },
-    
+
     /**
      * Gets the data for printing a template row
      * @private
@@ -149,7 +149,7 @@ Ext.define('Ext.grid.feature.Summary', {
             data = [],
             active = me.summaryData,
             column;
-            
+
         for (; i < length; ++i) {
             column = columns[i];
             column.gridSummaryValue = this.getColumnValue(column, active);
@@ -157,7 +157,7 @@ Ext.define('Ext.grid.feature.Summary', {
         }
         return data;
     },
-    
+
     /**
      * Generates all of the summary data to be used when processing the template
      * @private
@@ -173,7 +173,7 @@ Ext.define('Ext.grid.feature.Summary', {
             fieldData,
             key,
             comp;
-            
+
         for (i = 0, length = columns.length; i < length; ++i) {
             comp = Ext.getCmp(columns[i].id);
             data[comp.id] = me.getSummary(store, comp.summaryType, comp.dataIndex, false);

@@ -184,7 +184,7 @@ Ext.define('Ext.Action', {
     },
 
     /**
-     * Returns true if the components using this Action are currently disabled, else returns false.  
+     * Returns true if the components using this Action are currently disabled, else returns false.
      */
     isDisabled : function(){
         return this.initialConfig.disabled;
@@ -248,7 +248,7 @@ Ext.define('Ext.Action', {
         var items = this.items,
             i = 0,
             len = items.length;
-            
+
         for(; i < len; i++){
             items[i][fnName].apply(items[i], args);
         }

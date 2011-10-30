@@ -53,7 +53,7 @@ Ext.define('Ext.util.HashMap', {
      */
     constructor: function(config) {
         config = config || {};
-        
+
         var me = this,
             keyFn = config.keyFn;
 
@@ -93,7 +93,7 @@ Ext.define('Ext.util.HashMap', {
 
         me.mixins.observable.constructor.call(me, config);
         me.clear(true);
-        
+
         if (keyFn) {
             me.getKey = keyFn;
         }

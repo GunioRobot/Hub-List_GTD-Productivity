@@ -14,19 +14,19 @@ If you are unsure which license is appropriate for your use, please contact the 
 */
 /**
  * @class Ext.data.Tree
- * 
+ *
  * This class is used as a container for a series of nodes. The nodes themselves maintain
  * the relationship between parent/child. The tree itself acts as a manager. It gives functionality
- * to retrieve a node by its identifier: {@link #getNodeById}. 
+ * to retrieve a node by its identifier: {@link #getNodeById}.
  *
- * The tree also relays events from any of it's child nodes, allowing them to be handled in a 
- * centralized fashion. In general this class is not used directly, rather used internally 
+ * The tree also relays events from any of it's child nodes, allowing them to be handled in a
+ * centralized fashion. In general this class is not used directly, rather used internally
  * by other parts of the framework.
  *
  */
 Ext.define('Ext.data.Tree', {
     alias: 'data.tree',
-    
+
     mixins: {
         observable: "Ext.util.Observable"
     },
@@ -43,11 +43,11 @@ Ext.define('Ext.data.Tree', {
      */
     constructor: function(root) {
         var me = this;
-        
+
         me.nodeHash = {};
 
         me.mixins.observable.constructor.call(me);
-                        
+
         if (root) {
             me.setRootNode(root);
         }
@@ -68,14 +68,14 @@ Ext.define('Ext.data.Tree', {
      */
     setRootNode : function(node) {
         var me = this;
-        
+
         me.root = node;
         Ext.data.NodeInterface.decorate(node);
-        
+
         if (me.fireEvent('beforeappend', null, node) !== false) {
             node.set('root', true);
             node.updateInfo();
-            
+
             me.relayEvents(node, [
                 /**
                  * @event append
@@ -191,7 +191,7 @@ Ext.define('Ext.data.Tree', {
                   */
                  "rootchange"
             ]);
-            
+
             node.on({
                 scope: me,
                 insert: me.onNodeInsert,
@@ -199,14 +199,14 @@ Ext.define('Ext.data.Tree', {
                 remove: me.onNodeRemove
             });
 
-            me.registerNode(node);        
+            me.registerNode(node);
             me.fireEvent('append', null, node);
             me.fireEvent('rootchange', node);
         }
-            
+
         return node;
     },
-    
+
     /**
      * Flattens all the nodes in the tree into an array.
      * @private
@@ -216,7 +216,7 @@ Ext.define('Ext.data.Tree', {
         var nodes = [],
             hash = this.nodeHash,
             key;
-            
+
         for (key in hash) {
             if (hash.hasOwnProperty(key)) {
                 nodes.push(hash[key]);
@@ -224,7 +224,7 @@ Ext.define('Ext.data.Tree', {
         }
         return nodes;
     },
-    
+
     /**
      * Fired when a node is inserted into the root or one of it's children
      * @private
@@ -234,7 +234,7 @@ Ext.define('Ext.data.Tree', {
     onNodeInsert: function(parent, node) {
         this.registerNode(node);
     },
-    
+
     /**
      * Fired when a node is appended into the root or one of it's children
      * @private
@@ -244,7 +244,7 @@ Ext.define('Ext.data.Tree', {
     onNodeAppend: function(parent, node) {
         this.registerNode(node);
     },
-    
+
     /**
      * Fired when a node is removed from the root or one of it's children
      * @private
@@ -281,7 +281,7 @@ Ext.define('Ext.data.Tree', {
     unregisterNode : function(node) {
         delete this.nodeHash[node.getId() || node.internalId];
     },
-    
+
     /**
      * Sorts this tree
      * @private
@@ -291,7 +291,7 @@ Ext.define('Ext.data.Tree', {
     sort: function(sorterFn, recursive) {
         this.getRootNode().sort(sorterFn, recursive);
     },
-    
+
      /**
      * Filters this tree
      * @private

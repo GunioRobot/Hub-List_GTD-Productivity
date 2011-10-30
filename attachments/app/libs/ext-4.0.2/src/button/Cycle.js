@@ -18,7 +18,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * A specialized SplitButton that contains a menu of {@link Ext.menu.CheckItem} elements.  The button automatically
  * cycles through each menu item on click, raising the button's {@link #change} event (or calling the button's
  * {@link #changeHandler} function, if supplied) for the active menu item. Clicking on the arrow section of the
- * button displays the dropdown menu just like a normal SplitButton.  
+ * button displays the dropdown menu just like a normal SplitButton.
  * {@img Ext.button.Cycle/Ext.button.Cycle.png Ext.button.Cycle component}
  * Example usage:
  * <pre><code>
@@ -76,7 +76,7 @@ Ext.define('Ext.button.Cycle', {
      */
     /**
      * @cfg {String} forceIcon A css class which sets an image to be used as the static icon for this button.  This
-     * icon will always be displayed regardless of which item is selected in the dropdown list.  This overrides the 
+     * icon will always be displayed regardless of which item is selected in the dropdown list.  This overrides the
      * default behavior of changing the button's icon to match the selected item's icon on change.
      */
     /**

@@ -39,7 +39,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             'Item 3'
  *         ],
  *         renderTo: Ext.getBody()
- *     });   
+ *     });
  *
  */
 Ext.define('Ext.toolbar.Spacer', {

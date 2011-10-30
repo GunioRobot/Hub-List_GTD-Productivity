@@ -24,7 +24,7 @@ Ext.define('Ext.layout.container.boxOverflow.Menu', {
     extend: 'Ext.layout.container.boxOverflow.None',
     requires: ['Ext.toolbar.Separator', 'Ext.button.Button'],
     alternateClassName: 'Ext.layout.boxOverflow.Menu',
-    
+
     /* End Definitions */
 
     /**
@@ -56,7 +56,7 @@ Ext.define('Ext.layout.container.boxOverflow.Menu', {
          */
         me.menuItems = [];
     },
-    
+
     onRemove: function(comp){
         Ext.Array.remove(this.menuItems, comp);
     },
@@ -164,7 +164,7 @@ Ext.define('Ext.layout.container.boxOverflow.Menu', {
             menu.add(me.noItemsMenuText);
         }
     },
-    
+
     /**
      * @private
      * Returns a menu config for a given component. This config is used to create a menu item

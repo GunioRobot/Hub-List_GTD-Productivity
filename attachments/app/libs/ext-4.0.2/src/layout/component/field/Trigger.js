@@ -46,7 +46,7 @@ Ext.define('Ext.layout.component.field.Trigger', {
             // Decrease the field's width by the width of the triggers. Both the field and the triggerWrap
             // are floated left in CSS so they'll stack up side by side.
             me.setElementSize(inputEl, Ext.isNumber(width) ? width - triggerWidth : width);
-    
+
             // Explicitly set the triggerWrap's width, to prevent wrapping
             triggerWrap.setWidth(triggerWidth);
         }

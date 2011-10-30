@@ -34,7 +34,7 @@ Ext.define('Ext.menu.Manager', {
 
     init: function() {
         var me = this;
-        
+
         me.active = Ext.create('Ext.util.MixedCollection');
         Ext.getDoc().addKeyListener(27, function() {
             if (me.active.length > 0) {
@@ -100,7 +100,7 @@ Ext.define('Ext.menu.Manager', {
     onBeforeShow: function(m) {
         var active = this.active,
             parentMenu = m.parentMenu;
-            
+
         active.remove(m);
         if (!parentMenu && !m.allowOtherMenus) {
             this.hideAll();
@@ -149,7 +149,7 @@ Ext.define('Ext.menu.Manager', {
      */
     get: function(menu) {
         var menus = this.menus;
-        
+
         if (typeof menu == 'string') { // menu id
             if (!menus) {  // not initialized, no menus to return
                 return null;

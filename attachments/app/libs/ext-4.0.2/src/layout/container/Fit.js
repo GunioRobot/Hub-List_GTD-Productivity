@@ -20,7 +20,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * config, and should generally not need to be created directly via the new keyword.</p>
  * <p>FitLayout does not have any direct config options (other than inherited ones).  To fit a panel to a container
  * using FitLayout, simply set layout:'fit' on the container and add a single panel to it.  If the container has
- * multiple panels, only the first one will be displayed.  
+ * multiple panels, only the first one will be displayed.
  * {@img Ext.layout.container.Fit/Ext.layout.container.Fit.png Ext.layout.container.Fit container layout}
  * Example usage:</p>
  * <pre><code>
@@ -36,7 +36,7 @@ If you are unsure which license is appropriate for your use, please contact the 
             border: false
         },
         renderTo: Ext.getBody()
-    });  
+    });
 </code></pre>
  */
 Ext.define('Ext.layout.container.Fit', {
@@ -48,7 +48,7 @@ Ext.define('Ext.layout.container.Fit', {
     alternateClassName: 'Ext.layout.FitLayout',
 
     /* End Definitions */
-   
+
     // @private
     onLayout : function() {
         var me = this;

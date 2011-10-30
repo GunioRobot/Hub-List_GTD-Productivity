@@ -19,7 +19,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * in each of the Series (Pie, Bar, etc) for label creation and label placement.
  *
  * The methods implemented by the Series are:
- *  
+ *
  * - **`onCreateLabel(storeItem, item, i, display)`** Called each time a new label is created.
  *   The arguments of the method are:
  *   - *`storeItem`* The element of the store that is related to the label sprite.
@@ -43,7 +43,7 @@ Ext.define('Ext.chart.Label', {
     /* Begin Definitions */
 
     requires: ['Ext.draw.Color'],
-    
+
     /* End Definitions */
 
     /**
@@ -93,7 +93,7 @@ Ext.define('Ext.chart.Label', {
 
     //@private a regex to parse url type colors.
     colorStringRe: /url\s*\(\s*#([^\/)]+)\s*\)/,
-    
+
     //@private the mixin constructor. Used internally by Series.
     constructor: function(config) {
         var me = this;
@@ -146,7 +146,7 @@ Ext.define('Ext.chart.Label', {
                 item = items[count];
                 label = group.getAt(count);
                 storeItem = store.getAt(i);
-                
+
                 //check the excludes
                 while(this.__excludes && this.__excludes[index]) {
                     index++;
@@ -176,7 +176,7 @@ Ext.define('Ext.chart.Label', {
                             colorString = sprite.attr.fill;
                         }
                         colorString = colorString || sprite.attr.fill;
-                        
+
                         spriteColor = Color.fromString(colorString);
                         //color wasn't parsed property maybe because it's a gradient id
                         if (colorString && !spriteColor) {

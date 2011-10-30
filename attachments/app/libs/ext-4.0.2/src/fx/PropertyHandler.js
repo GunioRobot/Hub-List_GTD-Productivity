@@ -139,7 +139,7 @@ Ext.define('Ext.fx.PropertyHandler', {
                     tfrom = typeof start,
                     tend = typeof end;
                 //Extra check for when the color string is not recognized.
-                if (tfrom == 'string' ||  tfrom == 'undefined' 
+                if (tfrom == 'string' ||  tfrom == 'undefined'
                   || tend == 'string' || tend == 'undefined') {
                     return end || start;
                 }
@@ -176,7 +176,7 @@ Ext.define('Ext.fx.PropertyHandler', {
                         from = val.from;
                         delta = val.delta;
                         //multiple checks to reformat the color if it can't recognized by computeDelta.
-                        val = (typeof val == 'object' && 'red' in val)? 
+                        val = (typeof val == 'object' && 'red' in val)?
                                 'rgb(' + val.red + ', ' + val.green + ', ' + val.blue + ')' : val;
                         val = (typeof val == 'object' && val.length)? val[0] : val;
                         if (typeof val == 'undefined') {
@@ -335,8 +335,8 @@ Ext.define('Ext.fx.PropertyHandler', {
         'backgroundColor',
         'borderColor',
         'borderTopColor',
-        'borderRightColor', 
-        'borderBottomColor', 
+        'borderRightColor',
+        'borderBottomColor',
         'borderLeftColor',
         'fill',
         'stroke'

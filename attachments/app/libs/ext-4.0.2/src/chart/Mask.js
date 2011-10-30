@@ -44,7 +44,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * In this example we zoom the chart to that particular region. You can also get
  * a handle to a mask instance from the chart object. The `chart.mask` element is a
  * `Ext.Panel`.
- * 
+ *
  */
 Ext.define('Ext.chart.Mask', {
     /**
@@ -81,8 +81,8 @@ Ext.define('Ext.chart.Mask', {
                 });
                 resizeHandler.on({
                     'resize': function(e) {
-                        me.resized(e);    
-                    }    
+                        me.resized(e);
+                    }
                 });
                 comp.initDraggable();
                 me.maskType = me.mask;
@@ -98,7 +98,7 @@ Ext.define('Ext.chart.Mask', {
             }, me, { single: true });
         }
     },
-    
+
     resized: function(e) {
         var me = this,
             bbox = me.bbox || me.chartBBox,
@@ -111,7 +111,7 @@ Ext.define('Ext.chart.Mask', {
             min = Math.min,
             staticX = box.x - x,
             staticY = box.y - y;
-        
+
         staticX = max(staticX, x);
         staticY = max(staticY, y);
         staticX = min(staticX, width);
@@ -168,7 +168,7 @@ Ext.define('Ext.chart.Mask', {
             staticY = posY - me.el.getY(),
             maskMouseDown = me.maskMouseDown,
             path;
-        
+
         me.mouseMoved = me.mouseDown;
         staticX = max(staticX, x);
         staticY = max(staticY, y);
@@ -201,7 +201,7 @@ Ext.define('Ext.chart.Mask', {
             });
             me.mask.show();
             me.maskSprite.setAttributes({
-                hidden: true    
+                hidden: true
             }, true);
         }
         else {
@@ -232,4 +232,4 @@ Ext.define('Ext.chart.Mask', {
         me.maskSprite.hide(true);
     }
 });
-    
+

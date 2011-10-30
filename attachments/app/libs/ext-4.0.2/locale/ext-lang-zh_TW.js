@@ -41,7 +41,7 @@ Ext.onReady(function(){
     if(Ext.LoadMask){
         Ext.LoadMask.prototype.msg = "讀取中...";
     }
-    
+
     if (Ext.Date){
         Ext.Date.monthNames = [
         "一月",
@@ -68,7 +68,7 @@ Ext.onReady(function(){
         "六"
         ];
     }
-    
+
     if(Ext.MessageBox){
         Ext.MessageBox.buttonText = {
             ok : "確定",

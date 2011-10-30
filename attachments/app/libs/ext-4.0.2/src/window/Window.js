@@ -207,11 +207,11 @@ Ext.define('Ext.window.Window', {
     floating: true,
 
     ariaRole: 'alertdialog',
-    
+
     itemCls: 'x-window-item',
 
     overlapHeader: true,
-    
+
     ignoreHeaderBorderManagement: true,
 
     // private
@@ -389,7 +389,7 @@ Ext.define('Ext.window.Window', {
         if (!me.header) {
             me.updateHeader(true);
         }
-        
+
         /*
          * Check the header here again. If for whatever reason it wasn't created in
          * updateHeader (preventHeader) then we'll just ignore the rest since the
@@ -513,7 +513,7 @@ Ext.define('Ext.window.Window', {
         var me = this,
             animating = animateTarget || me.animateTarget;
 
-        
+
         if (animating) {
             /*
              * If we're animating, constrain the positioning before calling the

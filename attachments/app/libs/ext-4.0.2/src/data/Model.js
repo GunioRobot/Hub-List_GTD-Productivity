@@ -237,7 +237,7 @@ store.load();
  */
 Ext.define('Ext.data.Model', {
     alternateClassName: 'Ext.data.Record',
-    
+
     mixins: {
         observable: 'Ext.util.Observable'
     },
@@ -500,7 +500,7 @@ Ext.define('Ext.data.Model', {
             return id;
         }
     },
-    
+
     /**
      * Internal flag used to track whether or not the model instance is currently being edited. Read-only
      * @property editing
@@ -553,7 +553,7 @@ Ext.define('Ext.data.Model', {
     // raw not documented intentionally, meant to be used internally.
     constructor: function(data, id, raw) {
         data = data || {};
-        
+
         var me = this,
             fields,
             length,
@@ -570,7 +570,7 @@ Ext.define('Ext.data.Model', {
          * @private
          */
         me.internalId = (id || id === 0) ? id : Ext.data.Model.id(me);
-        
+
         /**
          * The raw data used to create this model if created via a reader.
          * @property raw
@@ -579,9 +579,9 @@ Ext.define('Ext.data.Model', {
         me.raw = raw;
 
         Ext.applyIf(me, {
-            data: {}    
+            data: {}
         });
-        
+
         /**
          * Key: value pairs of all fields whose values have changed
          * @property modified
@@ -610,7 +610,7 @@ Ext.define('Ext.data.Model', {
             field = fields[i];
             name  = field.name;
 
-            if (isArray){ 
+            if (isArray){
                 // Have to map array data so the values get assigned to the named fields
                 // rather than getting set as the field names with undefined values.
                 newData[name] = data[i];
@@ -635,7 +635,7 @@ Ext.define('Ext.data.Model', {
 
         me.id = me.modelName + '-' + me.internalId;
     },
-    
+
     /**
      * Returns the value of the given field
      * @param {String} fieldName The field to fetch the value for
@@ -644,7 +644,7 @@ Ext.define('Ext.data.Model', {
     get: function(field) {
         return this[this.persistenceProperty][field];
     },
-    
+
     /**
      * Sets the given field to the given value, marks the instance as dirty
      * @param {String|Object} fieldName The field to set, or an object containing key/value pairs
@@ -664,7 +664,7 @@ Ext.define('Ext.data.Model', {
         if (arguments.length == 1 && Ext.isObject(fieldName)) {
             for (key in fieldName) {
                 if (fieldName.hasOwnProperty(key)) {
-                
+
                     //here we check for the custom convert function. Note that if a field doesn't have a convert function,
                     //we default it to its type's convert function, so we have to check that here. This feels rather dirty.
                     field = fields.get(key);
@@ -672,7 +672,7 @@ Ext.define('Ext.data.Model', {
                         convertFields.push(key);
                         continue;
                     }
-                    
+
                     me.set(key, fieldName[key]);
                 }
             }
@@ -692,7 +692,7 @@ Ext.define('Ext.data.Model', {
             }
             currentValue = me.get(fieldName);
             me[me.persistenceProperty][fieldName] = value;
-            
+
             if (field && field.persist && !me.isEqual(currentValue, value)) {
                 if (me.isModified(fieldName)) {
                     if (me.isEqual(modified[fieldName], value)) {
@@ -720,7 +720,7 @@ Ext.define('Ext.data.Model', {
             }
         }
     },
-    
+
     /**
      * Checks if two values are equal, taking into account certain
      * special factors, for example dates.
@@ -735,7 +735,7 @@ Ext.define('Ext.data.Model', {
         }
         return a === b;
     },
-    
+
     /**
      * Begin an edit. While in edit mode, no events (e.g.. the <code>update</code> event)
      * are relayed to the containing store. When an edit has begun, it must be followed
@@ -750,7 +750,7 @@ Ext.define('Ext.data.Model', {
             me.modifiedSave = Ext.apply({}, me.modified);
         }
     },
-    
+
     /**
      * Cancels all changes made in the current edit operation.
      */
@@ -767,7 +767,7 @@ Ext.define('Ext.data.Model', {
             delete me.dirtySave;
         }
     },
-    
+
     /**
      * End an edit. If any data was modified, the containing store is notified
      * (ie, the store's <code>update</code> event will fire).
@@ -785,7 +785,7 @@ Ext.define('Ext.data.Model', {
             }
         }
     },
-    
+
     /**
      * Gets a hash of only the fields that have been modified since this Model was created or commited.
      * @return Object
@@ -803,7 +803,7 @@ Ext.define('Ext.data.Model', {
 
         return changes;
     },
-    
+
     /**
      * Returns <tt>true</tt> if the passed field name has been <code>{@link #modified}</code>
      * since the load or last commit.
@@ -813,7 +813,7 @@ Ext.define('Ext.data.Model', {
     isModified : function(fieldName) {
         return this.modified.hasOwnProperty(fieldName);
     },
-    
+
     /**
      * <p>Marks this <b>Record</b> as <code>{@link #dirty}</code>.  This method
      * is used interally when adding <code>{@link #phantom}</code> records to a
@@ -826,7 +826,7 @@ Ext.define('Ext.data.Model', {
     setDirty : function() {
         var me = this,
             name;
-        
+
         me.dirty = true;
 
         me.fields.each(function(field) {
@@ -845,7 +845,7 @@ Ext.define('Ext.data.Model', {
         return this.setDirty.apply(this, arguments);
     },
     //</debug>
-    
+
     /**
      * Usually called by the {@link Ext.data.Store} to which this model instance has been {@link #join joined}.
      * Rejects all changes made to the model instance since either creation, or the last commit operation.
@@ -887,7 +887,7 @@ Ext.define('Ext.data.Model', {
      */
     commit : function(silent) {
         var me = this;
-        
+
         me.dirty = false;
         me.editing = false;
 
@@ -910,7 +910,7 @@ Ext.data.Model.id(rec); // automatically generate a unique sequential id
      */
     copy : function(newId) {
         var me = this;
-        
+
         return new me.self(Ext.apply({}, me[me.persistenceProperty]), newId || me.internalId);
     },
 

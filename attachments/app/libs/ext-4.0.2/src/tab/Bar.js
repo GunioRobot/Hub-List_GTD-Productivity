@@ -61,7 +61,7 @@ Ext.define('Ext.tab.Bar', {
         if (me.plain) {
             me.setUI(me.ui + '-plain');
         }
-        
+
         me.addClsWithUI(me.dock);
 
         me.addEvents(
@@ -86,7 +86,7 @@ Ext.define('Ext.tab.Bar', {
         me.layout.overflowHandler = Ext.create('Ext.layout.container.boxOverflow.Scroller', me.layout);
         me.items.removeAt(me.items.getCount() - 1);
         me.items.removeAt(me.items.getCount() - 1);
-        
+
         // Subscribe to Ext.FocusManager for key navigation
         keys = me.orientation == 'vertical' ? ['up', 'down'] : ['left', 'right'];
         Ext.FocusManager.subscribe(me, {
@@ -121,12 +121,12 @@ Ext.define('Ext.tab.Bar', {
             delegate: '.' + Ext.baseCSSPrefix + 'tab'
         });
         me.callParent(arguments);
-        
+
     },
 
     afterComponentLayout : function() {
         var me = this;
-        
+
         me.callParent(arguments);
         me.strip.setWidth(me.el.getWidth());
     },
@@ -165,7 +165,7 @@ Ext.define('Ext.tab.Bar', {
             card = tab.card,
             tabPanel = me.tabPanel,
             nextTab;
-            
+
         if (card && card.fireEvent('beforeclose', card) === false) {
             return false;
         }
@@ -189,7 +189,7 @@ Ext.define('Ext.tab.Bar', {
             card.fireEvent('close', card);
             tabPanel.remove(card);
         }
-        
+
         if (nextTab) {
             nextTab.focus();
         }
@@ -209,7 +209,7 @@ Ext.define('Ext.tab.Bar', {
             me.activeTab.deactivate();
         }
         tab.activate();
-        
+
         if (me.rendered) {
             me.layout.layout();
             tab.el.scrollIntoView(me.layout.getRenderTarget());

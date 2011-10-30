@@ -58,14 +58,14 @@ If you are unsure which license is appropriate for your use, please contact the 
  *
  *     // Init the singleton.  Any tag-based quick tips will start working.
  *     Ext.tip.QuickTipManager.init();
- *     
+ *
  *     // Apply a set of config properties to the singleton
  *     Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), {
  *         maxWidth: 200,
  *         minWidth: 100,
  *         showDelay: 50      // Show 50ms after entering target
  *     });
- *     
+ *
  *     // Create a small panel to add a quick tip to
  *     Ext.create('Ext.container.Container', {
  *         id: 'quickTipContainer',
@@ -76,8 +76,8 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         },
  *         renderTo: Ext.getBody()
  *     });
- *     
- *     
+ *
+ *
  *     // Manually register a quick tip for a specific element
  *     Ext.tip.QuickTipManager.register({
  *         target: 'quickTipContainer',
@@ -98,7 +98,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *  - `qwidth`: The quick tip width (equivalent to the 'width' target element config).
  *
  * Here is an example of configuring an HTML element to display a tooltip from markup:
- *     
+ *
  *     // Add a quick tip to an HTML button
  *     <input type="button" value="OK" data-qtitle="OK Button" data-qwidth="100"
  *          data-qtip="This is a quick tip from markup!"></input>

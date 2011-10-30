@@ -39,7 +39,7 @@ Ext.define('Ext.grid.feature.RowBody', {
 
     eventPrefix: 'rowbody',
     eventSelector: '.' + Ext.baseCSSPrefix + 'grid-rowbody-tr',
-    
+
     getRowBody: function(values) {
         return [
             '<tr class="' + this.rowBodyTrCls + ' {rowBodyCls}">',
@@ -49,7 +49,7 @@ Ext.define('Ext.grid.feature.RowBody', {
             '</tr>'
         ].join('');
     },
-    
+
     // injects getRowBody into the metaRowTpl.
     getMetaRowTplFragments: function() {
         return {

@@ -16,15 +16,15 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Danish translation
  * By JohnF
  * 04-09-2007, 05:28 AM
- * 
- * Extended and modified by Karl Krukow, 
+ *
+ * Extended and modified by Karl Krukow,
  * December, 2007.
  */
 Ext.onReady(function() {
     if (Ext.Updater) {
         Ext.Updater.defaults.indicatorText = '<div class="loading-indicator">Henter...</div>';
     }
-    
+
     if(Ext.view.View){
         Ext.view.View.prototype.emptyText = "";
     }
@@ -125,7 +125,7 @@ Ext.onReady(function() {
             disabledDaysText  : "",
             disabledDatesText : "",
             monthNames        : Ext.Date.monthNames,
-            dayNames          : Ext.Date.dayNames,      
+            dayNames          : Ext.Date.dayNames,
             nextText          : 'Næste måned (Ctrl + højre piltast)',
             prevText          : 'Forrige måned (Ctrl + venstre piltast)',
             monthYearText     : 'Vælg en måned (Ctrl + op/ned pil for at ændre årstal)',

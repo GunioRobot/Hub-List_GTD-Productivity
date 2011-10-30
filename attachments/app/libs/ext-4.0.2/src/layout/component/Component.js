@@ -47,7 +47,7 @@ Ext.define('Ext.layout.component.Component', {
                     left: 0,
                     bottom: 0,
                     right: 0
-                }; 
+                };
             }
         }
         me.callParent(arguments);
@@ -110,7 +110,7 @@ Ext.define('Ext.layout.component.Component', {
                 width: -Infinity,
                 height: -Infinity
             };
-        
+
         // If autoWidthing, or an explicitly different width is passed, then the width is being changed.
         widthBeingChanged  = !Ext.isDefined(width)  || me.lastComponentSize.width  !== width;
 
@@ -211,7 +211,7 @@ Ext.define('Ext.layout.component.Component', {
                     right: body.getMargin('r'),
                     bottom: body.getMargin('b'),
                     left: body.getMargin('l')
-                } 
+                }
             };
         }
         return this.targetInfo;
@@ -232,7 +232,7 @@ Ext.define('Ext.layout.component.Component', {
         if (!ownerCt || (!widthChange && !heightChange)) {
             return;
         }
-        
+
         ownerCtComponentLayout = ownerCt.componentLayout;
         ownerCtContainerLayout = ownerCt.layout;
 

@@ -62,7 +62,7 @@ Ext.define('Ext.ShadowPool', {
     push: function(sh) {
         this.shadows.push(sh);
     },
-    
+
     reset: function() {
         Ext.Array.each(this.shadows, function(shadow) {
             shadow.remove();

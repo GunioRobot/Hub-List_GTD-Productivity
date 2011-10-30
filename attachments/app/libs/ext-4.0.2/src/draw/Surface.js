@@ -51,7 +51,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *
  *     drawComponent.surface.on({
  *        'mousemove': function() {
- *             console.log('moving the mouse over the surface');   
+ *             console.log('moving the mouse over the surface');
  *         }
  *     });
  *
@@ -62,7 +62,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         height: 600,
  *         renderTo: document.body
  *     }), surface = drawComponent.surface;
- *   
+ *
  *     surface.add([{
  *         type: 'circle',
  *         radius: 10,
@@ -109,7 +109,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         y: 100,
  *         group: 'rectangles'
  *     }]);
- *   
+ *
  *     // Get references to my groups
  *     circles = surface.getGroup('circles');
  *     rectangles = surface.getGroup('rectangles');
@@ -123,7 +123,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             }
  *         }
  *     });
- *   
+ *
  *     // Animate the rectangles across
  *     rectangles.animate({
  *         duration: 1000,
@@ -244,7 +244,7 @@ Ext.define('Ext.draw.Surface', {
         Ext.apply(me, config);
 
         me.domRef = Ext.getDoc().dom;
-        
+
         me.customAttributes = {};
 
         me.addEvents(
@@ -342,7 +342,7 @@ Ext.define('Ext.draw.Surface', {
             this.add(items);
         }
     },
-    
+
     // @private
     initBackground: function(config) {
         var me = this,
@@ -383,7 +383,7 @@ Ext.define('Ext.draw.Surface', {
             }
         }
     },
-    
+
     /**
      * Sets the size of the surface. Accomodates the background (if any) to fit the new size too.
      *
@@ -392,7 +392,7 @@ Ext.define('Ext.draw.Surface', {
      *     drawComponent.surface.setSize(500, 500);
      *
      * This method is generally called when also setting the size of the draw Component.
-     * 
+     *
      * @param {Number} w The new width of the canvas.
      * @param {Number} h The new height of the canvas.
      */
@@ -412,7 +412,7 @@ Ext.define('Ext.draw.Surface', {
             attrs = {},
             exclude = {},
             sattr = sprite.attr;
-        for (i in sattr) {    
+        for (i in sattr) {
             // Narrow down attributes to the main set
             if (this.translateAttrs.hasOwnProperty(i)) {
                 // Translated attr
@@ -472,7 +472,7 @@ Ext.define('Ext.draw.Surface', {
      * configuration object please refer to {@link Ext.chart.Chart}.
      *
      * The gradient object to be passed into this method is composed by:
-     * 
+     *
      * - **id** - string - The unique name of the gradient.
      * - **angle** - number, optional - The angle of the gradient in degrees.
      * - **stops** - object - An object with numbers as keys (from 0 to 100) and style objects as values.
@@ -819,7 +819,7 @@ Ext.define('Ext.draw.Surface', {
         }
         return items;
     },
-    
+
     /**
      * Changes the text in the sprite element. The sprite must be a `text` sprite.
      * This method can also be called from {@link Ext.draw.Sprite}.
@@ -833,7 +833,7 @@ Ext.define('Ext.draw.Surface', {
      * @method
      */
     setText: Ext.emptyFn,
-    
+
     //@private Creates an item and appends it to the surface. Called
     //as an internal method when calling `add`.
     createItem: Ext.emptyFn,

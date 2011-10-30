@@ -241,7 +241,7 @@ Ext.define('Ext.data.Store', {
      * True to defer any filtering operation to the server. If false, filtering is done locally on the client. Defaults to <tt>false</tt>.
      */
     remoteFilter: false,
-    
+
     /**
      * @cfg {Boolean} remoteGroup
      * True if the grouping should apply on the server side, false if it is local only (defaults to false).  If the
@@ -313,16 +313,16 @@ Ext.define('Ext.data.Store', {
      * causing the sorters to be reapplied after filtering. Defaults to true
      */
     sortOnFilter: true,
-    
+
     /**
      * @cfg {Boolean} buffered
      * Allow the store to buffer and pre-fetch pages of records. This is to be used in conjunction with a view will
      * tell the store to pre-fetch records ahead of a time.
      */
     buffered: false,
-    
+
     /**
-     * @cfg {Number} purgePageCount 
+     * @cfg {Number} purgePageCount
      * The number of pages to keep in the cache before purging additional records. A value of 0 indicates to never purge the prefetched data.
      * This option is only relevant when the {@link #buffered} option is set to true.
      */
@@ -342,18 +342,18 @@ Ext.define('Ext.data.Store', {
             groupField = config.groupField || me.groupField,
             proxy,
             data;
-            
+
         if (config.buffered || me.buffered) {
             me.prefetchData = Ext.create('Ext.util.MixedCollection', false, function(record) {
                 return record.index;
             });
             me.pendingRequests = [];
             me.pagesRequested = [];
-            
+
             me.sortOnLoad = false;
             me.filterOnLoad = false;
         }
-            
+
         me.addEvents(
             /**
              * @event beforeprefetch
@@ -394,7 +394,7 @@ Ext.define('Ext.data.Store', {
             me.inlineData = data;
             delete config.data;
         }
-        
+
         if (!groupers && groupField) {
             groupers = [{
                 property : groupField,
@@ -402,7 +402,7 @@ Ext.define('Ext.data.Store', {
             }];
         }
         delete config.groupers;
-        
+
         /**
          * The collection of {@link Ext.util.Grouper Groupers} currently applied to this Store
          * @property groupers
@@ -413,7 +413,7 @@ Ext.define('Ext.data.Store', {
 
         this.callParent([config]);
         // don't use *config* anymore from here on... use *me* instead...
-        
+
         if (me.groupers.items.length) {
             me.sort(me.groupers.items, 'prepend', false);
         }
@@ -437,11 +437,11 @@ Ext.define('Ext.data.Store', {
             // this.load(typeof this.autoLoad == 'object' ? this.autoLoad : undefined);
         }
     },
-    
+
     onBeforeSort: function() {
         this.sort(this.groupers.items, 'prepend', false);
     },
-    
+
     /**
      * @private
      * Normalizes an array of grouper objects, ensuring that they are all Ext.util.Grouper instances
@@ -470,7 +470,7 @@ Ext.define('Ext.data.Store', {
                         property: config
                     };
                 }
-                
+
                 Ext.applyIf(config, {
                     root     : 'data',
                     direction: "ASC"
@@ -494,7 +494,7 @@ Ext.define('Ext.data.Store', {
 
         return groupers;
     },
-    
+
     /**
      * Group data in the store
      * @param {String|Array} groupers Either a string name of one of the fields in this Store's configured {@link Ext.data.Model Model},
@@ -505,7 +505,7 @@ Ext.define('Ext.data.Store', {
         var me = this,
             grouper,
             newGroupers;
-            
+
         if (Ext.isArray(groupers)) {
             newGroupers = groupers;
         } else if (Ext.isObject(groupers)) {
@@ -525,13 +525,13 @@ Ext.define('Ext.data.Store', {
                 grouper.setDirection(direction);
             }
         }
-        
+
         if (newGroupers && newGroupers.length) {
             newGroupers = me.decodeGroupers(newGroupers);
             me.groupers.clear();
             me.groupers.addAll(newGroupers);
         }
-        
+
         if (me.remoteGroup) {
             me.load({
                 scope: me,
@@ -542,7 +542,7 @@ Ext.define('Ext.data.Store', {
             me.fireEvent('groupchange', me, me.groupers);
         }
     },
-    
+
     /**
      * Clear any groupers in the store
      */
@@ -563,22 +563,22 @@ Ext.define('Ext.data.Store', {
             me.fireEvent('groupchange', me, me.groupers);
         }
     },
-    
+
     /**
      * Checks if the store is currently grouped
      * @return {Boolean} True if the store is grouped.
      */
     isGrouped: function() {
-        return this.groupers.getCount() > 0;    
+        return this.groupers.getCount() > 0;
     },
-    
+
     /**
      * Fires the groupchange event. Abstracted out so we can use it
      * as a callback
      * @private
      */
     fireGroupChange: function(){
-        this.fireEvent('groupchange', this, this.groupers);    
+        this.fireEvent('groupchange', this, this.groupers);
     },
 
     /**
@@ -791,7 +791,7 @@ new Ext.data.Store({
             record.set(me.modelDefaults);
             // reassign the model in the array in case it wasn't created yet
             records[i] = record;
-            
+
             me.data.insert(index + i, record);
             record.join(me);
 
@@ -894,11 +894,11 @@ myStore.add({some: 'data'}, {some: 'other data'});
         for (; i < length; i++) {
             record = records[i];
             index = me.data.indexOf(record);
-            
+
             if (me.snapshot) {
                 me.snapshot.remove(record);
             }
-            
+
             if (index > -1) {
                 isPhantom = record.phantom === true;
                 if (!isMove && !isPhantom) {
@@ -959,7 +959,7 @@ store.load(function(records, operation, success) {
      */
     load: function(options) {
         var me = this;
-            
+
         options = options || {};
 
         if (Ext.isFunction(options)) {
@@ -974,7 +974,7 @@ store.load(function(records, operation, success) {
             start: (me.currentPage - 1) * me.pageSize,
             limit: me.pageSize,
             addRecords: false
-        });      
+        });
 
         return me.callParent([options]);
     },
@@ -1007,7 +1007,7 @@ store.load(function(records, operation, success) {
         //this is a callback that would have been passed to the 'read' function and is optional
         Ext.callback(operation.callback, operation.scope || me, [records, operation, successful]);
     },
-    
+
     /**
      * Create any new records when a write is returned from the server.
      * @private
@@ -1350,7 +1350,7 @@ store.load(function(records, operation, success) {
 
         this.data.clear();
     },
-    
+
     // Buffering
     /**
      * Prefetches data the Store using its configured {@link #proxy}.
@@ -1382,10 +1382,10 @@ store.load(function(records, operation, success) {
             me.loading = true;
             me.proxy.read(operation, me.onProxyPrefetch, me);
         }
-        
+
         return me;
     },
-    
+
     /**
      * Prefetches a page of data.
      * @param {Number} page The page to prefetch
@@ -1398,8 +1398,8 @@ store.load(function(records, operation, success) {
             pageSize = me.pageSize,
             start = (page - 1) * me.pageSize,
             end = start + pageSize;
-        
-        // Currently not requesting this page and range isn't already satisified 
+
+        // Currently not requesting this page and range isn't already satisified
         if (Ext.Array.indexOf(me.pagesRequested, page) === -1 && !me.rangeSatisfied(start, end)) {
             options = options || {};
             me.pagesRequested.push(page);
@@ -1410,12 +1410,12 @@ store.load(function(records, operation, success) {
                 callback: me.onWaitForGuarantee,
                 scope: me
             });
-            
+
             me.prefetch(options);
         }
-        
+
     },
-    
+
     /**
      * Returns a unique requestId to track requests.
      * @private
@@ -1424,7 +1424,7 @@ store.load(function(records, operation, success) {
         this.requestSeed = this.requestSeed || 1;
         return this.requestSeed++;
     },
-    
+
     /**
      * Handles a success pre-fetch
      * @private
@@ -1434,14 +1434,14 @@ store.load(function(records, operation, success) {
         var me         = this,
             resultSet  = operation.getResultSet(),
             records    = operation.getRecords(),
-            
+
             successful = operation.wasSuccessful();
-        
+
         if (resultSet) {
             me.totalCount = resultSet.total;
             me.fireEvent('totalcountchange', me.totalCount);
         }
-        
+
         if (successful) {
             me.cacheRecords(records, operation);
         }
@@ -1449,10 +1449,10 @@ store.load(function(records, operation, success) {
         if (operation.page) {
             Ext.Array.remove(me.pagesRequested, operation.page);
         }
-        
+
         me.loading = false;
         me.fireEvent('prefetch', me, records, successful, operation);
-        
+
         // HACK to support loadMask
         if (operation.blocking) {
             me.fireEvent('load', me, records, successful);
@@ -1461,7 +1461,7 @@ store.load(function(records, operation, success) {
         //this is a callback that would have been passed to the 'read' function and is optional
         Ext.callback(operation.callback, operation.scope || me, [records, operation, successful]);
     },
-    
+
     /**
      * Caches the records in the prefetch and stripes them with their server-side
      * index.
@@ -1474,25 +1474,25 @@ store.load(function(records, operation, success) {
             i      = 0,
             length = records.length,
             start  = operation ? operation.start : 0;
-        
+
         if (!Ext.isDefined(me.totalCount)) {
             me.totalCount = records.length;
             me.fireEvent('totalcountchange', me.totalCount);
         }
-        
+
         for (; i < length; i++) {
             // this is the true index, not the viewIndex
             records[i].index = start + i;
         }
-        
+
         me.prefetchData.addAll(records);
         if (me.purgePageCount) {
             me.purgeRecords();
         }
-        
+
     },
-    
-    
+
+
     /**
      * Purge the least recently used records in the prefetch if the purgeCount
      * has been exceeded.
@@ -1508,7 +1508,7 @@ store.load(function(records, operation, success) {
             me.prefetchData.removeAt(0);
         }
     },
-    
+
     /**
      * Determines if the range has already been satisfied in the prefetchData.
      * @private
@@ -1533,7 +1533,7 @@ store.load(function(records, operation, success) {
         }
         return satisfied;
     },
-    
+
     /**
      * Determines the page from a record index
      * @param {Number} index The record index
@@ -1542,7 +1542,7 @@ store.load(function(records, operation, success) {
     getPageFromRecordIndex: function(index) {
         return Math.floor(index / this.pageSize) + 1;
     },
-    
+
     /**
      * Handles a guaranteed range being loaded
      * @private
@@ -1555,17 +1555,17 @@ store.load(function(records, operation, success) {
             range = [],
             record,
             i = start;
-            
+
         //<debug>
         if (start > end) {
             Ext.Error.raise("Start (" + start + ") was greater than end (" + end + ")");
         }
         //</debug>
-        
+
         if (start !== me.guaranteedStart && end !== me.guaranteedEnd) {
             me.guaranteedStart = start;
             me.guaranteedEnd = end;
-            
+
             for (; i <= end; i++) {
                 record = me.prefetchData.getByKey(i);
                 //<debug>
@@ -1580,38 +1580,38 @@ store.load(function(records, operation, success) {
                 me.cb.call(me.scope || me, range);
             }
         }
-        
+
         me.unmask();
     },
-    
+
     // hack to support loadmask
     mask: function() {
         this.masked = true;
         this.fireEvent('beforeload');
     },
-    
+
     // hack to support loadmask
     unmask: function() {
         if (this.masked) {
             this.fireEvent('load');
         }
     },
-    
+
     /**
      * Returns the number of pending requests out.
      */
     hasPendingRequests: function() {
         return this.pendingRequests.length;
     },
-    
-    
+
+
     // wait until all requests finish, until guaranteeing the range.
     onWaitForGuarantee: function() {
         if (!this.hasPendingRequests()) {
             this.onGuaranteedRange();
         }
     },
-    
+
     /**
      * Guarantee a specific range, this will load the store with a range (that
      * must be the pageSize or smaller) and take care of any loading that may
@@ -1630,9 +1630,9 @@ store.load(function(records, operation, success) {
             }
         }
         //</debug>
-        
+
         end = (end > this.totalCount) ? this.totalCount - 1 : end;
-        
+
         var me = this,
             i = start,
             prefetchData = me.prefetchData,
@@ -1641,7 +1641,7 @@ store.load(function(records, operation, success) {
             endLoaded = !!prefetchData.getByKey(end),
             startPage = me.getPageFromRecordIndex(start),
             endPage = me.getPageFromRecordIndex(end);
-            
+
         me.cb = cb;
         me.scope = scope;
 
@@ -1676,7 +1676,7 @@ store.load(function(records, operation, success) {
             me.onGuaranteedRange();
         }
     },
-    
+
     // because prefetchData is stored by index
     // this invalidates all of the prefetchedData
     sort: function() {
@@ -1686,7 +1686,7 @@ store.load(function(records, operation, success) {
             start,
             end,
             range;
-            
+
         if (me.buffered) {
             if (me.remoteSort) {
                 prefetchData.clear();
@@ -1695,7 +1695,7 @@ store.load(function(records, operation, success) {
                 sorters = me.getSorters();
                 start = me.guaranteedStart;
                 end = me.guaranteedEnd;
-                
+
                 if (sorters.length) {
                     prefetchData.sort(sorters);
                     range = prefetchData.getRange();
@@ -1733,7 +1733,7 @@ store.load(function(records, operation, success) {
             me.fireEvent('datachanged', me);
         }
     },
-    
+
     /**
      * Finds the index of the first matching Record in this store by a specific field value.
      * @param {String} fieldName The name of the Record field to test.
@@ -1911,7 +1911,7 @@ store.load(function(records, operation, success) {
     indexOfId: function(id) {
         return this.data.indexOfKey(id);
     },
-        
+
     /**
      * Remove all items from the store.
      * @param {Boolean} silent Prevent the `clear` event from being fired.

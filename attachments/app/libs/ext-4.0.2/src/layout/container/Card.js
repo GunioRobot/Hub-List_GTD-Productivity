@@ -35,7 +35,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * {@img Ext.layout.container.Card/Ext.layout.container.Card.png Ext.layout.container.Card container layout}
  *
  * Example usage:
- * 
+ *
  *     var navigate = function(panel, direction){
  *         // This routine could contain business logic required to manage the navigation steps.
  *         // It would call setActiveItem as needed, manage navigation button state, handle any
@@ -48,7 +48,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         Ext.getCmp('move-prev').setDisabled(!layout.getPrev());
  *         Ext.getCmp('move-next').setDisabled(!layout.getNext());
  *     };
- *  
+ *
  *     Ext.create('Ext.panel.Panel', {
  *         title: 'Example Wizard',
  *         width: 300,
@@ -91,7 +91,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             html: '<h1>Congratulations!</h1><p>Step 3 of 3 - Complete</p>'
  *         }],
  *         renderTo: Ext.getBody()
- *     });  
+ *     });
  */
 Ext.define('Ext.layout.container.Card', {
 
@@ -106,7 +106,7 @@ Ext.define('Ext.layout.container.Card', {
 
     /**
      * Makes the given card active.
-     * 
+     *
      *     var card1 = Ext.create('Ext.panel.Panel', {itemId: 'card-1'});
      *     var card2 = Ext.create('Ext.panel.Panel', {itemId: 'card-2'});
      *     var panel = Ext.create('Ext.panel.Panel', {
@@ -118,7 +118,7 @@ Ext.define('Ext.layout.container.Card', {
      *     panel.getLayout().setActiveItem(card2);
      *     panel.getLayout().setActiveItem('card-2');
      *     panel.getLayout().setActiveItem(1);
-     * 
+     *
      * @param {Ext.Component/Number/String} newCard  The component, component {@link Ext.Component#id id},
      * {@link Ext.Component#itemId itemId}, or index of component.
      * @return {Ext.Component} the activated component or false when nothing activated.

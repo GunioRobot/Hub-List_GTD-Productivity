@@ -15,26 +15,26 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.state.Provider
  * <p>Abstract base class for state provider implementations. The provider is responsible
- * for setting values  and extracting values to/from the underlying storage source. The 
+ * for setting values  and extracting values to/from the underlying storage source. The
  * storage source can vary and the details should be implemented in a subclass. For example
  * a provider could use a server side database or the browser localstorage where supported.</p>
  *
- * <p>This class provides methods for encoding and decoding <b>typed</b> variables including 
+ * <p>This class provides methods for encoding and decoding <b>typed</b> variables including
  * dates and defines the Provider interface. By default these methods put the value and the
- * type information into a delimited string that can be stored. These should be overridden in 
+ * type information into a delimited string that can be stored. These should be overridden in
  * a subclass if you want to change the format of the encoded value and subsequent decoding.</p>
  */
 Ext.define('Ext.state.Provider', {
     mixins: {
         observable: 'Ext.util.Observable'
     },
-    
+
     /**
-     * @cfg {String} prefix A string to prefix to items stored in the underlying state store. 
+     * @cfg {String} prefix A string to prefix to items stored in the underlying state store.
      * Defaults to <tt>'ext-'</tt>
      */
     prefix: 'ext-',
-    
+
     constructor : function(config){
         config = config || {};
         var me = this;
@@ -50,7 +50,7 @@ Ext.define('Ext.state.Provider', {
         me.state = {};
         me.mixins.observable.constructor.call(me);
     },
-    
+
     /**
      * Returns the current value for a key
      * @param {String} name The key name
@@ -105,11 +105,11 @@ Ext.define('Ext.state.Provider', {
             type,
             value,
             keyValue;
-            
+
         if(!matches || !matches[1]){
             return; // non state
         }
-        
+
         type = matches[1];
         value = matches[2];
         switch (type) {
@@ -154,9 +154,9 @@ Ext.define('Ext.state.Provider', {
             enc,
             len,
             key;
-            
+
         if (value == null) {
-            return 'e:1';    
+            return 'e:1';
         } else if(typeof value == 'number') {
             enc = 'n:' + value;
         } else if(typeof value == 'boolean') {

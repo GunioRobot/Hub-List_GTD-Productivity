@@ -39,29 +39,29 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         margin: '0 0 10 0',
  *         floating: false,  // usually you want this set to True (default)
  *         renderTo: Ext.getBody(),  // usually rendered by it's containing component
- *         items: [{                        
- *             text: 'regular item 1'        
+ *         items: [{
+ *             text: 'regular item 1'
  *         },{
  *             text: 'regular item 2'
  *         },{
- *             text: 'regular item 3'  
+ *             text: 'regular item 3'
  *         }]
- *     }); 
- *     
+ *     });
+ *
  *     Ext.create('Ext.menu.Menu', {
  *         width: 100,
  *         height: 100,
  *         plain: true,
  *         floating: false,  // usually you want this set to True (default)
  *         renderTo: Ext.getBody(),  // usually rendered by it's containing component
- *         items: [{                        
- *             text: 'plain item 1'    
+ *         items: [{
+ *             text: 'plain item 1'
  *         },{
  *             text: 'plain item 2'
  *         },{
  *             text: 'plain item 3'
  *         }]
- *     }); 
+ *     });
  *
  */
 Ext.define('Ext.menu.Menu', {
@@ -605,13 +605,13 @@ Ext.define('Ext.menu.Menu', {
         }
         return me;
     },
-    
+
     // inherit docs
     showAt: function(){
         this.callParent(arguments);
         if (this.floating) {
             this.doConstrain();
-        }    
+        }
     },
 
     doConstrain : function() {

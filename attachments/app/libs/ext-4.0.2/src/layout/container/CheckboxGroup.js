@@ -136,7 +136,7 @@ Ext.define('Ext.layout.container.CheckboxGroup', {
                 ownerCt: owner
             });
         }
-        
+
         return shadowCt;
     },
 

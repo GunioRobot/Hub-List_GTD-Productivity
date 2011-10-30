@@ -23,7 +23,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * Changed by: Emil Cazamir, 2008-09-01
  */
 Ext.onReady(function() {
-    
+
     if(Ext.updater) {
         Ext.Updater.defaults.indicatorText = '<div class="loading-indicator">Încărcare...</div>';
     }

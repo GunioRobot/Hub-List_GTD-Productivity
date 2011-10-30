@@ -43,7 +43,7 @@ Ext.onReady(function(){
     if(Ext.LoadMask){
         Ext.LoadMask.prototype.msg = "Đang tải...";
     }
-    
+
     if(Ext.Date){
         Ext.Date.monthNames = [
            "Tháng 1",
@@ -70,7 +70,7 @@ Ext.onReady(function(){
            "Thứ bảy"
         ];
     }
-    
+
     if(Ext.MessageBox){
        Ext.MessageBox.buttonText = {
           ok     : "Đồng ý",

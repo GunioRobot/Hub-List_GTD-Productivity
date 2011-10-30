@@ -15,12 +15,12 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.grid.column.Template
  * @extends Ext.grid.column.Column
- * 
+ *
  * A Column definition class which renders a value by processing a {@link Ext.data.Model Model}'s
  * {@link Ext.data.Model#data data} using a {@link #tpl configured} {@link Ext.XTemplate XTemplate}.
- * 
+ *
  *  {@img Ext.grid.column.Template/Ext.grid.column.Template.png Ext.grid.column.Template grid column}
- * 
+ *
  * ## Code
  *     Ext.create('Ext.data.Store', {
  *         storeId:'employeeStore',
@@ -31,10 +31,10 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             {firstname:"Dwight", lastname:"Schrute", senority:2, department:"Sales"},
  *             {firstname:"Jim", lastname:"Halpert", senority:3, department:"Sales"},
  *             {firstname:"Kevin", lastname:"Malone", senority:4, department:"Accounting"},
- *             {firstname:"Angela", lastname:"Martin", senority:5, department:"Accounting"}                        
+ *             {firstname:"Angela", lastname:"Martin", senority:5, department:"Accounting"}
  *         ]
  *     });
- *     
+ *
  *     Ext.create('Ext.grid.Panel', {
  *         title: 'Column Template Demo',
  *         store: Ext.data.StoreManager.lookup('employeeStore'),
@@ -46,7 +46,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         width: 300,
  *         renderTo: Ext.getBody()
  *     });
- * 
+ *
  * @markdown
  */
 Ext.define('Ext.grid.column.Template', {
@@ -63,7 +63,7 @@ Ext.define('Ext.grid.column.Template', {
     constructor: function(cfg){
         var me = this,
             tpl;
-            
+
         me.callParent(arguments);
         tpl = me.tpl = (!Ext.isPrimitive(me.tpl) && me.tpl.compile) ? me.tpl : Ext.create('Ext.XTemplate', me.tpl);
 

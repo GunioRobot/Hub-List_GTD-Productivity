@@ -22,7 +22,7 @@ Ext.onReady(function() {
     if(Ext.Updater) {
         Ext.Updater.defaults.indicatorText = '<div class="loading-indicator">Nahrávam...</div>';
     }
-    
+
     if(Ext.view.View){
        Ext.view.View.prototype.emptyText = "";
     }

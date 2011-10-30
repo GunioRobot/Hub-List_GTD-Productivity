@@ -724,14 +724,14 @@ failure: function(response, opts) {
             result,
             success,
             response;
-            
+
         try {
             result = me.parseStatus(request.xhr.status);
         } catch (e) {
             // in some browsers we can't access the status if the readyState is not 4, so the request has failed
             result = {
-                success : false, 
-                isException : false 
+                success : false,
+                isException : false
             };
         }
         success = result.success;

@@ -17,9 +17,9 @@ If you are unsure which license is appropriate for your use, please contact the 
 
 This class specifies a generic target for an animation. It provides a wrapper around a
 series of different types of objects to allow for a generic animation API.
-A target can be a single object or a Composite object containing other objects that are 
-to be animated. This class and it's subclasses are generally not created directly, the 
-underlying animation will create the appropriate Ext.fx.target.Target object by passing 
+A target can be a single object or a Composite object containing other objects that are
+to be animated. This class and it's subclasses are generally not created directly, the
+underlying animation will create the appropriate Ext.fx.target.Target object by passing
 the instance to be animated.
 
 The following types of objects can be animated:
@@ -43,7 +43,7 @@ Ext.define('Ext.fx.target.Target', {
         this.target = target;
         this.id = this.getId();
     },
-    
+
     getId: function() {
         return this.target.id;
     }

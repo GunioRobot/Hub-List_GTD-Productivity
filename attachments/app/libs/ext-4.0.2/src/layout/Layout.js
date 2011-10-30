@@ -34,7 +34,7 @@ Ext.define('Ext.layout.Layout', {
             } else {
                 if (!layout || typeof layout === 'string') {
                     type = layout || defaultType;
-                    layout = {};                    
+                    layout = {};
                 }
                 else {
                     type = layout.type;
@@ -176,7 +176,7 @@ Ext.define('Ext.layout.Layout', {
      * Empty template method
      */
     configureItem: Ext.emptyFn,
-    
+
     // Placeholder empty functions for subclasses to extend
     onLayout : Ext.emptyFn,
     afterLayout : Ext.emptyFn,
@@ -192,7 +192,7 @@ Ext.define('Ext.layout.Layout', {
         var me = this,
             el = item.el,
             owner = me.owner;
-            
+
         // Clear managed dimensions flag when removed from the layout.
         if (item.rendered) {
             if (me.itemCls) {

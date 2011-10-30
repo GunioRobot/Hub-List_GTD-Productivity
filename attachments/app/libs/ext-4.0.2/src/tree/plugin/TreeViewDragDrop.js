@@ -164,14 +164,14 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
      * <p>Set to <code>false</code> to disallow dragging items from the View </p>
      */
     enableDrag: true,
-    
+
     /**
      * @cfg {String} nodeHighlightColor The color to use when visually highlighting the dragged
      * or dropped node (defaults to 'c3daf9' - light blue). The color must be a 6 digit hex value, without
      * a preceding '#'. See also {@link #nodeHighlightOnDrop} and {@link #nodeHighlightOnRepair}.
      */
     nodeHighlightColor: 'c3daf9',
-    
+
     /**
      * @cfg {Boolean} nodeHighlightOnDrop Whether or not to highlight any nodes after they are
      * successfully dropped on their target. Defaults to the value of `Ext.enableFx`.
@@ -179,7 +179,7 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
      * @markdown
      */
     nodeHighlightOnDrop: Ext.enableFx,
-    
+
     /**
      * @cfg {Boolean} nodeHighlightOnRepair Whether or not to highlight any nodes after they are
      * repaired from an unsuccessful drag/drop. Defaults to the value of `Ext.enableFx`.

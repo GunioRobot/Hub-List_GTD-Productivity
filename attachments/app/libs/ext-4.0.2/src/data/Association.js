@@ -49,7 +49,7 @@ Ext.define('Order', {
  *   <li>{@link Ext.data.BelongsToAssociation belongsTo associations}
  *   <li>{@link Ext.data.Model using Models}
  * </ul>
- * 
+ *
  * <b>Self association models</b>
  * <p>We can also have models that create parent/child associations between the same type. Below is an example, where
  * groups can be nested inside other groups:</p>
@@ -113,17 +113,17 @@ Ext.define('Group', {
 
 
 Ext.onReady(function(){
-    
+
     Group.load(10, {
         success: function(group){
             console.log(group.getGroup().get('name'));
-            
+
             group.groups().each(function(rec){
                 console.log(rec.get('name'));
             });
         }
     });
-    
+
 });
  * </code></pre>
  *
@@ -146,7 +146,7 @@ Ext.define('Ext.data.Association', {
     /**
      * @cfg {Ext.data.reader.Reader} reader A special reader to read associated data
      */
-    
+
     /**
      * @cfg {String} associationKey The name of the property in the data to read the association from.
      * Defaults to the name of the associated model.

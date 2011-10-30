@@ -32,7 +32,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * <p>PagingToolbar is typically used as one of the Grid's toolbars:</p>
  * <pre><code>
  *    var itemsPerPage = 2;   // set the number of items you want per page
- *    
+ *
  *    var store = Ext.create('Ext.data.Store', {
  *        id:'simpsonsStore',
  *        autoLoad: false,
@@ -48,15 +48,15 @@ If you are unsure which license is appropriate for your use, please contact the 
  *            }
  *        }
  *    });
- *    
+ *
  *    // specify segment of data you want to load using params
  *    store.load({
  *        params:{
- *            start:0,    
+ *            start:0,
  *            limit: itemsPerPage
  *        }
  *    });
- *    
+ *
  *    Ext.create('Ext.grid.Panel', {
  *        title: 'Simpsons',
  *        store: store,
@@ -82,14 +82,14 @@ If you are unsure which license is appropriate for your use, please contact the 
 store.load({
     params: {
         // specify params for the first page load if using paging
-        start: 0,          
+        start: 0,
         limit: myPageSize,
         // other params
         foo:   'bar'
     }
 });
  * </code></pre>
- * 
+ *
  * <p>If using {@link Ext.data.Store#autoLoad store's autoLoad} configuration:</p>
  * <pre><code>
 var myStore = new Ext.data.Store({
@@ -97,13 +97,13 @@ var myStore = new Ext.data.Store({
     ...
 });
  * </code></pre>
- * 
+ *
  * <p>The packet sent back from the server would have this form:</p>
  * <pre><code>
 {
     "success": true,
-    "results": 2000, 
-    "rows": [ // <b>*Note:</b> this must be an Array 
+    "results": 2000,
+    "rows": [ // <b>*Note:</b> this must be an Array
         { "id":  1, "name": "Bill", "occupation": "Gardener" },
         { "id":  2, "name":  "Ben", "occupation": "Horticulturalist" },
         ...
@@ -199,14 +199,14 @@ Ext.define('Ext.toolbar.Paging', {
      * The width in pixels of the input field used to display and change the current page number (defaults to 30).
      */
     inputItemWidth : 30,
-    
+
     /**
      * Gets the standard paging items in the toolbar
      * @private
      */
     getPagingItems: function() {
         var me = this;
-        
+
         return [{
             itemId: 'first',
             tooltip: me.firstText,
@@ -282,21 +282,21 @@ Ext.define('Ext.toolbar.Paging', {
         var me = this,
             pagingItems = me.getPagingItems(),
             userItems   = me.items || me.buttons || [];
-            
+
         if (me.prependButtons) {
             me.items = userItems.concat(pagingItems);
         } else {
             me.items = pagingItems.concat(userItems);
         }
         delete me.buttons;
-        
+
         if (me.displayInfo) {
             me.items.push('->');
             me.items.push({xtype: 'tbtext', itemId: 'displayItem'});
         }
-        
+
         me.callParent();
-        
+
         me.addEvents(
             /**
              * @event change
@@ -318,7 +318,7 @@ Ext.define('Ext.toolbar.Paging', {
              * Fires just before the active page is changed.
              * Return false to prevent the active page from being changed.
              * @param {Ext.toolbar.Paging} this
-             * @param {Number} page The page number that will be loaded on change 
+             * @param {Number} page The page number that will be loaded on change
              */
             'beforechange'
         );
@@ -358,7 +358,7 @@ Ext.define('Ext.toolbar.Paging', {
             currPage,
             pageCount,
             afterText;
-            
+
         if (!me.rendered) {
             return;
         }
@@ -383,14 +383,14 @@ Ext.define('Ext.toolbar.Paging', {
     getPageData : function(){
         var store = this.store,
             totalCount = store.getTotalCount();
-            
+
         return {
             total : totalCount,
             currentPage : store.currentPage,
             pageCount: Math.ceil(totalCount / store.pageSize),
             fromRecord: ((store.currentPage - 1) * store.pageSize) + 1,
             toRecord: Math.min(store.currentPage * store.pageSize, totalCount)
-            
+
         };
     },
 
@@ -406,7 +406,7 @@ Ext.define('Ext.toolbar.Paging', {
     readPageFromInput : function(pageData){
         var v = this.child('#inputItem').getValue(),
             pageNum = parseInt(v, 10);
-            
+
         if (!v || isNaN(pageNum)) {
             this.child('#inputItem').setValue(pageData.currentPage);
             return false;
@@ -489,7 +489,7 @@ Ext.define('Ext.toolbar.Paging', {
     movePrevious : function(){
         var me = this,
             prev = me.store.currentPage - 1;
-        
+
         if (prev > 0) {
             if (me.fireEvent('beforechange', me, prev) !== false) {
                 me.store.previousPage();
@@ -504,7 +504,7 @@ Ext.define('Ext.toolbar.Paging', {
         var me = this,
             total = me.getPageData().pageCount,
             next = me.store.currentPage + 1;
-               
+
         if (next <= total) {
             if (me.fireEvent('beforechange', me, next) !== false) {
                 me.store.nextPage();
@@ -516,9 +516,9 @@ Ext.define('Ext.toolbar.Paging', {
      * Move to the last page, has the same effect as clicking the 'last' button.
      */
     moveLast : function(){
-        var me = this, 
+        var me = this,
             last = me.getPageData().pageCount;
-        
+
         if (me.fireEvent('beforechange', me, last) !== false) {
             me.store.loadPage(last);
         }
@@ -530,7 +530,7 @@ Ext.define('Ext.toolbar.Paging', {
     doRefresh : function(){
         var me = this,
             current = me.store.currentPage;
-        
+
         if (me.fireEvent('beforechange', me, current) !== false) {
             me.store.loadPage(current);
         }
@@ -543,7 +543,7 @@ Ext.define('Ext.toolbar.Paging', {
      */
     bindStore : function(store, initial){
         var me = this;
-        
+
         if (!initial && me.store) {
             if(store !== me.store && me.store.autoDestroy){
                 me.store.destroy();

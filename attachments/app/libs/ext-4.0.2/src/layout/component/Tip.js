@@ -30,7 +30,7 @@ Ext.define('Ext.layout.component.Tip', {
     /* End Definitions */
 
     type: 'tip',
-    
+
     onLayout: function(width, height) {
         var me = this,
             owner = me.owner,
@@ -71,13 +71,13 @@ Ext.define('Ext.layout.component.Tip', {
         // Restore position
         el.setXY(xy);
     },
-    
+
     doAutoWidth: function(){
         var me = this,
             owner = me.owner,
             body = owner.body,
             width = body.getTextWidth();
-            
+
         if (owner.header) {
             width = Math.max(width, owner.header.getWidth());
         }

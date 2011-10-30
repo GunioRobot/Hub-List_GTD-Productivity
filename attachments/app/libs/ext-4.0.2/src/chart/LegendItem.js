@@ -59,7 +59,7 @@ Ext.define('Ext.chart.LegendItem', {
             var val = series[name];
             return (Ext.isArray(val) ? val[idx] : val);
         }
-        
+
         label = me.add('label', surface.add({
             type: 'text',
             x: 20,
@@ -114,13 +114,13 @@ Ext.define('Ext.chart.LegendItem', {
                 }
             }));
         }
-        
+
         me.setAttributes({
             hidden: false
         }, true);
-        
+
         bbox = me.getBBox();
-        
+
         mask = me.add('mask', surface.add({
             type: 'rect',
             x: bbox.x,
@@ -154,7 +154,7 @@ Ext.define('Ext.chart.LegendItem', {
             series._index = index;
             series.unHighlightItem();
         }, me);
-        
+
         if (!series.visibleInLegend(index)) {
             toggle = true;
             label.setAttributes({

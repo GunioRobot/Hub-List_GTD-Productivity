@@ -18,10 +18,10 @@ If you are unsure which license is appropriate for your use, please contact the 
  *
  * Provides a lightweight HTML Editor component. Some toolbar features are not supported by Safari and will be
  * automatically hidden when needed. These are noted in the config options where appropriate.
- * 
+ *
  * The editor's toolbar buttons have tooltips defined in the {@link #buttonTips} property, but they are not
  * enabled by default unless the global {@link Ext.tip.QuickTipManager} singleton is {@link Ext.tip.QuickTipManager#init initialized}.
- * 
+ *
  * An Editor is a sensitive component that can't be used in all spots standard fields can be used. Putting an Editor within
  * any element that has display set to 'none' can cause problems in Safari and Firefox due to their default iframe reloading bugs.
  *
@@ -36,11 +36,11 @@ If you are unsure which license is appropriate for your use, please contact the 
  *     Ext.create('Ext.form.HtmlEditor', {
  *         width: 580,
  *         height: 250,
- *         renderTo: Ext.getBody()        
+ *         renderTo: Ext.getBody()
  *     });
- * 
+ *
  * {@img Ext.form.HtmlEditor/Ext.form.HtmlEditor2.png Ext.form.HtmlEditor component}
- * 
+ *
  *     // Passed via xtype into a container and with custom options:
  *     Ext.tip.QuickTips.init();  // enable tooltips
  *     new Ext.panel.Panel({
@@ -154,7 +154,7 @@ Ext.define('Ext.form.field.HtmlEditor', {
     hideMode:'offsets',
 
     maskOnDisable: true,
-    
+
     // private
     initComponent : function(){
         var me = this;

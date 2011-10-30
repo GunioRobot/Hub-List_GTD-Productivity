@@ -16,7 +16,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @class Ext.data.StoreManager
  * @extends Ext.util.MixedCollection
  * <p>Contains a collection of all stores that are created that have an identifier.
- * An identifier can be assigned by setting the {@link Ext.data.AbstractStore#storeId storeId} 
+ * An identifier can be assigned by setting the {@link Ext.data.AbstractStore#storeId storeId}
  * property. When a store is in the StoreManager, it can be referred to via it's identifier:
  * <pre><code>
 Ext.create('Ext.data.Store', {
@@ -51,14 +51,14 @@ Ext.define('Ext.data.StoreManager', {
     alternateClassName: ['Ext.StoreMgr', 'Ext.data.StoreMgr', 'Ext.StoreManager'],
     singleton: true,
     uses: ['Ext.data.ArrayStore'],
-    
+
     /**
      * @cfg {Object} listeners @hide
      */
 
     /**
      * Registers one or more Stores with the StoreManager. You do not normally need to register stores
-     * manually.  Any store initialized with a {@link Ext.data.Store#storeId} will be auto-registered. 
+     * manually.  Any store initialized with a {@link Ext.data.Store#storeId} will be auto-registered.
      * @param {Ext.data.Store} store1 A Store instance
      * @param {Ext.data.Store} store2 (optional)
      * @param {Ext.data.Store} etc... (optional)
@@ -89,12 +89,12 @@ Ext.define('Ext.data.StoreManager', {
     lookup : function(store) {
         // handle the case when we are given an array or an array of arrays.
         if (Ext.isArray(store)) {
-            var fields = ['field1'], 
+            var fields = ['field1'],
                 expand = !Ext.isArray(store[0]),
                 data = store,
                 i,
                 len;
-                
+
             if(expand){
                 data = [];
                 for (i = 0, len = store.length; i < len; ++i) {
@@ -113,7 +113,7 @@ Ext.define('Ext.data.StoreManager', {
                 expanded: expand
             });
         }
-        
+
         if (Ext.isString(store)) {
             // store id
             return this.get(store);
@@ -127,9 +127,9 @@ Ext.define('Ext.data.StoreManager', {
     getKey : function(o) {
          return o.storeId;
     }
-}, function() {    
+}, function() {
     /**
-     * <p>Creates a new store for the given id and config, then registers it with the {@link Ext.data.StoreManager Store Mananger}. 
+     * <p>Creates a new store for the given id and config, then registers it with the {@link Ext.data.StoreManager Store Mananger}.
      * Sample usage:</p>
     <pre><code>
     Ext.regStore('AllUsers', {

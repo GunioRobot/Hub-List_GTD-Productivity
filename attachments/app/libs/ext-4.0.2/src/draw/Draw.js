@@ -338,7 +338,7 @@ Ext.define('Ext.draw.Draw', {
             ln = points.length,
             attrs = {x: 0, y: 0, bx: 0, by: 0, X: 0, Y: 0, qx: null, qy: null},
             i, seg, segLn, point;
-            
+
         for (i = 0; i < ln; i++) {
             points[i] = me.command2curve(points[i], attrs);
             if (points[i].length > 7) {
@@ -359,7 +359,7 @@ Ext.define('Ext.draw.Draw', {
         }
         return points;
     },
-    
+
     interpolatePaths: function (path, path2) {
         var me = this,
             p = me.pathToAbsolute(path),
@@ -409,7 +409,7 @@ Ext.define('Ext.draw.Draw', {
         }
         return [p, p2];
     },
-    
+
     //Returns any path command as a curveto command based on the attrs passed
     command2curve: function (pathCommand, d) {
         var me = this;
@@ -468,7 +468,7 @@ Ext.define('Ext.draw.Draw', {
                 y2
             ];
     },
-    
+
     rotate: function (x, y, rad) {
         var cos = Math.cos(rad),
             sin = Math.sin(rad),
@@ -643,7 +643,7 @@ Ext.define('Ext.draw.Draw', {
             return {x: 0, y: 0, width: 0, height: 0};
         }
         path = this.path2curve(path);
-        var x = 0, 
+        var x = 0,
             y = 0,
             X = [],
             Y = [],
@@ -862,7 +862,7 @@ Ext.define('Ext.draw.Draw', {
             control2X -= abs(nextY - control2Y) * (control2X - curX) / (control2Y - curY);
             control2Y = nextY;
         }
-        
+
         return {
             x1: control1X,
             y1: control1Y,

@@ -326,7 +326,7 @@ Ext.define('Ext.dd.DragTracker', {
             }
         }
 
-        // Returning false from a mousemove listener deactivates 
+        // Returning false from a mousemove listener deactivates
         if (this.fireEvent('mousemove', this, e) === false) {
             this.onMouseUp(e);
         } else {

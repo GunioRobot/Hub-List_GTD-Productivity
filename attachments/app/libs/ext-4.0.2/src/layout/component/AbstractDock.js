@@ -48,7 +48,7 @@ Ext.define('Ext.layout.component.AbstractDock', {
         }
         return returnValue;
     },
-    
+
     handleItemBorders: function() {
         var owner = this.owner,
             body = owner.body,
@@ -71,25 +71,25 @@ Ext.define('Ext.layout.component.AbstractDock', {
         for (i = 0, ln = docked.length; i < ln; i++) {
             item = docked[i];
             dock = item.dock;
-            
+
             if (item.ignoreBorderManagement) {
                 continue;
             }
-            
+
             if (!borders[dock].satisfied) {
                 borders[dock].push(item);
                 borders[dock].satisfied = true;
             }
-            
+
             if (!borders.top.satisfied && opposites[dock] !== 'top') {
                 borders.top.push(item);
             }
             if (!borders.right.satisfied && opposites[dock] !== 'right') {
                 borders.right.push(item);
-            }            
+            }
             if (!borders.bottom.satisfied && opposites[dock] !== 'bottom') {
                 borders.bottom.push(item);
-            }            
+            }
             if (!borders.left.satisfied && opposites[dock] !== 'left') {
                 borders.left.push(item);
             }
@@ -104,8 +104,8 @@ Ext.define('Ext.layout.component.AbstractDock', {
                             oldBorders[side][i].removeCls(Ext.baseCSSPrefix + 'docked-noborder-' + side);
                         }
                         if (!oldBorders[side].satisfied && !owner.bodyBorder) {
-                            body.removeCls(Ext.baseCSSPrefix + 'docked-noborder-' + side);                   
-                        }                    
+                            body.removeCls(Ext.baseCSSPrefix + 'docked-noborder-' + side);
+                        }
                     }
                     else if (oldBorders[side].satisfied) {
                         body.setStyle('border-' + side + '-width', '');
@@ -113,7 +113,7 @@ Ext.define('Ext.layout.component.AbstractDock', {
                 }
             }
         }
-                
+
         for (side in borders) {
             if (borders.hasOwnProperty(side)) {
                 ln = borders[side].length;
@@ -122,18 +122,18 @@ Ext.define('Ext.layout.component.AbstractDock', {
                         borders[side][i].addCls(Ext.baseCSSPrefix + 'docked-noborder-' + side);
                     }
                     if ((!borders[side].satisfied && !owner.bodyBorder) || owner.bodyBorder === false) {
-                        body.addCls(Ext.baseCSSPrefix + 'docked-noborder-' + side);                   
-                    }                    
+                        body.addCls(Ext.baseCSSPrefix + 'docked-noborder-' + side);
+                    }
                 }
                 else if (borders[side].satisfied) {
                     body.setStyle('border-' + side + '-width', '1px');
                 }
             }
         }
-        
+
         this.borders = borders;
     },
-    
+
     /**
      * @protected
      * @param {Ext.Component} owner The Panel that owns this DockLayout
@@ -695,20 +695,20 @@ Ext.define('Ext.layout.component.AbstractDock', {
             padding = info.padding,
             border = info.border,
             frameSize = me.frameSize;
-        
+
         // Panel collapse effectively hides the Panel's body, so this is a no-op.
         if (owner.collapsed) {
             return;
         }
-        
+
         if (Ext.isNumber(box.width)) {
             box.width -= bodyMargin.left + bodyMargin.right;
         }
-        
+
         if (Ext.isNumber(box.height)) {
             box.height -= bodyMargin.top + bodyMargin.bottom;
         }
-        
+
         me.setElementSize(body, box.width, box.height);
         if (Ext.isNumber(box.x)) {
             body.setLeft(box.x - padding.left - frameSize.left);
@@ -734,7 +734,7 @@ Ext.define('Ext.layout.component.AbstractDock', {
             item.layoutManagedWidth = 2;
             item.layoutManagedHeight = 1;
         }
-        
+
         item.addCls(Ext.baseCSSPrefix + 'docked');
         item.addClsWithUI('docked-' + item.dock);
     },

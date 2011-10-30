@@ -76,7 +76,7 @@ Ext.define('Ext.grid.Scroller', {
     afterRender: function() {
         var me = this;
         me.callParent();
-        
+
         me.mon(me.scrollEl, 'scroll', me.onElScroll, me);
         Ext.cache[me.el.id].skipGarbageCollection = true;
     },

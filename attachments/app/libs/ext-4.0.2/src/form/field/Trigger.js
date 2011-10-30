@@ -18,14 +18,14 @@ If you are unsure which license is appropriate for your use, please contact the 
  * <p>Provides a convenient wrapper for TextFields that adds a clickable trigger button (looks like a combobox by default).
  * The trigger has no default action, so you must assign a function to implement the trigger click handler by
  * overriding {@link #onTriggerClick}. You can create a Trigger field directly, as it renders exactly like a combobox
- * for which you can provide a custom implementation. 
+ * for which you can provide a custom implementation.
  * {@img Ext.form.field.Trigger/Ext.form.field.Trigger.png Ext.form.field.Trigger component}
  * For example:</p>
  * <pre><code>
 Ext.define('Ext.ux.CustomTrigger', {
     extend: 'Ext.form.field.Trigger',
     alias: 'widget.customtrigger',
-    
+
     // override onTriggerClick
     onTriggerClick: function() {
         Ext.Msg.alert('Status', 'You clicked my trigger!');
@@ -202,12 +202,12 @@ Ext.define('Ext.form.field.Trigger', {
         this.callParent();
         this.triggerWrap.unmask();
     },
-    
+
     onDisable: function() {
         this.callParent();
         this.triggerWrap.mask();
     },
-    
+
     afterRender: function() {
         this.callParent();
         this.updateEditState();

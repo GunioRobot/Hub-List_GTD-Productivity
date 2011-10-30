@@ -16,12 +16,12 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @class Ext.fx.Animator
  * Animation instance
 
-This class is used to run keyframe based animations, which follows the CSS3 based animation structure. 
-Keyframe animations differ from typical from/to animations in that they offer the ability to specify values 
+This class is used to run keyframe based animations, which follows the CSS3 based animation structure.
+Keyframe animations differ from typical from/to animations in that they offer the ability to specify values
 at various points throughout the animation.
 
 __Using Keyframes__
-The {@link #keyframes} option is the most important part of specifying an animation when using this 
+The {@link #keyframes} option is the most important part of specifying an animation when using this
 class. A key frame is a point in a particular animation. We represent this as a percentage of the
 total animation duration. At each key frame, we can specify the target values at that time. Note that
 you *must* specify the values at 0% and 100%, the start and ending values. There is also a {@link #keyframe}
@@ -46,19 +46,19 @@ In the example below, we modify the values of the element at each fifth througho
             },
             20: {
                 x: 30,
-                opacity: 0.5    
+                opacity: 0.5
             },
             40: {
                 x: 130,
-                backgroundColor: '0000FF'    
+                backgroundColor: '0000FF'
             },
             60: {
                 y: 80,
-                opacity: 0.3    
+                opacity: 0.3
             },
             80: {
                 width: 200,
-                y: 200    
+                y: 200
             },
             100: {
                 opacity: 1,
@@ -108,7 +108,7 @@ Ext.define('Ext.fx.Animator', {
      * @cfg {String} easing
 
 This describes how the intermediate values used during a transition will be calculated. It allows for a transition to change
-speed over its duration. 
+speed over its duration.
 
 - backIn
 - backOut

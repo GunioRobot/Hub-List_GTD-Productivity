@@ -29,15 +29,15 @@ If you are unsure which license is appropriate for your use, please contact the 
  *     var group = Ext.create('Ext.draw.CompositeSprite', {
  *         surface: drawComponent.surface
  *     });
- *                  
+ *
  * Then just by using `MixedCollection` methods it's possible to add {@link Ext.draw.Sprite}s:
- *  
+ *
  *     group.add(sprite1);
  *     group.add(sprite2);
  *     group.add(sprite3);
- *                  
+ *
  * And then apply common Sprite methods to them:
- *  
+ *
  *     group.setAttributes({
  *         fill: '#f00'
  *     }, true);
@@ -55,7 +55,7 @@ Ext.define('Ext.draw.CompositeSprite', {
     isCompositeSprite: true,
     constructor: function(config) {
         var me = this;
-        
+
         config = config || {};
         Ext.apply(me, config);
 
@@ -97,7 +97,7 @@ Ext.define('Ext.draw.CompositeSprite', {
 
     attachEvents: function(o) {
         var me = this;
-        
+
         o.on({
             scope: me,
             mousedown: me.onMouseDown,
@@ -122,7 +122,7 @@ Ext.define('Ext.draw.CompositeSprite', {
     /** Remove a Sprite from the Group */
     remove: function(o) {
         var me = this;
-        
+
         o.un({
             scope: me,
             mousedown: me.onMouseDown,
@@ -133,7 +133,7 @@ Ext.define('Ext.draw.CompositeSprite', {
         });
         me.callParent(arguments);
     },
-    
+
     /**
      * Returns the group bounding box.
      * Behaves like {@link Ext.draw.Sprite} getBBox method.
@@ -150,7 +150,7 @@ Ext.define('Ext.draw.CompositeSprite', {
             minY = infinity,
             maxWidth = -infinity,
             maxWidthBBox, maxHeightBBox;
-        
+
         for (; i < len; i++) {
             sprite = items[i];
             if (sprite.el) {
@@ -161,7 +161,7 @@ Ext.define('Ext.draw.CompositeSprite', {
                 maxWidth = Math.max(maxWidth, bb.width + bb.x);
             }
         }
-        
+
         return {
             x: minX,
             y: minY,
@@ -180,7 +180,7 @@ Ext.define('Ext.draw.CompositeSprite', {
         var i = 0,
             items = this.items,
             len = this.length;
-            
+
         for (; i < len; i++) {
             items[i].setAttributes(attrs, redraw);
         }
@@ -195,7 +195,7 @@ Ext.define('Ext.draw.CompositeSprite', {
         var i = 0,
             items = this.items,
             len = this.length;
-            
+
         for (; i < len; i++) {
             items[i].hide(redraw);
         }
@@ -210,7 +210,7 @@ Ext.define('Ext.draw.CompositeSprite', {
         var i = 0,
             items = this.items,
             len = this.length;
-            
+
         for (; i < len; i++) {
             items[i].show(redraw);
         }
@@ -223,7 +223,7 @@ Ext.define('Ext.draw.CompositeSprite', {
             items = me.items,
             surface = me.getSurface(),
             len = me.length;
-        
+
         if (surface) {
             for (; i < len; i++) {
                 surface.renderItem(items[i]);
@@ -237,7 +237,7 @@ Ext.define('Ext.draw.CompositeSprite', {
             items = this.items,
             len = this.length,
             item, el;
-            
+
         for (; i < len; i++) {
             item = items[i];
             el = item.el;
@@ -252,7 +252,7 @@ Ext.define('Ext.draw.CompositeSprite', {
             items = this.items,
             surface = this.getSurface(),
             len = this.length;
-        
+
         if (surface) {
             for (; i < len; i++) {
                 surface.addCls(items[i], obj);
@@ -265,14 +265,14 @@ Ext.define('Ext.draw.CompositeSprite', {
             items = this.items,
             surface = this.getSurface(),
             len = this.length;
-        
+
         if (surface) {
             for (; i < len; i++) {
                 surface.removeCls(items[i], obj);
             }
         }
     },
-    
+
     /**
      * Grab the surface from the items
      * @private
@@ -285,7 +285,7 @@ Ext.define('Ext.draw.CompositeSprite', {
         }
         return null;
     },
-    
+
     /**
      * Destroys the SpriteGroup
      */
@@ -293,7 +293,7 @@ Ext.define('Ext.draw.CompositeSprite', {
         var me = this,
             surface = me.getSurface(),
             item;
-            
+
         if (surface) {
             while (me.getCount() > 0) {
                 item = me.first();

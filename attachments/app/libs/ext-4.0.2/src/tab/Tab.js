@@ -16,15 +16,15 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @author Ed Spencer
  * @class Ext.tab.Tab
  * @extends Ext.button.Button
- * 
- * <p>Represents a single Tab in a {@link Ext.tab.Panel TabPanel}. A Tab is simply a slightly customized {@link Ext.button.Button Button}, 
+ *
+ * <p>Represents a single Tab in a {@link Ext.tab.Panel TabPanel}. A Tab is simply a slightly customized {@link Ext.button.Button Button},
  * styled to look like a tab. Tabs are optionally closable, and can also be disabled. 99% of the time you will not
  * need to create Tabs manually as the framework does so automatically when you use a {@link Ext.tab.Panel TabPanel}</p>
  */
 Ext.define('Ext.tab.Tab', {
     extend: 'Ext.button.Button',
     alias: 'widget.tab',
-    
+
     requires: [
         'Ext.layout.component.Tab',
         'Ext.util.KeyNav'
@@ -42,7 +42,7 @@ Ext.define('Ext.tab.Tab', {
      * Providing your own CSS for this class enables you to customize the active state.
      */
     activeCls: 'active',
-    
+
     /**
      * @cfg {String} disabledCls
      * The CSS class to be applied to a Tab when it is disabled. Defaults to 'x-tab-disabled'.
@@ -60,7 +60,7 @@ Ext.define('Ext.tab.Tab', {
     closable: true,
 
     /**
-     * @cfg {String} closeText 
+     * @cfg {String} closeText
      * The accessible text label for the close button link; only used when {@link #closable} = true.
      * Defaults to 'Close Tab'.
      */
@@ -81,7 +81,7 @@ Ext.define('Ext.tab.Tab', {
     scale: false,
 
     position: 'top',
-    
+
     initComponent: function() {
         var me = this;
 
@@ -113,7 +113,7 @@ Ext.define('Ext.tab.Tab', {
              */
             'close'
         );
-        
+
         me.callParent(arguments);
 
         if (me.card) {
@@ -126,35 +126,35 @@ Ext.define('Ext.tab.Tab', {
      */
     onRender: function() {
         var me = this;
-        
+
         me.addClsWithUI(me.position);
-        
+
         // Set all the state classNames, as they need to include the UI
         // me.disabledCls = me.getClsWithUIs('disabled');
 
         me.syncClosableUI();
 
         me.callParent(arguments);
-        
+
         if (me.active) {
             me.activate(true);
         }
 
         me.syncClosableElements();
-        
+
         me.keyNav = Ext.create('Ext.util.KeyNav', me.el, {
             enter: me.onEnterKey,
             del: me.onDeleteKey,
             scope: me
         });
     },
-    
+
     // inherit docs
     enable : function(silent) {
         var me = this;
 
         me.callParent(arguments);
-        
+
         me.removeClsWithUI(me.position + '-disabled');
 
         return me;
@@ -163,14 +163,14 @@ Ext.define('Ext.tab.Tab', {
     // inherit docs
     disable : function(silent) {
         var me = this;
-        
+
         me.callParent(arguments);
-        
+
         me.addClsWithUI(me.position + '-disabled');
 
         return me;
     },
-    
+
     /**
      * @ignore
      */
@@ -294,7 +294,7 @@ Ext.define('Ext.tab.Tab', {
             }
         }
     },
-    
+
     /**
      * Fires the close event on the tab.
      * @private
@@ -302,33 +302,33 @@ Ext.define('Ext.tab.Tab', {
     fireClose: function(){
         this.fireEvent('close', this);
     },
-    
+
     /**
      * @private
      */
     onEnterKey: function(e) {
         var me = this;
-        
+
         if (me.tabBar) {
             me.tabBar.onClick(e, me.el);
         }
     },
-    
+
    /**
      * @private
      */
     onDeleteKey: function(e) {
         var me = this;
-        
+
         if (me.closable) {
             me.onCloseClick();
         }
     },
-    
+
     // @private
     activate : function(supressEvent) {
         var me = this;
-        
+
         me.active = true;
         me.addClsWithUI([me.activeCls, me.position + '-' + me.activeCls]);
 
@@ -340,10 +340,10 @@ Ext.define('Ext.tab.Tab', {
     // @private
     deactivate : function(supressEvent) {
         var me = this;
-        
+
         me.active = false;
         me.removeClsWithUI([me.activeCls, me.position + '-' + me.activeCls]);
-        
+
         if (supressEvent !== true) {
             me.fireEvent('deactivate', me);
         }

@@ -70,7 +70,7 @@ Ext.define('Ext.resizer.Splitter', {
      * that the splitter is between.
      */
     defaultSplitMax: 1000,
-    
+
     /**
      * @cfg {String} collapsedCls
      * A class to add to the splitter when it is collapsed. See {@link #collapsible}.
@@ -160,7 +160,7 @@ Ext.define('Ext.resizer.Splitter', {
 
     getCollapseTarget: function() {
         var me = this;
-        
+
         return me.collapseTarget.isComponent ? me.collapseTarget : me.collapseTarget == 'prev' ? me.previousSibling() : me.nextSibling();
     },
 

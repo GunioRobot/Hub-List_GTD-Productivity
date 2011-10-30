@@ -57,14 +57,14 @@ and mouse wheel handlers set `{@link #keyNavEnabled keyNavEnabled}:false` and
         title: 'Personal Info',
         width: 300,
         bodyPadding: 10,
-        renderTo: Ext.getBody(),        
+        renderTo: Ext.getBody(),
         items: [{
             xtype: 'numberfield',
             anchor: '100%',
             name: 'age',
             fieldLabel: 'Age',
             minValue: 0, //prevents negative numbers
-    
+
             // Remove spinner buttons, and arrow key and mouse wheel listeners
             hideTrigger: true,
             keyNavEnabled: false,

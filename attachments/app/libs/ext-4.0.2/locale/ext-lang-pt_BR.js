@@ -96,7 +96,7 @@ Ext.onReady(function(){
            "S&aacute;bado"
         ];
     }
-    
+
     if(Ext.MessageBox){
        Ext.MessageBox.buttonText = {
           ok     : "OK",

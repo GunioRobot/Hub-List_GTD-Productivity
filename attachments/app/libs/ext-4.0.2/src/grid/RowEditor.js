@@ -46,7 +46,7 @@ Ext.define('Ext.grid.RowEditor', {
     lastScrollTop: 0,
 
     border: false,
-    
+
     // Change the hideMode to offsets so that we get accurate measurements when
     // the roweditor is hidden for laying out things like a TriggerField.
     hideMode: 'offsets',
@@ -442,7 +442,7 @@ Ext.define('Ext.grid.RowEditor', {
         // Maintain mapping of fields-to-columns
         // This will fire events that maintain our container items
         me.columns.add(field.id, column);
-        
+
         if (me.isVisible() && me.context) {
             me.renderColumnData(field, me.context.record);
         }

@@ -84,7 +84,7 @@ Ext.define('Ext.grid.plugin.Editing', {
         grid.isEditable = true;
         grid.editingPlugin = grid.view.editingPlugin = me;
     },
-    
+
     /**
      * Fires after the grid is reconfigured
      * @private

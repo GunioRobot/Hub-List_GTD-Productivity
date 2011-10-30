@@ -80,7 +80,7 @@ bodyCls: ['foo', 'bar']
      * This object holds the default weights applied to dockedItems that have no weight. These start with a
      * weight of 1, to allow negative weights to insert before top items and are odd numbers
      * so that even weights can be used to get between different dock orders.
-     * 
+     *
      * To make default docking order match border layout, do this:
      * <pre><code>
 Ext.panel.AbstractPanel.prototype.defaultDockWeights = { top: 1, bottom: 3, left: 5, right: 7 };</code></pre>

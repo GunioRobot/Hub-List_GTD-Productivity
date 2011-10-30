@@ -15,13 +15,13 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.chart.series.Area
  * @extends Ext.chart.series.Cartesian
- * 
+ *
  <p>
     Creates a Stacked Area Chart. The stacked area chart is useful when displaying multiple aggregated layers of information.
-    As with all other series, the Area Series must be appended in the *series* Chart array configuration. See the Chart 
+    As with all other series, the Area Series must be appended in the *series* Chart array configuration. See the Chart
     documentation for more information. A typical configuration object for the area series could be:
  </p>
-{@img Ext.chart.series.Area/Ext.chart.series.Area.png Ext.chart.series.Area chart series} 
+{@img Ext.chart.series.Area/Ext.chart.series.Area.png Ext.chart.series.Area chart series}
   <pre><code>
    var store = Ext.create('Ext.data.JsonStore', {
         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
@@ -30,10 +30,10 @@ If you are unsure which license is appropriate for your use, please contact the 
             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
-            {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}                                                
+            {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
         ]
     });
-    
+
     Ext.create('Ext.chart.Chart', {
         renderTo: Ext.getBody(),
         width: 500,
@@ -79,24 +79,24 @@ If you are unsure which license is appropriate for your use, please contact the 
         }]
     });
    </code></pre>
- 
-  
+
+
  <p>
-  In this configuration we set `area` as the type for the series, set highlighting options to true for highlighting elements on hover, 
-  take the left axis to measure the data in the area series, set as xField (x values) the name field of each element in the store, 
-  and as yFields (aggregated layers) seven data fields from the same store. Then we override some theming styles by adding some opacity 
+  In this configuration we set `area` as the type for the series, set highlighting options to true for highlighting elements on hover,
+  take the left axis to measure the data in the area series, set as xField (x values) the name field of each element in the store,
+  and as yFields (aggregated layers) seven data fields from the same store. Then we override some theming styles by adding some opacity
   to the style object.
  </p>
-  
+
  * @xtype area
- * 
+ *
  */
 Ext.define('Ext.chart.series.Area', {
 
     /* Begin Definitions */
 
     extend: 'Ext.chart.series.Cartesian',
-    
+
     alias: 'series.area',
 
     requires: ['Ext.chart.axis.Axis', 'Ext.draw.Color', 'Ext.fx.Anim'],
@@ -109,7 +109,7 @@ Ext.define('Ext.chart.series.Area', {
     stacked: true,
 
     /**
-     * @cfg {Object} style 
+     * @cfg {Object} style
      * Append styling properties to this object for it to override theme properties.
      */
     style: {},
@@ -323,7 +323,7 @@ Ext.define('Ext.chart.series.Area', {
                 items[areaIndex].pointsUp.push([x, y]);
             }
         }
-        
+
         // Close the paths
         for (areaIndex = 0; areaIndex < bounds.areasLen; areaIndex++) {
             // Excluded series
@@ -380,7 +380,7 @@ Ext.define('Ext.chart.series.Area', {
         if (!store || !store.getCount()) {
             return;
         }
-        
+
         paths = me.getPaths();
 
         if (!me.areas) {
@@ -406,7 +406,7 @@ Ext.define('Ext.chart.series.Area', {
             path = paths.paths[areaIndex];
             if (animate) {
                 //Add renderer to line. There is not a unique record associated with this.
-                rendererAttributes = me.renderer(areaElem, false, { 
+                rendererAttributes = me.renderer(areaElem, false, {
                     path: path,
                     // 'clip-rect': me.clipBox,
                     fill: colorArrayStyle[areaIndex % colorArrayLength],
@@ -417,7 +417,7 @@ Ext.define('Ext.chart.series.Area', {
                     to: rendererAttributes
                 });
             } else {
-                rendererAttributes = me.renderer(areaElem, false, { 
+                rendererAttributes = me.renderer(areaElem, false, {
                     path: path,
                     // 'clip-rect': me.clipBox,
                     hidden: false,
@@ -466,16 +466,16 @@ Ext.define('Ext.chart.series.Area', {
             x = item.point[0],
             y = item.point[1],
             bb, width, height;
-        
+
         label.setAttributes({
             text: format(storeItem.get(field[index])),
             hidden: true
         }, true);
-        
+
         bb = label.getBBox();
         width = bb.width / 2;
         height = bb.height / 2;
-        
+
         x = x - width < bbox.x? bbox.x + width : x;
         x = (x + width > bbox.x + bbox.width) ? (x - (x + width - bbox.x - bbox.width)) : x;
         y = y - height < bbox.y? bbox.y + height : y;
@@ -534,11 +534,11 @@ Ext.define('Ext.chart.series.Area', {
         a = (next[1] - prev[1]) / (next[0] - prev[0]);
         aprev = (cur[1] - prev[1]) / (cur[0] - prev[0]);
         anext = (next[1] - cur[1]) / (next[0] - cur[0]);
-        
+
         norm = Math.sqrt(1 + a * a);
         dir = [1 / norm, a / norm];
         normal = [-dir[1], dir[0]];
-        
+
         //keep the label always on the outer part of the "elbow"
         if (aprev > 0 && anext < 0 && normal[1] < 0 || aprev < 0 && anext > 0 && normal[1] > 0) {
             normal[0] *= -1;
@@ -551,13 +551,13 @@ Ext.define('Ext.chart.series.Area', {
         //position
         x = cur[0] + normal[0] * offsetFromViz;
         y = cur[1] + normal[1] * offsetFromViz;
-        
+
         //box position and dimensions
         boxx = x + (normal[0] > 0? 0 : -(bbox.width + 2 * offsetBox));
         boxy = y - bbox.height /2 - offsetBox;
         boxw = bbox.width + 2 * offsetBox;
         boxh = bbox.height + 2 * offsetBox;
-        
+
         //now check if we're out of bounds and invert the normal vector correspondingly
         //this may add new overlaps between labels (but labels won't be out of bounds).
         if (boxx < clipRect[0] || (boxx + boxw) > (clipRect[0] + clipRect[2])) {
@@ -570,13 +570,13 @@ Ext.define('Ext.chart.series.Area', {
         //update positions
         x = cur[0] + normal[0] * offsetFromViz;
         y = cur[1] + normal[1] * offsetFromViz;
-        
+
         //update box position and dimensions
         boxx = x + (normal[0] > 0? 0 : -(bbox.width + 2 * offsetBox));
         boxy = y - bbox.height /2 - offsetBox;
         boxw = bbox.width + 2 * offsetBox;
         boxh = bbox.height + 2 * offsetBox;
-        
+
         //set the line from the middle of the pie to the box.
         callout.lines.setAttributes({
             path: ["M", cur[0], cur[1], "L", x, y, "Z"]
@@ -597,14 +597,14 @@ Ext.define('Ext.chart.series.Area', {
             callout[p].show(true);
         }
     },
-    
+
     isItemInPoint: function(x, y, item, i) {
         var me = this,
             pointsUp = item.pointsUp,
             pointsDown = item.pointsDown,
             abs = Math.abs,
             dist = Infinity, p, pln, point;
-        
+
         for (p = 0, pln = pointsUp.length; p < pln; p++) {
             point = [pointsUp[p][0], pointsUp[p][1]];
             if (dist > abs(x - point[0])) {

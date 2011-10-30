@@ -21,7 +21,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *
  * {@img Ext.menu.Separator/Ext.menu.Separator.png Ext.menu.Separator component}
  *
- * ## Code 
+ * ## Code
  *
  *     Ext.create('Ext.menu.Menu', {
  *         width: 100,
@@ -38,79 +38,79 @@ If you are unsure which license is appropriate for your use, please contact the 
  *         },{
  *            text: 'regular item',
  *         }]
- *     }); 
+ *     });
  *
  * @markdown
  */
 Ext.define('Ext.menu.Separator', {
     extend: 'Ext.menu.Item',
     alias: 'widget.menuseparator',
-    
+
     /**
      * @cfg {String} activeCls @hide
      */
-    
+
     /**
      * @cfg {Boolean} canActivate @hide
      */
     canActivate: false,
-    
+
     /**
      * @cfg {Boolean} clickHideDelay @hide
      */
-     
+
     /**
      * @cfg {Boolean} destroyMenu @hide
      */
-     
+
     /**
      * @cfg {Boolean} disabledCls @hide
      */
-     
+
     focusable: false,
-     
+
     /**
      * @cfg {String} href @hide
      */
-    
+
     /**
      * @cfg {String} hrefTarget @hide
      */
-    
+
     /**
      * @cfg {Boolean} hideOnClick @hide
      */
     hideOnClick: false,
-    
+
     /**
      * @cfg {String} icon @hide
      */
-    
+
     /**
      * @cfg {String} iconCls @hide
      */
-    
+
     /**
      * @cfg {Mixed} menu @hide
      */
-    
+
     /**
      * @cfg {String} menuAlign @hide
      */
-    
+
     /**
      * @cfg {Number} menuExpandDelay @hide
      */
-    
+
     /**
      * @cfg {Number} menuHideDelay @hide
      */
-    
+
     /**
      * @cfg {Boolean} plain @hide
      */
     plain: true,
-    
+
     /**
      * @cfg {String} separatorCls
      * The CSS class used by the separator item to show the incised line.
@@ -118,22 +118,22 @@ Ext.define('Ext.menu.Separator', {
      * @markdown
      */
     separatorCls: Ext.baseCSSPrefix + 'menu-item-separator',
-    
+
     /**
      * @cfg {String} text @hide
      */
     text: '&#160;',
-    
+
     onRender: function(ct, pos) {
         var me = this,
             sepCls = me.separatorCls;
-            
+
         me.cls += ' ' + sepCls;
-        
+
         Ext.applyIf(me.renderSelectors, {
             itemSepEl: '.' + sepCls
         });
-        
+
         me.callParent(arguments);
     }
 });

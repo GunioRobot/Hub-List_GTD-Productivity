@@ -21,13 +21,13 @@ If you are unsure which license is appropriate for your use, please contact the 
  *
  * {@img Ext.Img/Ext.Img.png Ext.Img component}
  *
- * ## Example usage: 
+ * ## Example usage:
  *
  *     var changingImage = Ext.create('Ext.Img', {
  *         src: 'http://www.sencha.com/img/20110215-feat-html5.png',
  *         renderTo: Ext.getBody()
  *     });
- *      
+ *
  *     // change the src of the image programmatically
  *     changingImage.setSrc('http://www.sencha.com/img/20110215-feat-perf.png');
 */
@@ -43,10 +43,10 @@ Ext.define('Ext.Img', {
             src: this.src
         };
     },
-    
+
     // null out this function, we can't set any html inside the image
     initRenderTpl: Ext.emptyFn,
-    
+
     /**
      * Updates the {@link #src} of the image
      */

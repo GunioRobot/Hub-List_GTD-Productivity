@@ -81,15 +81,15 @@ Ext.define('Ext.form.Label', {
      * @cfg {String} html An HTML fragment that will be used as the label's innerHTML (defaults to '').
      * Note that if {@link #text} is specified it will take precedence and this value will be ignored.
      */
-    
+
     maskOnDisable: false,
     getElConfig: function(){
         var me = this;
         return {
-            tag: 'label', 
-            id: me.id, 
+            tag: 'label',
+            id: me.id,
             htmlFor: me.forId || '',
-            html: me.text ? Ext.util.Format.htmlEncode(me.text) : (me.html || '') 
+            html: me.text ? Ext.util.Format.htmlEncode(me.text) : (me.html || '')
         };
     },
 
@@ -103,7 +103,7 @@ Ext.define('Ext.form.Label', {
      */
     setText : function(text, encode){
         var me = this;
-        
+
         encode = encode !== false;
         if(encode) {
             me.text = text;
@@ -112,7 +112,7 @@ Ext.define('Ext.form.Label', {
             me.html = text;
             delete me.text;
         }
-        
+
         if(me.rendered){
             me.el.dom.innerHTML = encode !== false ? Ext.util.Format.htmlEncode(text) : text;
         }

@@ -18,33 +18,33 @@ If you are unsure which license is appropriate for your use, please contact the 
  *
  * <p>AbstractStore is a superclass of {@link Ext.data.Store} and {@link Ext.data.TreeStore}. It's never used directly,
  * but offers a set of methods used by both of those subclasses.</p>
- * 
+ *
  * <p>We've left it here in the docs for reference purposes, but unless you need to make a whole new type of Store, what
- * you're probably looking for is {@link Ext.data.Store}. If you're still interested, here's a brief description of what 
+ * you're probably looking for is {@link Ext.data.Store}. If you're still interested, here's a brief description of what
  * AbstractStore is and is not.</p>
- * 
- * <p>AbstractStore provides the basic configuration for anything that can be considered a Store. It expects to be 
- * given a {@link Ext.data.Model Model} that represents the type of data in the Store. It also expects to be given a 
+ *
+ * <p>AbstractStore provides the basic configuration for anything that can be considered a Store. It expects to be
+ * given a {@link Ext.data.Model Model} that represents the type of data in the Store. It also expects to be given a
  * {@link Ext.data.proxy.Proxy Proxy} that handles the loading of data into the Store.</p>
- * 
+ *
  * <p>AbstractStore provides a few helpful methods such as {@link #load} and {@link #sync}, which load and save data
  * respectively, passing the requests through the configured {@link #proxy}. Both built-in Store subclasses add extra
- * behavior to each of these functions. Note also that each AbstractStore subclass has its own way of storing data - 
+ * behavior to each of these functions. Note also that each AbstractStore subclass has its own way of storing data -
  * in {@link Ext.data.Store} the data is saved as a flat {@link Ext.util.MixedCollection MixedCollection}, whereas in
  * {@link Ext.data.TreeStore TreeStore} we use a {@link Ext.data.Tree} to maintain the data's hierarchy.</p>
- * 
+ *
  * The store provides filtering and sorting support. This sorting/filtering can happen on the client side
  * or can be completed on the server. This is controlled by the {@link #remoteSort} and (@link #remoteFilter{ config
  * options. For more information see the {@link #sort} and {@link #filter} methods.
  */
 Ext.define('Ext.data.AbstractStore', {
     requires: ['Ext.util.MixedCollection', 'Ext.data.Operation', 'Ext.util.Filter'],
-    
+
     mixins: {
         observable: 'Ext.util.Observable',
         sortable: 'Ext.util.Sortable'
     },
-    
+
     statics: {
         create: function(store){
             if (!store.isStore) {
@@ -54,9 +54,9 @@ Ext.define('Ext.data.AbstractStore', {
                 store = Ext.createByAlias('store.' + store.type, store);
             }
             return store;
-        }    
+        }
     },
-    
+
     remoteSort  : false,
     remoteFilter: false,
 
@@ -131,13 +131,13 @@ Ext.define('Ext.data.AbstractStore', {
     isStore: true,
 
     /**
-     * @cfg {String} storeId Optional unique identifier for this store. If present, this Store will be registered with 
+     * @cfg {String} storeId Optional unique identifier for this store. If present, this Store will be registered with
      * the {@link Ext.data.StoreManager}, making it easy to reuse elsewhere. Defaults to undefined.
      */
-    
+
     /**
      * @cfg {Array} fields
-     * This may be used in place of specifying a {@link #model} configuration. The fields should be a 
+     * This may be used in place of specifying a {@link #model} configuration. The fields should be a
      * set of {@link Ext.data.Field} configuration objects. The store will automatically create a {@link Ext.data.Model}
      * with these fields. In general this configuration option should be avoided, it exists for the purposes of
      * backwards compatibility. For anything more complicated, such as specifying a particular id property or
@@ -145,12 +145,12 @@ Ext.define('Ext.data.AbstractStore', {
      */
 
     sortRoot: 'data',
-    
+
     //documented above
     constructor: function(config) {
         var me = this,
             filters;
-        
+
         me.addEvents(
             /**
              * @event add
@@ -169,7 +169,7 @@ Ext.define('Ext.data.AbstractStore', {
              * @param {Number} index The index of the record that was removed
              */
             'remove',
-            
+
             /**
              * @event update
              * Fires when a Record has been updated
@@ -222,7 +222,7 @@ Ext.define('Ext.data.AbstractStore', {
              */
             'clear'
         );
-        
+
         Ext.apply(me, config);
         // don't use *config* anymore from here on... use *me* instead...
 
@@ -274,9 +274,9 @@ Ext.define('Ext.data.AbstractStore', {
         if (me.storeId) {
             Ext.data.StoreManager.register(me);
         }
-        
-        me.mixins.sortable.initSortable.call(me);        
-        
+
+        me.mixins.sortable.initSortable.call(me);
+
         /**
          * The collection of {@link Ext.util.Filter Filters} currently applied to this Store
          * @property filters
@@ -295,24 +295,24 @@ Ext.define('Ext.data.AbstractStore', {
      */
     setProxy: function(proxy) {
         var me = this;
-        
+
         if (proxy instanceof Ext.data.proxy.Proxy) {
             proxy.setModel(me.model);
         } else {
             if (Ext.isString(proxy)) {
                 proxy = {
-                    type: proxy    
+                    type: proxy
                 };
             }
             Ext.applyIf(proxy, {
                 model: me.model
             });
-            
+
             proxy = Ext.createByAlias('proxy.' + proxy.type, proxy);
         }
-        
+
         me.proxy = proxy;
-        
+
         return me.proxy;
     },
 
@@ -329,7 +329,7 @@ Ext.define('Ext.data.AbstractStore', {
         var me = this,
             instance = Ext.ModelManager.create(Ext.applyIf(data, me.modelDefaults), me.model.modelName),
             operation;
-        
+
         options = options || {};
 
         Ext.applyIf(options, {
@@ -340,7 +340,7 @@ Ext.define('Ext.data.AbstractStore', {
         operation = Ext.create('Ext.data.Operation', options);
 
         me.proxy.create(operation, me.onProxyWrite, me);
-        
+
         return instance;
     },
 
@@ -400,7 +400,7 @@ Ext.define('Ext.data.AbstractStore', {
     destroy: function(options) {
         var me = this,
             operation;
-            
+
         options = options || {};
 
         Ext.applyIf(options, {
@@ -556,7 +556,7 @@ Ext.define('Ext.data.AbstractStore', {
     filterBy: function(fn, scope) {
 
     },
-    
+
     /**
      * Synchronizes the Store with its Proxy. This asks the Proxy to batch together any new, updated
      * and deleted records in the store, updating the Store's internal representation of the records
@@ -634,14 +634,14 @@ Ext.define('Ext.data.AbstractStore', {
             filters: me.filters.items,
             sorters: me.getSorters()
         });
-        
+
         operation = Ext.create('Ext.data.Operation', options);
 
         if (me.fireEvent('beforeload', me, operation) !== false) {
             me.loading = true;
             me.proxy.read(operation, me.onProxyLoad, me);
         }
-        
+
         return me;
     },
 
@@ -652,11 +652,11 @@ Ext.define('Ext.data.AbstractStore', {
      */
     afterEdit : function(record) {
         var me = this;
-        
+
         if (me.autoSync) {
             me.sync();
         }
-        
+
         me.fireEvent('update', me, record, Ext.data.Model.EDIT);
     },
 
@@ -682,7 +682,7 @@ Ext.define('Ext.data.AbstractStore', {
 
     destroyStore: function() {
         var me = this;
-        
+
         if (!me.isDestroyed) {
             if (me.storeId) {
                 Ext.data.StoreManager.unregister(me);
@@ -700,7 +700,7 @@ Ext.define('Ext.data.AbstractStore', {
             }
         }
     },
-    
+
     doSort: function(sorterFn) {
         var me = this;
         if (me.remoteSort) {
@@ -715,7 +715,7 @@ Ext.define('Ext.data.AbstractStore', {
     getCount: Ext.emptyFn,
 
     getById: Ext.emptyFn,
-    
+
     /**
      * Removes all records from the store. This method does a "fast remove",
      * individual remove events are not called. The {@link #clear} event is

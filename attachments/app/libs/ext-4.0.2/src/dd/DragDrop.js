@@ -61,14 +61,14 @@ If you are unsure which license is appropriate for your use, please contact the 
  */
 Ext.define('Ext.dd.DragDrop', {
     requires: ['Ext.dd.DragDropManager'],
-    
+
     /**
      * Creates new DragDrop.
      * @param {String} id of the element that is linked to this instance
      * @param {String} sGroup the group of related DragDrop objects
      * @param {object} config an object containing configurable attributes.
      * Valid properties for DragDrop:
-     * 
+     *
      * - padding
      * - isTarget
      * - maintainOffset
@@ -79,7 +79,7 @@ Ext.define('Ext.dd.DragDrop', {
             this.init(id, sGroup, config);
         }
     },
-    
+
     /**
      * Set to false to enable a DragDrop object to fire drag events while dragging
      * over its own Element. Defaults to true - DragDrop objects do not by default
@@ -128,7 +128,7 @@ Ext.define('Ext.dd.DragDrop', {
 
     /**
      * An object who's property names identify HTML tags to be considered invalid as drag handles.
-     * A non-null property value identifies the tag as invalid. Defaults to the 
+     * A non-null property value identifies the tag as invalid. Defaults to the
      * following value which prevents drag operations from being initiated by &lt;a> elements:<pre><code>
 {
     A: "A"
@@ -522,7 +522,7 @@ Ext.define('Ext.dd.DragDrop', {
         var b = Ext.get(this.getEl()).getBox(),
             ce = Ext.get(constrainTo),
             s = ce.getScroll(),
-            c, 
+            c,
             cd = ce.dom;
         if(cd == document.body){
             c = { x: s.left, y: s.top, width: Ext.core.Element.getViewWidth(), height: Ext.core.Element.getViewHeight()};

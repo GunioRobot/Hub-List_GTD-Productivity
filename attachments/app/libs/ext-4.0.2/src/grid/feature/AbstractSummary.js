@@ -19,23 +19,23 @@ If you are unsure which license is appropriate for your use, please contact the 
  * calculations to be used in the grid.
  */
 Ext.define('Ext.grid.feature.AbstractSummary', {
-    
+
     /* Begin Definitions */
-   
+
     extend: 'Ext.grid.feature.Feature',
-    
+
     alias: 'feature.abstractsummary',
-   
+
     /* End Definitions */
-   
+
    /**
     * @cfg {Boolean} showSummaryRow True to show the summary row. Defaults to <tt>true</tt>.
     */
     showSummaryRow: true,
-    
+
     // @private
     nestedIdRe: /\{\{id\}([\w\-]*)\}/g,
-    
+
     /**
      * Toggle whether or not to show the summary row.
      * @param {Boolan} visible True to show the summary row
@@ -43,7 +43,7 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
     toggleSummaryRow: function(visible){
         this.showSummaryRow = !!visible;
     },
-    
+
     /**
      * Gets any fragments to be used in the tpl
      * @private
@@ -58,7 +58,7 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
         }
         return fragments;
     },
-    
+
     /**
      * Prints a summary row
      * @private
@@ -67,21 +67,21 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
      */
     printSummaryRow: function(index){
         var inner = this.view.getTableChunker().metaRowTpl.join('');
-        
+
         inner = inner.replace('x-grid-row', 'x-grid-row-summary');
         inner = inner.replace('{{id}}', '{gridSummaryValue}');
-        inner = inner.replace(this.nestedIdRe, '{id$1}');  
+        inner = inner.replace(this.nestedIdRe, '{id$1}');
         inner = inner.replace('{[this.embedRowCls()]}', '{rowCls}');
         inner = inner.replace('{[this.embedRowAttr()]}', '{rowAttr}');
         inner = Ext.create('Ext.XTemplate', inner, {
             firstOrLastCls: Ext.view.TableChunker.firstOrLastCls
         });
-        
+
         return inner.applyTemplate({
             columns: this.getPrintData(index)
         });
     },
-    
+
     /**
      * Gets the value for the column from the attached data.
      * @param {Ext.grid.column.Column} column The header
@@ -103,7 +103,7 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
         }
         return value;
     },
-    
+
     /**
      * Get the summary data for a field.
      * @private
@@ -111,7 +111,7 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
      * @param {String/Function} type The type of aggregation. If a function is specified it will
      * be passed to the stores aggregate function.
      * @param {String} field The field to aggregate on
-     * @param {Boolean} group True to aggregate in grouped mode 
+     * @param {Boolean} group True to aggregate in grouped mode
      * @return {Mixed} See the return type for the store functions.
      */
     getSummary: function(store, type, field, group){
@@ -119,7 +119,7 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
             if (Ext.isFunction(type)) {
                 return store.aggregate(type, null, group);
             }
-            
+
             switch (type) {
                 case 'count':
                     return store.count(group);
@@ -133,10 +133,10 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
                     return store.average(field, group);
                 default:
                     return group ? {} : '';
-                    
+
             }
         }
     }
-    
+
 });
 

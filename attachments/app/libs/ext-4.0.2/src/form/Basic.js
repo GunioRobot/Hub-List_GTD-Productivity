@@ -15,45 +15,45 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.form.Basic
  * @extends Ext.util.Observable
- * 
+ *
  * Provides input field management, validation, submission, and form loading services for the collection
  * of {@link Ext.form.field.Field Field} instances within a {@link Ext.container.Container}. It is recommended
  * that you use a {@link Ext.form.Panel} as the form container, as that has logic to automatically
  * hook up an instance of {@link Ext.form.Basic} (plus other conveniences related to field configuration.)
- * 
+ *
  * ## Form Actions
- * 
+ *
  * The Basic class delegates the handling of form loads and submits to instances of {@link Ext.form.action.Action}.
  * See the various Action implementations for specific details of each one's functionality, as well as the
  * documentation for {@link #doAction} which details the configuration options that can be specified in
  * each action call.
- * 
+ *
  * The default submit Action is {@link Ext.form.action.Submit}, which uses an Ajax request to submit the
  * form's values to a configured URL. To enable normal browser submission of an Ext form, use the
  * {@link #standardSubmit} config option.
- * 
+ *
  * Note: File uploads are not performed using normal 'Ajax' techniques; see the description for
  * {@link #hasUpload} for details.
- * 
+ *
  * ## Example usage:
- * 
+ *
  *     Ext.create('Ext.form.Panel', {
  *         title: 'Basic Form',
  *         renderTo: Ext.getBody(),
  *         bodyPadding: 5,
  *         width: 350,
- * 
+ *
  *         // Any configuration items here will be automatically passed along to
  *         // the Ext.form.Basic instance when it gets created.
- * 
+ *
  *         // The form will submit an AJAX request to this URL when submitted
  *         url: 'save-form.php',
- * 
+ *
  *         items: [{
  *             fieldLabel: 'Field',
  *             name: 'theField'
  *         }],
- * 
+ *
  *         buttons: [{
  *             text: 'Submit',
  *             handler: function() {
@@ -73,7 +73,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             }
  *         }]
  *     });
- * 
+ *
  * @docauthor Jason Johnston <jason@sencha.com>
  */
 Ext.define('Ext.form.Basic', {
@@ -632,7 +632,7 @@ myFormPanel.getForm().submit({
         this._record = record;
         return this.setValues(record.data);
     },
-    
+
     /**
      * Returns the last Ext.data.Model instance that was loaded via {@link #loadRecord}
      * @return {Ext.data.Model} The record

@@ -50,7 +50,7 @@ Ext.applyIf(Ext.core.Element, {
             }
             var parts  = box.split(' '),
                 ln = parts.length;
-    
+
             if (ln == 1) {
                 parts[1] = parts[2] = parts[3] = parts[0];
             }
@@ -61,7 +61,7 @@ Ext.applyIf(Ext.core.Element, {
             else if (ln == 3) {
                 parts[3] = parts[1];
             }
-    
+
             return {
                 top   :parseFloat(parts[0]) || 0,
                 right :parseFloat(parts[1]) || 0,
@@ -69,9 +69,9 @@ Ext.applyIf(Ext.core.Element, {
                 left  :parseFloat(parts[3]) || 0
             };
         }
-        
+
     },
-    
+
     /**
      * Parses a number or string representing margin sizes into an object. Supports CSS-style margin declarations
      * (e.g. 10, "10", "10 10", "10 10 10" and "10 10 10 10" are all valid options and would return the same result)
@@ -83,12 +83,12 @@ Ext.applyIf(Ext.core.Element, {
     unitizeBox : function(box, units) {
         var A = this.addUnits,
             B = this.parseBox(box);
-            
+
         return A(B.top, units) + ' ' +
                A(B.right, units) + ' ' +
                A(B.bottom, units) + ' ' +
                A(B.left, units);
-        
+
     },
 
     // private
@@ -172,11 +172,11 @@ Ext.applyIf(Ext.core.Element, {
         if (Ext.supports.OrientationChange) {
             return (window.orientation == 0) ? 'portrait' : 'landscape';
         }
-        
+
         return (window.innerHeight > window.innerWidth) ? 'portrait' : 'landscape';
     },
 
-    /** 
+    /**
      * Returns the top Element that is located at the passed coordinates
      * @static
      * @param {Number} x The x coordinate
@@ -186,7 +186,7 @@ Ext.applyIf(Ext.core.Element, {
     fromPoint: function(x, y) {
         return Ext.get(document.elementFromPoint(x, y));
     },
-    
+
     /**
      * Converts a CSS string into an object with a property for each style.
      * <p>
@@ -204,7 +204,7 @@ console.log(Ext.core.Element.parseStyles(css));
         var out = {},
             cssRe = this.cssRe,
             matches;
-            
+
         if (styles) {
             // Since we're using the g flag on the regex, we need to set the lastIndex.
             // This automatically happens on some implementations, but not others, see:

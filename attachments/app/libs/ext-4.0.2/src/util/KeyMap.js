@@ -65,7 +65,7 @@ Ext.define('Ext.util.KeyMap', {
      */
     constructor: function(el, binding, eventName){
         var me = this;
-        
+
         Ext.apply(me, {
             el: Ext.get(el),
             eventName: eventName || me.eventName,
@@ -76,7 +76,7 @@ Ext.define('Ext.util.KeyMap', {
         }
         me.enable();
     },
-    
+
     eventName: 'keydown',
 
     /**
@@ -91,7 +91,7 @@ alt                 Boolean          True to handle key only when alt is pressed
 handler             Function         The function to call when KeyMap finds the expected key combination
 fn                  Function         Alias of handler (for backwards-compatibility)
 scope               Object           The scope of the callback function
-defaultEventAction  String           A default action to apply to the event. Possible values are: stopEvent, stopPropagation, preventDefault. If no value is set no action is performed. 
+defaultEventAction  String           A default action to apply to the event. Possible values are: stopEvent, stopPropagation, preventDefault. If no value is set no action is performed.
 </pre>
      *
      * Usage:
@@ -118,7 +118,7 @@ map.addBinding({
             Ext.each(binding, this.addBinding, this);
             return;
         }
-        
+
         var keyCode = binding.key,
             processed = false,
             key,
@@ -130,18 +130,18 @@ map.addBinding({
         if (Ext.isString(keyCode)) {
             keys = [];
             keyString = keyCode.toLowerCase();
-            
+
             for (i = 0, len = keyString.length; i < len; ++i){
                 keys.push(keyString.charCodeAt(i));
             }
             keyCode = keys;
             processed = true;
         }
-        
+
         if (!Ext.isArray(keyCode)) {
             keyCode = [keyCode];
         }
-        
+
         if (!processed) {
             for (i = 0, len = keyCode.length; i < len; ++i) {
                 key = keyCode[i];
@@ -150,12 +150,12 @@ map.addBinding({
                 }
             }
         }
-        
+
         this.bindings.push(Ext.apply({
             keyCode: keyCode
         }, binding));
     },
-    
+
     /**
      * Process any keydown events on the element
      * @private
@@ -166,20 +166,20 @@ map.addBinding({
             var bindings = this.bindings,
                 i = 0,
                 len = bindings.length;
-                
+
             event = this.processEvent(event);
             for(; i < len; ++i){
                 this.processBinding(bindings[i], event);
             }
         }
     },
-    
+
     /**
      * Ugly hack to allow this class to be tested. Currently WebKit gives
      * no way to raise a key event properly with both
      * a) A keycode
      * b) The alt/ctrl/shift modifiers
-     * So we have to simulate them here. Yuk! 
+     * So we have to simulate them here. Yuk!
      * This is a stub method intended to be overridden by tests.
      * More info: https://bugs.webkit.org/show_bug.cgi?id=16735
      * @private
@@ -187,7 +187,7 @@ map.addBinding({
     processEvent: function(event){
         return event;
     },
-    
+
     /**
      * Process a particular binding and fire the handler if necessary.
      * @private
@@ -204,8 +204,8 @@ map.addBinding({
                 i,
                 len,
                 keydownEvent = new Ext.EventObjectImpl(event);
-                
-            
+
+
             for (i = 0, len = keyCode.length; i < len; ++i) {
                 if (key === keyCode[i]) {
                     if (handler.call(scope, key, event) !== true && defaultEventAction) {
@@ -216,7 +216,7 @@ map.addBinding({
             }
         }
     },
-    
+
     /**
      * Check if the modifiers on the event match those on the binding
      * @private
@@ -229,7 +229,7 @@ map.addBinding({
             i = 0,
             len = keys.length,
             val, key;
-            
+
         for (; i < len; ++i){
             key = keys[i];
             val = binding[key];
@@ -307,14 +307,14 @@ map.addBinding({
             this.enable();
         }
     },
-    
+
     /**
      * Destroys the KeyMap instance and removes all handlers.
      * @param {Boolean} removeEl True to also remove the attached element
      */
     destroy: function(removeEl){
         var me = this;
-        
+
         me.bindings = [];
         me.disable();
         if (removeEl === true) {

@@ -26,7 +26,7 @@ Ext.define('Ext.tree.ViewDropZone', {
      * sibling of the parent when dropped (defaults to false)
      */
     allowParentInserts: false,
- 
+
     /**
      * @cfg {String} allowContainerDrop
      * True if drops on the tree container (outside of a specific tree node) are allowed (defaults to false)
@@ -129,7 +129,7 @@ Ext.define('Ext.tree.ViewDropZone', {
                 return false;
             }
         }
-        
+
         // Respect the allowDrop field on Tree nodes
         if (position === 'append' && targetNode.get('allowDrop') === false) {
             return false;
@@ -162,8 +162,8 @@ Ext.define('Ext.tree.ViewDropZone', {
         if (position == 'append' && !this.expandProcId && !Ext.Array.contains(data.records, targetNode) && !targetNode.isLeaf() && !targetNode.isExpanded()) {
             this.queueExpand(targetNode);
         }
-            
-            
+
+
         if (this.isValidDropPoint(node, position, dragZone, e, data)) {
             this.valid = true;
             this.currentPosition = position;
@@ -174,7 +174,7 @@ Ext.define('Ext.tree.ViewDropZone', {
 
             /*
              * In the code below we show the proxy again. The reason for doing this is showing the indicator will
-             * call toFront, causing it to get a new z-index which can sometimes push the proxy behind it. We always 
+             * call toFront, causing it to get a new z-index which can sometimes push the proxy behind it. We always
              * want the proxy to be above, so calling show on the proxy will call toFront and bring it forward.
              */
             if (position == 'before') {
@@ -202,7 +202,7 @@ Ext.define('Ext.tree.ViewDropZone', {
     onContainerOver : function(dd, e, data) {
         return e.getTarget('.' + this.indicatorCls) ? this.currentCls : this.dropNotAllowed;
     },
-    
+
     notifyOut: function() {
         this.callParent(arguments);
         this.cancelExpand();
@@ -266,16 +266,16 @@ Ext.define('Ext.tree.ViewDropZone', {
             for (i = 0, len = data.records.length; i < len; i++) {
                 argList[0] = data.records[i];
                 node = insertionMethod.apply(targetNode, argList);
-                
+
                 if (Ext.enableFx && me.dropHighlight) {
                     recordDomNodes.push(view.getNode(node));
                 }
             }
-            
+
             // Kick off highlights after everything's been inserted, so they are
             // more in sync without insertion/render overhead.
             if (Ext.enableFx && me.dropHighlight) {
-                //FIXME: the check for n.firstChild is not a great solution here. Ideally the line should simply read 
+                //FIXME: the check for n.firstChild is not a great solution here. Ideally the line should simply read
                 //Ext.fly(n.firstChild) but this yields errors in IE6 and 7. See ticket EXTJSIV-1705 for more details
                 Ext.Array.forEach(recordDomNodes, function(n) {
                     if (n) {

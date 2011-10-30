@@ -930,16 +930,16 @@ Ext.String = {
             '<': '&lt;',
             '"': '&quot;'
         }, keys = [], p, regex;
-        
+
         for (p in entities) {
             keys.push(p);
         }
-        
+
         regex = new RegExp('(' + keys.join('|') + ')', 'g');
-        
+
         return function(value) {
             return (!value) ? value : String(value).replace(regex, function(match, capture) {
-                return entities[capture];    
+                return entities[capture];
             });
         };
     })(),
@@ -957,13 +957,13 @@ Ext.String = {
             '&lt;': '<',
             '&quot;': '"'
         }, keys = [], p, regex;
-        
+
         for (p in entities) {
             keys.push(p);
         }
-        
+
         regex = new RegExp('(' + keys.join('|') + '|&#[0-9]{1,5};' + ')', 'g');
-        
+
         return function(value) {
             return (!value) ? value : String(value).replace(regex, function(match, capture) {
                 if (capture in entities) {
@@ -2151,7 +2151,7 @@ Ext.num = function() {
 
         /**
          * Inserts items in to an array.
-         * 
+         *
          * @param {Array} array The Array on which to replace.
          * @param {Number} index The index in the array at which to operate.
          * @param {Array} items The array of items to insert at index.
@@ -2166,7 +2166,7 @@ Ext.num = function() {
          * of Array, but works around bugs in IE8's splice method and is often more convenient
          * to call because it accepts an array of items to insert rather than use a variadic
          * argument list.
-         * 
+         *
          * @param {Array} array The Array on which to replace.
          * @param {Number} index The index in the array at which to operate.
          * @param {Number} removeCount The number of items to remove at index (can be 0).
@@ -4775,25 +4775,25 @@ var Base = Ext.Base = function() {};
          *             totalCreated: 0,
          *             speciesName: 'Cat' // My.Cat.speciesName = 'Cat'
          *         },
-         *  
+         *
          *         constructor: function() {
          *             var statics = this.statics();
-         *  
+         *
          *             alert(statics.speciesName);     // always equals to 'Cat' no matter what 'this' refers to
          *                                             // equivalent to: My.Cat.speciesName
-         *  
+         *
          *             alert(this.self.speciesName);   // dependent on 'this'
-         *  
+         *
          *             statics.totalCreated++;
-         *  
+         *
          *             return this;
          *         },
-         *  
+         *
          *         clone: function() {
          *             var cloned = new this.self;                      // dependent on 'this'
-         *  
+         *
          *             cloned.groupName = this.statics().speciesName;   // equivalent to: My.Cat.speciesName
-         *  
+         *
          *             return cloned;
          *         }
          *     });
@@ -4801,11 +4801,11 @@ var Base = Ext.Base = function() {};
          *
          *     Ext.define('My.SnowLeopard', {
          *         extend: 'My.Cat',
-         *  
+         *
          *         statics: {
          *             speciesName: 'Snow Leopard'     // My.SnowLeopard.speciesName = 'Snow Leopard'
          *         },
-         *  
+         *
          *         constructor: function() {
          *             this.callParent();
          *         }
@@ -4841,7 +4841,7 @@ var Base = Ext.Base = function() {};
          *     Ext.define('My.Cat', {
          *         constructor: function() {
          *             alert("I'm a cat!");
-         *   
+         *
          *             return this;
          *         }
          *     });
@@ -4849,11 +4849,11 @@ var Base = Ext.Base = function() {};
          *     My.Cat.override({
          *         constructor: function() {
          *             alert("I'm going to be a cat!");
-         *   
+         *
          *             var instance = this.callOverridden();
-         *   
+         *
          *             alert("Meeeeoooowwww");
-         *   
+         *
          *             return instance;
          *         }
          *     });
@@ -4899,7 +4899,7 @@ var Base = Ext.Base = function() {};
          *     Ext.define('My.cool.Class', {
          *         ...
          *     });
-         *      
+         *
          *     My.cool.Class.create({
          *         someConfig: true
          *     });
@@ -5244,178 +5244,178 @@ var Base = Ext.Base = function() {};
  * @author Jacky Nguyen <jacky@sencha.com>
  * @docauthor Jacky Nguyen <jacky@sencha.com>
  * @class Ext.Class
- * 
+ *
  * Handles class creation throughout the whole framework. Note that most of the time {@link Ext#define Ext.define} should
  * be used instead, since it's a higher level wrapper that aliases to {@link Ext.ClassManager#create}
  * to enable namespacing and dynamic dependency resolution.
- * 
+ *
  * # Basic syntax: #
- * 
+ *
  *     Ext.define(className, properties);
- * 
+ *
  * in which `properties` is an object represent a collection of properties that apply to the class. See
  * {@link Ext.ClassManager#create} for more detailed instructions.
- * 
+ *
  *     Ext.define('Person', {
  *          name: 'Unknown',
- * 
+ *
  *          constructor: function(name) {
  *              if (name) {
  *                  this.name = name;
  *              }
- * 
+ *
  *              return this;
  *          },
- * 
+ *
  *          eat: function(foodType) {
  *              alert("I'm eating: " + foodType);
- * 
+ *
  *              return this;
  *          }
  *     });
- * 
+ *
  *     var aaron = new Person("Aaron");
  *     aaron.eat("Sandwich"); // alert("I'm eating: Sandwich");
- * 
+ *
  * Ext.Class has a powerful set of extensible {@link Ext.Class#registerPreprocessor pre-processors} which takes care of
  * everything related to class creation, including but not limited to inheritance, mixins, configuration, statics, etc.
- * 
+ *
  * # Inheritance: #
- * 
+ *
  *     Ext.define('Developer', {
  *          extend: 'Person',
- * 
+ *
  *          constructor: function(name, isGeek) {
  *              this.isGeek = isGeek;
- * 
+ *
  *              // Apply a method from the parent class' prototype
  *              this.callParent([name]);
- * 
+ *
  *              return this;
- * 
+ *
  *          },
- * 
+ *
  *          code: function(language) {
  *              alert("I'm coding in: " + language);
- * 
+ *
  *              this.eat("Bugs");
- * 
+ *
  *              return this;
  *          }
  *     });
- * 
+ *
  *     var jacky = new Developer("Jacky", true);
  *     jacky.code("JavaScript"); // alert("I'm coding in: JavaScript");
  *                               // alert("I'm eating: Bugs");
- * 
+ *
  * See {@link Ext.Base#callParent} for more details on calling superclass' methods
- * 
+ *
  * # Mixins: #
- * 
+ *
  *     Ext.define('CanPlayGuitar', {
  *          playGuitar: function() {
  *             alert("F#...G...D...A");
  *          }
  *     });
- * 
+ *
  *     Ext.define('CanComposeSongs', {
  *          composeSongs: function() { ... }
  *     });
- * 
+ *
  *     Ext.define('CanSing', {
  *          sing: function() {
  *              alert("I'm on the highway to hell...")
  *          }
  *     });
- * 
+ *
  *     Ext.define('Musician', {
  *          extend: 'Person',
- * 
+ *
  *          mixins: {
  *              canPlayGuitar: 'CanPlayGuitar',
  *              canComposeSongs: 'CanComposeSongs',
  *              canSing: 'CanSing'
  *          }
  *     })
- * 
+ *
  *     Ext.define('CoolPerson', {
  *          extend: 'Person',
- * 
+ *
  *          mixins: {
  *              canPlayGuitar: 'CanPlayGuitar',
  *              canSing: 'CanSing'
  *          },
- * 
+ *
  *          sing: function() {
  *              alert("Ahem....");
- * 
+ *
  *              this.mixins.canSing.sing.call(this);
- * 
+ *
  *              alert("[Playing guitar at the same time...]");
- * 
+ *
  *              this.playGuitar();
  *          }
  *     });
- * 
+ *
  *     var me = new CoolPerson("Jacky");
- * 
+ *
  *     me.sing(); // alert("Ahem...");
  *                // alert("I'm on the highway to hell...");
  *                // alert("[Playing guitar at the same time...]");
  *                // alert("F#...G...D...A");
- * 
+ *
  * # Config: #
- * 
+ *
  *     Ext.define('SmartPhone', {
  *          config: {
  *              hasTouchScreen: false,
  *              operatingSystem: 'Other',
  *              price: 500
  *          },
- * 
+ *
  *          isExpensive: false,
- * 
+ *
  *          constructor: function(config) {
  *              this.initConfig(config);
- * 
+ *
  *              return this;
  *          },
- * 
+ *
  *          applyPrice: function(price) {
  *              this.isExpensive = (price > 500);
- * 
+ *
  *              return price;
  *          },
- * 
+ *
  *          applyOperatingSystem: function(operatingSystem) {
  *              if (!(/^(iOS|Android|BlackBerry)$/i).test(operatingSystem)) {
  *                  return 'Other';
  *              }
- * 
+ *
  *              return operatingSystem;
  *          }
  *     });
- * 
+ *
  *     var iPhone = new SmartPhone({
  *          hasTouchScreen: true,
  *          operatingSystem: 'iOS'
  *     });
- * 
+ *
  *     iPhone.getPrice(); // 500;
  *     iPhone.getOperatingSystem(); // 'iOS'
  *     iPhone.getHasTouchScreen(); // true;
  *     iPhone.hasTouchScreen(); // true
- * 
+ *
  *     iPhone.isExpensive; // false;
  *     iPhone.setPrice(600);
  *     iPhone.getPrice(); // 600
  *     iPhone.isExpensive; // true;
- * 
+ *
  *     iPhone.setOperatingSystem('AlienOS');
  *     iPhone.getOperatingSystem(); // 'Other'
- * 
+ *
  * # Statics: #
- * 
+ *
  *     Ext.define('Computer', {
  *          statics: {
  *              factory: function(brand) {
@@ -5423,12 +5423,12 @@ var Base = Ext.Base = function() {};
  *                  return new this(brand);
  *              }
  *          },
- * 
+ *
  *          constructor: function() { ... }
  *     });
- * 
+ *
  *     var dellComputer = Computer.factory('Dell');
- * 
+ *
  * Also see {@link Ext.Base#statics} and {@link Ext.Base#self} for more details on accessing
  * static properties within class methods
  *
@@ -7117,7 +7117,7 @@ var Base = Ext.Base = function() {};
  * It has all the advantages combined from asynchronous and synchronous loading. The development flow is simple:
  *
  * ### Step 1: Start writing your application using synchronous approach.
- * 
+ *
  * Ext.Loader will automatically fetch all dependencies on demand as they're needed during run-time. For example:
  *
  *     Ext.onReady(function(){
@@ -8588,7 +8588,7 @@ Ext.JSON = new(function() {
      * @return {String} The string literal to use in a JSON string.
      */
     this.encodeDate = function(o) {
-        return '"' + o.getFullYear() + "-" 
+        return '"' + o.getFullYear() + "-"
         + pad(o.getMonth() + 1) + "-"
         + pad(o.getDate()) + "T"
         + pad(o.getHours()) + ":"
@@ -8829,12 +8829,12 @@ Ext.apply(Ext, {
 
     /**
      * Execute a callback function in a particular scope. If no function is passed the call is ignored.
-     * 
+     *
      * For example, these lines are equivalent:
-     * 
+     *
      *     Ext.callback(myFunc, this, [arg1, arg2]);
      *     Ext.isFunction(myFunc) && myFunc.apply(this, [arg1, arg2]);
-     * 
+     *
      * @param {Function} callback The callback to execute
      * @param {Object} scope (optional) The scope to execute in
      * @param {Array} args (optional) The arguments to pass to the function
@@ -9364,7 +9364,7 @@ Ext.addBehaviors({
          * log buffer is limited to a maximum of "Ext.log.max" entries (defaults to 100).
          *
          * If additional parameters are passed, they are joined and appended to the message.
-         * 
+         *
          * This method does nothing in a release build.
          *
          * @param {String|Object} message The message to log or an options object with any
@@ -9639,7 +9639,7 @@ Options include:
 This class also uses the default date format defined here: {@link Ext.Date#defaultFormat}.
 
 __Using with renderers__
-There are two helper functions that return a new function that can be used in conjunction with 
+There are two helper functions that return a new function that can be used in conjunction with
 grid renderers:
 
     columns: [{
@@ -9649,7 +9649,7 @@ grid renderers:
         dataIndex: 'time',
         renderer: Ext.util.Format.numberRenderer('0.000')
     }]
-    
+
 Functions that only take a single argument can also be passed directly:
     columns: [{
         dataIndex: 'cost',
@@ -9658,7 +9658,7 @@ Functions that only take a single argument can also be passed directly:
         dataIndex: 'productCode',
         renderer: Ext.util.Format.uppercase
     }]
-    
+
 __Using with XTemplates__
 XTemplates can also directly use Ext.util.Format functions:
 
@@ -9807,7 +9807,7 @@ XTemplates can also directly use Ext.util.Format functions:
             for (; i < decimals; i++) {
                 format += '0';
             }
-            v = UtilFormat.number(v, format); 
+            v = UtilFormat.number(v, format);
             if ((end || UtilFormat.currencyAtEnd) === true) {
                 return Ext.String.format("{0}{1}{2}", negativeSign, v, currencySign || UtilFormat.currencySign);
             } else {
@@ -10015,7 +10015,7 @@ XTemplates can also directly use Ext.util.Format functions:
                     fnum = psplit[0] + dec + psplit[1];
                 }
             }
-            
+
             if (neg) {
                 /*
                  * Edge case. If we have a very small negative number it will get rounded to 0,
@@ -10159,7 +10159,7 @@ XTemplates can also directly use Ext.util.Format functions:
 // Start a simple clock task that updates a div once per second
 var updateClock = function(){
     Ext.fly('clock').update(new Date().format('g:i:s A'));
-} 
+}
 var task = {
     run: updateClock,
     interval: 1000 //1 second
@@ -10175,8 +10175,8 @@ Ext.TaskManager.start({
 
  * </code></pre>
  * <p>See the {@link #start} method for details about how to configure a task object.</p>
- * Also see {@link Ext.util.DelayedTask}. 
- * 
+ * Also see {@link Ext.util.DelayedTask}.
+ *
  * @constructor
  * @param {Number} interval (optional) The minimum precision in milliseconds supported by this TaskRunner instance
  * (defaults to 10)
@@ -10332,9 +10332,9 @@ Ext.TaskManager.start(task);
 Ext.TaskManager = Ext.create('Ext.util.TaskRunner');
 /**
  * @class Ext.is
- * 
+ *
  * Determines information about the current platform the application is running on.
- * 
+ *
  * @singleton
  */
 Ext.is = {
@@ -10369,14 +10369,14 @@ Ext.is = {
          * @type {Boolean}
          */
         this.iOS = this.iPhone || this.iPad || this.iPod;
-        
+
         /**
          * @property Standalone Detects when application has been saved to homescreen.
          * @type {Boolean}
          */
         this.Standalone = !!window.navigator.standalone;
     },
-    
+
     /**
      * @property iPhone True when the browser is running on a iPhone
      * @type {Boolean}
@@ -10386,7 +10386,7 @@ Ext.is = {
         regex: /iPhone/i,
         identity: 'iPhone'
     },
-    
+
     /**
      * @property iPod True when the browser is running on a iPod
      * @type {Boolean}
@@ -10396,7 +10396,7 @@ Ext.is = {
         regex: /iPod/i,
         identity: 'iPod'
     },
-    
+
     /**
      * @property iPad True when the browser is running on a iPad
      * @type {Boolean}
@@ -10406,7 +10406,7 @@ Ext.is = {
         regex: /iPad/i,
         identity: 'iPad'
     },
-    
+
     /**
      * @property Blackberry True when the browser is running on a Blackberry
      * @type {Boolean}
@@ -10416,7 +10416,7 @@ Ext.is = {
         regex: /Blackberry/i,
         identity: 'Blackberry'
     },
-    
+
     /**
      * @property Android True when the browser is running on an Android device
      * @type {Boolean}
@@ -10426,7 +10426,7 @@ Ext.is = {
         regex: /Android/i,
         identity: 'Android'
     },
-    
+
     /**
      * @property Mac True when the browser is running on a Mac
      * @type {Boolean}
@@ -10436,7 +10436,7 @@ Ext.is = {
         regex: /Mac/i,
         identity: 'Mac'
     },
-    
+
     /**
      * @property Windows True when the browser is running on Windows
      * @type {Boolean}
@@ -10446,7 +10446,7 @@ Ext.is = {
         regex: /Win/i,
         identity: 'Windows'
     },
-    
+
     /**
      * @property Linux True when the browser is running on Linux
      * @type {Boolean}
@@ -10464,7 +10464,7 @@ Ext.is.init();
  * @class Ext.supports
  *
  * Determines information about features are supported in the current environment
- * 
+ *
  * @singleton
  */
 Ext.supports = {
@@ -10512,13 +10512,13 @@ Ext.supports = {
      * @type {Boolean}
      */
     OrientationChange: ((typeof window.orientation != 'undefined') && ('onorientationchange' in window)),
-    
+
     /**
      * @property DeviceMotion True if the device supports device motion (acceleration and rotation rate)
      * @type {Boolean}
      */
     DeviceMotion: ('ondevicemotion' in window),
-    
+
     /**
      * @property Touch True if the device supports touch
      * @type {Boolean}
@@ -10565,7 +10565,7 @@ Ext.supports = {
                 return out;
             }
         },
-        
+
         /**
          * @property RightMargin True if the device supports right margin.
          * See https://bugs.webkit.org/show_bug.cgi?id=13343 for why this is needed.
@@ -10583,7 +10583,7 @@ Ext.supports = {
          * @property DisplayChangeInputSelectionBug True if INPUT elements lose their
          * selection when their display style is changed. Essentially, if a text input
          * has focus and its display style is changed, the I-beam disappears.
-         * 
+         *
          * This bug is encountered due to the work around in place for the {@link #RightMargin}
          * bug. This has been observed in Safari 4.0.4 and older, and appears to be fixed
          * in Safari 5. It's not clear if Safari 4.1 has the bug, but it has the same WebKit
@@ -10655,7 +10655,7 @@ Ext.supports = {
                 return view && view.getComputedStyle;
             }
         },
-        
+
         /**
          * @property SVG True if the device supports SVG
          * @type {Boolean}
@@ -10666,7 +10666,7 @@ Ext.supports = {
                 return !!doc.createElementNS && !!doc.createElementNS( "http:/" + "/www.w3.org/2000/svg", "svg").createSVGRect;
             }
         },
-    
+
         /**
          * @property Canvas True if the device supports Canvas
          * @type {Boolean}
@@ -10677,7 +10677,7 @@ Ext.supports = {
                 return !!doc.createElement('canvas').getContext;
             }
         },
-        
+
         /**
          * @property VML True if the device supports VML
          * @type {Boolean}
@@ -10690,7 +10690,7 @@ Ext.supports = {
                 return (d.childNodes.length == 2);
             }
         },
-        
+
         /**
          * @property Float True if the device supports CSS float
          * @type {Boolean}
@@ -10701,7 +10701,7 @@ Ext.supports = {
                 return !!div.lastChild.style.cssFloat;
             }
         },
-        
+
         /**
          * @property AudioTag True if the device supports the HTML5 audio tag
          * @type {Boolean}
@@ -10712,7 +10712,7 @@ Ext.supports = {
                 return !!doc.createElement('audio').canPlayType;
             }
         },
-        
+
         /**
          * @property History True if the device supports HTML5 history
          * @type {Boolean}
@@ -10723,7 +10723,7 @@ Ext.supports = {
                 return !!(window.history && history.pushState);
             }
         },
-        
+
         /**
          * @property CSS3DTransform True if the device supports CSS3DTransform
          * @type {Boolean}
@@ -10747,13 +10747,13 @@ Ext.supports = {
                     w3c      = 'linear-gradient(left top, black, white)',
                     moz      = '-moz-' + w3c,
                     options  = [property + webkit, property + w3c, property + moz];
-                
+
                 div.style.cssText = options.join(';');
-                
+
                 return ("" + div.style.backgroundImage).indexOf('gradient') !== -1;
             }
         },
-        
+
         /**
          * @property CSS3BorderRadius True if the device supports CSS3 border radius
          * @type {Boolean}
@@ -10772,7 +10772,7 @@ Ext.supports = {
                 return pass;
             }
         },
-        
+
         /**
          * @property GeoLocation True if the device supports GeoLocation
          * @type {Boolean}
@@ -10828,9 +10828,9 @@ Ext.supports = {
                 return 'placeholder' in doc.createElement('input');
             }
         },
-        
+
         /**
-         * @property Direct2DBug True if when asking for an element's dimension via offsetWidth or offsetHeight, 
+         * @property Direct2DBug True if when asking for an element's dimension via offsetWidth or offsetHeight,
          * getBoundingClientRect, etc. the browser returns the subpixel width rounded to the nearest pixel.
          * @type {Boolean}
          */
@@ -10864,7 +10864,7 @@ Ext.supports = {
                 return el.getHeight() == 210;
             }
         },
-        
+
         /**
          * @property ArraySort True if the Array sort native method isn't bugged.
          * @type {Boolean}
@@ -10894,7 +10894,7 @@ Ext.supports = {
             identity: 'CreateContextualFragment',
             fn: function() {
                 var range = Ext.supports.Range ? document.createRange() : false;
-                
+
                 return range && !!range.createContextualFragment;
             }
         },
@@ -11099,7 +11099,7 @@ Ext.core.DomHelper = function(){
         }
         return returnElement ? Ext.get(newNode, true) : newNode;
     }
-    
+
     function createDom(o, parentNode){
         var el,
             doc = document,
@@ -11250,17 +11250,17 @@ Ext.core.DomHelper = function(){
         el.insertBefore(node, before);
         return node;
     }
-    
+
     /**
      * @ignore
      * Fix for IE9 createContextualFragment missing method
-     */   
+     */
     function createContextualFragment(html){
         var div = document.createElement("div"),
             fragment = document.createDocumentFragment(),
             i = 0,
             length, childNodes;
-        
+
         div.innerHTML = html;
         childNodes = div.childNodes;
         length = childNodes.length;
@@ -11271,7 +11271,7 @@ Ext.core.DomHelper = function(){
 
         return fragment;
     }
-    
+
     pub = {
         /**
          * Returns the markup for the passed Element(s) config.
@@ -11323,13 +11323,13 @@ Ext.core.DomHelper = function(){
             // add these here because they are used in both branches of the condition.
             hash[beforebegin] = ['BeforeBegin', 'previousSibling'];
             hash[afterend] = ['AfterEnd', 'nextSibling'];
-            
+
             // if IE and context element is an HTMLElement
             if (el.insertAdjacentHTML) {
                 if(tableRe.test(el.tagName) && (rs = insertIntoTable(el.tagName.toLowerCase(), where, el, html))){
                     return rs;
                 }
-                
+
                 // add these two to the hash.
                 hash[afterbegin] = ['AfterBegin', 'firstChild'];
                 hash[beforeend] = ['BeforeEnd', 'lastChild'];
@@ -11341,7 +11341,7 @@ Ext.core.DomHelper = function(){
             } else {
                 // we cannot insert anything inside a textnode so...
                 if (Ext.isTextNode(el)) {
-                    where = where === 'afterbegin' ? 'beforebegin' : where; 
+                    where = where === 'afterbegin' ? 'beforebegin' : where;
                     where = where === 'beforeend' ? 'afterend' : where;
                 }
                 range = Ext.supports.CreateContextualFragment ? el.ownerDocument.createRange() : undefined;
@@ -11364,7 +11364,7 @@ Ext.core.DomHelper = function(){
                         } else {
                             frag = createContextualFragment(html);
                         }
-                        
+
                         if(where == afterbegin){
                             el.insertBefore(frag, el.firstChild);
                         }else{
@@ -11443,7 +11443,7 @@ Ext.core.DomHelper = function(){
         },
 
         createHtml : createHtml,
-        
+
         /**
          * Creates new DOM element(s) without inserting them to the document.
          * @param {Object/String} o The DOM object spec (and children) or raw HTML blob
@@ -11451,10 +11451,10 @@ Ext.core.DomHelper = function(){
          * @method
          */
         createDom: createDom,
-        
+
         /** True to force the use of DOM instead of html fragments @type Boolean */
         useDom : false,
-        
+
         /**
          * Creates a new Ext.Template from the DOM object spec.
          * @param {Object} o The DOM object spec (and children)
@@ -12048,9 +12048,9 @@ Ext.core.DomQuery = Ext.DomQuery = function(){
          *
          * Uses [document.querySelectorAll][0] if browser supports that, otherwise falls back to
          * {@link #jsSelect} to do the work.
-         * 
+         *
          * Aliased as {@link Ext#query}.
-         * 
+         *
          * [0]: https://developer.mozilla.org/en/DOM/document.querySelectorAll
          *
          * @param {String} path The selector/xpath query
@@ -12208,12 +12208,12 @@ Ext.core.DomQuery = Ext.DomQuery = function(){
         },
 
         /**
-Object hash of "pseudo class" filter functions which are used when filtering selections. 
+Object hash of "pseudo class" filter functions which are used when filtering selections.
 Each function is passed two parameters:
 
 - **c** : Array
     An Array of DOM elements to filter.
-    
+
 - **v** : String
     The argument (if any) supplied in the selector.
 
@@ -13482,7 +13482,7 @@ Ext.core.Element.addMethods({
         }
         return null;
     },
-    
+
     /**
      * Looks at parent nodes for a match of the passed simple selector (e.g. div.some-class or span:first-child)
      * @param {String} selector The simple selector to test
@@ -13609,7 +13609,7 @@ Ext.core.Element.addMethods({
         if (!this.dom) {
             return null;
         }
-        
+
         var n = this.dom[start];
         while (n) {
             if (n.nodeType == 1 && (!selector || Ext.DomQuery.is(n, selector))) {
@@ -13734,7 +13734,7 @@ Ext.core.Element.addMethods({
         el.remove();
         return this;
     },
-    
+
     /**
      * Replaces this element with the passed element
      * @param {Mixed/Object} el The new element or a DomHelper config of an element to create
@@ -13742,21 +13742,21 @@ Ext.core.Element.addMethods({
      */
     replaceWith: function(el){
         var me = this;
-            
+
         if(el.nodeType || el.dom || typeof el == 'string'){
             el = Ext.get(el);
             me.dom.parentNode.insertBefore(el, me.dom);
         }else{
             el = Ext.core.DomHelper.insertBefore(me.dom, el);
         }
-        
+
         delete Ext.cache[me.id];
-        Ext.removeNode(me.dom);      
+        Ext.removeNode(me.dom);
         me.id = Ext.id(me.dom = el);
-        Ext.core.Element.addToCache(me.isFlyweight ? new Ext.core.Element(me.dom) : me);     
+        Ext.core.Element.addToCache(me.isFlyweight ? new Ext.core.Element(me.dom) : me);
         return me;
     },
-    
+
     /**
      * Creates the passed DomHelper config and appends it to this element or optionally inserts it before the passed child element.
      * @param {Object} config DomHelper element config object.  If no tag is specified (e.g., {tag:'input'}) then a div will be
@@ -13838,7 +13838,7 @@ Ext.core.Element.addMethods({
         data = Ext.core.Element.data;
 
     Ext.override(Ext.core.Element, {
-        
+
         /**
          * TODO: Look at this
          */
@@ -13846,7 +13846,7 @@ Ext.core.Element.addMethods({
         adjustWidth : function(width) {
             var me = this,
                 isNum = (typeof width == 'number');
-                
+
             if(isNum && me.autoBoxAdjust && !me.isBorderBox()){
                width -= (me.getBorderWidth("lr") + me.getPadding("lr"));
             }
@@ -13857,7 +13857,7 @@ Ext.core.Element.addMethods({
         adjustHeight : function(height) {
             var me = this,
                 isNum = (typeof height == "number");
-                
+
             if(isNum && me.autoBoxAdjust && !me.isBorderBox()){
                height -= (me.getBorderWidth("tb") + me.getPadding("tb"));
             }
@@ -14026,7 +14026,7 @@ Ext.core.Element.addMethods({
                     prop = Ext.core.Element.normalize(prop);
                     out = (v = el.style[prop]) ? v :
                            (cs = view.getComputedStyle(el, "")) ? cs[prop] : null;
-                           
+
                     // Ignore cases when the margin is correctly reported as 0, the bug only shows
                     // numbers larger.
                     if(prop == 'marginRight' && out != '0px' && !supports.RightMargin){
@@ -14037,7 +14037,7 @@ Ext.core.Element.addMethods({
                         el.style.display = display;
                         cleaner();
                     }
-                    
+
                     if(prop == 'backgroundColor' && out == 'rgba(0, 0, 0, 0)' && !supports.TransparentColor){
                         out = 'transparent';
                     }
@@ -14050,7 +14050,7 @@ Ext.core.Element.addMethods({
                     if (el == document) {
                         return null;
                     }
-                    
+
                     if (prop == 'opacity') {
                         if (el.style.filter.match) {
                             m = el.style.filter.match(opacityRe);
@@ -14192,11 +14192,11 @@ Ext.core.Element.addMethods({
             }
             return this;
         },
-        
+
         /**
          * @private
          * Returns 1 if the browser returns the subpixel dimension rounded to the lowest pixel.
-         * @return {Number} 0 or 1 
+         * @return {Number} 0 or 1
          */
         adjustDirect2DDimension: function(dimension) {
             var me = this,
@@ -14206,7 +14206,7 @@ Ext.core.Element.addMethods({
                 inlinePosition = dom.style['position'],
                 originIndex = dimension === 'width' ? 0 : 1,
                 floating;
-                
+
             if (display === 'inline') {
                 dom.style['display'] = 'inline-block';
             }
@@ -14216,16 +14216,16 @@ Ext.core.Element.addMethods({
             // floating will contain digits that appears after the decimal point
             // if height or width are set to auto we fallback to msTransformOrigin calculation
             floating = (parseFloat(me.getStyle(dimension)) || parseFloat(dom.currentStyle.msTransformOrigin.split(' ')[originIndex]) * 2) % 1;
-            
+
             dom.style['position'] = inlinePosition;
-            
+
             if (display === 'inline') {
                 dom.style['display'] = inlineDisplay;
             }
 
             return floating;
         },
-        
+
         /**
          * Returns the offset height of the element
          * @param {Boolean} contentHeight (optional) true to get the height minus borders and padding
@@ -14273,7 +14273,7 @@ Ext.core.Element.addMethods({
             }
             return height;
         },
-                
+
         /**
          * Returns the offset width of the element
          * @param {Boolean} contentWidth (optional) true to get the width minus borders and padding
@@ -14292,8 +14292,8 @@ Ext.core.Element.addMethods({
                 overflow = style.overflow;
                 me.setStyle({overflow: 'hidden'});
             }
-            
-            // Fix Opera 10.5x width calculation issues 
+
+            // Fix Opera 10.5x width calculation issues
             if (Ext.isOpera10_5) {
                 if (dom.parentNode.currentStyle.position === 'relative') {
                     parentPosition = dom.parentNode.style.position;
@@ -14302,7 +14302,7 @@ Ext.core.Element.addMethods({
                     dom.parentNode.style.position = parentPosition;
                 }
                 width = Math.max(width || 0, dom.offsetWidth);
-            
+
             // Gecko will in some cases report an offsetWidth that is actually less than the width of the
             // text contents, because it measures fonts with sub-pixel precision but rounds the calculated
             // value down. Using getBoundingClientRect instead of offsetWidth allows us to get the precise
@@ -14328,11 +14328,11 @@ Ext.core.Element.addMethods({
                     width++;
                 }
             }
-            
+
             if (contentWidth) {
                 width -= (me.getBorderWidth("lr") + me.getPadding("lr"));
             }
-            
+
             if (Ext.isIEQuirks) {
                 me.setStyle({ overflow: overflow});
             }
@@ -14495,7 +14495,7 @@ Ext.fly('elId').setHeight(150, {
         },
 
         margins : margins,
-        
+
         /**
          * More flexible version of {@link #setStyle} for setting style properties.
          * @param {String/Object/Function} styles A style specification string, e.g. "width:100px", or object in the form {width:"100px"}, or
@@ -14520,7 +14520,7 @@ Ext.fly('elId').setHeight(150, {
             var styles = {},
                 len = arguments.length,
                 i = 0, style;
-                
+
             for(; i < len; ++i) {
                 style = arguments[i];
                 styles[style] = this.getStyle(style);
@@ -14631,7 +14631,7 @@ Ext.fly('elId').setHeight(150, {
         getComputedWidth : function(){
             var me = this,
                 w = Math.max(me.dom.offsetWidth, me.dom.clientWidth);
-                
+
             if(!w){
                 w = parseFloat(me.getStyle('width')) || 0;
                 if(!me.isBorderBox()){
@@ -14834,7 +14834,7 @@ Ext.fly('elId').setHeight(150, {
             me.swallowEvent("selectstart", true);
             me.applyStyles("-moz-user-select:none;-khtml-user-select:none;");
             me.addCls(Ext.baseCSSPrefix + 'unselectable');
-            
+
             return me;
         },
 
@@ -15238,7 +15238,7 @@ el.slideIn('t', {
      * @param {Object} options (optional) Object literal with any of the Fx config options
      * @return {Ext.core.Element} The Element
      */
-    slideIn: function(anchor, obj, slideOut) { 
+    slideIn: function(anchor, obj, slideOut) {
         var me = this,
             elStyle = me.dom.style,
             beforeAnim, wrapAnim;
@@ -15262,7 +15262,7 @@ el.slideIn('t', {
             else if ((anchor == 'l' || anchor == 'r') && box.width == 0) {
                 box.width = me.dom.scrollWidth;
             }
-            
+
             position = me.getPositioning();
             me.setSize(box.width, box.height);
 
@@ -15426,7 +15426,7 @@ el.slideIn('t', {
                     if (obj.useDisplay) {
                         me.setDisplayed(false);
                     } else {
-                        me.hide();   
+                        me.hide();
                     }
                 }
                 else {
@@ -15434,7 +15434,7 @@ el.slideIn('t', {
                     me.setPositioning(position);
                 }
                 if (wrap.dom) {
-                    wrap.dom.parentNode.insertBefore(me.dom, wrap.dom); 
+                    wrap.dom.parentNode.insertBefore(me.dom, wrap.dom);
                     wrap.remove();
                 }
                 me.setSize(box.width, box.height);
@@ -15464,12 +15464,12 @@ el.slideIn('t', {
         return me;
     },
 
-    
+
     /**
      * Slides the element out of view.  An anchor point can be optionally passed to set the end point
-     * for the slide effect.  When the effect is completed, the element will be hidden (visibility = 
+     * for the slide effect.  When the effect is completed, the element will be hidden (visibility =
      * 'hidden') but block elements will still take up space in the document.  The element must be removed
-     * from the DOM using the 'remove' config option if desired.  This function automatically handles 
+     * from the DOM using the 'remove' config option if desired.  This function automatically handles
      * wrapping the element with a fixed-size container if needed.  See the Fx class overview for valid anchor point options.
      * Usage:
      *<pre><code>
@@ -15496,7 +15496,7 @@ el.slideOut('t', {
     },
 
     /**
-     * Fades the element out while slowly expanding it in all directions.  When the effect is completed, the 
+     * Fades the element out while slowly expanding it in all directions.  When the effect is completed, the
      * element will be hidden (visibility = 'hidden') but block elements will still take up space in the document.
      * Usage:
      *<pre><code>
@@ -15545,7 +15545,7 @@ el.puff({
                     } else {
                         me.hide();
                     }
-                    me.clearOpacity();  
+                    me.clearOpacity();
                     me.setPositioning(position);
                     me.setStyle({fontSize: fontSize});
                 }
@@ -15566,7 +15566,7 @@ el.puff({
 
     /**
      * Blinks the element as if it was clicked and then collapses on its center (similar to switching off a television).
-     * When the effect is completed, the element will be hidden (visibility = 'hidden') but block elements will still 
+     * When the effect is completed, the element will be hidden (visibility = 'hidden') but block elements will still
      * take up space in the document. The element must be removed from the DOM using the 'remove' config option if desired.
      * Usage:
      *<pre><code>
@@ -15587,7 +15587,7 @@ el.switchOff({
     switchOff: function(obj) {
         var me = this,
             beforeAnim;
-        
+
         obj = Ext.applyIf(obj || {}, {
             easing: 'ease-in',
             duration: 500,
@@ -15627,7 +15627,7 @@ el.switchOff({
                     me.setDisplayed(false);
                 } else {
                     me.hide();
-                }  
+                }
                 me.clearOpacity();
                 me.setPositioning(position);
                 me.setSize(size);
@@ -15726,7 +15726,7 @@ el.frame("#C3DAF9", 1, {
     },
 
     /**
-     * Slides the element while fading it out of view.  An anchor point can be optionally passed to set the 
+     * Slides the element while fading it out of view.  An anchor point can be optionally passed to set the
      * ending point of the effect.
      * Usage:
      *<pre><code>
@@ -15834,7 +15834,7 @@ el.highlight("ffff9c", {
      * @param {String} color (optional) The highlight color. Should be a 6 char hex color without the leading # (defaults to yellow: 'ffff9c')
      * @param {Object} options (optional) Object literal with any of the Fx config options
      * @return {Ext.core.Element} The Element
-     */ 
+     */
     highlight: function(color, o) {
         var me = this,
             dom = me.dom,
@@ -15845,7 +15845,7 @@ el.highlight("ffff9c", {
         lns = o.listeners || {};
         attr = o.attr || 'backgroundColor';
         from[attr] = color || 'ffff9c';
-        
+
         if (!o.to) {
             to = {};
             to[attr] = o.endColor || me.getColor(attr, 'ffffff', '');
@@ -15853,14 +15853,14 @@ el.highlight("ffff9c", {
         else {
             to = o.to;
         }
-        
+
         // Don't apply directly on lns, since we reference it in our own callbacks below
         o.listeners = Ext.apply(Ext.apply({}, lns), {
             beforeanimate: function() {
                 restore = dom.style[attr];
                 me.clearOpacity();
                 me.show();
-                
+
                 event = lns.beforeanimate;
                 if (event) {
                     fn = event.fn || event;
@@ -15871,7 +15871,7 @@ el.highlight("ffff9c", {
                 if (dom) {
                     dom.style[attr] = restore;
                 }
-                
+
                 event = lns.afteranimate;
                 if (event) {
                     fn = event.fn || event;
@@ -16002,7 +16002,7 @@ el.scale(
    /**
     * @deprecated 4.0
     * Animates the transition of any combination of an element's dimensions, xy position and/or opacity.
-    * Any of these properties not specified in the config object will not be changed.  This effect 
+    * Any of these properties not specified in the config object will not be changed.  This effect
     * requires that at least one new dimension, position or opacity setting must be passed in on
     * the config object in order for the function to have any effect.
     * Usage:
@@ -16068,7 +16068,7 @@ Ext.applyIf(Ext.core.Element, {
             }
             var parts  = box.split(' '),
                 ln = parts.length;
-    
+
             if (ln == 1) {
                 parts[1] = parts[2] = parts[3] = parts[0];
             }
@@ -16079,7 +16079,7 @@ Ext.applyIf(Ext.core.Element, {
             else if (ln == 3) {
                 parts[3] = parts[1];
             }
-    
+
             return {
                 top   :parseFloat(parts[0]) || 0,
                 right :parseFloat(parts[1]) || 0,
@@ -16087,9 +16087,9 @@ Ext.applyIf(Ext.core.Element, {
                 left  :parseFloat(parts[3]) || 0
             };
         }
-        
+
     },
-    
+
     /**
      * Parses a number or string representing margin sizes into an object. Supports CSS-style margin declarations
      * (e.g. 10, "10", "10 10", "10 10 10" and "10 10 10 10" are all valid options and would return the same result)
@@ -16101,12 +16101,12 @@ Ext.applyIf(Ext.core.Element, {
     unitizeBox : function(box, units) {
         var A = this.addUnits,
             B = this.parseBox(box);
-            
+
         return A(B.top, units) + ' ' +
                A(B.right, units) + ' ' +
                A(B.bottom, units) + ' ' +
                A(B.left, units);
-        
+
     },
 
     // private
@@ -16190,11 +16190,11 @@ Ext.applyIf(Ext.core.Element, {
         if (Ext.supports.OrientationChange) {
             return (window.orientation == 0) ? 'portrait' : 'landscape';
         }
-        
+
         return (window.innerHeight > window.innerWidth) ? 'portrait' : 'landscape';
     },
 
-    /** 
+    /**
      * Returns the top Element that is located at the passed coordinates
      * @static
      * @param {Number} x The x coordinate
@@ -16204,7 +16204,7 @@ Ext.applyIf(Ext.core.Element, {
     fromPoint: function(x, y) {
         return Ext.get(document.elementFromPoint(x, y));
     },
-    
+
     /**
      * Converts a CSS string into an object with a property for each style.
      * <p>
@@ -16222,7 +16222,7 @@ console.log(Ext.core.Element.parseStyles(css));
         var out = {},
             cssRe = this.cssRe,
             matches;
-            
+
         if (styles) {
             // Since we're using the g flag on the regex, we need to set the lastIndex.
             // This automatically happens on some implementations, but not others, see:
@@ -16445,7 +16445,7 @@ Ext.CompositeElementLite.prototype = {
                 els[els.length] = me.transformElement(el);
             }
         });
-        
+
         me.elements = els;
         return me;
     },
@@ -16562,34 +16562,34 @@ Ext.select = Ext.core.Element.select;
 
 /**
  * @class Ext.util.DelayedTask
- * 
+ *
  * The DelayedTask class provides a convenient way to "buffer" the execution of a method,
  * performing setTimeout where a new timeout cancels the old timeout. When called, the
  * task will wait the specified time period before executing. If durng that time period,
  * the task is called again, the original call will be cancelled. This continues so that
  * the function is only called a single time for each iteration.
- * 
+ *
  * This method is especially useful for things like detecting whether a user has finished
  * typing in a text field. An example would be performing validation on a keypress. You can
  * use this class to buffer the keypress events for a certain number of milliseconds, and
- * perform only if they stop for that amount of time.  
- * 
+ * perform only if they stop for that amount of time.
+ *
  * ## Usage
- * 
+ *
  *     var task = new Ext.util.DelayedTask(function(){
  *         alert(Ext.getDom('myInputField').value.length);
  *     });
- *     
+ *
  *     // Wait 500ms before calling our function. If the user presses another key
  *     // during that 500ms, it will be cancelled and we'll wait another 500ms.
  *     Ext.get('myInputField').on('keypress', function(){
  *         task.{@link #delay}(500);
  *     });
- * 
+ *
  * Note that we are using a DelayedTask here to illustrate a point. The configuration
  * option `buffer` for {@link Ext.util.Observable#addListener addListener/on} will
  * also setup a delayed task for you to buffer events.
- * 
+ *
  * @constructor The parameters to this constructor serve as defaults and are not required.
  * @param {Function} fn (optional) The default function to call.
  * @param {Object} scope (optional) The default scope (The <code><b>this</b></code> reference) in which the
@@ -16993,9 +16993,9 @@ Ext.EventManager = {
     getId : function(element) {
         var skipGarbageCollection = false,
             id;
-    
+
         element = Ext.getDom(element);
-    
+
         if (element === document || element === window) {
             id = element === document ? Ext.documentId : Ext.windowId;
         }
@@ -17006,7 +17006,7 @@ Ext.EventManager = {
         if (element && (element.getElementById || element.navigator)) {
             skipGarbageCollection = true;
         }
-    
+
         if (!Ext.cache[id]){
             Ext.core.Element.addToCache(new Ext.core.Element(element), id);
             if (skipGarbageCollection) {
@@ -17384,7 +17384,7 @@ Ext.EventManager = {
         if (!element) {
             return [];
         }
-        
+
         var eventCache = this.getElementEventCache(element);
         return eventCache[eventName] || (eventCache[eventName] = []);
     },
@@ -17998,11 +17998,11 @@ Ext.define('Ext.EventObjectImpl', {
     /**
      * The mouse wheel delta scaling factor. This value depends on browser version and OS and
      * attempts to produce a similar scrolling experience across all platforms and browsers.
-     * 
+     *
      * To change this value:
-     * 
+     *
      *      Ext.EventObjectImpl.prototype.WHEEL_SCALE = 72;
-     * 
+     *
      * @type Number
      * @markdown
      */
@@ -18199,15 +18199,15 @@ Ext.define('Ext.EventObjectImpl', {
     getPageY: function(){
         return this.getY();
     },
-    
+
     /**
      * Gets the x coordinate of the event.
      * @return {Number}
      */
     getX: function() {
         return this.getXY()[0];
-    },    
-    
+    },
+
     /**
      * Gets the y coordinate of the event.
      * @return {Number}
@@ -18215,7 +18215,7 @@ Ext.define('Ext.EventObjectImpl', {
     getY: function() {
         return this.getXY()[1];
     },
-        
+
     /**
      * Gets the page coordinates of the event.
      * @return {Array} The xy values like [x, y]
@@ -18986,7 +18986,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
                 e.preventDefault();
             }
         }
-        
+
         if (Ext.isArray(eventName)) {
             Ext.each(eventName, function(e) {
                  me.on(e, fn);
@@ -19071,7 +19071,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
         var dom = this.dom,
             data = Ext.core.Element.data,
             loader = data(dom, 'loader');
-            
+
         if (!loader) {
             loader = Ext.create('Ext.ElementLoader', {
                 target: this
@@ -19093,7 +19093,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
             id,
             dom,
             interval;
-            
+
         if (!me.dom) {
             return me;
         }
@@ -19111,7 +19111,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
 
         interval = setInterval(function(){
             if (!document.getElementById(id)) {
-                return false;    
+                return false;
             }
             clearInterval(interval);
             var DOC    = document,
@@ -19145,7 +19145,7 @@ this.menuEl.un(this.mouseLeaveMonitor);
                     }
                 }
             }
-            
+
             el = DOC.getElementById(id);
             if (el) {
                 Ext.removeNode(el);
@@ -20017,7 +20017,7 @@ Ext.override(Ext.core.Element, {
         var me = this,
             isBody = me.dom === document.body,
             scroll, pos, top, left, width, height;
-            
+
         // For the body we want to do some special logic
         if (isBody) {
             scroll = me.getScroll();
@@ -20147,7 +20147,7 @@ Ext.override(Ext.core.Element, {
      * @return {Object} An object containing the scroll position in the format {left: (scrollLeft), top: (scrollTop)}
      */
     getScroll : function() {
-        var d = this.dom, 
+        var d = this.dom,
             doc = document,
             body = doc.body,
             docElement = doc.documentElement,
@@ -20157,26 +20157,26 @@ Ext.override(Ext.core.Element, {
 
         if (d == doc || d == body) {
             if (Ext.isIE && Ext.isStrict) {
-                l = docElement.scrollLeft; 
+                l = docElement.scrollLeft;
                 t = docElement.scrollTop;
             } else {
                 l = window.pageXOffset;
                 t = window.pageYOffset;
             }
             ret = {
-                left: l || (body ? body.scrollLeft : 0), 
+                left: l || (body ? body.scrollLeft : 0),
                 top : t || (body ? body.scrollTop : 0)
             };
         } else {
             ret = {
-                left: d.scrollLeft, 
+                left: d.scrollLeft,
                 top : d.scrollTop
             };
         }
-        
+
         return ret;
     },
-    
+
     /**
      * Scrolls this element the specified scroll point. It does NOT do bounds checking so if you scroll to a weird value it will try to do it. For auto bounds checking, use scroll().
      * @param {String} side Either "left" for scrollLeft values or "top" for scrollTop values.
@@ -20614,18 +20614,18 @@ els.setWidth(100).hide(true);
 </code></pre>
  */
 Ext.CompositeElement = Ext.extend(Ext.CompositeElementLite, {
-    
+
     constructor : function(els, root){
         this.elements = [];
         this.add(els, root);
     },
-    
+
     // private
     getElement : function(el){
         // In this case just return it, since we already have a reference to it
         return el;
     },
-    
+
     // private
     transformElement : function(el){
         return Ext.get(el);
@@ -20645,7 +20645,7 @@ Ext.CompositeElement = Ext.extend(Ext.CompositeElementLite, {
 
     /**
      * Iterates each `element` in this `composite` calling the supplied function using {@link Ext#each Ext.each}.
-     * @param {Function} fn 
+     * @param {Function} fn
 
 The function to be called with each
 `element`. If the supplied function returns <tt>false</tt>,
@@ -20653,11 +20653,11 @@ iteration stops. This function is called with the following arguments:
 
 - `element` : __Ext.core.Element++
     The element at the current `index` in the `composite`
-    
-- `composite` : __Object__ 
+
+- `composite` : __Object__
     This composite.
 
-- `index` : __Number__ 
+- `index` : __Number__
     The current index within the `composite`
 
      * @param {Object} scope (optional) The scope (<code>this</code> reference) in which the specified function is executed.

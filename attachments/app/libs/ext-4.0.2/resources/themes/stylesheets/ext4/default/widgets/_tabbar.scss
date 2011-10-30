@@ -18,7 +18,7 @@
         background: transparent none;
     }
 
-    
+
     .#{$prefix}tab-bar-body {
         border-style: solid;
         border-color: $tabbar-border-color;
@@ -125,7 +125,7 @@
         $tabbar-bottom-strip-border-width,
         $tabbar-strip-height
     );
-    
+
     @include tab-bar-bottom(
         "tab-bar-bottom",
         "tab-bar-body-default-plain",

@@ -48,7 +48,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             }
  *         }
  *     });
- *     
+ *
  *     Ext.create('Ext.grid.Panel', {
  *         title: 'Simpsons',
  *         store: Ext.data.StoreManager.lookup('simpsonsStore'),
@@ -161,10 +161,10 @@ grid.on('validateedit', function(e) {
         });
         this.editTask = Ext.create('Ext.util.DelayedTask');
     },
-    
+
     onReconfigure: function(){
         this.editors.clear();
-        this.callParent();    
+        this.callParent();
     },
 
     /**
@@ -178,7 +178,7 @@ grid.on('validateedit', function(e) {
         me.editors.clear();
         me.callParent(arguments);
     },
-    
+
     onBodyScroll: function() {
         var ed = this.getActiveEditor();
         if (ed && ed.field) {
@@ -196,7 +196,7 @@ grid.on('validateedit', function(e) {
         var me   = this,
             grid = me.grid,
             view = grid.view;
-            
+
         view.addElListener('mousewheel', me.cancelEdit, me);
         me.mon(view, 'bodyscroll', me.onBodyScroll, me);
         me.mon(grid, {
@@ -354,7 +354,7 @@ grid.on('validateedit', function(e) {
             me.setActiveColumn(null);
             me.setActiveRecord(null);
             delete sm.wasEditing;
-    
+
             if (!me.validateEdit()) {
                 return;
             }
@@ -368,7 +368,7 @@ grid.on('validateedit', function(e) {
             }
             me.context.value = value;
             me.fireEvent('edit', me, me.context);
-            
+
 
         }
     },

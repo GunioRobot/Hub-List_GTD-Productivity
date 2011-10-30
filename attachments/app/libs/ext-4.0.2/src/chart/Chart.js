@@ -51,7 +51,7 @@ Ext.define('Ext.chart.Chart', {
     alias: 'widget.chart',
 
     extend: 'Ext.draw.Component',
-    
+
     mixins: {
         themeManager: 'Ext.chart.theme.Theme',
         mask: 'Ext.chart.Mask',

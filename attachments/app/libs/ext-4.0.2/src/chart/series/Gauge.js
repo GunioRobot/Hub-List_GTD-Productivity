@@ -15,13 +15,13 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.chart.series.Gauge
  * @extends Ext.chart.series.Series
- * 
+ *
  * Creates a Gauge Chart. Gauge Charts are used to show progress in a certain variable. There are two ways of using the Gauge chart.
  * One is setting a store element into the Gauge and selecting the field to be used from that store. Another one is instanciating the
  * visualization and using the `setValue` method to adjust the value you want.
  *
  * A chart/series configuration for the Gauge visualization could look like this:
- * 
+ *
  *     {
  *         xtype: 'chart',
  *         store: store,
@@ -40,11 +40,11 @@ If you are unsure which license is appropriate for your use, please contact the 
  *             colorSet: ['#F49D10', '#ddd']
  *         }]
  *     }
- * 
+ *
  * In this configuration we create a special Gauge axis to be used with the gauge visualization (describing half-circle markers), and also we're
  * setting a maximum, minimum and steps configuration options into the axis. The Gauge series configuration contains the store field to be bound to
  * the visual display and the color set to be used with the visualization.
- * 
+ *
  * @xtype gauge
  */
 Ext.define('Ext.chart.series.Gauge', {
@@ -79,7 +79,7 @@ Ext.define('Ext.chart.series.Gauge', {
      * Use the Gauge Series as an area series or add a needle to it. Default's false.
      */
     needle: false,
-    
+
     /**
      * @cfg {Boolean|Number} donut
      * Use the entire disk or just a fraction of it for the gauge. Default's false.
@@ -97,7 +97,7 @@ Ext.define('Ext.chart.series.Gauge', {
      * An object containing styles for overriding series styles from Theming.
      */
     style: {},
-    
+
     constructor: function(config) {
         this.callParent(arguments);
         var me = this,
@@ -144,7 +144,7 @@ Ext.define('Ext.chart.series.Gauge', {
             return me.getSegment(opt);
         };
     },
-    
+
     //@private updates some onbefore render parameters.
     initialize: function() {
         var me = this,
@@ -273,7 +273,7 @@ Ext.define('Ext.chart.series.Gauge', {
             rendererAttributes, centerX, centerY, slice, slices, sprite, value,
             item, ln, record, i, j, startAngle, endAngle, middleAngle, sliceLength, path,
             p, spriteOptions, bbox, splitAngle, sliceA, sliceB;
-        
+
         Ext.apply(seriesStyle, me.style || {});
 
         me.setBBox();
@@ -284,23 +284,23 @@ Ext.define('Ext.chart.series.Gauge', {
             colorArrayStyle = me.colorSet;
             colorArrayLength = colorArrayStyle.length;
         }
-        
+
         //if not store or store is empty then there's nothing to draw
         if (!store || !store.getCount()) {
             return;
         }
-        
+
         centerX = me.centerX = chartBBox.x + (chartBBox.width / 2);
         centerY = me.centerY = chartBBox.y + chartBBox.height;
         me.radius = Math.min(centerX - chartBBox.x, centerY - chartBBox.y);
         me.slices = slices = [];
         me.items = items = [];
-        
+
         if (!me.value) {
             record = store.getAt(0);
             me.value = record.get(field);
         }
-        
+
         value = me.value;
         if (me.needle) {
             sliceA = {
@@ -330,7 +330,7 @@ Ext.define('Ext.chart.series.Gauge', {
             };
             slices.push(sliceA, sliceB);
         }
-        
+
         //do pie slices after.
         for (i = 0, ln = slices.length; i < ln; i++) {
             slice = slices[i];
@@ -344,7 +344,7 @@ Ext.define('Ext.chart.series.Gauge', {
                     rho: slice.rho,
                     startRho: slice.rho * +donut / 100,
                     endRho: slice.rho
-                } 
+                }
             }, Ext.apply(seriesStyle, colorArrayStyle && { fill: colorArrayStyle[i % colorArrayLength] } || {}));
 
             item = Ext.apply({},
@@ -379,10 +379,10 @@ Ext.define('Ext.chart.series.Gauge', {
                 sprite.setAttributes(rendererAttributes, true);
             }
         }
-        
+
         if (me.needle) {
             splitAngle = splitAngle * Math.PI / 180;
-            
+
             if (!me.needleSprite) {
                 me.needleSprite = me.chart.surface.add({
                     type: 'path',
@@ -414,13 +414,13 @@ Ext.define('Ext.chart.series.Gauge', {
                 }
             }
             me.needleSprite.setAttributes({
-                hidden: false    
+                hidden: false
             }, true);
         }
-        
+
         delete me.value;
     },
-    
+
     /**
      * Sets the Gauge chart to the current specified value.
     */
@@ -447,7 +447,7 @@ Ext.define('Ext.chart.series.Gauge', {
     isItemInPoint: function(x, y, item, i) {
         return false;
     },
-    
+
     // @private shows all elements in the series.
     showAll: function() {
         if (!isNaN(this._index)) {
@@ -455,7 +455,7 @@ Ext.define('Ext.chart.series.Gauge', {
             this.drawSeries();
         }
     },
-    
+
     /**
      * Returns the color of the series (to be displayed as color for the series legend item).
      * @param item {Object} Info about the item; same format as returned by #getItemForPoint

@@ -16,7 +16,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  *
  * Norwegian translation (Bokmål: no-NB)
  * By Tore Kjørsvik 21-January-2008
- *  
+ *
  */
 Ext.onReady(function() {
     if(Ext.Updater) {

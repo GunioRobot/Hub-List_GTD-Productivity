@@ -49,7 +49,7 @@ Ext.define('Ext.tip.QuickTip', {
     // private
     initComponent : function(){
         var me = this;
-        
+
         me.target = me.target || Ext.getDoc();
         me.targets = me.targets || {};
         me.callParent();
@@ -73,7 +73,7 @@ Ext.define('Ext.tip.QuickTip', {
             i = 0,
             len = configs.length,
             target, j, targetLen;
-            
+
         for (; i < len; i++) {
             config = configs[i];
             target = config.target;
@@ -96,7 +96,7 @@ Ext.define('Ext.tip.QuickTip', {
     unregister : function(el){
         delete this.targets[Ext.id(el)];
     },
-    
+
     /**
      * Hides a visible tip or cancels an impending show for a particular element.
      * @param {String/HTMLElement/Element} el The element that is the target of the tip.
@@ -104,7 +104,7 @@ Ext.define('Ext.tip.QuickTip', {
     cancelShow: function(el){
         var me = this,
             activeTarget = me.activeTarget;
-            
+
         el = Ext.get(el).dom;
         if (me.isVisible()) {
             if (activeTarget && activeTarget.el == el) {
@@ -114,19 +114,19 @@ Ext.define('Ext.tip.QuickTip', {
             me.clearTimer('show');
         }
     },
-    
+
     getTipCfg: function(e) {
         var t = e.getTarget(),
-            ttp, 
+            ttp,
             cfg;
-        
+
         if(this.interceptTitles && t.title && Ext.isString(t.title)){
             ttp = t.title;
             t.qtip = ttp;
             t.removeAttribute("title");
             e.preventDefault();
-        } 
-        else {            
+        }
+        else {
             cfg = this.tagConfig;
             t = e.getTarget('[' + cfg.namespace + cfg.attribute + ']');
             if (t) {
@@ -145,7 +145,7 @@ Ext.define('Ext.tip.QuickTip', {
             ns,
             ttp,
             autoHide;
-        
+
         if (me.disabled) {
             return;
         }
@@ -158,13 +158,13 @@ Ext.define('Ext.tip.QuickTip', {
         if(!target || target.nodeType !== 1 || target == document || target == document.body){
             return;
         }
-        
+
         if (me.activeTarget && ((target == me.activeTarget.el) || Ext.fly(me.activeTarget.el).contains(target))) {
             me.clearTimer('hide');
             me.show();
             return;
         }
-        
+
         if (target) {
             Ext.Object.each(me.targets, function(key, value) {
                 var targetEl = Ext.fly(value.target);
@@ -187,12 +187,12 @@ Ext.define('Ext.tip.QuickTip', {
 
         elTarget = Ext.get(target);
         cfg = me.tagConfig;
-        ns = cfg.namespace; 
+        ns = cfg.namespace;
         ttp = me.getTipCfg(e);
-        
+
         if (ttp) {
             autoHide = elTarget.getAttribute(ns + cfg.hide);
-                 
+
             me.activeTarget = {
                 el: target,
                 text: ttp,
@@ -201,7 +201,7 @@ Ext.define('Ext.tip.QuickTip', {
                 title: elTarget.getAttribute(ns + cfg.title),
                 cls: elTarget.getAttribute(ns + cfg.cls),
                 align: elTarget.getAttribute(ns + cfg.align)
-                
+
             };
             me.anchor = elTarget.getAttribute(ns + cfg.anchor);
             if (me.anchor) {
@@ -214,7 +214,7 @@ Ext.define('Ext.tip.QuickTip', {
     // private
     onTargetOut : function(e){
         var me = this;
-        
+
         // If moving within the current target, and it does not have a new tip, ignore the mouseout
         if (me.activeTarget && e.within(me.activeTarget.el) && !me.getTipCfg(e)) {
             return;
@@ -230,7 +230,7 @@ Ext.define('Ext.tip.QuickTip', {
     showAt : function(xy){
         var me = this,
             target = me.activeTarget;
-        
+
         if (target) {
             if (!me.rendered) {
                 me.render(Ext.getBody());
@@ -255,7 +255,7 @@ Ext.define('Ext.tip.QuickTip', {
             }
 
             me.setWidth(target.width);
-            
+
             if (me.anchor) {
                 me.constrainPosition = false;
             } else if (target.align) { // TODO: this doesn't seem to work consistently

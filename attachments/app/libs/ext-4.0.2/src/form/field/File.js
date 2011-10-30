@@ -33,7 +33,7 @@ a fake path.
         width: 400,
         bodyPadding: 10,
         frame: true,
-        renderTo: Ext.getBody(),    
+        renderTo: Ext.getBody(),
         items: [{
             xtype: 'filefield',
             name: 'photo',
@@ -44,7 +44,7 @@ a fake path.
             anchor: '100%',
             buttonText: 'Select Photo...'
         }],
-    
+
         buttons: [{
             text: 'Upload',
             handler: function() {
@@ -137,7 +137,7 @@ Ext.define("Ext.form.field.File", {
 
         me.createButton();
         me.createFileInput();
-        
+
         // we don't create the file/button til after onRender, the initial disable() is
         // called in the onRender of the component.
         if (me.disabled) {
@@ -207,17 +207,17 @@ Ext.define("Ext.form.field.File", {
         this.callParent();
         this.disableItems();
     },
-    
+
     disableItems: function(){
         var file = this.fileInputEl,
             button = this.button;
-             
+
         if (file) {
             file.dom.disabled = true;
         }
         if (button) {
             button.disable();
-        }    
+        }
     },
 
     onEnable: function(){

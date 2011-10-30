@@ -21,7 +21,7 @@ in the same fashion as the {@link Ext.util.Sorter}.
 
  * @markdown
  */
- 
+
 Ext.define('Ext.util.Grouper', {
 
     /* Begin Definitions */

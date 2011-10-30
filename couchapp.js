@@ -1,9 +1,9 @@
-var couchapp = require('couchapp'), 
+var couchapp = require('couchapp'),
     path = require('path');
 
-ddoc = 
+ddoc =
   { _id:'_design/app',
-  rewrites : 
+  rewrites :
     [ {from:"/", to:'index.html'},
       {from:"/api/lists", to: "_view/lists"},
       {from:"/api/*", to:'../../*'},
@@ -33,13 +33,13 @@ ddoc.views = {
                 }
             }
         }
-    }      
+    }
 };
 
-ddoc.validate_doc_update = function (newDoc, oldDoc, userCtx) {   
-  if (newDoc._deleted === true && userCtx.roles.indexOf('_admin') === -1) {     
+ddoc.validate_doc_update = function (newDoc, oldDoc, userCtx) {
+  if (newDoc._deleted === true && userCtx.roles.indexOf('_admin') === -1) {
     throw "Only admin can delete documents on this database.";
-  } 
+  }
 }
 
 couchapp.loadAttachments(ddoc, path.join(__dirname, 'attachments'));

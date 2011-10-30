@@ -31,8 +31,8 @@ If you are unsure which license is appropriate for your use, please contact the 
    });
    Ext.state.Manager.setProvider(cp);
  </code></pre>
- 
- 
+
+
  * @cfg {String} path The path for which the cookie is active (defaults to root '/' which makes it active for all pages in the site)
  * @cfg {Date} expires The cookie expiration date (defaults to 7 days from now)
  * @cfg {String} domain The domain to save the cookie for.  Note that you cannot specify a different domain than
@@ -57,11 +57,11 @@ Ext.define('Ext.state.CookieProvider', {
         me.callParent(arguments);
         me.state = me.readCookies();
     },
-    
+
     // private
     set : function(name, value){
         var me = this;
-        
+
         if(typeof value == "undefined" || value === null){
             me.clear(name);
             return;
@@ -86,7 +86,7 @@ Ext.define('Ext.state.CookieProvider', {
             matches,
             name,
             value;
-            
+
         while((matches = re.exec(c)) != null){
             name = matches[1];
             value = matches[2];
@@ -100,7 +100,7 @@ Ext.define('Ext.state.CookieProvider', {
     // private
     setCookie : function(name, value){
         var me = this;
-        
+
         document.cookie = me.prefix + name + "=" + me.encodeValue(value) +
            ((me.expires == null) ? "" : ("; expires=" + me.expires.toGMTString())) +
            ((me.path == null) ? "" : ("; path=" + me.path)) +
@@ -111,7 +111,7 @@ Ext.define('Ext.state.CookieProvider', {
     // private
     clearCookie : function(name){
         var me = this;
-        
+
         document.cookie = me.prefix + name + "=null; expires=Thu, 01-Jan-70 00:00:01 GMT" +
            ((me.path == null) ? "" : ("; path=" + me.path)) +
            ((me.domain == null) ? "" : ("; domain=" + me.domain)) +

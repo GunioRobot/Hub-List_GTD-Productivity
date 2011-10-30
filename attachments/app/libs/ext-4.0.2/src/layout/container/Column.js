@@ -33,7 +33,7 @@ If you are unsure which license is appropriate for your use, please contact the 
  * the total <b>remaining</b> container width.  In other words, percentage width panels are designed to fill the space
  * left over by all the fixed-width and/or auto-width panels.  Because of this, while you can specify any number of columns
  * with different percentages, the columnWidths must always add up to 1 (or 100%) when added together, otherwise your
- * layout may not render as expected.  
+ * layout may not render as expected.
  * {@img Ext.layout.container.Column/Ext.layout.container.Column1.png Ext.layout.container.Column container layout}
  * Example usage:</p>
  * <pre><code>
@@ -54,7 +54,7 @@ If you are unsure which license is appropriate for your use, please contact the 
             columnWidth: .20
         }],
         renderTo: Ext.getBody()
-    }); 
+    });
 
 // {@img Ext.layout.container.Column/Ext.layout.container.Column2.png Ext.layout.container.Column container layout}
 // Mix of width and columnWidth -- all columnWidth values must add up
@@ -77,7 +77,7 @@ If you are unsure which license is appropriate for your use, please contact the 
             columnWidth: .3
         }],
         renderTo: Ext.getBody()
-    }); 
+    });
 </code></pre>
  */
 Ext.define('Ext.layout.container.Column', {

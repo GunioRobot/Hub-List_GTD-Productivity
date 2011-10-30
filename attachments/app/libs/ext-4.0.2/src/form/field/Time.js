@@ -29,7 +29,7 @@ Ext.create('Ext.form.Panel', {
     title: 'Time Card',
     width: 300,
     bodyPadding: 10,
-    renderTo: Ext.getBody(),        
+    renderTo: Ext.getBody(),
     items: [{
         xtype: 'timefield',
         name: 'in',

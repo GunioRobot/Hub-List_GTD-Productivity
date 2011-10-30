@@ -15,10 +15,10 @@ If you are unsure which license is appropriate for your use, please contact the 
 /**
  * @class Ext.grid.plugin.HeaderResizer
  * @extends Ext.util.Observable
- * 
+ *
  * Plugin to add header resizing functionality to a HeaderContainer.
  * Always resizing header to the left of the splitter you are resizing.
- * 
+ *
  * Todo: Consider RTL support, columns would always calculate to the right of
  *    the splitter instead of to the left.
  */
@@ -26,7 +26,7 @@ Ext.define('Ext.grid.plugin.HeaderResizer', {
     extend: 'Ext.util.Observable',
     requires: ['Ext.dd.DragTracker', 'Ext.util.Region'],
     alias: 'plugin.gridheaderresizer',
-    
+
     disabled: false,
 
     /**
@@ -274,14 +274,14 @@ Ext.define('Ext.grid.plugin.HeaderResizer', {
             }
         }
     },
-    
+
     disable: function() {
         this.disabled = true;
         if (this.tracker) {
             this.tracker.disable();
         }
     },
-    
+
     enable: function() {
         this.disabled = false;
         if (this.tracker) {

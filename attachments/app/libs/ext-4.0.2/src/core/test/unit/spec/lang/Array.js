@@ -906,10 +906,10 @@ describe("Ext.Array", function() {
 
 
            it("should be able to use a sortFn that returns a Number", function() {
-                Ext.Array.sort(sarray, function(a,b){ 
+                Ext.Array.sort(sarray, function(a,b){
                     if (a === b) {
                         return 0;
-                    } 
+                    }
                     return  a > b ? 1: -1;
                 });
                 expect(sarray).toEqual(['addda', 'bbb', 'de3', 'erere', 'fff']);

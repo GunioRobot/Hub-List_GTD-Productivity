@@ -46,7 +46,7 @@ Ext.define('Ext.layout.component.field.Slider', {
         for(; i < length; ++i) {
             thumbs[i].el.stopAnimation();
         }
-        
+
         if (owner.vertical) {
             inputEl.setHeight(height);
             innerEl.setHeight(Ext.isNumber(height) ? height - inputEl.getPadding('t') - endEl.getPadding('b') : height);

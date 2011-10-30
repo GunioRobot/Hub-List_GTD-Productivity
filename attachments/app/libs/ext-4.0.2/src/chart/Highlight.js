@@ -26,7 +26,7 @@ Ext.define('Ext.chart.Highlight', {
 
     /**
      * Highlight the given series item.
-     * @param {Boolean|Object} Default's false. Can also be an object width style properties (i.e fill, stroke, radius) 
+     * @param {Boolean|Object} Default's false. Can also be an object width style properties (i.e fill, stroke, radius)
      * or just use default styles per series by setting highlight = true.
      */
     highlight: false,
@@ -57,7 +57,7 @@ Ext.define('Ext.chart.Highlight', {
         if (!item) {
             return;
         }
-        
+
         var me = this,
             sprite = item.sprite,
             opts = me.highlightCfg,

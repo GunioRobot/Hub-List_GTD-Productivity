@@ -229,12 +229,12 @@ Ext.define('Ext.data.proxy.JsonP', {
             disableCaching: false, // handled by the proxy
             callback: me.createRequestCallback(request, operation, callback, scope)
         });
-        
+
         // prevent doubling up
         if (me.autoAppendParams) {
             request.params = {};
         }
-        
+
         request.jsonp = Ext.data.JsonP.request(request);
         // restore on the request
         request.params = params;
@@ -267,7 +267,7 @@ Ext.define('Ext.data.proxy.JsonP', {
             me.processResponse(success, operation, request, response, callback, scope);
         };
     },
-    
+
     // inherit docs
     setException: function(operation, response) {
         operation.setException(operation.request.jsonp.errorType);
@@ -288,7 +288,7 @@ Ext.define('Ext.data.proxy.JsonP', {
             filter, i;
 
         delete params.filters;
- 
+
         if (me.autoAppendParams) {
             url = Ext.urlAppend(url, Ext.Object.toQueryString(params));
         }

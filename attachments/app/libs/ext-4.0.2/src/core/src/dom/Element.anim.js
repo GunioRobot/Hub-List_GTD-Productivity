@@ -114,7 +114,7 @@ el.slideIn('t', {
      * @param {Object} options (optional) Object literal with any of the Fx config options
      * @return {Ext.core.Element} The Element
      */
-    slideIn: function(anchor, obj, slideOut) { 
+    slideIn: function(anchor, obj, slideOut) {
         var me = this,
             elStyle = me.dom.style,
             beforeAnim, wrapAnim;
@@ -138,7 +138,7 @@ el.slideIn('t', {
             else if ((anchor == 'l' || anchor == 'r') && box.width == 0) {
                 box.width = me.dom.scrollWidth;
             }
-            
+
             position = me.getPositioning();
             me.setSize(box.width, box.height);
 
@@ -302,7 +302,7 @@ el.slideIn('t', {
                     if (obj.useDisplay) {
                         me.setDisplayed(false);
                     } else {
-                        me.hide();   
+                        me.hide();
                     }
                 }
                 else {
@@ -310,7 +310,7 @@ el.slideIn('t', {
                     me.setPositioning(position);
                 }
                 if (wrap.dom) {
-                    wrap.dom.parentNode.insertBefore(me.dom, wrap.dom); 
+                    wrap.dom.parentNode.insertBefore(me.dom, wrap.dom);
                     wrap.remove();
                 }
                 me.setSize(box.width, box.height);
@@ -340,12 +340,12 @@ el.slideIn('t', {
         return me;
     },
 
-    
+
     /**
      * Slides the element out of view.  An anchor point can be optionally passed to set the end point
-     * for the slide effect.  When the effect is completed, the element will be hidden (visibility = 
+     * for the slide effect.  When the effect is completed, the element will be hidden (visibility =
      * 'hidden') but block elements will still take up space in the document.  The element must be removed
-     * from the DOM using the 'remove' config option if desired.  This function automatically handles 
+     * from the DOM using the 'remove' config option if desired.  This function automatically handles
      * wrapping the element with a fixed-size container if needed.  See the Fx class overview for valid anchor point options.
      * Usage:
      *<pre><code>
@@ -372,7 +372,7 @@ el.slideOut('t', {
     },
 
     /**
-     * Fades the element out while slowly expanding it in all directions.  When the effect is completed, the 
+     * Fades the element out while slowly expanding it in all directions.  When the effect is completed, the
      * element will be hidden (visibility = 'hidden') but block elements will still take up space in the document.
      * Usage:
      *<pre><code>
@@ -421,7 +421,7 @@ el.puff({
                     } else {
                         me.hide();
                     }
-                    me.clearOpacity();  
+                    me.clearOpacity();
                     me.setPositioning(position);
                     me.setStyle({fontSize: fontSize});
                 }
@@ -442,7 +442,7 @@ el.puff({
 
     /**
      * Blinks the element as if it was clicked and then collapses on its center (similar to switching off a television).
-     * When the effect is completed, the element will be hidden (visibility = 'hidden') but block elements will still 
+     * When the effect is completed, the element will be hidden (visibility = 'hidden') but block elements will still
      * take up space in the document. The element must be removed from the DOM using the 'remove' config option if desired.
      * Usage:
      *<pre><code>
@@ -463,7 +463,7 @@ el.switchOff({
     switchOff: function(obj) {
         var me = this,
             beforeAnim;
-        
+
         obj = Ext.applyIf(obj || {}, {
             easing: 'ease-in',
             duration: 500,
@@ -503,7 +503,7 @@ el.switchOff({
                     me.setDisplayed(false);
                 } else {
                     me.hide();
-                }  
+                }
                 me.clearOpacity();
                 me.setPositioning(position);
                 me.setSize(size);
@@ -602,7 +602,7 @@ el.frame("#C3DAF9", 1, {
     },
 
     /**
-     * Slides the element while fading it out of view.  An anchor point can be optionally passed to set the 
+     * Slides the element while fading it out of view.  An anchor point can be optionally passed to set the
      * ending point of the effect.
      * Usage:
      *<pre><code>
@@ -710,7 +710,7 @@ el.highlight("ffff9c", {
      * @param {String} color (optional) The highlight color. Should be a 6 char hex color without the leading # (defaults to yellow: 'ffff9c')
      * @param {Object} options (optional) Object literal with any of the Fx config options
      * @return {Ext.core.Element} The Element
-     */ 
+     */
     highlight: function(color, o) {
         var me = this,
             dom = me.dom,
@@ -721,7 +721,7 @@ el.highlight("ffff9c", {
         lns = o.listeners || {};
         attr = o.attr || 'backgroundColor';
         from[attr] = color || 'ffff9c';
-        
+
         if (!o.to) {
             to = {};
             to[attr] = o.endColor || me.getColor(attr, 'ffffff', '');
@@ -729,14 +729,14 @@ el.highlight("ffff9c", {
         else {
             to = o.to;
         }
-        
+
         // Don't apply directly on lns, since we reference it in our own callbacks below
         o.listeners = Ext.apply(Ext.apply({}, lns), {
             beforeanimate: function() {
                 restore = dom.style[attr];
                 me.clearOpacity();
                 me.show();
-                
+
                 event = lns.beforeanimate;
                 if (event) {
                     fn = event.fn || event;
@@ -747,7 +747,7 @@ el.highlight("ffff9c", {
                 if (dom) {
                     dom.style[attr] = restore;
                 }
-                
+
                 event = lns.afteranimate;
                 if (event) {
                     fn = event.fn || event;
@@ -878,7 +878,7 @@ el.scale(
    /**
     * @deprecated 4.0
     * Animates the transition of any combination of an element's dimensions, xy position and/or opacity.
-    * Any of these properties not specified in the config object will not be changed.  This effect 
+    * Any of these properties not specified in the config object will not be changed.  This effect
     * requires that at least one new dimension, position or opacity setting must be passed in on
     * the config object in order for the function to have any effect.
     * Usage:

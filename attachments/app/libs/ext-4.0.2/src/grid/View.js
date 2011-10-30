@@ -26,7 +26,7 @@ option is passed to the grid:
             stripeRows: false
         }
     });
-    
+
 __Drag Drop__
 Drag and drop functionality can be achieved in the grid by attaching a {@link Ext.grid.plugin.DragDrop} plugin
 when creating the view.
@@ -56,9 +56,9 @@ Ext.define('Ext.grid.View', {
      * modifier, or which uses a CSS selector of higher specificity.</p>
      */
     stripeRows: true,
-    
+
     invalidateScrollerOnRefresh: true,
-    
+
     /**
      * Scroll the GridView to the top by scrolling the scroller.
      * @private
@@ -67,7 +67,7 @@ Ext.define('Ext.grid.View', {
         if (this.rendered) {
             var section = this.ownerCt,
                 verticalScroller = section.verticalScroller;
-                
+
             if (verticalScroller) {
                 verticalScroller.scrollToTop();
             }
@@ -79,19 +79,19 @@ Ext.define('Ext.grid.View', {
         this.callParent(arguments);
         this.doStripeRows(index);
     },
-    
+
     // after removing a row stripe rows from then on
     onRemove: function(ds, records, index) {
         this.callParent(arguments);
         this.doStripeRows(index);
     },
-    
+
     onUpdate: function(ds, record, operation) {
         var index = ds.indexOf(record);
         this.callParent(arguments);
         this.doStripeRows(index, index);
     },
-    
+
     /**
      * Stripe rows from a particular row index
      * @param {Number} startRow
@@ -105,7 +105,7 @@ Ext.define('Ext.grid.View', {
                 rowsLn = rows.length,
                 i      = 0,
                 row;
-                
+
             for (; i < rowsLn; i++) {
                 row = rows[i];
                 // Remove prior applied row classes.
@@ -118,7 +118,7 @@ Ext.define('Ext.grid.View', {
             }
         }
     },
-    
+
     refresh: function(firstPass) {
         this.callParent(arguments);
         this.doStripeRows(0);

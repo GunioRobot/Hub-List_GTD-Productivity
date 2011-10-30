@@ -159,7 +159,7 @@ Ext.define('Ext.util.MixedCollection', {
             items[i] = temp[i].value;
             keys[i]  = temp[i].key;
         }
-        
+
         me.fireEvent('sort', me, items, keys);
     },
 

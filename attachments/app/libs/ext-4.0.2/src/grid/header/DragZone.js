@@ -73,11 +73,11 @@ Ext.define('Ext.grid.header.DragZone', {
     getRepairXY: function() {
         return this.dragData.header.el.getXY();
     },
-    
+
     disable: function() {
         this.disabled = true;
     },
-    
+
     enable: function() {
         this.disabled = false;
     }

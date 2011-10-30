@@ -3,18 +3,18 @@
         font-size: $toolbar-font-size;
 
         border: 1px solid;
-        
+
         padding: $toolbar-vertical-spacing 0 $toolbar-vertical-spacing $toolbar-horizontal-spacing;
 
         .#{$prefix}form-item-label{
             font-size: $toolbar-font-size;
             line-height: 15px;
         }
-        
+
         .#{$prefix}toolbar-item {
             margin: 0 $toolbar-horizontal-spacing 0 0;
         }
-        
+
         .#{$prefix}toolbar-text {
             margin-left: 4px;
             margin-right: 6px;
@@ -25,7 +25,7 @@
             font-size: $toolbar-text-font-size;
             font-weight: $toolbar-text-font-weight;
         }
-        
+
         .#{$prefix}toolbar-separator {
             display: block;
             font-size: 1px;
@@ -33,7 +33,7 @@
             cursor: default;
             border: 0;
         }
-        
+
         .#{$prefix}toolbar-separator-horizontal {
             margin: 0 3px 0 2px;
 
@@ -44,41 +44,41 @@
             border-right: 1px solid $toolbar-separator-highlight-color;
         }
     }
-    
+
     @if $include-ie {
         .#{$prefix}quirks .#{$prefix}ie .#{$prefix}toolbar .#{$prefix}toolbar-separator-horizontal {
             width: 2px;
-        } 
+        }
     }
-    
+
     .#{$prefix}toolbar-footer {
         background: transparent;
         border: 0px none;
         margin-top: 3px;
-        
+
         padding: $toolbar-footer-vertical-spacing 0 $toolbar-footer-vertical-spacing $toolbar-footer-horizontal-spacing;
-        
+
         .#{$prefix}box-inner {
             border-width: 0;
         }
-        
+
         .#{$prefix}toolbar-item {
             margin: 0 $toolbar-footer-horizontal-spacing 0 0;
         }
     }
-    
+
     .#{$prefix}toolbar-vertical {
         padding: $toolbar-vertical-spacing $toolbar-horizontal-spacing 0 $toolbar-horizontal-spacing;
-        
+
         .#{$prefix}toolbar-item {
             margin: 0 0 $toolbar-horizontal-spacing 0;
         }
-        
+
         .#{$prefix}toolbar-text {
             margin-top: 4px;
             margin-bottom: 6px;
-        }     
-        
+        }
+
         .#{$prefix}toolbar-separator-vertical {
             margin: 2px 5px 3px 5px;
 
@@ -90,7 +90,7 @@
             border-bottom: 1px solid $toolbar-separator-highlight-color;
         }
     }
-    
+
     .#{$prefix}toolbar-scroller {
         padding-left: 0;
     }
@@ -105,14 +105,14 @@
         background-position: 2px center !important;
         background-repeat: no-repeat;
     }
-    
+
     @include extjs-toolbar-ui(
         'default',
         $background-color: $toolbar-background-color,
         $background-gradient: $toolbar-background-gradient,
         $border-color: $tabbar-border-color
     );
-    
+
     //plain toolbars have no border
     //by default they get no color, so they are transparent. IE6 doesnt support transparent borders
     //so we must set the width to 0.
@@ -131,20 +131,20 @@
  */
 @mixin extjs-toolbar-ui(
     $ui,
-    
+
     $background-color: transparent,
     $background-gradient: null,
-    
+
     $border-color: null
 ) {
     .#{$prefix}toolbar-#{$ui} {
         @if $border-color != null {
             border-color: $border-color;
         }
-        
+
         @include background-gradient($background-color, $background-gradient);
     }
-    
+
     @if not $supports-gradients or $compile-all {
         @if $background-gradient != null {
             .#{$prefix}nlg {

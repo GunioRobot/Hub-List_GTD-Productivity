@@ -54,7 +54,7 @@ Ext.define('Ext.LoadMask', {
      * The CSS class to apply to the loading message element (defaults to "x-mask-loading")
      */
     msgCls : Ext.baseCSSPrefix + 'mask-loading',
-    
+
     /**
      * @cfg {Boolean} useMsg
      * Whether or not to use a loading message class or simply mask the bound element.
@@ -205,7 +205,7 @@ Ext.define('Ext.LoadMask', {
             } else {
                 me.el.mask();
             }
-            
+
             me.fireEvent('show', me, me.el, me.store);
             me.loading = true;
         }

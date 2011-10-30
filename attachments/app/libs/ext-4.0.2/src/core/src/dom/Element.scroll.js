@@ -30,7 +30,7 @@ Ext.override(Ext.core.Element, {
      * @return {Object} An object containing the scroll position in the format {left: (scrollLeft), top: (scrollTop)}
      */
     getScroll : function() {
-        var d = this.dom, 
+        var d = this.dom,
             doc = document,
             body = doc.body,
             docElement = doc.documentElement,
@@ -40,26 +40,26 @@ Ext.override(Ext.core.Element, {
 
         if (d == doc || d == body) {
             if (Ext.isIE && Ext.isStrict) {
-                l = docElement.scrollLeft; 
+                l = docElement.scrollLeft;
                 t = docElement.scrollTop;
             } else {
                 l = window.pageXOffset;
                 t = window.pageYOffset;
             }
             ret = {
-                left: l || (body ? body.scrollLeft : 0), 
+                left: l || (body ? body.scrollLeft : 0),
                 top : t || (body ? body.scrollTop : 0)
             };
         } else {
             ret = {
-                left: d.scrollLeft, 
+                left: d.scrollLeft,
                 top : d.scrollTop
             };
         }
-        
+
         return ret;
     },
-    
+
     /**
      * Scrolls this element the specified scroll point. It does NOT do bounds checking so if you scroll to a weird value it will try to do it. For auto bounds checking, use scroll().
      * @param {String} side Either "left" for scrollLeft values or "top" for scrollTop values.

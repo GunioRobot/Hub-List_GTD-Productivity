@@ -1,23 +1,23 @@
 /**
- * The Container model is designed to hold instances of {@link HL.model.Container} 
- * and {@link HL.model.Task} models. Use it directly to create Folders and Lists by 
- * setting its {@link HL.model.Container#type} field or extend it to support other 
+ * The Container model is designed to hold instances of {@link HL.model.Container}
+ * and {@link HL.model.Task} models. Use it directly to create Folders and Lists by
+ * setting its {@link HL.model.Container#type} field or extend it to support other
  * speciality types of container-like models.
  *
- * Notes  
- * 
+ * Notes
+ *
  * - Folders can hold both folders and lists, while lists can only hold tasks.
  *
- * - Container models participate in the {@link HL.view.container.Tree} and 
+ * - Container models participate in the {@link HL.view.container.Tree} and
  * will be decorated as needed by Ext.data.NodeInterface.
  */
 Ext.define('HL.model.Container', {
     extend: 'Ext.data.Model',
     idProperty: '_id',
-    
+
     requires: ['HL.proxy.Container'],
     proxy: 'container',
-        
+
     fields: [
         /**
          * @property {string} name label displayed in the
@@ -34,40 +34,40 @@ Ext.define('HL.model.Container', {
          * @property {auto} _rev _rev sequence maintained by CouchDB,
          * plays a big role in replication and conflict resolution.
          */
-        {name: '_rev', type: 'auto', defaultValue: null},  
+        {name: '_rev', type: 'auto', defaultValue: null},
         /**
          * @property {string} parentId {@link HL.model.Container#_id}
          * of this container's parent in the container hierarchy.
-         */              
+         */
         {name: 'parentId',  type: 'string', defaultValue: 'rootcontainer'},
         /**
-         * @property {array} childIds list of id 
-         * values reprepesenting this container's children. 
+         * @property {array} childIds list of id
+         * values reprepesenting this container's children.
          * can either be container {@link HL.model.Task#_id}
          * values or {@link HL.model.Container#_id}.
-         */  
-        {name: 'childIds', type: 'auto', defaultValue:[]},       
+         */
+        {name: 'childIds', type: 'auto', defaultValue:[]},
         /**
          * @property {auto} checked maintains the state of the checkbox
          * that can be shown next to this container in the UI. currently not
          * being used for containers.
-         */          
+         */
         {name: 'checked', type: 'auto', defaultValue: null},
         {name: 'index', type: 'int', defaultValue: null, persist: false}, // caused problems when not explicity set to false
-        {name: 'depth', type: 'int', defaultValue: 0, persist: false}, // caused problems when not explicity set to false                    
+        {name: 'depth', type: 'int', defaultValue: 0, persist: false}, // caused problems when not explicity set to false
         /**
          * @property {array} ancestors list of container {@link HL.model.Task#_id}
-         * values that are ancestors to this container in the hierarchy. 
+         * values that are ancestors to this container in the hierarchy.
          * Used when querying CouchDB to get a list of all containers
          * that descend from a specific container in the hierarchy.
-         */          
+         */
         {name: 'ancestors', type: 'auto', defaultValue: ['rootcontainer'], convert: function(value, record) {
             if(record.data.ancestors && (JSON.stringify(record.data.ancestors) === JSON.stringify(value)) ) {
                 return record.data.ancestors;
             } else {
                 return value;
             }
-        }},            
+        }},
         {name: 'leaf', type: 'bool', defaultValue: false, persist: false, convert: function(value, record) {
             // this is needed because right now when Ext.NodeInterface.decorate runs
             // it doesn't check to see if a node has children before giving it a value of false
@@ -82,40 +82,40 @@ Ext.define('HL.model.Container', {
                 return true;
             } else {
                 return false;
-            }        
+            }
         }},
         /**
          * @property {string} _id unique identifier for this container.
-         * this value is generated client side using a convert 
+         * this value is generated client side using a convert
          * function.
-         */                 
-        {name: '_id', type: 'string', 
+         */
+        {name: '_id', type: 'string',
             convert: function(value, record) {
                 // make sure we don't create a uuid for existing containers
                 // loaded from couchdb
                 if(value !== '') {
                     return value;
-                }                 
+                }
                 // make sure we don't create a uuid for the auto generated
                 // default root container node or existing containers loaded from server
                 // rootcontainer value is used in the ajax proxy url when loading initial data
                 if(record.data.id === 'rootcontainer') {
                     return record.data.id;
                 }
-                // UUID generator found on stackoverflow 
+                // UUID generator found on stackoverflow
                 // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
                 var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
                     return v.toString(16);
                 });
-                
+
                 return uuid;
             }
         }
     ],
-    
+
     /**
-     * Calls parent contstructor and also sets up events 
+     * Calls parent contstructor and also sets up events
      * that will become available when this instance is
      * decorated by Ext.data.NodeInterface. Setting up the
      * events ahead of time allows us to setup
@@ -125,15 +125,15 @@ Ext.define('HL.model.Container', {
         this.addEvents('beforeappend', 'beforeexpand', 'beforeinsert', 'beforeremove', 'append', 'insert', 'remove');
         return this.callParent(arguments);
     },
-    
+
     /**
      * Adds the {@link HL.model.Container#_id} of a container
-     * node to a specific index position in the 
-     * {@link HL.model.Container#childIds} field of this container 
+     * node to a specific index position in the
+     * {@link HL.model.Container#childIds} field of this container
      * if it's not already there and updates the childIds field.
      * @param {Container} childNode container node to add
-     * @param {Number} childIndex index position of the container 
-     * node within childNodes 
+     * @param {Number} childIndex index position of the container
+     * node within childNodes
      */
     addChildId: function(childNode, childIndex) {
         childIndex = childIndex || this.indexOf(childNode);
@@ -142,9 +142,9 @@ Ext.define('HL.model.Container', {
             var kids = this.data.childIds.slice(0);
             kids.splice(childIndex, 0, childNode.getId())
             this.set('childIds', kids);   // set tracks modifications
-        }    
+        }
     },
-    
+
     /**
      * @private
      * Overrides {@link Ext.data.Model#afterEdit}
@@ -169,8 +169,8 @@ Ext.define('HL.model.Container', {
      * Synchronizes the persistent fields of this model with
      * fields of the same name in the passed in model.
      *
-     * Keeps persistent fields of a single 
-     * entity in sync even though it's being represented by more 
+     * Keeps persistent fields of a single
+     * entity in sync even though it's being represented by more
      * than one instance in the application.
      *
      * Example: When a container is selected in the {@link HL.view.ContainerTree}
@@ -185,7 +185,7 @@ Ext.define('HL.model.Container', {
     relayFields: function(relayNode) {
         var me = this;
         var relayFields = me.fields.filter('persist', true);
-        
+
         relayFields.each(function(field, fieldIndex, fieldCount) {
             if(field.name in relayNode[relayNode.persistenceProperty]) {
                 var silent = typeof field.silentRelay !== 'undefined' ? field.silentRelay : true;
@@ -203,12 +203,12 @@ Ext.define('HL.model.Container', {
             }
         });
     },
-    
+
     /**
      * Removes the {@link HL.model.Container#_id} of a container node from this
      * container's {@link HL.model.Container#childIds} and updates the childIds field.
      * @param {Container} removedNode container node to remove
-     */    
+     */
     removeChildId: function(removedNode) {
         var childIndex = this.data.childIds.indexOf(removedNode.getId());
         if(childIndex !== -1) {
@@ -217,7 +217,7 @@ Ext.define('HL.model.Container', {
             this.set('childIds', kids);
         }
     },
-    
+
     /**
      * Removes all of this container's {@link HL.model.Container#ancestors}
      * and sets the field to an empty array.
@@ -227,11 +227,11 @@ Ext.define('HL.model.Container', {
         // this makes the field modified
         this.set('ancestors', []);
     },
-    
+
     /**
      * Trawls through this container's parentNodes
      * and captures the id of each node along the way
-     * to add to this models {@link HL.model.Container#ancestors}. 
+     * to add to this models {@link HL.model.Container#ancestors}.
      * Then updates the ancestors field.
      */
     updateAncestors: function() {
@@ -241,10 +241,10 @@ Ext.define('HL.model.Container', {
             parent = parent.parentNode;
             ancestors.push(parent.getId());
         }
-        
-        this.set('ancestors', ancestors); 
+
+        this.set('ancestors', ancestors);
     },
-            
+
     listeners: {
         append: function(node, appendedNode, childIndex) {
             node.addChildId(appendedNode, childIndex);
@@ -259,7 +259,7 @@ Ext.define('HL.model.Container', {
         },
         remove: function(node, removedNode) {
             node.removeChildId(removedNode);
-        }                
-    }      
+        }
+    }
 
 });

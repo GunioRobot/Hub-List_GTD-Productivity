@@ -83,16 +83,16 @@ __Example usage:__
         title: 'Simple Form',
         bodyPadding: 5,
         width: 350,
-        
+
         // The form will submit an AJAX request to this URL when submitted
         url: 'save-form.php',
-        
+
         // Fields will be arranged vertically, stretched to full width
         layout: 'anchor',
         defaults: {
             anchor: '100%'
         },
-        
+
         // The fields
         defaultType: 'textfield',
         items: [{
@@ -104,7 +104,7 @@ __Example usage:__
             name: 'last',
             allowBlank: false
         }],
-        
+
         // Reset and Submit buttons
         buttons: [{
             text: 'Reset',
@@ -147,7 +147,7 @@ Ext.define('Ext.form.Panel', {
 
     /**
      * @cfg {Boolean} pollForChanges
-     * If set to <tt>true</tt>, sets up an interval task (using the {@link #pollInterval}) in which the 
+     * If set to <tt>true</tt>, sets up an interval task (using the {@link #pollInterval}) in which the
      * panel's fields are repeatedly checked for changes in their values. This is in addition to the normal detection
      * each field does on its own input element, and is not needed in most cases. It does, however, provide a
      * means to absolutely guarantee detection of all changes including some edge cases in some browsers which
@@ -170,11 +170,11 @@ Ext.define('Ext.form.Panel', {
 
     initComponent: function() {
         var me = this;
-        
+
         if (me.frame) {
             me.border = false;
         }
-        
+
         me.initFieldAncestor();
         me.callParent();
 
@@ -195,7 +195,7 @@ Ext.define('Ext.form.Panel', {
     initItems: function() {
         // Create the BasicForm
         var me = this;
-        
+
         me.form = me.createForm();
         me.callParent();
         me.form.initialize();
@@ -215,7 +215,7 @@ Ext.define('Ext.form.Panel', {
     getForm: function() {
         return this.form;
     },
-    
+
     /**
      * Loads an {@link Ext.data.Model} into this form (internally just calls {@link Ext.form.Basic#loadRecord})
      * See also {@link #trackResetOnLoad}.
@@ -225,7 +225,7 @@ Ext.define('Ext.form.Panel', {
     loadRecord: function(record) {
         return this.getForm().loadRecord(record);
     },
-    
+
     /**
      * Returns the currently loaded Ext.data.Model instance if one was loaded via {@link #loadRecord}.
      * @return {Ext.data.Model} The loaded instance
@@ -233,7 +233,7 @@ Ext.define('Ext.form.Panel', {
     getRecord: function() {
         return this.getForm().getRecord();
     },
-    
+
     /**
      * Convenience function for fetching the current value of each field in the form. This is the same as calling
      * {@link Ext.form.Basic#getValues this.getForm().getValues()}
@@ -317,7 +317,7 @@ Ext.define('Ext.form.Panel', {
     },
 
     /**
-     * Forces each field within the form panel to 
+     * Forces each field within the form panel to
      * {@link Ext.form.field.Field#checkChange check if its value has changed}.
      */
     checkChange: function() {
